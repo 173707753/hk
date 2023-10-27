@@ -1,8 +1,8 @@
 export default [
 	{
 		path: '/',
-		name: '主页',
-		redirect: '/home',
+		name: '数据详情',
+		redirect: '/main',
 	},
 	{
 		path: '/home',
