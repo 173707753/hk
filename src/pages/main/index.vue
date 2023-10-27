@@ -12,7 +12,7 @@
               {{ item.title }}
             </div>
             <!-- <div class="tabimg"> -->
-
+             
             <img class="tabimg" width="150%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="">
             <!-- </div> -->
           </div>
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       tabList: [{
-        title: '智慧种植',
+        title: '供电能力',
         show: false,
         type: 'itermStylezz',
         class: 'animated fadeIn',
@@ -121,5 +121,4 @@ export default {
       }
     }
   }
-}
-</style>
+}</style>
