@@ -8,10 +8,8 @@
             <div id="main1" class="chart"></div>
             <!-- 按钮浮动在折线图上 -->
             <div class="button-container">
-                <button style="font-size: 12px;background-color: #bfc;border: 1px solid #bfa;"
-                    @click="changeEnergy()">常规电源</button>
-                <button style="font-size: 12px;background-color: #bfc;border: 1px solid #bfa;"
-                    @click="changeNewenergy()">新能源</button>
+                <el-tag @click="changeEnergy()" size="mini">常规电源</el-tag>
+                <el-tag type="success" @click="changeNewenergy()" size="mini">新能源</el-tag>
             </div>
         </div>
     </div>

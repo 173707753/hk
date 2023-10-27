@@ -5,9 +5,9 @@
       <div class="Insectpest_t_left">
         <div class="scrollable-content">
           <left1 />
-          <left2 />
-          <left3 />
-          <left4 />
+          <left2 style="margin-top: 5px;" />
+          <left3 style="margin-top: 5px;" />
+          <left4 style="margin-top: 5px;" />
         </div>
       </div>
       <!-- 中间地图 -->
