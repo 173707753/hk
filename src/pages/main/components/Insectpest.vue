@@ -17,12 +17,22 @@
       </div>
       <!-- 右边数据 -->
       <div class="Insectpest_t_right">
-        <div class="top">
-          <watcherStatistical />
+        <div class="title">源网储荷优化调度</div>
+        <div class="content">
+          <div class="top">
+          <chart1 />
         </div>
         <div class="bot">
-          <watcherEnvironmental />
+          <chart2 />
         </div>
+        <div class="bot">
+          <chart3 />
+        </div>
+        <div class="bot">
+          <chart4 />
+        </div>
+        </div>
+       
       </div>
     </div>
     <!-- 底部 -->
@@ -47,6 +57,11 @@ import left3 from './Insectpest/left/left3'
 import left4 from './Insectpest/left/left4'
 import left5 from './Insectpest/left5'
 import Map from './Insectpest/map'
+import chart1 from './Insectpest/rightDate/chart1'
+import chart2 from './Insectpest/rightDate/chart1'
+import chart3 from './Insectpest/rightDate/chart1'
+import chart4 from './Insectpest/rightDate/chart1'
+
 import watcherStatistical from './Insectpest/watcherStatistical'
 import watcherEnvironmental from './Insectpest/watcherEnvironmental'
 import warningInformation from './Insectpest/warningInformation'
@@ -62,7 +77,11 @@ export default {
     left4,
     left5,
     warningInformation,
-    greenServices
+    greenServices,
+    chart1,
+    chart2,
+    chart3,
+    chart4
   },
   data() {
     return {
@@ -126,6 +145,28 @@ export default {
   .Insectpest_t_right {
     width: 24%;
     height: 60vh;
+    .title{
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .content{
+    width: 100%;
+    height: 58vh;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+      /* 定义滚动条的样式 */
+.content::-webkit-scrollbar {
+  width: 4px; 
+}
+.content::-webkit-scrollbar-track {
+  background: #525579; 
+}
+.content::-webkit-scrollbar-thumb {
+  background: #4f668e; /* 滚动条滑块颜色 */
+}
 
     .top {
       width: 100%;
