@@ -3,12 +3,16 @@
     <div class="Insectpest_t">
       <!-- 左边数据 -->
       <div class="Insectpest_t_left">
-        <watcherStatics />
-        <!-- <div class="bot"></div> -->
-        <watcherEcharts />
+        <div class="scrollable-content">
+          <left1 />
+          <left2 />
+          <left3 />
+          <left4 />
+        </div>
       </div>
       <!-- 中间地图 -->
       <div class="Insectpest_t_center">
+        <div>电力碳中和智能化调度</div>
         <Map />
       </div>
       <!-- 右边数据 -->
@@ -24,7 +28,7 @@
     <!-- 底部 -->
     <div class="Insectpest_b">
       <div class="Insectpest_b_left">
-        <expert />
+        <left5 />
       </div>
       <div class="Insectpest_b_center">
         <warningInformation />
@@ -37,16 +41,29 @@
 </template>
 
 <script>
-import watcherStatics from './Insectpest/watcherStatics' // 左边数据的上半部分(观察者)
-import watcherEcharts from './Insectpest/watcherEcharts' // 左边数据的下半部分(观察者)
-import Map from './Insectpest/map' // 中间地图
-import watcherStatistical from './Insectpest/watcherStatistical' //右边数据的上半部分(观察者)
-import watcherEnvironmental from './Insectpest/watcherEnvironmental' //右边中间数据
-import warningInformation from './Insectpest/warningInformation' //预警信息
-import expert from './Insectpest/expert' //专家服务
-import greenServices from './Insectpest/greenServices' //绿色服务
+import left1 from './Insectpest/left/left1'
+import left2 from './Insectpest/left/left2'
+import left3 from './Insectpest/left/left3'
+import left4 from './Insectpest/left/left4'
+import left5 from './Insectpest/left5'
+import Map from './Insectpest/map'
+import watcherStatistical from './Insectpest/watcherStatistical'
+import watcherEnvironmental from './Insectpest/watcherEnvironmental'
+import warningInformation from './Insectpest/warningInformation'
+import greenServices from './Insectpest/greenServices'
 export default {
-  components: { watcherStatics, watcherEcharts, Map, watcherStatistical ,watcherEnvironmental,expert,warningInformation,greenServices},
+  components: {
+    Map,
+    watcherStatistical,
+    watcherEnvironmental,
+    left1,
+    left2,
+    left3,
+    left4,
+    left5,
+    warningInformation,
+    greenServices
+  },
   data() {
     return {
       role: 'watcher'
@@ -59,56 +76,90 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Insectpest{
+.Insectpest {
   width: 100%;
   height: 100%;
-  .Insectpest_t{
+
+  .Insectpest_t {
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
     margin-top: 20px;
   }
-  .Insectpest_t_left{
+
+  .Insectpest_t_left {
     width: 24%;
     height: 60vh;
+
+    .scrollable-content {
+      width: 100%;
+      height: 60vh;
+      /* 启用垂直滚动条 */
+      overflow-y: auto;
+
+      /* 自定义滚动条样式 */
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #4f668e;
+        /* 滚动条滑块的颜色 */
+        border-radius: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #525579;
+        /* 滚动条轨道的颜色 */
+        border-radius: 4px;
+      }
+    }
   }
-  .Insectpest_t_center{
+
+  .Insectpest_t_center {
     width: 49%;
     height: 60vh;
     position: relative;
     overflow: hidden;
   }
-  .Insectpest_t_right{
+
+  .Insectpest_t_right {
     width: 24%;
     height: 60vh;
-    .top{
+
+    .top {
       width: 100%;
       height: 30vh;
       // background-color: red;
     }
-    .bot{
+
+    .bot {
       margin-top: 2vh;
       width: 100%;
       height: 28vh;
       // background-color: red;
     }
   }
-  .Insectpest_b{
+
+  .Insectpest_b {
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
     margin-top: 1.5%;
-    .Insectpest_b_left{
+
+    .Insectpest_b_left {
       width: 24%;
       // background-color: #fff;
       height: 20vh;
     }
-    .Insectpest_b_center{
+
+    .Insectpest_b_center {
       width: 48%;
       // height: 20vh;
       // background-color: #fff;
     }
-    .Insectpest_b_right{
+
+    .Insectpest_b_right {
       width: 24%;
       height: 20vh;
       // background-color: #fff;

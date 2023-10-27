@@ -3,16 +3,16 @@
     <div class="main_top">
       <div class="left">
         <img width="100%" height="90%" src="../../assets/img/ch/菜单栏.png" alt="">
-          <div class="main_g">
-            <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
-          </div>
+        <div class="main_g">
+          <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
+        </div>
         <div class="right">
           <div v-for="(item, index) in tabList" :key="index" class="tabs">
             <div class="tabitem" @click="chaneTab(index)">
-              {{item.title}}
+              {{ item.title }}
             </div>
             <!-- <div class="tabimg"> -->
-              <img class="tabimg" width="150%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="">
+            <img class="tabimg" width="150%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="">
             <!-- </div> -->
           </div>
         </div>
@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      tabList: [ {
+      tabList: [{
         title: '智慧种植',
         show: false,
         type: 'itermStylezz',
@@ -93,11 +93,14 @@ export default {
   background-image: url('../../assets/img/map/bg.jpg');
   background-size: 100% auto;
   background-position-y: 100%;
-  .main_top{
+
+  .main_top {
     display: flex;
-    .left{
+
+    .left {
       position: relative;
-      .right{
+
+      .right {
         position: absolute;
         color: #fff;
         display: flex;
@@ -106,14 +109,17 @@ export default {
         right: 0;
         top: 37%;
         z-index: 999;
-        .tabs{
+
+        .tabs {
           width: 100%;
           position: relative;
-          .tabitem{
+
+          .tabitem {
             cursor: pointer;
             font-size: 1.8vh;
           }
-          .tabimg{
+
+          .tabimg {
             position: absolute;
             top: -78%;
             z-index: 999;
