@@ -3,16 +3,17 @@
     <div class="main_top">
       <div class="left">
         <img width="100%" height="90%" src="../../assets/img/ch/菜单栏.png" alt="">
-          <div class="main_g">
-            <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
-          </div>
+        <div class="main_g">
+          <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
+        </div>
         <div class="right">
           <div v-for="(item, index) in tabList" :key="index" class="tabs">
             <div class="tabitem" @click="chaneTab(index)">
-              {{item.title}}
+              {{ item.title }}
             </div>
             <!-- <div class="tabimg"> -->
-              <img class="tabimg" width="150%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="">
+             
+            <img class="tabimg" width="150%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="">
             <!-- </div> -->
           </div>
         </div>
@@ -32,37 +33,27 @@ export default {
   },
   data() {
     return {
-      tabList: [ {
-        title: '智慧种植',
+      tabList: [{
+        title: '供电能力',
         show: false,
         type: 'itermStylezz',
         class: 'animated fadeIn',
       }, {
-        title: '智慧林业',
+        title: '清洁能源消纳',
         show: false,
         type: 'itermStylely',
         class: 'animated fadeIn',
       }, {
-        title: '智慧虫害',
+        title: '储能调控',
         show: false,
         type: 'itermStylech',
         class: 'animated fadeIn',
       }, {
-        title: '智慧养殖',
+        title: '应急调度',
         show: false,
         type: 'itermStyleyz',
         class: 'animated fadeIn',
-      }, {
-        title: '智慧溯源',
-        show: false,
-        type: 'itermStylesy',
-        class: 'animated fadeIn',
-      }, {
-        title: '数字建党',
-        show: false,
-        type: 'itermStyleKeydj',
-        class: 'animated fadeIn',
-      }
+      },
       ]
     }
   },
@@ -93,36 +84,41 @@ export default {
   background-image: url('../../assets/img/map/bg.jpg');
   background-size: 100% auto;
   background-position-y: 100%;
-  .main_top{
+
+  .main_top {
     display: flex;
-    .left{
+
+    .left {
       position: relative;
-      .right{
+
+      .right {
         position: absolute;
         color: #fff;
         display: flex;
-        width: 38%;
+        width: 28%;
         justify-content: space-around;
         right: 0;
         top: 37%;
         z-index: 999;
-        .tabs{
+
+        .tabs {
           width: 100%;
           position: relative;
-          .tabitem{
+
+          .tabitem {
             cursor: pointer;
             font-size: 1.8vh;
           }
-          .tabimg{
+
+          .tabimg {
             position: absolute;
-            top: -78%;
+            top: -110%;
             z-index: 999;
             cursor: pointer;
-            right: -2%;
+            right: 2%;
           }
         }
       }
     }
   }
-}
-</style>
+}</style>
