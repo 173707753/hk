@@ -18,8 +18,9 @@
         <Map />
       </div>
       <!-- 右边数据 -->
+         <div class="title">源网储荷优化调度</div>
       <div class="Insectpest_t_right">
-        <div class="title">源网储荷优化调度</div>
+        <!-- <div class="title">源网储荷优化调度</div> -->
         <div class="content">
           <div class="top">
             <chart1 />
@@ -60,9 +61,9 @@ import left4 from './Insectpest/left/left4'
 import left5 from './Insectpest/left5'
 import Map from './Insectpest/map'
 import chart1 from './Insectpest/rightDate/chart1'
-import chart2 from './Insectpest/rightDate/chart1'
-import chart3 from './Insectpest/rightDate/chart1'
-import chart4 from './Insectpest/rightDate/chart1'
+import chart2 from './Insectpest/rightDate/chart2'
+import chart3 from './Insectpest/rightDate/chart3'
+import chart4 from './Insectpest/rightDate/chart4'
 
 // import watcherStatistical from './Insectpest/watcherStatistical'
 // import watcherEnvironmental from './Insectpest/watcherEnvironmental'
@@ -149,9 +150,10 @@ export default {
 
     .title {
       color: #fff;
-      font-size: 24px;
+      font-size: 30px;
       text-align: center;
-      margin-bottom: 10px;
+      // margin-bottom: 10px;
+      // position: absolute;
     }
 
     .content {
