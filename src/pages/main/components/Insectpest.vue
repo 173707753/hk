@@ -58,9 +58,9 @@ import left4 from './Insectpest/left/left4'
 import left5 from './Insectpest/left5'
 import Map from './Insectpest/map'
 import chart1 from './Insectpest/rightDate/chart1'
-import chart2 from './Insectpest/rightDate/chart1'
-import chart3 from './Insectpest/rightDate/chart1'
-import chart4 from './Insectpest/rightDate/chart1'
+import chart2 from './Insectpest/rightDate/chart2'
+import chart3 from './Insectpest/rightDate/chart3'
+import chart4 from './Insectpest/rightDate/chart4'
 
 import watcherStatistical from './Insectpest/watcherStatistical'
 import watcherEnvironmental from './Insectpest/watcherEnvironmental'
@@ -107,7 +107,7 @@ export default {
   }
 
   .Insectpest_t_left {
-    width: 24%;
+    width: 27%;
     height: 60vh;
 
     .scrollable-content {
@@ -136,14 +136,14 @@ export default {
   }
 
   .Insectpest_t_center {
-    width: 49%;
+    width: 43%;
     height: 60vh;
     position: relative;
     overflow: hidden;
   }
 
   .Insectpest_t_right {
-    width: 24%;
+    width: 27%;
     height: 60vh;
     .title{
       color: #fff;
@@ -156,6 +156,7 @@ export default {
     height: 58vh;
       overflow-x: hidden;
       overflow-y: scroll;
+      
     }
       /* 定义滚动条的样式 */
 .content::-webkit-scrollbar {
@@ -170,6 +171,7 @@ export default {
 
     .top {
       width: 100%;
+      // margin-top: 2vh;
       height: 30vh;
       // background-color: red;
     }
@@ -189,19 +191,19 @@ export default {
     margin-top: 1.5%;
 
     .Insectpest_b_left {
-      width: 24%;
+      width: 27%;
       // background-color: #fff;
       height: 20vh;
     }
 
     .Insectpest_b_center {
-      width: 48%;
+      width: 43%;
       // height: 20vh;
       // background-color: #fff;
     }
 
     .Insectpest_b_right {
-      width: 24%;
+      width: 27%;
       height: 20vh;
       // background-color: #fff;
     }
