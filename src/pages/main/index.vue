@@ -6,13 +6,16 @@
         <div class="main_g">
           <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
         </div>
+        <div style="color: rgb(226, 236, 255);font-size: 36px;font-weight: bold;position: absolute;top: 20px;left: 43%;">
+          电力碳中和智能化调度
+        </div>
         <div class="right">
           <div v-for="(item, index) in tabList" :key="index" class="tabs">
             <div class="tabitem" @click="chaneTab(index)">
               {{ item.title }}
             </div>
             <!-- <div class="tabimg"> -->
-             
+
             <img class="tabimg" width="150%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="">
             <!-- </div> -->
           </div>
@@ -121,4 +124,5 @@ export default {
       }
     }
   }
-}</style>
+}
+</style>

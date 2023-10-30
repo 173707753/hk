@@ -12,7 +12,9 @@
       </div>
       <!-- 中间地图 -->
       <div class="Insectpest_t_center">
-        <div>电力碳中和智能化调度</div>
+        <!-- <div style="text-align: center;color: rgb(55, 209, 259);font-size: 32px;position: absolute;">
+          电力碳中和智能化调度
+        </div> -->
         <Map />
       </div>
       <!-- 右边数据 -->
@@ -105,7 +107,7 @@ export default {
   }
 
   .Insectpest_t_left {
-    width: 24%;
+    width: 27%;
     height: 60vh;
 
     .scrollable-content {
@@ -134,14 +136,15 @@ export default {
   }
 
   .Insectpest_t_center {
-    width: 49%;
+    display: flexs;
+    width: 45%;
     height: 60vh;
     position: relative;
     overflow: hidden;
   }
 
   .Insectpest_t_right {
-    width: 24%;
+    width: 27%;
     height: 60vh;
 
     .title {
@@ -193,21 +196,22 @@ export default {
     margin-top: 1.5%;
 
     .Insectpest_b_left {
-      width: 24%;
+      width: 27%;
       // background-color: #fff;
       height: 20vh;
     }
 
     .Insectpest_b_center {
-      width: 48%;
+      width: 45%;
       // height: 20vh;
       // background-color: #fff;
     }
 
     .Insectpest_b_right {
-      width: 24%;
+      width: 27%;
       height: 20vh;
       // background-color: #fff;
     }
   }
-}</style>
+}
+</style>

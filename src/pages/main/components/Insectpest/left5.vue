@@ -3,11 +3,16 @@
     <div class="st_titles">
       GIS数据筛选
     </div>
+    <GisSelection></GisSelection>
   </div>
 </template>
 
 <script>
+import GisSelection from './left/GisSelection.vue';
 export default {
+  components: {
+    GisSelection
+  },
   data() {
     return {
 

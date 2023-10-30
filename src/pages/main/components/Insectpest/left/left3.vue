@@ -13,75 +13,85 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
-            xAxisData: [],
-            data1: [],
-            data2: [],
+            leftData: [
+                {
+                    name: '抽蓄发电',
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                }
+            ],
         };
     },
     created() {
-        this.generateData();
     },
     methods: {
-        generateData() {
-            for (var i = 0; i < 100; i++) {
-                this.xAxisData.push('A' + i);
-                this.data1.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5);
-                this.data2.push((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5);
-            }
-        },
         //Echarts数据渲染
         initChart() {
             var chartDom = document.getElementById('main3');
-            var myChart = echarts.init(chartDom);
-            var option;
-
-            option = {
+            this.chartInstance = echarts.init(chartDom);
+            var option = this.getOption();
+            this.chartInstance.setOption(option);
+        },
+        getOption(data = this.leftData) {
+            return {
                 title: {
                     // text: 'Bar Animation Delay',
                 },
                 legend: {
-                    data: ['bar', 'bar2'],
+                    textStyle: {
+                        color: 'rgb(55, 209, 259)',
+                    },
+                    data: data.map(item => item.name),
+                },
+                toolbox: {
+
                 },
                 tooltip: {},
                 xAxis: {
-                    data: this.xAxisData,
-                    splitLine: {
-                        show: false,
+                    name: 't/min',
+                    data: Array.from({ length: 101 }, (_, i) => i),
+                    axisLabel: {
+                        show: true,
+                        interval: 9,
+                        textStyle: {
+                            fontWeight: 'bold'
+                        }
                     },
                 },
-                yAxis: {},
-                series: [
+                yAxis: [
                     {
-                        name: 'bar',
-                        type: 'bar',
-                        data: this.data1,
-                        emphasis: {
-                            focus: 'series',
+                        name: 'P/MW',
+                        type: 'value',
+                        nameTextStyle: {
+                            fontWeight: 'bold'
                         },
-                        animationDelay: function (idx) {
-                            return idx * 10;
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                fontWeight: 'bold'
+                            }
                         },
-                    },
-                    {
-                        name: 'bar2',
-                        type: 'bar',
-                        data: this.data2,
-                        emphasis: {
-                            focus: 'series',
-                        },
-                        animationDelay: function (idx) {
-                            return idx * 10 + 100;
+                        axisPointer: {
+                            snap: true,
                         },
                     },
                 ],
+                series: data.map(item => ({
+                    name: item.name,
+                    type: 'line',
+                    data: item.data,
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    animationDelay: function (idx) {
+                        return idx * 10;
+                    }
+                })),
                 animationEasing: 'elasticOut',
                 animationDelayUpdate: function (idx) {
                     return idx * 5;
-                },
+                }
             };
-
-            option && myChart.setOption(option);
-        },
+        }
     },
 
     mounted() {

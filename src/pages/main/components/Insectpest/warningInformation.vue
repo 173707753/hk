@@ -25,126 +25,81 @@ export default {
       dataimg: [
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: [
-            require("../../../../assets/img/ch/预警信息/虫害预警.png"),
-          ],
-          txt: "草地贪夜蛾预警",
-          date: '2021-03-12',
+          txt: "省网电力保供裕度系数",
           type: 1
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: require("../../../../assets/img/ch/预警信息/暴雨预警.png"),
-          txt: "暴雨预警",
-          date: '2021-03-12',
+          txt: "省网电量保供裕度系数",
           type: 2
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: require("../../../../assets/img/ch/预警信息/夏季高温预警.png"),
-          txt: "夏季高温预警",
-          date: '2021-03-12',
+          txt: "区域电网电力保供裕度系数",
           type: 3
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: [
-            require("../../../../assets/img/ch/预警信息/虫害预警.png"),
-          ],
-          txt: "草地贪夜蛾预警",
-          date: '2021-03-12',
+          txt: "区域电网电量保供裕度系数",
           type: 1
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: require("../../../../assets/img/ch/预警信息/暴雨预警.png"),
-          txt: "暴雨预警",
-          date: '2021-03-12',
+          txt: "省网水电电力电量消纳率",
           type: 2
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: require("../../../../assets/img/ch/预警信息/夏季高温预警.png"),
-          txt: "夏季高温预警",
-          date: '2021-03-12',
+          txt: "区域电网水电电力电量消纳率",
           type: 3
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: [
-            require("../../../../assets/img/ch/预警信息/虫害预警.png"),
-          ],
-          txt: "草地贪夜蛾预警",
-          date: '2021-03-12',
+          txt: "省网新能源电力电量消纳率",
           type: 1
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: require("../../../../assets/img/ch/预警信息/暴雨预警.png"),
-          txt: "暴雨预警",
-          date: '2021-03-12',
+          txt: "区域电网网新能源电力电量消纳率",
           type: 2
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: require("../../../../assets/img/ch/预警信息/夏季高温预警.png"),
-          txt: "夏季高温预警",
-          date: '2021-03-12',
+          txt: "省网跨区消纳直流能力",
           type: 3
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: require("../../../../assets/img/ch/预警信息/夏季高温预警.png"),
-          txt: "夏季高温预警",
-          date: '2021-03-12',
+          txt: "区域电网跨区消纳直流能力",
           type: 3
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: [
-            require("../../../../assets/img/ch/预警信息/虫害预警.png"),
-          ],
-          txt: "草地贪夜蛾预警",
-          date: '2021-03-12',
+          txt: "紧急大功率支撑",
           type: 1
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: require("../../../../assets/img/ch/预警信息/暴雨预警.png"),
-          txt: "暴雨预警",
-          date: '2021-03-12',
+          txt: "跨区转送能力",
           type: 2
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: require("../../../../assets/img/ch/预警信息/夏季高温预警.png"),
-          txt: "夏季高温预警",
-          date: '2021-03-12',
+          txt: "应急备用平衡度",
           type: 3
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          summer: [
-            require("../../../../assets/img/ch/预警信息/虫害预警.png"),
-          ],
-          txt: "草地贪夜蛾预警",
-          date: '2021-03-12',
+          txt: "保供备用平衡度",
           type: 1
         },
-        {
-          src: require("../../../../assets/img/ch/card.png"),
-          summer: require("../../../../assets/img/ch/预警信息/暴雨预警.png"),
-          txt: "暴雨预警",
-          date: '2021-03-12',
-          type: 2
-        },
-        {
-          src: require("../../../../assets/img/ch/card.png"),
-          summer: require("../../../../assets/img/ch/预警信息/夏季高温预警.png"),
-          txt: "夏季高温预警",
-          date: '2021-03-12',
-          type: 3
-        },
+        // {
+        //   src: require("../../../../assets/img/ch/card.png"),
+        //   summer: require("../../../../assets/img/ch/预警信息/暴雨预警.png"),
+        //   txt: "暴雨预警",
+        //   date: '2021-03-12',
+        //   type: 2
+        // },
       ],
     };
   },
