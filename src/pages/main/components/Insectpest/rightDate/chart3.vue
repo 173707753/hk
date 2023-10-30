@@ -1,217 +1,86 @@
 <template>
-    <div class="top">
-      <div class="st_titles">储能数据</div>
-     
+  <div class="top">
+    <div class="st_titles">储能数据</div>
+    <div class="chart-container">
+      <!-- 折线图容器 -->
+      <div id="chart3" class="chart" style="width: 100%; height: 100%;"></div>
     </div>
-  </template>
+  </div>
+</template>
   
-  <script>
-  import EChart from "@/components/EChart.vue";
-  import * as echarts from "echarts";
-  export default {
-    components: {
-      EChart,
-    },
-    data() {
-    },
-  };
-  </script>
-  
-  <style lang="scss" scoped>
-  .top {
-    width: 100%;
-    z-index: 99999;
-    height: 28vh;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-image: url("../../../../../assets/img/ch/环境指数/环境指数.png");
-    .diseases {
-      width: 100%;
-      height: 100%;
+<script>
+import EChart from "@/components/EChart.vue";
+import * as echarts from "echarts";
+export default {
+  components: {
+    EChart,
+  },
+  data() {
+    return {
+      myChart: null,
+      option: {
+        xAxis: {
+          name: 't/min',
+          type: 'category',
+          data: ['0:00', '0:15', '0:30', '0:45', '1:00', '1:15', '1:30', '1:45', '2:00', '2:15', '2:30', '2:45', '3:00', '3:15', '3:30', '3:45', '4:00', '4:15', '4:30', '4:45', '5:00', '5:15', '5:30', '5:45', '6:00', '6:15', '6:30', '6:45', '7:00', '7:15', '7:30', '7:45', '8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45', '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45', '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45', '23:00', '23:15', '23:30', '23:45', '24:00']
+        },
+        yAxis: {
+          name: 'P/MW',
+          type: 'value',
+          axisLabel: {
+            formatter: '{value}'
+          },
+          axisPointer: {
+            snap: true
+          }
+        },
+        legend: {
+          data: ['抽蓄数据'],
+          left: 'center',
+          textStyle: {
+                      color: '#fff',
+                  },
+        },
+        series: [
+          {
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            type: 'line',
+            symbol: 'circle',
+            name: '抽蓄数据',
+          },
+        ]
+      }
     }
+  },
+  mounted() {
+    this.myChart = echarts.init(document.getElementById('chart3'));
+    this.myChart.setOption(this.option);
+  },
+  methods: {
+  }
+};
+</script>
+  
+<style lang="scss" scoped>
+.top {
+  width: 100%;
+  z-index: 99999;
+  height: 28vh;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-image: url("../../../../../assets/img/ch/环境指数/环境指数.png");
 
-    .st_dw {
-      width: 55%;
-      font-size: 1.6vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  
-    .smalltab {
-      width: 45%;
-      position: relative;
-      display: flex;
-      margin-right: 2%;
-      justify-content: flex-end;
-      align-items: flex-end;
-  
-      img {
-        z-index: 9999;
-        cursor: pointer;
-        width: 10%;
-      }
-  
-      .small_tabs {
-        position: relative;
-  
-        p {
-          cursor: pointer;
-          z-index: 9999;
-          right: 13%;
-          top: 4%;
-          margin-top: 5%;
-          position: absolute;
-        }
-  
-        font-size: 1vh;
-        text-align: right;
-      }
-  
-      .small_tabsed {
-        position: relative;
-  
-        p {
-          cursor: pointer;
-          z-index: 9999;
-          left: 8%;
-          top: 4%;
-          position: absolute;
-        }
-  
-        font-size: 0.5vh;
-        text-align: left;
-        margin-left: -1px;
-      }
-    }
-  
-    .st_bo {
-      display: flex;
-      margin-top: 5%;
-      justify-content: space-around;
-  
-      .desc {
-        font-size: 1vh;
-        color: #afbae0;
-      }
-  
-      p {
-        margin-top: 1vh;
-      }
-  
-      .nyzb {
-        flex: 1;
-        text-align: center;
-        position: relative;
-        border-right: 1px solid #00a3ff3d;
-  
-        .water_zb {
-          // 水波纹的大小位置设置
-          width: 4vw;
-          height: 4vw;
-          left: 23%;
-          top: -9%;
-          border: 2px solid #ff650b;
-          box-shadow: 2px 2px 30px #ff650b;
-          /* 阴影效果 */
-        }
-  
-        .water_zs {
-          // 水波纹的大小位置设置
-          width: 5vw;
-          height: 5vw;
-          left: 28%;
-          top: -13%;
-          border: 2px solid #ff650b;
-          box-shadow: 2px 2px 30px #ff650b;
-          /* 阴影效果 */
-        }
-  
-        .count {
-          font-family: countFont;
-          color: #ffbf2c;
-          font-weight: 600;
-          font-size: 3vh;
-        }
-  
-        .dw {
-          font-size: 1vh;
-          margin-left: 2px;
-          color: #ffbf2c;
-        }
-      }
-  
-      .lsjp {
-        flex: 1;
-        text-align: center;
-        position: relative;
-        border-right: 1px solid #00a3ff3d;
-  
-        .water_jp {
-          // 水波纹的大小位置设置
-          width: 4vw;
-          height: 4vw;
-          left: 23%;
-          top: -9%;
-          border: 2px solid #35ece8;
-          box-shadow: 2px 2px 30px #35ece8;
-          /* 阴影效果 */
-        }
-  
-        .count {
-          font-family: countFont;
-          color: #35ece8;
-          font-weight: 600;
-          font-size: 3vh;
-        }
-  
-        .dw {
-          font-size: 1vh;
-          color: #35ece8;
-          margin-left: 2px;
-        }
-      }
-  
-      .lszz {
-        flex: 1;
-        text-align: center;
-        position: relative;
-  
-        .water_zz {
-          // 水波纹的大小位置设置
-          width: 4vw;
-          height: 4vw;
-          left: 23%;
-          top: -9%;
-          border: 2px solid #59ff85;
-          box-shadow: 2px 2px 30px #59ff85;
-          /* 阴影效果 */
-        }
-  
-        .water_bj {
-          // 水波纹的大小位置设置
-          width: 5vw;
-          height: 5vw;
-          left: 28%;
-          top: -13%;
-          border: 2px solid #35ece8;
-          box-shadow: 2px 2px 30px #35ece8;
-          /* 阴影效果 */
-        }
-  
-        .count {
-          font-family: countFont;
-          color: #3dd780;
-          font-weight: 600;
-          font-size: 3vh;
-        }
-  
-        .dw {
-          font-size: 1vh;
-          color: #3dd780;
-          margin-left: 2px;
-        }
-      }
-    }
-  }</style>
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .chart {
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>
   
