@@ -61,6 +61,11 @@ export default {
         };
     },
     created() {
+        this.$root.eventBus.$on('changeEnergyData', (data) => {
+            console.log(data,'data');
+        // 更新图标或执行相应的操作
+        updateChart(data)
+    });
     },
     methods: {
         //Echarts数据渲染

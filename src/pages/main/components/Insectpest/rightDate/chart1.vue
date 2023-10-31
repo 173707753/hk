@@ -8,8 +8,8 @@
             <div id="chart1" class="chart"></div>
             <!-- 按钮浮动在折线图上 -->
             <div class="button-container">
-                <button @click="changeEnergy">常规电源</button>
-                <button @click="changeNewenergy">新能源</button>
+                <div @click="changeEnergy" class="energy-button conventional">常规电源</div>
+                <div @click="changeNewenergy" class="energy-button new">新能源</div>
             </div>
         </div>
     </div>
@@ -75,6 +75,7 @@ export default {
         },
         changeNewenergy() {
             this.updateChart(this.newData);
+            this.$root.eventBus.$emit('changeEnergyData', this.newData);
         },
         updateChart(data) {
             if (this.chartInstance) {
@@ -146,7 +147,7 @@ export default {
     },
 }
 </script>
-<style lang="scss" scoped>
+<style>
 .top {
     width: 100%;
     z-index: 99999;
@@ -169,6 +170,31 @@ export default {
         position: absolute;
         top: 10px;
         right: 10px;
+    }
+
+    .energy-button {
+        padding: 1px 2px;
+        margin: 2px;
+        border-radius: 3px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        font-weight: bold;
+        color: rgb(55, 209, 259);
+        transition: background-color 0.3s;
+
+        &.conventional {
+            background-color: rgba(84, 122, 194, .5);
+        }
+
+        &.new {
+            background-color: rgba(84, 122, 194, .5);
+        }
+
+        &:hover {
+            color: rgb(2, 188, 233);
+            background-color: rgb(14, 33, 72);
+        }
     }
 }
 </style>
