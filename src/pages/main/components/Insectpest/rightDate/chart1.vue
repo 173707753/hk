@@ -93,7 +93,7 @@ export default {
                         color: '#fff',
                     },
                     data: data.map(item => item.name),
-                    left: 'left'
+                    left: 'center'
                 },
                 xAxis: {
                     name: 't/min',
