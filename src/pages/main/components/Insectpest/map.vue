@@ -396,7 +396,7 @@ export default {
       console.log(this.nowType);
       this.nextDow = false
       if (this.nowType === 'country') {
-
+        console.log(1111);
         this.mapChart.dispose() // 销毁地图
         this.mapChartOption.series[1].data = [this.left5Data[0]] // 更新坐标为武汉市
         this.geoCoordMap = [this.left5Data[0]] // 缓存波纹点
@@ -428,7 +428,7 @@ export default {
       var a = ''
       this.province.features.map(val => {
         if (val.properties.name === data.name) {
-          console.log(data.name)
+          console.log(22222)
           if (val.properties.childrenNum > 0) {
             a = '_full'
           }
