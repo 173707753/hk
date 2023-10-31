@@ -3,7 +3,7 @@
     <div class="main_top">
       <div class="left">
         <img width="100%" height="90%" src="../../assets/img/ch/顶部背景.png" alt="">
-        <div class="main_g">
+        <div class="main_g" style="margin-top: -20px;">
           <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
         </div>
         <div style="color: rgb(226, 236, 255);font-size: 28px;font-weight: bold;position: absolute;top: 18%;left: 9%;">
