@@ -87,12 +87,22 @@ export default {
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          txt: "应急备用平衡度",
+          txt: "省网保供备用均衡度",
           type: 4
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          txt: "保供备用平衡度",
+          txt: "省网应急备用均衡度",
+          type: 4
+        },
+        {
+          src: require("../../../../assets/img/ch/card.png"),
+          txt: "区域电网保供备用均衡度",
+          type: 4
+        },
+        {
+          src: require("../../../../assets/img/ch/card.png"),
+          txt: "区域电网应急备用均衡度",
           type: 4
         },
         // {

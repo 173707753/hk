@@ -65,18 +65,19 @@ export default {
   },
   created() {
     this.tabList.map(val => {
-      if (val.type === this.$route.query.type) {
-        val.show = true
-      }
+      console.log(val);
+      // if (val.type === this.$route.query.type) {
+      //   val.show = true
+      // }
     })
   },
   methods: {
     chaneTab(index) {
       this.tabList.map(val => {
-        val.class = 'animated fadeOut'
+        // val.class = 'animated fadeOut'
         val.show = false
       })
-      this.tabList[index].class = 'animated fadeIn'
+      // this.tabList[index].class = 'animated fadeIn'
       this.tabList[index].show = true
     }
   }
