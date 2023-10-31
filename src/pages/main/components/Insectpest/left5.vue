@@ -34,7 +34,8 @@ export default {
 .bot {
   width: 100%;
   z-index: 99999;
-  height: 34.2vh;
+  // height: 20vh;
+  height: 100%;
   background-image: url('../../../../assets/img/ch/chbg.png');
   background-size: 100% auto;
   background-repeat: no-repeat;

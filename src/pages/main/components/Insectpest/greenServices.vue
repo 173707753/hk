@@ -14,7 +14,7 @@
       </div>
     </div> -->
     <div class="st_bo" v-if="!tabs">
-      <div class="nyzb">
+      <!-- <div class="nyzb">
         <img
           width="50%"
           height="auto"
@@ -67,7 +67,7 @@
           <span class="count">2234</span>
         </p>
         <p class="desc">农药减排</p>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -100,7 +100,8 @@ export default {
 .top {
   width: 100%;
   z-index: 99999;
-  height: 24vh;
+  // height: 24vh;
+  height: 100%;
   background-image: url("../../../../assets/img/ch/绿色服务/绿色服务.png");
   background-size: 100% auto;
   background-repeat: no-repeat;

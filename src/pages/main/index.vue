@@ -3,11 +3,13 @@
     <div class="main_top">
       <div class="left">
         <img width="100%" height="90%" src="../../assets/img/home/title.png" alt="">
-        <div style="font-size: 32px; color: #fff; position: absolute;font-weight: bold; top: 5px;left: 7%;">电力大数据</div>
-        <div class="main_g">
+        <div class="main_g" style="margin-top: -24px;">
           <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 36px;font-weight: bold;position: absolute;top: 20px;left: 30%;">
+        <div style="color: rgb(226, 236, 255);font-size: 28px;font-weight: bold;position: absolute;top: 18%;left: 9%;">
+          电力大数据
+        </div>
+        <div style="color: rgb(226, 236, 255);font-size: 36px;font-weight: bold;position: absolute;top: 28%;left: 28%;">
           电力碳中和智能化调度
         </div>
         <div class="right">
@@ -17,8 +19,7 @@
             </div>
             <!-- <div class="tabimg"> -->
 
-            <img class="tabimg" v-if="item.show" :width="item.showWidth" height="70px" src="../../assets/img/ch/tabg.png"
-              alt="">
+            <img class="tabimg" width="150%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="">
             <!-- </div> -->
           </div>
         </div>
@@ -38,29 +39,24 @@ export default {
   },
   data() {
     return {
-      itermStylely: false,
       tabList: [{
         title: '供电能力',
         show: false,
-        showWidth: '150%',
         type: 'itermStylezz',
         class: 'animated fadeIn',
       }, {
         title: '清洁能源消纳',
         show: false,
         type: 'itermStylely',
-        showWidth: '200%',
         class: 'animated fadeIn',
       }, {
         title: '储能调控',
         show: false,
         type: 'itermStylech',
-        showWidth: '150%',
         class: 'animated fadeIn',
       }, {
         title: '应急调度',
         show: false,
-        showWidth: '150%',
         type: 'itermStyleyz',
         class: 'animated fadeIn',
       },
@@ -68,19 +64,20 @@ export default {
     }
   },
   created() {
-    this.tabList.map(val => {
-      if (val.type === this.$route.query.type) {
-        val.show = true
-      }
-    })
+    // this.tabList.map(val => {
+    //   // console.log(this.$route.query.type,'type');
+    //   if (val.type === this.$route.query.type) {
+    //     val.show = true
+    //   }
+    // })
   },
   methods: {
     chaneTab(index) {
       this.tabList.map(val => {
-        val.class = 'animated fadeOut'
+        // val.class = 'animated fadeOut'
         val.show = false
       })
-      this.tabList[index].class = 'animated fadeIn'
+      // this.tabList[index].class = 'animated fadeIn'
       this.tabList[index].show = true
     }
   }
@@ -100,23 +97,22 @@ export default {
 
     .left {
       position: relative;
+      margin-left: 24px;
+      margin-top: 20px;
 
       .right {
         position: absolute;
         color: #fff;
         display: flex;
-        width: 24%;
+        width: 28%;
         justify-content: space-around;
         right: 0;
-        top: 37%;
+        top: 10%;
         z-index: 999;
 
         .tabs {
           width: 100%;
           position: relative;
-          display: flex;
-          justify-content: space-evenly;
-          align-items: center;
 
           .tabitem {
             cursor: pointer;
@@ -125,10 +121,10 @@ export default {
 
           .tabimg {
             position: absolute;
-            top: -120%;
+            top: -100%;
             z-index: 999;
             cursor: pointer;
-            right: -25%;
+            right: 0%;
           }
         }
       }

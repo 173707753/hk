@@ -1,7 +1,7 @@
 <template>
     <div class="bot">
         <div class="st_titles">
-            电网:断面数据
+            电网数据
         </div>
         <!-- 渲染位置 -->
         <div id="main2" style="height: 100%;width: 100%;"></div>
