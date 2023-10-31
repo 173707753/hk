@@ -9,12 +9,8 @@
 </template>
   
 <script>
-import EChart from "@/components/EChart.vue";
 import * as echarts from "echarts";
 export default {
-  components: {
-    EChart,
-  },
   data() {
     return {
       myChart: null,
@@ -38,8 +34,8 @@ export default {
           data: ['抽蓄数据'],
           left: 'center',
           textStyle: {
-                      color: '#fff',
-                  },
+            color: '#fff',
+          },
         },
         series: [
           {

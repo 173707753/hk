@@ -25,30 +25,44 @@ export default {
   data() {
     return {
       fenleiOption: [
-        {
-          label: '全部',
-          value: '',
-          data: ''
-        },
-        {
-          label: '玉米',
-          value: '22%',
-          data: '1234566'
-        },
-        {
-          label: '小麦',
-          value: '22%',
-          data: '1234566'
-        },
-        {
-          label: '稻米',
-          value: '22%',
-          data: '1234566'
-        }
       ],
-      searchData: {
-        name: '全部'
-      },
+      //初始数据
+      left5Data: [
+        //市区
+        {
+          name: '武汉市',
+          value: [114.34375, 30.49989],
+        },
+        //区域
+        {
+          name: '洪山区',
+          value: [114.34375, 30.49989],
+        },
+        //火电
+        {
+          name: '洪山区',
+          value: [114.34375, 30.50989],
+          datas: [{ bianhao: 123, zhuangtai: '123' }]
+        },
+        //水电
+        {
+          name: '洪山区',
+          value: [114.36375, 30.51989],
+          datas: [{ bianhao: 123, zhuangtai: '123' }]
+        },
+        //光伏
+        {
+          name: '洪山区',
+          value: [114.38375, 30.52989],
+          datas: [{ bianhao: 123, zhuangtai: '123' }]
+        },
+        //风电
+        {
+          name: '洪山区',
+          value: [114.40378, 30.53989],
+          datas: [{ bianhao: 123, zhuangtai: '123' }]
+        },
+      ],
       mapJson: [],
       province: [],//所有省
       city: [], //某个市
@@ -63,10 +77,6 @@ export default {
       },
       geoCoordMap: [
       ],
-      chonghaiData: [], //存放昆虫密度检测的数据
-      shipinData: [], //存放视频云台的数据
-      biaobaData: [], //存放靶标害虫监测的数据
-      qihouData: [], //存放气候/土壤监测的数据
       mapChart: null, // 全国地区热力图实例
       nextDow: true, // 点击事件的终止条件
       nowType: 'country', // 现在的类型是全国
@@ -117,9 +127,8 @@ export default {
             geoIndex: 0,
             data: [
               {
-                name: "浙江省",
-                value: 810,
-                value1: 110,
+                name: "湖北省",
+                value: [114.34375, 30.49989],
               }
             ],
             tooltip: {
@@ -132,8 +141,6 @@ export default {
                 res = `
                   <div style="padding:10px;background:rgba(0,0,0,0.6);border:1px solid #5EC3F3">
                   <p style="font-size:14px;color:#37D1F9">${params.name}</p>
-                  <p style="color:#BBBBBB;font-size:14px">害虫预警：${params.data ? params.data.value : '--'}</p>
-                  <p style="color:#BBBBBB;font-size:14px">虫害率：${params.data ? params.data.value1 : '--'}</p>
                   </div>
                 `
                 return res
@@ -144,9 +151,10 @@ export default {
             geoIndex: 0,
             silent: true,
             type: 'effectScatter',
-            name: "数据名称",
+            name: "片区名称",
             coordinateSystem: 'geo',
             data: [
+              { name: '洪山区', value: [114.34375, 30.49989] }
             ],
             symbolSize: 10,
             rippleEffect: {              //涟漪特效相关配置。
@@ -160,10 +168,11 @@ export default {
               },
             },
           },
+          //火电
           {
             type: 'scatter',
             coordinateSystem: 'geo',
-            name: "昆虫密度检测",
+            name: "火电发电",
             symbolSize: [45, 52],
             data: [],
             symbol: 'image://' + require('../../../../assets/img/map/kc.png'),
@@ -192,10 +201,11 @@ export default {
               }
             },
           },
+          //水电
           {
             type: 'scatter',
             coordinateSystem: 'geo',
-            name: "视频云台",
+            name: "水电发电",
             symbolSize: [45, 52],
             data: [],
             symbol: 'image://' + require('../../../../assets/img/map/sp.png'),
@@ -224,10 +234,11 @@ export default {
               }
             },
           },
+          //光伏
           {
             type: 'scatter',
             coordinateSystem: 'geo',
-            name: "标靶害虫检测",
+            name: "光伏发电",
             symbolSize: [45, 52],
             data: [],
             symbol: 'image://' + require('../../../../assets/img/map/bb.png'),
@@ -256,10 +267,11 @@ export default {
               }
             },
           },
+          //风电
           {
             type: 'scatter',
             coordinateSystem: 'geo',
-            name: "气候/土壤检测",
+            name: "风电发电",
             symbolSize: [45, 52],
             data: [],
             symbol: 'image://' + require('../../../../assets/img/map/qh.png'),
@@ -292,8 +304,20 @@ export default {
       },
     }
   },
+  created() {
+    // 在组件创建时监听事件
+    this.$bus.$on('left5Data', (filteredData) => {
+      console.log(filteredData);
+      this.clickMap(filteredData)
+    });
+  },
   mounted() {
-    this.geoCoordMap = [{ name: '杭州市', value: [120.153576, 30.287459] }, { name: '北京市', value: [116.418757, 39.917544] }]
+    this.geoCoordMap = [
+      { name: '武汉市', value: [114.34375, 30.49989] },
+      { name: '抚州', value: [117.34, 28] },
+      { name: '赣州', value: [114.92, 25.85] },
+      { name: '南昌', value: [115.89, 28.68] },
+    ]
     this.mapChartOption.series[1].data = this.geoCoordMap.slice(0, 400)
     this.mapJson = chinaMapJson
     this.initChart()
@@ -306,6 +330,7 @@ export default {
       this.searchData.name = val.label
       this.showSelect = false
     },
+    //回退  右键
     show() {
       // 右键回退
       if (this.nowType === 'province') {
@@ -356,6 +381,7 @@ export default {
       }
       return false
     },
+    //初始化地图
     initChart(name) {
       if (!this.nextDow) return // 地图到底了
       var that = this
@@ -363,32 +389,32 @@ export default {
       echarts.registerMap(name || 'china', this.mapJson); // 这个地方是将国/省/市的json塞入到地图中进行绘画
       this.mapChart.setOption(this.mapChartOption); // 画图
       this.mapChart.on('click', function (params) {
-        that.clickMap(params)
+        that.clickMap(params);
       })
     },
     clickMap(data) {
+      console.log(this.nowType);
       this.nextDow = false
       if (this.nowType === 'country') {
+
         this.mapChart.dispose() // 销毁地图
-        this.mapChartOption.series[1].data = [{ name: '杭州市', value: [120.153576, 30.287459] }] // 波纹点
-        this.geoCoordMap = [{ name: '杭州市', value: [120.153576, 30.287459] }] // 缓存波纹点
+        this.mapChartOption.series[1].data = [this.left5Data[0]] // 更新坐标为武汉市
+        this.geoCoordMap = [this.left5Data[0]] // 缓存波纹点
         this.getProvince(data)
       }
       if (this.nowType === 'province') {
         this.mapChart.dispose() // 销毁地图
-        this.mapChartOption.series[1].data = [{ name: '临安区', value: [119.715101, 30.231153] }] // 波纹点
-        this.geoCoordMap = [{ name: '临安区', value: [119.715101, 30.231153] }] // 缓存波纹点
-        // this.mapChartOption.series[2].data = [{name: '临安区',value: [119.343995,30.201854], datas: [{bianhao: 123, zhuangtai: '123'}]}] // 密度检测
-        // this.chonghaiData = [{name: '临安区',value: [119.343995,30.201854], datas: [{bianhao: 123, zhuangtai: '123'}]}] // 缓存密度检测
+        this.mapChartOption.series[1].data = [this.left5Data[1]] // 更新坐标为洪山区
+        this.geoCoordMap = [this.left5Data[1]] // 缓存波纹点
         this.getCity(data)
       }
       if (this.nowType === 'city') {
         this.mapChart.dispose() // 销毁地图
-        this.mapChartOption.series[2].data = [{ name: '临安区', value: [119.343995, 30.201854], datas: [{ bianhao: 123, zhuangtai: '123' }] }] // 密度检测
-        this.mapChartOption.series[3].data = [{ name: '临安区', value: [119.433995, 30.221854], datas: [{ bianhao: 123, zhuangtai: '123' }] }] // 视频云台
-        this.mapChartOption.series[4].data = [{ name: '临安区', value: [119.523995, 30.231854], datas: [{ bianhao: 123, zhuangtai: '123' }] }] // 标靶
-        this.mapChartOption.series[5].data = [{ name: '临安区', value: [119.613995, 30.241854], datas: [{ bianhao: 123, zhuangtai: '123' }] }] // 气候
-        this.mapChartOption.series[1].data = [{ name: '临安区', value: [119.881815, 30.298512] }, { name: '临安区', value: [119.222614, 30.299615] }]
+        this.mapChartOption.series[2].data = [this.left5Data[2]] // 火电发电
+        this.mapChartOption.series[3].data = [this.left5Data[3]] // 水电发电
+        this.mapChartOption.series[4].data = [this.left5Data[4]] // 光伏发电
+        this.mapChartOption.series[5].data = [this.left5Data[5]] // 风电发电
+        this.mapChartOption.series[1].data = [this.left5Data[1]]
         this.getArea(data)
       }
       if (this.nowType === 'area') {
@@ -398,6 +424,7 @@ export default {
       }
     },
     getProvince(data) {
+      console.log(data);
       var a = ''
       this.province.features.map(val => {
         if (val.properties.name === data.name) {
@@ -513,7 +540,7 @@ export default {
     top: 10px;
     z-index: 999999999999999999999999999;
     left: 10px;
-    font-size: 12px;
+    font-size: 18px;
     color: #37D1F9;
 
     .cl {
@@ -635,4 +662,5 @@ export default {
     width: 100%;
     z-index: 1;
   }
-}</style>
+}
+</style>

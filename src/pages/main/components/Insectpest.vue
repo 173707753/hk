@@ -60,9 +60,9 @@ import left4 from './Insectpest/left/left4'
 import left5 from './Insectpest/left5'
 import Map from './Insectpest/map'
 import chart1 from './Insectpest/rightDate/chart1'
-import chart2 from './Insectpest/rightDate/chart1'
-import chart3 from './Insectpest/rightDate/chart1'
-import chart4 from './Insectpest/rightDate/chart1'
+import chart2 from './Insectpest/rightDate/chart2'
+import chart3 from './Insectpest/rightDate/chart3'
+import chart4 from './Insectpest/rightDate/chart4'
 
 // import watcherStatistical from './Insectpest/watcherStatistical'
 // import watcherEnvironmental from './Insectpest/watcherEnvironmental'
@@ -193,7 +193,7 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
-    margin-top: 1.5%;
+    margin-top: 0.5%;
 
     .Insectpest_b_left {
       width: 27%;

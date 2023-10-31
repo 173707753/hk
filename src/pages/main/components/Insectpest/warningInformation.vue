@@ -5,9 +5,11 @@
       <div v-for="(item, index) in dataimg" :key="index" class="item">
         <img width="88%" height="auto" class="bg" :src="item.src" alt="">
         <div class="contant"
-          :style="item.type == 1 ? 'color:#FFC22E' : item.type == 2 ? 'color:#5EC2F2' : 'color:#FF4528'">
+          :style="item.type == 1 ? 'color:#FFC22E' : item.type == 2 ? 'color:#5EC2F2' : item.type == 3 ? 'color:#FF4528' : 'color:#bfc'">
           <img width="13%" height="auto" :src="item.summer" alt="">
-          <p class="txt">{{ item.txt }}</p>
+          <p class="txt" :title="item.txt">
+            {{ item.txt.length > 10 ? item.txt.slice(0, 9) + '...' : item.txt }}
+          </p>
           <p class="date">{{ item.date }}</p>
         </div>
       </div>
@@ -31,12 +33,12 @@ export default {
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "省网电量保供裕度系数",
-          type: 2
+          type: 1
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "区域电网电力保供裕度系数",
-          type: 3
+          type: 1
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
@@ -51,12 +53,12 @@ export default {
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "区域电网水电电力电量消纳率",
-          type: 3
+          type: 2
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "省网新能源电力电量消纳率",
-          type: 1
+          type: 2
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
@@ -76,22 +78,22 @@ export default {
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "紧急大功率支撑",
-          type: 1
-        },
-        {
-          src: require("../../../../assets/img/ch/card.png"),
-          txt: "跨区转送能力",
-          type: 2
-        },
-        {
-          src: require("../../../../assets/img/ch/card.png"),
-          txt: "应急备用平衡度",
           type: 3
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
+          txt: "跨区转送能力",
+          type: 3
+        },
+        {
+          src: require("../../../../assets/img/ch/card.png"),
+          txt: "应急备用平衡度",
+          type: 4
+        },
+        {
+          src: require("../../../../assets/img/ch/card.png"),
           txt: "保供备用平衡度",
-          type: 1
+          type: 4
         },
         // {
         //   src: require("../../../../assets/img/ch/card.png"),

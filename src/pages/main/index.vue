@@ -2,11 +2,14 @@
   <div class="main">
     <div class="main_top">
       <div class="left">
-        <img width="100%" height="90%" src="../../assets/img/ch/菜单栏.png" alt="">
+        <img width="100%" height="90%" src="../../assets/img/ch/顶部背景.png" alt="">
         <div class="main_g">
           <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 36px;font-weight: bold;position: absolute;top: 20px;left: 43%;">
+        <div style="color: rgb(226, 236, 255);font-size: 24px;font-weight: bold;position: absolute;top: 70%;left: 10%;">
+          电力大数据
+        </div>
+        <div style="color: rgb(226, 236, 255);font-size: 36px;font-weight: bold;position: absolute;top: 25%;left: 43%;">
           电力碳中和智能化调度
         </div>
         <div class="right">

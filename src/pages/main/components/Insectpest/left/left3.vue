@@ -1,7 +1,7 @@
 <template>
     <div class="bot">
         <div class="st_titles">
-            储能:抽蓄
+            储能数据
         </div>
         <!-- 渲染位置 -->
         <div id="main3" style="height: 100%;width: 100%;"></div>
