@@ -5,9 +5,9 @@
       <div class="Insectpest_t_left">
         <div class="scrollable-content">
           <left1 />
-          <left2 style="margin-top: 5px;" />
-          <left3 style="margin-top: 5px;" />
-          <left4 style="margin-top: 5px;" />
+          <left2 style="margin-top: 2vh;" />
+          <left3 style="margin-top: 2vh;" />
+          <left4 style="margin-top: 2vh;" />
         </div>
       </div>
       <!-- 中间地图 -->
@@ -153,12 +153,16 @@ export default {
     position: relative;
 
     .title {
+      width: 100%;
+      height: 40px;
+      padding-bottom: 10px;
       color: #fff;
+      // background: pink;
       font-size: 28px;
       text-align: center;
       position: absolute;
-      top: -40px;
-      right: 100px;
+      top: -25px;
+      right: 0px;
     }
 
     .content {
@@ -166,6 +170,7 @@ export default {
       height: 58vh;
       overflow-x: hidden;
       overflow-y: scroll;
+      margin-top: 26px;
     }
 
     /* 定义滚动条的样式 */
@@ -184,12 +189,12 @@ export default {
 
     .top {
       width: 100%;
-      height: 30vh;
+      height: 28vh;
       // background-color: red;
     }
 
     .bot {
-      margin-top: 4vh;
+      margin-top: 2vh;
       width: 100%;
       height: 28vh;
       // background-color: red;
@@ -205,18 +210,18 @@ export default {
     .Insectpest_b_left {
       width: 27%;
       // background-color: #fff;
-      height: 20vh;
+      height: 24vh;
     }
 
     .Insectpest_b_center {
       width: 45%;
-      // height: 20vh;
+      height: 24vh;
       // background-color: #fff;
     }
 
     .Insectpest_b_right {
       width: 27%;
-      height: 20vh;
+      height: 24vh;
       // background-color: #fff;
     }
   }
