@@ -4,10 +4,10 @@
       <!-- 左边数据 -->
       <div class="Insectpest_t_left">
         <div class="scrollable-content">
-          <left1 />
-          <left2 style="margin-top: 2vh;" />
-          <left3 style="margin-top: 2vh;" />
-          <left4 style="margin-top: 2vh;" />
+          <left1 style="height: 28vh;"/>
+          <left2 style="margin-top: 2vh; height: 28vh;" />
+          <left3 style="margin-top: 2vh; height: 28vh;" />
+          <left4 style="margin-top: 2vh; height: 28vh;" />
         </div>
       </div>
       <!-- 中间地图 -->
