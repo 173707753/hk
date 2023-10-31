@@ -18,9 +18,9 @@
         <Map />
       </div>
       <!-- 右边数据 -->
-         <div class="title">源网储荷优化调度</div>
+      <!-- <div class="title">源网储荷优化调度</div> -->
       <div class="Insectpest_t_right">
-        <!-- <div class="title">源网储荷优化调度</div> -->
+        <div class="title">源网储荷优化调度</div>
         <div class="content">
           <div class="top">
             <chart1 />
@@ -35,8 +35,9 @@
             <chart4 />
           </div>
         </div>
-
       </div>
+
+
     </div>
     <!-- 底部 -->
     <div class="Insectpest_b">
@@ -69,6 +70,8 @@ import chart4 from './Insectpest/rightDate/chart4'
 // import watcherEnvironmental from './Insectpest/watcherEnvironmental'
 import warningInformation from './Insectpest/warningInformation'
 import greenServices from './Insectpest/greenServices'
+
+import Vue from 'vue';
 export default {
   components: {
     Map,
@@ -147,13 +150,15 @@ export default {
   .Insectpest_t_right {
     width: 27%;
     height: 60vh;
+    position: relative;
 
     .title {
       color: #fff;
-      font-size: 30px;
+      font-size: 28px;
       text-align: center;
-      // margin-bottom: 10px;
-      // position: absolute;
+      position: absolute;
+      top: -40px;
+      right: 100px;
     }
 
     .content {
@@ -184,7 +189,7 @@ export default {
     }
 
     .bot {
-      margin-top: 2vh;
+      margin-top: 4vh;
       width: 100%;
       height: 28vh;
       // background-color: red;
@@ -215,5 +220,4 @@ export default {
       // background-color: #fff;
     }
   }
-}
-</style>
+}</style>
