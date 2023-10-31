@@ -173,9 +173,13 @@ export default {
             type: 'scatter',
             coordinateSystem: 'geo',
             name: "火电发电",
-            symbolSize: [45, 52],
-            data: [],
-            symbol: 'image://' + require('../../../../assets/img/map/kc.png'),
+            symbolSize: [30, 32],
+            data: [{
+              name: '南昌',
+              value: [115.89, 28.68],
+              datas: [{ bianhao: 123, zhuangtai: '123' }]
+            }],
+            symbol: 'image://' + require('../../../../assets/img/map/火电.png'),
             label: {
               offsetCenter: ['50%', "-100%"],
               emphasis: {
@@ -189,9 +193,9 @@ export default {
               borderWidth: 0,
               formatter: function (params, ticket, callback) {
                 var res = ''
-                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>` +
-                  '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
-                  '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
+                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>`
+                // '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
+                // '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
                 res = '<div style="border:1px solid #FF53AAD8;background-color:rgba(0,25,47,0.7);padding:5px 10px;">' + res + '</div>'
                 setTimeout(function () {
                   // 仅为了模拟异步回调
@@ -207,8 +211,12 @@ export default {
             coordinateSystem: 'geo',
             name: "水电发电",
             symbolSize: [45, 52],
-            data: [],
-            symbol: 'image://' + require('../../../../assets/img/map/sp.png'),
+            data: [{
+              name: '抚州',
+              value: [116.34, 28],
+              datas: [{ bianhao: 123, zhuangtai: '123' }]
+            }],
+            symbol: 'image://' + require('../../../../assets/img/map/水电.png'),
             label: {
               offsetCenter: ['50%', "-100%"],
               emphasis: {
@@ -222,42 +230,9 @@ export default {
               borderWidth: 0,
               formatter: function (params, ticket, callback) {
                 var res = ''
-                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>` +
-                  '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
-                  '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
-                res = '<div style="border:1px solid #FF53AAD8;background-color:rgba(0,25,47,0.7);padding:5px 10px;">' + res + '</div>'
-                setTimeout(function () {
-                  // 仅为了模拟异步回调
-                  callback(ticket, res);
-                }, 1000)
-                return res
-              }
-            },
-          },
-          //光伏
-          {
-            type: 'scatter',
-            coordinateSystem: 'geo',
-            name: "光伏发电",
-            symbolSize: [45, 52],
-            data: [],
-            symbol: 'image://' + require('../../../../assets/img/map/bb.png'),
-            label: {
-              offsetCenter: ['50%', "-100%"],
-              emphasis: {
-                show: false
-              }
-            },
-            tooltip: {
-              show: true,
-              backgroundColor: 'rgba(0,0,0,0)',//背景颜色（此时为默认色）
-              borderRadius: 0,
-              borderWidth: 0,
-              formatter: function (params, ticket, callback) {
-                var res = ''
-                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>` +
-                  '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
-                  '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
+                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>`
+                // '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
+                // '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
                 res = '<div style="border:1px solid #FF53AAD8;background-color:rgba(0,25,47,0.7);padding:5px 10px;">' + res + '</div>'
                 setTimeout(function () {
                   // 仅为了模拟异步回调
@@ -273,8 +248,12 @@ export default {
             coordinateSystem: 'geo',
             name: "风电发电",
             symbolSize: [45, 52],
-            data: [],
-            symbol: 'image://' + require('../../../../assets/img/map/qh.png'),
+            data: [{
+              name: '宜春',
+              value: [115.40378, 28.53989],
+              datas: [{ bianhao: 123, zhuangtai: '123' }]
+            }],
+            symbol: 'image://' + require('../../../../assets/img/map/风电.png'),
             label: {
               offsetCenter: ['50%', "-100%"],
               emphasis: {
@@ -288,9 +267,195 @@ export default {
               borderWidth: 0,
               formatter: function (params, ticket, callback) {
                 var res = ''
-                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>` +
-                  '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
-                  '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
+                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>`
+                // '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
+                // '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
+                res = '<div style="border:1px solid #FF53AAD8;background-color:rgba(0,25,47,0.7);padding:5px 10px;">' + res + '</div>'
+                setTimeout(function () {
+                  // 仅为了模拟异步回调
+                  callback(ticket, res);
+                }, 1000)
+                return res
+              }
+            },
+          },
+          //光伏
+          {
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            name: "光伏发电",
+            symbolSize: [45, 52],
+            data: [{
+              name: '赣州',
+              value: [114.92, 25.85],
+              datas: [{ bianhao: 123, zhuangtai: '123' }]
+            }],
+            symbol: 'image://' + require('../../../../assets/img/map/光伏.png'),
+            label: {
+              offsetCenter: ['50%', "-100%"],
+              emphasis: {
+                show: false
+              }
+            },
+            tooltip: {
+              show: true,
+              backgroundColor: 'rgba(0,0,0,0)',//背景颜色（此时为默认色）
+              borderRadius: 0,
+              borderWidth: 0,
+              formatter: function (params, ticket, callback) {
+                var res = ''
+                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>`
+                // '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
+                // '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
+                res = '<div style="border:1px solid #FF53AAD8;background-color:rgba(0,25,47,0.7);padding:5px 10px;">' + res + '</div>'
+                setTimeout(function () {
+                  // 仅为了模拟异步回调
+                  callback(ticket, res);
+                }, 1000)
+                return res
+              }
+            },
+          },
+          //湖北 水电
+          //水电
+          {
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            name: "水电发电",
+            symbolSize: [45, 52],
+            data: [{
+              name: '随州',
+              value: [113.34, 31.55],
+              datas: [{ bianhao: 123, zhuangtai: '123' }]
+            }],
+            symbol: 'image://' + require('../../../../assets/img/map/水电.png'),
+            label: {
+              offsetCenter: ['50%', "-100%"],
+              emphasis: {
+                show: false
+              }
+            },
+            tooltip: {
+              show: true,
+              backgroundColor: 'rgba(0,0,0,0)',//背景颜色（此时为默认色）
+              borderRadius: 0,
+              borderWidth: 0,
+              formatter: function (params, ticket, callback) {
+                var res = ''
+                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>`
+                // '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
+                // '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
+                res = '<div style="border:1px solid #FF53AAD8;background-color:rgba(0,25,47,0.7);padding:5px 10px;">' + res + '</div>'
+                setTimeout(function () {
+                  // 仅为了模拟异步回调
+                  callback(ticket, res);
+                }, 1000)
+                return res
+              }
+            },
+          },
+          //光伏
+          {
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            name: "光伏发电",
+            symbolSize: [45, 52],
+            data: [{
+              name: '黄冈市',
+              value: [115.29, 31.24],
+              datas: [{ bianhao: 123, zhuangtai: '123' }]
+            }],
+            symbol: 'image://' + require('../../../../assets/img/map/光伏.png'),
+            label: {
+              offsetCenter: ['50%', "-100%"],
+              emphasis: {
+                show: false
+              }
+            },
+            tooltip: {
+              show: true,
+              backgroundColor: 'rgba(0,0,0,0)',//背景颜色（此时为默认色）
+              borderRadius: 0,
+              borderWidth: 0,
+              formatter: function (params, ticket, callback) {
+                var res = ''
+                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>`
+                // '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
+                // '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
+                res = '<div style="border:1px solid #FF53AAD8;background-color:rgba(0,25,47,0.7);padding:5px 10px;">' + res + '</div>'
+                setTimeout(function () {
+                  // 仅为了模拟异步回调
+                  callback(ticket, res);
+                }, 1000)
+                return res
+              }
+            },
+          },
+          //风电
+          {
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            name: "风电发电",
+            symbolSize: [45, 52],
+            data: [{
+              name: '洪山区',
+              value: [114.40378, 30.53989],
+              datas: [{ bianhao: 123, zhuangtai: '123' }]
+            }],
+            symbol: 'image://' + require('../../../../assets/img/map/风电.png'),
+            label: {
+              offsetCenter: ['50%', "-100%"],
+              emphasis: {
+                show: false
+              }
+            },
+            tooltip: {
+              show: true,
+              backgroundColor: 'rgba(0,0,0,0)',//背景颜色（此时为默认色）
+              borderRadius: 0,
+              borderWidth: 0,
+              formatter: function (params, ticket, callback) {
+                var res = ''
+                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>`
+                // '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
+                // '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
+                res = '<div style="border:1px solid #FF53AAD8;background-color:rgba(0,25,47,0.7);padding:5px 10px;">' + res + '</div>'
+                setTimeout(function () {
+                  // 仅为了模拟异步回调
+                  callback(ticket, res);
+                }, 1000)
+                return res
+              }
+            },
+          },
+          //火电
+          {
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            name: "火电发电",
+            symbolSize: [45, 52],
+            data: [{
+              name: '宜昌',
+              value: [111.51378, 31.23989],
+              datas: [{ bianhao: 123, zhuangtai: '123' }]
+            }],
+            symbol: 'image://' + require('../../../../assets/img/map/火电.png'),
+            label: {
+              offsetCenter: ['50%', "-100%"],
+              emphasis: {
+                show: false
+              }
+            },
+            tooltip: {
+              show: true,
+              backgroundColor: 'rgba(0,0,0,0)',//背景颜色（此时为默认色）
+              borderRadius: 0,
+              borderWidth: 0,
+              formatter: function (params, ticket, callback) {
+                var res = ''
+                res = `<p style="color:#19D5FF;font-size:16px">${params.seriesName}</p>`
+                // '<p style="color:#19D5FF;margin-top:10px">运行状态：' + params.data.datas[0].zhuangtai + '</p>' +
+                // '<p style="color:#BBBBBB">设备编号:' + params.data.datas[0].bianhao + '</p>'
                 res = '<div style="border:1px solid #FF53AAD8;background-color:rgba(0,25,47,0.7);padding:5px 10px;">' + res + '</div>'
                 setTimeout(function () {
                   // 仅为了模拟异步回调
@@ -308,15 +473,15 @@ export default {
     // 在组件创建时监听事件
     this.$bus.$on('left5Data', (filteredData) => {
       console.log(filteredData);
-      this.clickMap(filteredData)
+      this.clickMap(filteredData[0])
     });
   },
   mounted() {
     this.geoCoordMap = [
-      { name: '武汉市', value: [114.34375, 30.49989] },
-      { name: '抚州', value: [117.34, 28] },
-      { name: '赣州', value: [114.92, 25.85] },
-      { name: '南昌', value: [115.89, 28.68] },
+      // { name: '武汉市', value: [114.34375, 30.49989] },
+      // { name: '抚州', value: [117.34, 28] },
+      // { name: '赣州', value: [114.92, 25.85] },
+      // { name: '南昌', value: [115.89, 28.68] },
     ]
     this.mapChartOption.series[1].data = this.geoCoordMap.slice(0, 400)
     this.mapJson = chinaMapJson
@@ -398,23 +563,23 @@ export default {
       if (this.nowType === 'country') {
         console.log(1111);
         this.mapChart.dispose() // 销毁地图
-        this.mapChartOption.series[1].data = [this.left5Data[0]] // 更新坐标为武汉市
-        this.geoCoordMap = [this.left5Data[0]] // 缓存波纹点
+        // this.mapChartOption.series[1].data = [this.left5Data[0]] // 更新坐标为武汉市
+        // this.geoCoordMap = [this.left5Data[0]] // 缓存波纹点
         this.getProvince(data)
       }
       if (this.nowType === 'province') {
         this.mapChart.dispose() // 销毁地图
-        this.mapChartOption.series[1].data = [this.left5Data[1]] // 更新坐标为洪山区
-        this.geoCoordMap = [this.left5Data[1]] // 缓存波纹点
+        // this.mapChartOption.series[1].data = [this.left5Data[1]] // 更新坐标为洪山区
+        // this.geoCoordMap = [this.left5Data[1]] // 缓存波纹点
         this.getCity(data)
       }
       if (this.nowType === 'city') {
         this.mapChart.dispose() // 销毁地图
-        this.mapChartOption.series[2].data = [this.left5Data[2]] // 火电发电
-        this.mapChartOption.series[3].data = [this.left5Data[3]] // 水电发电
-        this.mapChartOption.series[4].data = [this.left5Data[4]] // 光伏发电
-        this.mapChartOption.series[5].data = [this.left5Data[5]] // 风电发电
-        this.mapChartOption.series[1].data = [this.left5Data[1]]
+        // this.mapChartOption.series[2].data = [this.left5Data[2]] // 火电发电
+        // this.mapChartOption.series[3].data = [this.left5Data[3]] // 水电发电
+        // this.mapChartOption.series[4].data = [this.left5Data[4]] // 光伏发电
+        // this.mapChartOption.series[5].data = [this.left5Data[5]] // 风电发电
+        // this.mapChartOption.series[1].data = [this.left5Data[1]]
         this.getArea(data)
       }
       if (this.nowType === 'area') {
