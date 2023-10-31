@@ -6,10 +6,10 @@
         <div class="main_g">
           <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 24px;font-weight: bold;position: absolute;top: 70%;left: 10%;">
+        <div style="color: rgb(226, 236, 255);font-size: 28px;font-weight: bold;position: absolute;top: 18%;left: 9%;">
           电力大数据
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 36px;font-weight: bold;position: absolute;top: 25%;left: 43%;">
+        <div style="color: rgb(226, 236, 255);font-size: 36px;font-weight: bold;position: absolute;top: 28%;left: 28%;">
           电力碳中和智能化调度
         </div>
         <div class="right">
