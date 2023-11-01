@@ -45,7 +45,7 @@ export default {
         type: 'itermStylezz',
         class: 'animated fadeIn',
       }, {
-        title: '清洁能源消纳',
+        title: '能源消纳',
         show: false,
         type: 'itermStylely',
         class: 'animated fadeIn',
@@ -64,11 +64,13 @@ export default {
     }
   },
   created() {
+    this.tabList[0].show = true
     this.tabList.map(val => {
       console.log(val);
       // if (val.type === this.$route.query.type) {
       //   val.show = true
       // }
+
     })
   },
   methods: {
@@ -97,6 +99,7 @@ export default {
 
     .left {
       position: relative;
+      padding: 15px 0 0 20px;
 
       .right {
         position: absolute;

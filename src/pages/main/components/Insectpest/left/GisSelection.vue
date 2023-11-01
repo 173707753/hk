@@ -172,7 +172,7 @@ export default {
             transition: background-color 0.3s;
 
             &.conventional {
-                margin-left: 13%;
+                margin-left: 11%;
                 background-color: rgba(84, 122, 194, .5);
             }
 
@@ -194,6 +194,7 @@ export default {
     label {
         font-weight: bold;
         color: rgb(55, 209, 259);
+        // margin-right: 10px;
     }
 
     select {

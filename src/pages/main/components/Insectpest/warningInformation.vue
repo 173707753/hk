@@ -137,7 +137,7 @@ export default {
   z-index: 99999;
   height: 100%;
   background-image: url("../../../../assets/img/ch/预警信息/预警信息.png");
-  background-size: 100% auto;
+  background-size: 100% 110%;
   background-repeat: no-repeat;
   background-position-y: 10%;
 

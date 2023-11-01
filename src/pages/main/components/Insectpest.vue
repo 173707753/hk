@@ -211,18 +211,18 @@ export default {
     .Insectpest_b_left {
       width: 27%;
       // background-color: #fff;
-      height: 24vh;
+      height: 26vh;
     }
 
     .Insectpest_b_center {
       width: 45%;
-      height: 24vh;
+      height: 26vh;
       // background-color: #fff;
     }
 
     .Insectpest_b_right {
       width: 27%;
-      height: 24vh;
+      height: 26vh;
       // background-color: #fff;
     }
   }

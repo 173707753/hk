@@ -35,7 +35,7 @@ export default {
   width: 100%;
   z-index: 99999;
   // height: 20vh;
-  height: 100%;
+  height: 99%;
   background-image: url('../../../../assets/img/ch/chbg.png');
   background-size: 100% 110%;
   background-repeat: no-repeat;
