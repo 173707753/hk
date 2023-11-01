@@ -194,11 +194,12 @@ export default {
     label {
         font-weight: bold;
         color: rgb(55, 209, 259);
+        margin-right: 10px;
     }
 
     select {
         background-color: rgb(7, 39, 87);
-        width: 90%;
+        width: 88%;
         height: 34px;
         font-weight: bold;
         color: #fff;

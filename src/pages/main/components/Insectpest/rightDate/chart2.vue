@@ -52,13 +52,14 @@ export default {
           return {
               title: {
               },
-            //   legend: {
-            //       textStyle: {
-            //           color: '#fff',
-            //       },
-            //       data: data.map(item => item.name),
-            //       left:'center'
-            //   },
+              legend: {
+                bottom:10,
+                  textStyle: {
+                      color: '#fff',
+                  },
+                  data: data.map(item => item.name),
+                  left:'center'
+              },
               toolbox: {
               },
               tooltip: {},
@@ -73,6 +74,9 @@ export default {
                       }
                   },
               },
+              tooltip: {
+                    trigger: 'axis'
+                },
               yAxis: [
                   {
                       name: 'P/MW',
@@ -115,30 +119,59 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 .top {
     width: 100%;
+    /* height: 100%; */
     z-index: 99999;
-    height: 28vh;
-    background-size: 100% auto;
+    height: 34vh;
+    /* padding-bottom: 5.5vh; */
+    /* height: 28vh; */
+    background-size: 100% 107%;
     background-repeat: no-repeat;
-    background-image: url("../../../../../assets/img/ch/环境指数/环境指数.png");
+    background-image: url('../../../../../assets/img/ch/chbg.png');
 }
 
 .chart-container {
-  position: relative;
-  height: 100%;
+    position: relative;
+    height: calc(100% - 4vh);
 
-  .chart {
-    width: 100%;
-    height: 100%;
-  }
+    .chart {
+        width: 100%;
+        height: 100%;
+    }
 
-  .button-container {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
+    .button-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .energy-button {
+        padding: 1px 2px;
+        margin: 2px;
+        border-radius: 3px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        font-weight: bold;
+        color: rgb(55, 209, 259);
+        transition: background-color 0.3s;
+
+        &.conventional {
+            background-color: rgba(84, 122, 194, .5);
+        }
+
+        &.new {
+            background-color: rgba(84, 122, 194, .5);
+        }
+
+        &:hover {
+            color: rgb(2, 188, 233);
+            background-color: rgb(14, 33, 72);
+        }
+    }
 }
+/* .chartclass{
 
+} */
 </style>
