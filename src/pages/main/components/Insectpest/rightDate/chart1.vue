@@ -147,7 +147,7 @@ export default {
     },
 }
 </script>
-<style>
+<style lang="scss" scoped>
 .top {
     width: 100%;
     z-index: 99999;

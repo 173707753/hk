@@ -1,5 +1,5 @@
 <template>
-    <div class="bot">
+    <div class="bot" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             电源数据
         </div>
@@ -12,12 +12,17 @@
                 <div @click="changeNewenergy" class="energy-button new">新能源</div>
             </div>
         </div>
+        <PopupComponent v-if="isMouseOverBot" @close-popup="hidePopup" />
     </div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
+import PopupComponent from '../PopupComponent.vue'
 export default {
+    components: {
+        PopupComponent,
+    },
     data() {
         return {
             leftData: [
@@ -58,14 +63,15 @@ export default {
                     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 7, 14, 25, 40, 59, 77, 98, 93, 118, 151, 158, 177, 175, 179, 230, 265, 262, 255, 274, 227, 308, 270, 290, 344, 355, 329, 354, 343, 330, 312, 322, 322, 335, 356, 326, 327, 312, 293, 258, 236, 209, 187, 164, 133, 109, 87, 67, 46, 31, 22, 14, 11, 9, 9, 9, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 }
             ],
+            isMouseOverBot: false,
         };
     },
     created() {
         this.$root.eventBus.$on('changeEnergyData', (data) => {
-            console.log(data,'data');
-        // 更新图标或执行相应的操作
-        updateChart(data)
-    });
+            console.log(data, 'data');
+            // 更新图标或执行相应的操作
+            this.updateChart(data)
+        });
     },
     methods: {
         //Echarts数据渲染
@@ -148,7 +154,35 @@ export default {
                     return idx * 5;
                 }
             };
-        }
+        },
+        //鼠标移入移出
+        showPopup() {
+            this.isMouseOverBot = true;
+        },
+        hidePopup() {
+            this.isMouseOverBot = false;
+        },
+        onBotMouseLeave(event) {
+            // 获取鼠标位置
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+
+            // 获取 PopupComponent 的 DOM 元素
+            const popupElement = this.$refs.popup;
+
+            // 获取 PopupComponent 的位置和尺寸
+            const popupRect = popupElement.getBoundingClientRect();
+
+            // 判断鼠标是否在 PopupComponent 区域内
+            if (
+                mouseX < popupRect.left ||
+                mouseX > popupRect.right ||
+                mouseY < popupRect.top ||
+                mouseY > popupRect.bottom
+            ) {
+                this.hidePopup();
+            }
+        },
     },
     mounted() {
         this.initChart()

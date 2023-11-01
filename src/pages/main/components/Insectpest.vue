@@ -4,7 +4,7 @@
       <!-- 左边数据 -->
       <div class="Insectpest_t_left">
         <div class="scrollable-content">
-          <left1 style="height: 28vh;"/>
+          <left1 style="height: 28vh;" />
           <left2 style="margin-top: 2vh; height: 28vh;" />
           <left3 style="margin-top: 2vh; height: 28vh;" />
           <left4 style="margin-top: 2vh; height: 28vh;" />
@@ -71,7 +71,7 @@ import chart4 from './Insectpest/rightDate/chart4'
 import warningInformation from './Insectpest/warningInformation'
 import greenServices from './Insectpest/greenServices'
 
-import Vue from 'vue';
+// import Vue from 'vue';
 export default {
   components: {
     Map,
@@ -225,4 +225,5 @@ export default {
       // background-color: #fff;
     }
   }
-}</style>
+}
+</style>
