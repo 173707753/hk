@@ -3,13 +3,13 @@
     <div class="main_top">
       <div class="left">
         <img width="100%" height="90%" src="../../assets/img/ch/顶部背景.png" alt="">
-        <div class="main_g" style="margin-top: -6px;">
+        <div class="main_g" style="margin-top: -20px;">
           <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 28px;font-weight: bold;position: absolute;top: 35%;left: 9%;">
+        <div style="color: rgb(226, 236, 255);font-size: 28px;font-weight: bold;position: absolute;top: 18%;left: 9%;">
           电力大数据
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 36px;font-weight: bold;position: absolute;top: 50%;left: 33%;">
+        <div style="color: rgb(226, 236, 255);font-size: 36px;font-weight: bold;position: absolute;top: 28%;left: 28%;">
           电力碳中和智能化调度
         </div>
         <div class="right">
@@ -97,7 +97,6 @@ export default {
 
     .left {
       position: relative;
-      padding: 20px 0 0 20px;
 
       .right {
         position: absolute;
@@ -120,7 +119,7 @@ export default {
 
           .tabimg {
             position: absolute;
-            top: -105%;
+            top: -110%;
             z-index: 999;
             cursor: pointer;
             right: 2%;
