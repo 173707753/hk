@@ -2,7 +2,7 @@
     <div class="gis-selection">
         <div class="date-selection">
             <div class="select">
-                <label>单位:</label>
+                <label>单位：</label>
                 <select v-model="selectedProvince" @change="onProvinceChange">
                     <option value="" disabled>
                         <span>请选择单位</span>
@@ -12,7 +12,7 @@
             </div>
 
             <div class="select">
-                <label>片区:</label>
+                <label>片区：</label>
                 <select v-model="selectedArea" @change="onAreaChange">
                     <option value="" disabled>
                         <span>请选择片区</span>
@@ -22,7 +22,7 @@
             </div>
 
             <div class="select">
-                <label>日期:</label>
+                <label>日期：</label>
                 <select v-model="selectedTime">
                     <option value="" disabled style="color: #fff;">
                         <span>请选择日期</span>
@@ -172,7 +172,7 @@ export default {
             transition: background-color 0.3s;
 
             &.conventional {
-                margin-left: 10%;
+                margin-left: 11%;
                 background-color: rgba(84, 122, 194, .5);
             }
 
@@ -194,7 +194,7 @@ export default {
     label {
         font-weight: bold;
         color: rgb(55, 209, 259);
-        margin-right: 10px;
+        // margin-right: 10px;
     }
 
     select {
