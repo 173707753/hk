@@ -167,7 +167,7 @@ export default {
             cursor: pointer;
             text-align: center;
             font-weight: bold;
-            width: 42.5%;
+            width: 40.5%;
             color: rgb(55, 209, 259);
             transition: background-color 0.3s;
 
@@ -198,7 +198,7 @@ export default {
 
     select {
         background-color: rgb(7, 39, 87);
-        width: 90%;
+        width: 86%;
         height: 34px;
         font-weight: bold;
         color: #fff;
