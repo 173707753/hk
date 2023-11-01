@@ -163,6 +163,7 @@ export default {
       position: absolute;
       top: -25px;
       right: 0px;
+      font-weight: 600
     }
 
     .content {
