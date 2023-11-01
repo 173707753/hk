@@ -4,7 +4,7 @@
             负荷数据
         </div>
         <!-- 渲染位置 -->
-        <div id="main4" style="height: 100%;width: 100%;"></div>
+        <div id="main4" style="height: calc(100% - 4vh);width: 100%;"></div>
     </div>
 </template>
 
@@ -37,6 +37,7 @@ export default {
                     // text: 'Bar Animation Delay',
                 },
                 legend: {
+                    bottom:10,
                     textStyle: {
                         color: 'rgb(55, 209, 259)',
                     },
@@ -45,7 +46,9 @@ export default {
                 toolbox: {
 
                 },
-                tooltip: {},
+                tooltip: {
+    trigger: 'axis'
+  },
                 xAxis: {
                     name: 't/min',
                     data: Array.from({ length: 101 }, (_, i) => i),

@@ -35,9 +35,9 @@ export default {
   width: 100%;
   z-index: 99999;
   // height: 20vh;
-  height: 99%;
-  background-image: url('../../../../assets/img/ch/chbg.png');
-  background-size: 100% 110%;
+  height: 100%;
+  background-image: url("../../../../assets/img/ch/绿色服务/绿色服务.png");
+  background-size: 100% 107%;
   background-repeat: no-repeat;
 
 }
