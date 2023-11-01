@@ -37,7 +37,7 @@ export default {
   // height: 20vh;
   height: 100%;
   background-image: url('../../../../assets/img/ch/chbg.png');
-  background-size: 100% auto;
+  background-size: 100% 110%;
   background-repeat: no-repeat;
 
 }
