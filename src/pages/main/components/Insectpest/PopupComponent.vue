@@ -1,6 +1,6 @@
 <template>
     <div class="popup" ref="popup" @mouseleave="closePopup">
-        <div style="text-align: center;font-size: 24px;font-weight: bold;">电源数据</div>
+        <div style="text-align: center;font-size: 24px;font-weight: bold;color: #fff;">电源数据</div>
         <el-table :data="tableData" style="width: 100%;margin-top: 2%;" border stripe max-height="400">
             <el-table-column prop="date" label="日期" align="center"
                 v-if="tableData.some(item => item.date !== '')">2023/8/24</el-table-column>
@@ -150,15 +150,14 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 .popup {
     position: absolute;
-    top: 14%;
-    left: 27.7%;
-    width: 42.3%;
+    top: 13.5%;
+    left: 27.94%;
+    width: 41.9%;
     height: 50%;
-    background: white;
+    border: 3px solid #4187B3;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     padding: 20px;
     z-index: 9999;
