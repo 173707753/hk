@@ -194,6 +194,7 @@ export default {
     label {
         font-weight: bold;
         color: rgb(55, 209, 259);
+        margin-right: 10px;
     }
 
     select {

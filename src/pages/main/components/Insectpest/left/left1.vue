@@ -62,10 +62,10 @@ export default {
     },
     created() {
         this.$root.eventBus.$on('changeEnergyData', (data) => {
-            console.log(data,'data');
-        // 更新图标或执行相应的操作
-        updateChart(data)
-    });
+            console.log(data, 'data');
+            // 更新图标或执行相应的操作
+            updateChart(data)
+        });
     },
     methods: {
         //Echarts数据渲染
@@ -94,7 +94,7 @@ export default {
                     // text: 'Bar Animation Delay',
                 },
                 legend: {
-                    bottom:10,
+                    bottom: 10,
                     textStyle: {
                         color: 'rgb(55, 209, 259)',
                     },
@@ -103,7 +103,9 @@ export default {
                 toolbox: {
 
                 },
-                tooltip: {},
+                tooltip: {
+                    trigger: 'axis'
+                },
                 xAxis: {
                     name: 't/min',
                     data: Array.from({ length: 101 }, (_, i) => i),
@@ -263,6 +265,7 @@ export default {
         }
     }
 }
+
 /* .chartclass{
 
 } */

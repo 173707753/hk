@@ -74,6 +74,9 @@ export default {
                       }
                   },
               },
+              tooltip: {
+                    trigger: 'axis'
+                },
               yAxis: [
                   {
                       name: 'P/MW',

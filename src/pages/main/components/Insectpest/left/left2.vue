@@ -93,7 +93,9 @@ export default {
                 toolbox: {
 
                 },
-                tooltip: {},
+                tooltip: {
+                    trigger: 'axis'
+                },
                 xAxis: {
                     name: 't/min',
                     data: Array.from({ length: 101 }, (_, i) => i),
