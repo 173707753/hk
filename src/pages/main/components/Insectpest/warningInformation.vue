@@ -135,11 +135,11 @@ export default {
 .top {
   width: 100%;
   z-index: 99999;
+  // height: 20vh;
   height: 100%;
-  background-image: url("../../../../assets/img/ch/预警信息/预警信息.png");
-  background-size: 100% auto;
+  background-image: url("../../../../assets/img/ch/绿色服务/绿色服务.png");
+  background-size: 100% 107%;
   background-repeat: no-repeat;
-  background-position-y: 10%;
 
   .st_tops {
     width: 100%;

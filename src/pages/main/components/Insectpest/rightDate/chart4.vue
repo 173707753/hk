@@ -31,6 +31,7 @@ export default {
           }
         },
         legend: {
+          bottom:10,
           data: ['负荷'],
           left: 'center',
           textStyle: {
@@ -57,26 +58,30 @@ export default {
 };
 </script>
   
+  
 <style lang="scss" scoped>
 .top {
-  width: 100%;
-  z-index: 99999;
-  height: 28vh;
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-image: url("../../../../../assets/img/ch/环境指数/环境指数.png");
-
+    width: 100%;
+    /* height: 100%; */
+    z-index: 99999;
+    height: 34vh;
+    /* padding-bottom: 5.5vh; */
+    /* height: 28vh; */
+    background-size: 100% 107%;
+    background-repeat: no-repeat;
+    background-image: url('../../../../../assets/img/ch/chbg.png');
 }
 
 .chart-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
+    position: relative;
+    height: calc(100% - 4vh);
 
-  .chart {
-    width: 100%;
-    height: 100%;
-  }
+    .chart {
+        width: 100%;
+        height: 100%;
+    }
 }
+/* .chartclass{
+
+} */
 </style>
-  

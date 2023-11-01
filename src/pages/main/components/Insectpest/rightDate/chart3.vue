@@ -31,6 +31,7 @@ export default {
           }
         },
         legend: {
+          bottom:10,
           data: ['抽蓄数据'],
           left: 'center',
           textStyle: {
@@ -57,7 +58,7 @@ export default {
 };
 </script>
   
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
 .top {
   width: 100%;
   z-index: 99999;
@@ -78,5 +79,28 @@ export default {
     height: 100%;
   }
 }
-</style>
+</style> -->
   
+<style lang="scss" scoped>
+.top {
+    width: 100%;
+    /* height: 100%; */
+    z-index: 99999;
+    height: 34vh;
+    /* padding-bottom: 5.5vh; */
+    /* height: 28vh; */
+    background-size: 100% 107%;
+    background-repeat: no-repeat;
+    background-image: url('../../../../../assets/img/ch/chbg.png');
+}
+
+.chart-container {
+    position: relative;
+    height: calc(100% - 4vh);
+
+    .chart {
+        width: 100%;
+        height: 100%;
+    }
+  }
+</style>

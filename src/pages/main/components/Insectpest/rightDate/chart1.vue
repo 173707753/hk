@@ -93,7 +93,8 @@ export default {
                         color: '#fff',
                     },
                     data: data.map(item => item.name),
-                    left: 'center'
+                    left: 'center',
+                    bottom:10,
                 },
                 xAxis: {
                     name: 't/min',
@@ -147,19 +148,22 @@ export default {
     },
 }
 </script>
-<style>
+<style lang="scss" scoped>
 .top {
     width: 100%;
+    /* height: 100%; */
     z-index: 99999;
-    height: 28vh;
-    background-size: 100% auto;
+    height: 34vh;
+    /* padding-bottom: 5.5vh; */
+    /* height: 28vh; */
+    background-size: 100% 107%;
     background-repeat: no-repeat;
-    background-image: url("../../../../../assets/img/ch/环境指数/环境指数.png");
+    background-image: url('../../../../../assets/img/ch/chbg.png');
 }
 
 .chart-container {
     position: relative;
-    height: 100%;
+    height: calc(100% - 4vh);
 
     .chart {
         width: 100%;
@@ -197,4 +201,7 @@ export default {
         }
     }
 }
+/* .chartclass{
+
+} */
 </style>

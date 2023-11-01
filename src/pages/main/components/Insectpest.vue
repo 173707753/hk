@@ -4,10 +4,10 @@
       <!-- 左边数据 -->
       <div class="Insectpest_t_left">
         <div class="scrollable-content">
-          <left1 style="height: 28vh;"/>
-          <left2 style="margin-top: 2vh; height: 28vh;" />
-          <left3 style="margin-top: 2vh; height: 28vh;" />
-          <left4 style="margin-top: 2vh; height: 28vh;" />
+          <left1/>
+          <left2 style="margin-top: 2vh" />
+          <left3 style="margin-top: 2vh" />
+          <left4 style="margin-top: 2vh" />
         </div>
       </div>
       <!-- 中间地图 -->
@@ -119,6 +119,7 @@ export default {
       height: 60vh;
       /* 启用垂直滚动条 */
       overflow-y: auto;
+      overflow-x: hidden;
 
       /* 自定义滚动条样式 */
       &::-webkit-scrollbar {
@@ -161,7 +162,7 @@ export default {
       font-size: 28px;
       text-align: center;
       position: absolute;
-      top: -25px;
+      top: -30px;
       right: 0px;
     }
 
@@ -189,14 +190,15 @@ export default {
 
     .top {
       width: 100%;
-      height: 28vh;
+      // height: 28vh;
+      // height: 40vh;
       // background-color: red;
     }
 
     .bot {
       margin-top: 2vh;
       width: 100%;
-      height: 28vh;
+      // height: 28vh;
       // background-color: red;
     }
   }
@@ -210,18 +212,18 @@ export default {
     .Insectpest_b_left {
       width: 27%;
       // background-color: #fff;
-      height: 24vh;
+      height: 26vh;
     }
 
     .Insectpest_b_center {
       width: 45%;
-      height: 24vh;
+      height: 26vh;
       // background-color: #fff;
     }
 
     .Insectpest_b_right {
       width: 27%;
-      height: 24vh;
+      height: 26vh;
       // background-color: #fff;
     }
   }

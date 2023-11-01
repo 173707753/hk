@@ -36,8 +36,8 @@ export default {
   z-index: 99999;
   // height: 20vh;
   height: 100%;
-  background-image: url('../../../../assets/img/ch/chbg.png');
-  background-size: 100% auto;
+  background-image: url("../../../../assets/img/ch/绿色服务/绿色服务.png");
+  background-size: 100% 107%;
   background-repeat: no-repeat;
 
 }
