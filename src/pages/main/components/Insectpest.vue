@@ -4,10 +4,10 @@
       <!-- 左边数据 -->
       <div class="Insectpest_t_left">
         <div class="scrollable-content">
-          <left1 style="height: 28vh;" />
-          <left2 style="margin-top: 2vh; height: 28vh;" />
-          <left3 style="margin-top: 2vh; height: 28vh;" />
-          <left4 style="margin-top: 2vh; height: 28vh;" />
+          <left1 />
+          <left2 style="margin-top: 2vh" />
+          <left3 style="margin-top: 2vh" />
+          <left4 style="margin-top: 2vh" />
         </div>
       </div>
       <!-- 中间地图 -->
@@ -119,6 +119,7 @@ export default {
       height: 60vh;
       /* 启用垂直滚动条 */
       overflow-y: auto;
+      overflow-x: hidden;
 
       /* 自定义滚动条样式 */
       &::-webkit-scrollbar {
@@ -190,14 +191,14 @@ export default {
 
     .top {
       width: 100%;
-      height: 28vh;
+      height: 34vh;
       // background-color: red;
     }
 
     .bot {
       margin-top: 2vh;
       width: 100%;
-      height: 28vh;
+      height: 34vh;
       // background-color: red;
     }
   }

@@ -143,6 +143,7 @@ export default {
 };
 </script>
 
+
 <style lang="scss" scoped>
 .gis-selection {
     display: flex;
@@ -172,7 +173,7 @@ export default {
             transition: background-color 0.3s;
 
             &.conventional {
-                margin-left: 11%;
+                margin-left: 4.3rem;
                 background-color: rgba(84, 122, 194, .5);
             }
 

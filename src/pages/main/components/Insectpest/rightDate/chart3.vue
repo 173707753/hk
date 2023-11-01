@@ -30,7 +30,11 @@ export default {
             snap: true
           }
         },
+        tooltip: {
+    trigger: 'axis'
+  },
         legend: {
+          bottom:10,
           data: ['抽蓄数据'],
           left: 'center',
           textStyle: {
@@ -60,23 +64,23 @@ export default {
 <style lang="scss" scoped>
 .top {
   width: 100%;
+  /* height: 100%; */
   z-index: 99999;
-  height: 28vh;
-  background-size: 100% auto;
+  height: 34vh;
+  /* height: 28vh; */
+  background-size: 100% 107%;
   background-repeat: no-repeat;
-  background-image: url("../../../../../assets/img/ch/环境指数/环境指数.png");
-
+  background-image: url("../../../../../assets/img/ch/chbg.png");
+  /* background-color: pink; */
 }
-
 .chart-container {
   position: relative;
-  width: 100%;
-  height: 100%;
+  height: calc(100% - 4vh);
 
   .chart {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    /* padding-bottom: 36px; */
   }
 }
 </style>
-  
