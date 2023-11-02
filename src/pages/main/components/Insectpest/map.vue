@@ -456,7 +456,7 @@ export default {
   created() {
     // 在组件创建时监听事件
     this.$bus.$on('left5Data', (filteredData) => {
-      console.log(filteredData);
+      // console.log(filteredData);
       this.clickMap(filteredData[0])
     });
   },
@@ -649,7 +649,7 @@ export default {
       }
     },
     getProvince(data) {
-      console.log(data);
+      // console.log(data);
       var a = ''
       this.province.features.map(val => {
         if (val.properties.name === data.name) {
