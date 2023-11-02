@@ -19,7 +19,6 @@
 <script>
 import * as echarts from 'echarts'
 import PopupComponent from '../PopupComponent.vue'
-import { EventBus } from '../../Insectpest.vue';
 export default {
     components: {
         PopupComponent,
@@ -68,10 +67,10 @@ export default {
         };
     },
     created() {
-        EventBus.$on('chart1',()=>{
+        this.$bus.$on('chart1',()=>{
             this.changeEnergy(2)
         });
-        EventBus.$on('chart2',()=>{
+        this.$bus.$on('chart2',()=>{
             this.changeNewenergy(2)
         });
     },
@@ -86,12 +85,12 @@ export default {
         changeEnergy(flag) {
             this.updateChart(this.conventionalData);
             if(flag === 2) return;
-            EventBus.$emit('left1')
+           this.$bus.$emit('left1')
         },
         changeNewenergy(flag) {
             this.updateChart(this.newData);
             if(flag === 2) return;
-            EventBus.$emit('left2')
+            this.$bus.$emit('left2')
         },
         updateChart(data) {
             if (this.chartInstance) {

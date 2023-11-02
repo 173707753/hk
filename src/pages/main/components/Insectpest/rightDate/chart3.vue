@@ -7,8 +7,8 @@
          
       </div>
       <div class="button-container">
-                <div @click="changeEnergy" class="energy-button conventional">抽蓄电量</div>
-                <div @click="changeNewenergy" class="energy-button new">发电功率</div>
+                <div @click="changeEnergy(1)" class="energy-button conventional">抽蓄电量</div>
+                <div @click="changeNewenergy(1)" class="energy-button new">发电功率</div>
             </div>
     </div>
   </div>
@@ -67,6 +67,12 @@ export default {
         };
     },
     created() {
+        this.$bus.$on('left3',()=>{
+            this.changeEnergy(2)
+        })
+        this.$bus.$on('left4',()=>{
+            this.changeNewenergy(2)
+        })
     },
     methods: {
         //Echarts数据渲染
@@ -76,11 +82,15 @@ export default {
             var option = this.getOption();
             this.chartInstance.setOption(option);
         },
-        changeEnergy() {
+        changeEnergy(flag) {
             this.updateChart(this.conventionalData);
+            if(flag === 2) return
+            this.$bus.$emit('chart3')
         },
-        changeNewenergy() {
+        changeNewenergy(flag) {
             this.updateChart(this.newData);
+            if(flag === 2) return 
+            this.$bus.$emit('chart4')
         },
         updateChart(data) {
             if (this.chartInstance) {
