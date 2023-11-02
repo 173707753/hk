@@ -8,8 +8,8 @@
             <div id="chart1" class="chart"></div>
             <!-- 按钮浮动在折线图上 -->
             <div class="button-container">
-                <div @click="changeEnergy" class="energy-button conventional">常规电源</div>
-                <div @click="changeNewenergy" class="energy-button new">新能源</div>
+                <div @click="changeEnergy(1)" class="energy-button conventional">常规电源</div>
+                <div @click="changeNewenergy(1)" class="energy-button new">新能源</div>
             </div>
         </div>
     </div>
@@ -17,9 +17,11 @@
 
 <script>
 import * as echarts from 'echarts'
+import { EventBus } from '../../Insectpest.vue';
 export default {
     data() {
         return {
+        
             chartDate: [
                 {
                     name: '火电发电',
@@ -61,6 +63,12 @@ export default {
         };
     },
     created() {
+        EventBus.$on('left1', () => {
+            this.changeEnergy(2)
+        });
+        EventBus.$on('left2', () => {
+            this.changeNewenergy(2)
+        });
     },
     methods: {
         //Echarts数据渲染
@@ -70,12 +78,15 @@ export default {
             var option = this.getOption();
             this.chartInstance.setOption(option);
         },
-        changeEnergy() {
+        changeEnergy(flag) {
             this.updateChart(this.conventionalData);
+            if (flag === 2) return;
+            EventBus.$emit('chart1')
         },
-        changeNewenergy() {
+        changeNewenergy(flag) {
             this.updateChart(this.newData);
-            this.$root.eventBus.$emit('changeEnergyData', this.newData);
+            if (flag === 2) return
+            EventBus.$emit('chart2')
         },
         updateChart(data) {
             if (this.chartInstance) {
@@ -89,10 +100,10 @@ export default {
                 title: {
                 },
                 tooltip: {
-    trigger: 'axis'
-  },
+                    trigger: 'axis'
+                },
                 legend: {
-                    bottom:10,
+                    bottom: 10,
                     textStyle: {
                         color: '#fff',
                     },
@@ -144,7 +155,7 @@ export default {
                     return idx * 5;
                 }
             };
-        }
+        },
     },
     mounted() {
         this.initChart()
@@ -204,7 +215,4 @@ export default {
         }
     }
 }
-/* .chartclass{
-
-} */
 </style>

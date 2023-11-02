@@ -8,8 +8,8 @@
             <div id="main1" class="chart"></div>
             <!-- 按钮浮动在折线图上 -->
             <div class="button-container">
-                <div @click="changeEnergy" class="energy-button conventional">常规电源</div>
-                <div @click="changeNewenergy" class="energy-button new">新能源</div>
+                <div @click="changeEnergy(1)" class="energy-button conventional">常规电源</div>
+                <div @click="changeNewenergy(1)" class="energy-button new">新能源</div>
             </div>
         </div>
         <PopupComponent v-if="isMouseOverBot" @close-popup="hidePopup" />
@@ -19,6 +19,7 @@
 <script>
 import * as echarts from 'echarts'
 import PopupComponent from '../PopupComponent.vue'
+import { EventBus } from '../../Insectpest.vue';
 export default {
     components: {
         PopupComponent,
@@ -67,10 +68,11 @@ export default {
         };
     },
     created() {
-        this.$root.eventBus.$on('changeEnergyData', (data) => {
-            console.log(data, 'data');
-            // 更新图标或执行相应的操作
-            this.updateChart(data)
+        EventBus.$on('chart1',()=>{
+            this.changeEnergy(2)
+        });
+        EventBus.$on('chart2',()=>{
+            this.changeNewenergy(2)
         });
     },
     methods: {
@@ -81,11 +83,15 @@ export default {
             var option = this.getOption();
             this.chartInstance.setOption(option);
         },
-        changeEnergy() {
+        changeEnergy(flag) {
             this.updateChart(this.conventionalData);
+            if(flag === 2) return;
+            EventBus.$emit('left1')
         },
-        changeNewenergy() {
+        changeNewenergy(flag) {
             this.updateChart(this.newData);
+            if(flag === 2) return;
+            EventBus.$emit('left2')
         },
         updateChart(data) {
             if (this.chartInstance) {

@@ -71,7 +71,8 @@ import chart4 from './Insectpest/rightDate/chart4'
 import warningInformation from './Insectpest/warningInformation'
 import greenServices from './Insectpest/greenServices'
 
-// import Vue from 'vue';
+import Vue from 'vue';
+export const EventBus = new Vue()
 export default {
   components: {
     Map,
