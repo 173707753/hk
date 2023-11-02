@@ -161,7 +161,7 @@ export default {
       width: 25%;
 
       .bg {
-        margin-bottom: 1%;
+        margin-bottom: 3.5%;
       }
 
       .contant {
@@ -172,7 +172,7 @@ export default {
         position: absolute;
         top: 15%;
         width: 80%;
-        left: 10%;
+        left: 5%;
         display: flex;
         align-items: center;
         justify-content: space-around;

@@ -8,8 +8,8 @@
             <div id="chart1" class="chart"></div>
             <!-- 按钮浮动在折线图上 -->
             <div class="button-container">
-                <div @click="changeEnergy(1)" class="energy-button conventional">常规电源</div>
-                <div @click="changeNewenergy(1)" class="energy-button new">新能源</div>
+                <div @click="changeEnergy" class="energy-button conventional">常规电源</div>
+                <div @click="changeNewenergy" class="energy-button new">新能源</div>
             </div>
         </div>
     </div>
@@ -17,11 +17,9 @@
 
 <script>
 import * as echarts from 'echarts'
-import { EventBus } from '../../Insectpest.vue';
 export default {
     data() {
         return {
-        
             chartDate: [
                 {
                     name: '火电发电',
@@ -31,10 +29,10 @@ export default {
                     name: '水电发电',
                     data: [243, 541, 314, 380, 73, 891, 1022, 396, 527, 407, 229, 75, 306, 532, 531, 738, 298, 247, 85, 83, 80, 391, 81, 534, 81, 830, 757, 827, 72, 592, 539, 80, 78, 303, 292, 62, 61, 61, 39, 37, 39, 37, 38, 41, 186, 533, 531, 88, 61, 65, 63, 62, 42, 44, 43, 43, 42, 43, 203, 940, 543, 393, 543, 912, 809, 913, 917, 803, 1255, 1011, 351, 496, 40, 375, 567, 58, 49, 271, 206, 353, 311, 39, 518, 280, 323, 96, 772, 622, 512, 369, 468, 697, 69, 1034, 1051, 1024],
                 },
-                {
-                    name: '抽蓄发电',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                }
+                // {
+                //     name: '抽蓄发电',
+                //     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                // }
             ],
             conventionalData: [
                 {
@@ -45,10 +43,10 @@ export default {
                     name: '水电发电',
                     data: [243, 541, 314, 380, 73, 891, 1022, 396, 527, 407, 229, 75, 306, 532, 531, 738, 298, 247, 85, 83, 80, 391, 81, 534, 81, 830, 757, 827, 72, 592, 539, 80, 78, 303, 292, 62, 61, 61, 39, 37, 39, 37, 38, 41, 186, 533, 531, 88, 61, 65, 63, 62, 42, 44, 43, 43, 42, 43, 203, 940, 543, 393, 543, 912, 809, 913, 917, 803, 1255, 1011, 351, 496, 40, 375, 567, 58, 49, 271, 206, 353, 311, 39, 518, 280, 323, 96, 772, 622, 512, 369, 468, 697, 69, 1034, 1051, 1024],
                 },
-                {
-                    name: '抽蓄发电',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                }
+                // {
+                //     name: '抽蓄发电',
+                //     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                // }
             ],
             newData: [
                 {
@@ -63,12 +61,6 @@ export default {
         };
     },
     created() {
-        EventBus.$on('left1', () => {
-            this.changeEnergy(2)
-        });
-        EventBus.$on('left2', () => {
-            this.changeNewenergy(2)
-        });
     },
     methods: {
         //Echarts数据渲染
@@ -78,15 +70,12 @@ export default {
             var option = this.getOption();
             this.chartInstance.setOption(option);
         },
-        changeEnergy(flag) {
+        changeEnergy() {
             this.updateChart(this.conventionalData);
-            if (flag === 2) return;
-            EventBus.$emit('chart1')
         },
-        changeNewenergy(flag) {
+        changeNewenergy() {
             this.updateChart(this.newData);
-            if (flag === 2) return
-            EventBus.$emit('chart2')
+            this.$root.eventBus.$emit('changeEnergyData', this.newData);
         },
         updateChart(data) {
             if (this.chartInstance) {
@@ -155,7 +144,7 @@ export default {
                     return idx * 5;
                 }
             };
-        },
+        }
     },
     mounted() {
         this.initChart()
@@ -215,4 +204,8 @@ export default {
         }
     }
 }
+
+/* .chartclass{
+
+} */
 </style>
