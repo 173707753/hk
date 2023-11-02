@@ -454,11 +454,6 @@ export default {
     }
   },
   created() {
-    // 在组件创建时监听事件
-    this.$bus.$on('left5Data', (filteredData) => {
-      // console.log(filteredData);
-      this.clickMap(filteredData[0])
-    });
   },
   mounted() {
     this.geoCoordMap = [
@@ -472,7 +467,12 @@ export default {
     this.initChart()
     axios.get('https://geo.datav.aliyun.com/areas_v2/bound/100000_full.json').then(res => {
       this.province = res.data
-    })
+    });
+    // 接收left5的map跳转数据
+    this.$bus.$on('left5Data', (filteredData) => {
+      // console.log(filteredData);
+      this.clickMap(filteredData[0])
+    });
   },
   methods: {
     goSearch(val) {
@@ -726,7 +726,10 @@ export default {
       })
       return
     },
-  }
+  },
+  beforeDestroy() {
+    this.$bus.$off('left5Data')
+  },
 }
 </script>
 

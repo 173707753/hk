@@ -226,8 +226,12 @@ export default {
             console.log(filteredData);
             // 触发事件，将筛选后的数据发送给全局事件总线
 
-            this.$bus.$emit('left5Data', filteredData);
-            console.log('leftData');
+            if (this.selectedArea) {
+                this.$bus.$emit('left5Data', filteredData);
+                console.log('leftData');
+            } else {
+                this.$bus.$emit('allData', this.allData)
+            }
 
 
             // 重置选择

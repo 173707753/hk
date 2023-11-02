@@ -68,12 +68,7 @@ export default {
         };
     },
     created() {
-        this.$bus.$on('chart1',()=>{
-            this.changeEnergy(2)
-        });
-        this.$bus.$on('chart2',()=>{
-            this.changeNewenergy(2)
-        });
+
     },
     methods: {
         //Echarts数据渲染
@@ -85,12 +80,12 @@ export default {
         },
         changeEnergy(flag) {
             this.updateChart(this.conventionalData);
-            if(flag === 2) return;
-           this.$bus.$emit('left1')
+            if (flag === 2) return;
+            this.$bus.$emit('left1')
         },
         changeNewenergy(flag) {
             this.updateChart(this.newData);
-            if(flag === 2) return;
+            if (flag === 2) return;
             this.$bus.$emit('left2')
         },
         updateChart(data) {
@@ -194,7 +189,16 @@ export default {
         },
     },
     mounted() {
-        this.initChart()
+        this.$bus.$on('chart1', () => {
+            this.changeEnergy(2)
+        });
+        this.$bus.$on('chart2', () => {
+            this.changeNewenergy(2)
+        });
+        this.initChart();
+        this.$bus.$on('allData', (data) => {
+            console.log(data, '我是GIS数据，总和');
+        })
     },
 }
 </script>
