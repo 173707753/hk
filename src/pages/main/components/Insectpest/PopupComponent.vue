@@ -1,7 +1,8 @@
 <template>
     <div class="popup" ref="popup" @mouseleave="closePopup">
         <div style="text-align: center;font-size: 24px;font-weight: bold;color: #fff;">电源数据</div>
-        <el-table :data="tableData" style="width: 100%;margin-top: 2%;" border stripe max-height="400">
+        <el-table :header-cell-style="{ background: 'rgba(0,25,47,0.7)', color: '#fff' }" :data="tableData"
+            style="width: 100%;margin-top: 2%;" border max-height="400">
             <el-table-column prop="date" label="日期" align="center"
                 v-if="tableData.some(item => item.date !== '')">2023/8/24</el-table-column>
             <el-table-column prop="time" label="时间" align="center"
@@ -12,8 +13,8 @@
                 v-if="tableData.some(item => item.thermalPower !== '')"></el-table-column>
             <el-table-column prop="hydroelectric" label="水电发电" align="center"
                 v-if="tableData.some(item => item.hydroelectric !== '')"></el-table-column>
-            <el-table-column prop="pumpedStorage" label="抽蓄发电" align="center"
-                v-if="tableData.some(item => item.pumpedStorage !== '')"></el-table-column>
+            <!-- <el-table-column prop="pumpedStorage" label="抽蓄发电" align="center"
+                v-if="tableData.some(item => item.pumpedStorage !== '')"></el-table-column> -->
         </el-table>
         <!-- 分页器 固定在底部 -->
         <!-- <el-pagination style=" position: absolute;bottom: 4px;left: 0;right: 0;" :current-page="currentPage"
@@ -154,13 +155,71 @@ export default {
 .popup {
     position: absolute;
     top: 13.5%;
-    left: 27.94%;
-    width: 41.9%;
+    left: 28.94%;
+    width: 39.9%;
     height: 50%;
     border: 3px solid #4187B3;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     padding: 20px;
     z-index: 9999;
+    border-radius: 6px;
+    background-color: rgba(0, 25, 47, 0.7);
+
+    /deep/.el-table tr {
+        background-color: rgba(0, 25, 47, 0.7);
+    }
+
+    /deep/ .el-table,
+    .el-table__expanded-cell {
+        background-color: rgba(0, 0, 0, 0);
+        color: #fff;
+    }
+
+    /deep/.el-table thead {
+        background-color: rgba(0, 25, 47, 0.7);
+    }
+
+    /deep/.el-table tbody tr:hover>td {
+        background-color: rgba(67, 145, 228, 0.2);
+    }
+
+    /deep/.el-table--scrollable-y .el-table__body-wrapper:-webkit-scrollbar {
+        /*隐藏滚轮*/
+        display: none;
+    }
+
+    /deep/.el-table--border,
+    .el-table--group {
+        border-color: 4187B3;
+    }
+
+    ::v-deep .el-table--scrollable-x .el-table__body-wrapper {
+        // overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 8px;
+        background-color: rgba(32, 86, 131, 0.3);
+    }
+
+    //里面滑块
+    ::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 2px rgba(0, 0, 0, .3);
+        -webkit-box-shadow: inset 0 0 wpx rgba(0, 0, 0, .3);
+        background-color: #205683;
+        border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    /deep/.el-table--border th.el-table__cell.gutter:last-of-type {
+        display: none;
+    }
 }
 </style>
 

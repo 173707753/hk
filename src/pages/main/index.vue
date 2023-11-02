@@ -64,7 +64,7 @@ export default {
     }
   },
   created() {
-    this.tabList[0].show = true
+    this.tabList[2].show = true
     this.tabList.map(val => {
       console.log(val);
       // if (val.type === this.$route.query.type) {
