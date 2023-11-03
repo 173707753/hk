@@ -473,7 +473,7 @@ export default {
                     // this.$bus.$emit('left5Data', filteredData);
                     console.log('leftData');
                 } else if (this.selectedArea === '南阳') {
-                    this.$bus.$emit('allData1', this.allDat[4])
+                    this.$bus.$emit('allData1', this.allData[4])
                 } else {
                     // 其他选项则传入全部数据
                     this.$bus.$emit('allData', this.allData)

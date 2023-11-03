@@ -15,7 +15,7 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
-            tabindex: '',
+            tabindex: 0,
             leftData: [
                 {
                     name: '断面数据',
@@ -119,15 +119,15 @@ export default {
         });
         // 接收gis的数据
         const that = this
-        this.$bus.$on('allData', (selectData) => {
+        this.$bus.$on('allData1', (selectData) => {
             console.log(that.tabindex,'tab2');
             if (that.tabindex === 0) {
-                this.leftData[0].data = selectData[0][1];
+                this.leftData[0].data = selectData[1][1];
                 console.log( this.leftData[0].data,'yes');
                 this.updateChart(this.leftData[0].data)
             }
             if (that.tabindex === 1) {
-                this.leftData[0].data = selectData[1][1];
+                this.leftData[0].data = selectData[2][1];
                 console.log( this.leftData[0].data,'ok');
                 this.updateChart(this.leftData[0].data)
             }

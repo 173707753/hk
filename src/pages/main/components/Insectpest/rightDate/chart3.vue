@@ -7,8 +7,8 @@
 
             </div>
             <div class="button-container">
-                <div @click="changeEnergy(1)" class="energy-button conventional">抽蓄电量</div>
-                <div @click="changeNewenergy(1)" class="energy-button new">发电功率</div>
+                <div @click="changeEnergy(1)" class="energy-button conventional">发电功率</div>
+                <div @click="changeNewenergy(1)" class="energy-button new">抽蓄电量</div>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
-            tabindex: '',
+            tabindex: 0,
             chartDate: [
                 {
                     name: '储能数据',
@@ -33,7 +33,11 @@ export default {
             ],
             newData: [
                 {
-                    name: '储能数据',
+                    name: '南阳上',
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                },
+                {
+                    name: '南阳下',
                     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
             ],
@@ -150,18 +154,21 @@ export default {
         });
         //接收gis的数据
         const that = this
-        this.$bus.$on('allData', (selectData) => {
+        this.$bus.$on('allData1', (selectData) => {
             // console.log(that.tabindex,'tab32');
             if (that.tabindex === 0) {
-                this.chartDate[0].data = selectData[0][2][1];
-                this.newData[0].data = selectData[0][2][0];
+                this.chartDate[0].data = selectData[1][2][0];
+                this.newData[0].data = selectData[1][2][1];
+                this.newData[1].data= selectData[1][2][2]
                 this.conventionalData = this.chartDate;
                 this.updateChart(this.conventionalData)
                 // console.log(this.conventionalData,'ok');
             }
             if (that.tabindex === 1) {
-                this.chartDate[0].data = selectData[1][2][1];
-                this.newData[0].data = selectData[1][2][0];
+                this.chartDate[0].data = selectData[2][2][0]; //发电功率
+                this.newData[0].data = selectData[2][2][1]; //南阳上水库
+                 this.newData[1].data= selectData[2][2][2]   //南阳下水库
+                 console.log( this.newData[1].data,'南阳下');
                 this.conventionalData = this.chartDate;
                 // console.log(this.conventionalData,'ok');
                 this.updateChart(this.conventionalData)
