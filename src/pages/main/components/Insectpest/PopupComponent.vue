@@ -10,8 +10,8 @@
                 v-if="tableData.some(item => item.date !== '')">2023/8/24</el-table-column>
             <el-table-column prop="time" label="时间" align="center"
                 v-if="tableData.some(item => item.time !== '')"></el-table-column>
-            <el-table-column prop="area" label="片区" align="center"
-                v-if="tableData.some(item => item.area !== '')">洛北济源</el-table-column>
+            <!-- <el-table-column prop="area" label="片区" align="center"
+                v-if="tableData.some(item => item.area !== '')">洛北济源</el-table-column> -->
             <el-table-column prop="thermalPower" label="火电发电" align="center"
                 v-if="tableData.some(item => item.thermalPower !== '')"></el-table-column>
             <el-table-column prop="hydroelectric" label="水电发电" align="center"

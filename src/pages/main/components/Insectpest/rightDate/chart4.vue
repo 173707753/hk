@@ -13,7 +13,7 @@ import * as echarts from "echarts";
 export default {
   data() {
     return {
-      tabindex:'',
+      tabindex: '',
       myChart: null,
       option: {
         xAxis: {
@@ -51,7 +51,7 @@ export default {
         },
         series: [
           {
-            data: [-699, -456, -597, -705, -335, -865, -937, -510, -498, -351, -152, 40, -147, -291, -356, -536, -148, -86, 156, 229, 266, -74, 128, -305, -53, -657, -625, -735, -145, -572, -528, -237, -291, -346, -322, -23, 59, 184, 230, 215, 236, 206, 224, 187, 33, -206, -239, 55, 67, 64, 43, 33, 0, 78, 55, 90, 124, 146, 22, -548, -190, -102, -243, -643, -550, -631, -765, -730, -1273, -1266, -881, -1074, -897, -1313, -1516, -1161, -1068, -1173, -1223, -1396, -1341, -1031, -1432, -1329, -1447, -1312, -1870, -1761, -1636, -1374, -1442, -1621, -992, -1802, -1866, -1592],
+            data: [2460, 3009, 2638, 2679, 2585, 2645, 2666, 2552, 2576, 2494, 2508, 2481, 2484, 2562, 2505, 2584, 2575, 2526, 2402, 2461, 2455, 2491, 2412, 2476, 2376, 2593, 2538, 2549, 2453, 2404, 2454, 2332, 2227, 2339, 2316, 2355, 2353, 2348, 2322, 2305, 2367, 2334, 2352, 2343, 2285, 2479, 2399, 2277, 2303, 2324, 2285, 2284, 2246, 2298, 2268, 2324, 2355, 2365, 2437, 2572, 2542, 2515, 2537, 2480, 2526, 2575, 2557, 2688, 2733, 2673, 2593, 2717, 2681, 2750, 2883, 2755, 2760, 2724, 2709, 2715, 2761, 2795, 2837, 2825, 2874, 2863, 2933, 2855, 2846, 2916, 2804, 2872, 2755, 2904, 2869, 2875],
             type: 'line',
             symbol: 'circle',
             name: '负荷',
@@ -68,20 +68,20 @@ export default {
       const index = params.param2;
       this.option.series[0].data = dataAll[3];
       this.init(dataAll[3])
-      this.tabindex=index
+      this.tabindex = index
       // console.log(this.tabindex,'tab4');
     });
     // 接收gis的数据
-    const that=this
+    const that = this
     this.$bus.$on('allData', (selectData) => {
       // console.log(that.tabindex,'kkk');
-      if(that.tabindex === 0) {
+      if (that.tabindex === 0) {
         this.option.series[0].data = selectData[0][3];
-      this.init(selectData[0][3])
+        this.init(selectData[0][3])
       }
-      if(that.tabindex === 1) {
+      if (that.tabindex === 1) {
         this.option.series[0].data = selectData[1][3];
-      this.init(selectData[1][3])
+        this.init(selectData[1][3])
       }
     });
   },

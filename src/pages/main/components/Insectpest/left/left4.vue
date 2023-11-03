@@ -107,7 +107,7 @@ export default {
         // index数据
         this.$bus.$on('indexData', (params) => {
             const data = params.param1;
-            this.leftData[0].data = data[6];
+            this.leftData[0].data = data[7];
             this.updateChart(this.leftData)
         })
     },
