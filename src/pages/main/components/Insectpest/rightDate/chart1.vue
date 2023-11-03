@@ -20,7 +20,7 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
-            tabindex: '',
+            tabindex: 0,
             chartDate: [
                 {
                     name: '火电发电',
@@ -173,17 +173,17 @@ export default {
         });
         //接收gis的数据
         const that = this
-        this.$bus.$on('allData', (selectData) => {
-            // console.log(that.tabindex, 'tab12');
+        this.$bus.$on('allData1', (selectData) => {
+           console.log(selectData,'new');
             if (that.tabindex === 0) {
-                this.chartDate[0].data = selectData[0][0][0];
-                this.chartDate[1].data = selectData[0][0][1];
+                this.chartDate[0].data = selectData[1][0][0];
+                this.chartDate[1].data = selectData[1][0][1];
                 this.conventionalData = this.chartDate
                 this.updateChart(this.chartDate)
             }
             if (that.tabindex === 1) {
-                this.chartDate[0].data = selectData[1][0][0];
-                this.chartDate[1].data = selectData[1][0][1];
+                this.chartDate[0].data = selectData[2][0][0];
+                this.chartDate[1].data = selectData[2][0][1];
                 this.conventionalData = this.chartDate
                 this.updateChart(this.chartDate)
             }
