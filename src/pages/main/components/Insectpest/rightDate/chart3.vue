@@ -33,11 +33,11 @@ export default {
             ],
             newData: [
                 {
-                    name: '南阳上',
+                    name: '储能数据',
                     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
                 {
-                    name: '南阳下',
+                    name: '储能数据',
                     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
             ],
@@ -159,7 +159,7 @@ export default {
             if (that.tabindex === 0) {
                 this.chartDate[0].data = selectData[1][2][0];
                 this.newData[0].data = selectData[1][2][1];
-                this.newData[1].data= selectData[1][2][2]
+                this.newData[1].data = selectData[1][2][2]
                 this.conventionalData = this.chartDate;
                 this.updateChart(this.conventionalData)
                 // console.log(this.conventionalData,'ok');
@@ -167,8 +167,8 @@ export default {
             if (that.tabindex === 1) {
                 this.chartDate[0].data = selectData[2][2][0]; //发电功率
                 this.newData[0].data = selectData[2][2][1]; //南阳上水库
-                 this.newData[1].data= selectData[2][2][2]   //南阳下水库
-                 console.log( this.newData[1].data,'南阳下');
+                this.newData[1].data = selectData[2][2][2]   //南阳下水库
+                console.log(this.newData[1].data, '南阳下');
                 this.conventionalData = this.chartDate;
                 // console.log(this.conventionalData,'ok');
                 this.updateChart(this.conventionalData)

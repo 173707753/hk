@@ -479,9 +479,11 @@ export default {
                     this.$bus.$emit('allData1', this.allData[4])
                 } else {
                     // 其他选项则传入全部数据
-                    this.$bus.$emit('allData', this.allData)
+                    this.$bus.$emit('allData', this.allData);
                 }
             }
+
+            this.$bus.$emit('allData2', { selectedProvince: this.selectedProvince, selectedArea: this.selectedArea })
             // 重置选择
             // this.selectedProvince = "";
             // this.selectedArea = "";
