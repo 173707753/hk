@@ -20,6 +20,7 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
+            tabindex: 0,
             chartDate: [
                 {
                     name: '储能数据',
@@ -147,9 +148,25 @@ export default {
             this.newData[0].data = data[2][2];
             this.initChart();
         });
+        const that = this
+        this.$bus.$on('allData1', (data) => {
+            if (that.tabindex === 0) {
+                this.chartDate[0].data = data[1][6];
+                this.conventionalData[0].data = data[1][6];
+                this.newData[0].data = data[1][6];
+                this.initChart();
+            }
+            if (that.tabindex === 1) {
+                this.chartDate[0].data = data[2][6];
+                this.conventionalData[0].data = data[2][6];
+                this.newData[0].data = data[2][6];
+                this.initChart();
+            }
+        })
         // index数据
         this.$bus.$on('indexData', (params) => {
             const data = params.param1;
+            this.tabindex = params.param2;
             this.chartDate[0].data = data[6];
             this.conventionalData[0].data = data[6];
             this.newData[0].data = data[6];

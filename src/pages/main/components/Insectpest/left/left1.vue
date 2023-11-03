@@ -25,6 +25,7 @@ export default {
     },
     data() {
         return {
+            tabindex: 0,
             leftData: [
                 {
                     name: '火电发电',
@@ -232,9 +233,37 @@ export default {
             this.alldata[3] = this.newData[1];
             this.initChart();
         });
+        const that = this
+        this.$bus.$on('allData1', (data) => {
+            if (that.tabindex === 0) {
+                this.leftData[0].data = data[1][4][0][0];
+                this.leftData[1].data = data[1][4][0][1];
+                this.conventionalData = this.leftData;
+                this.newData[0].data = data[1][4][1][0];
+                this.newData[1].data = data[1][4][1][1];
+                this.alldata[0] = this.leftData[0];
+                this.alldata[1] = this.leftData[1];
+                this.alldata[2] = this.newData[0];
+                this.alldata[3] = this.newData[1];
+                this.initChart();
+            }
+            if (that.tabindex === 1) {
+                this.leftData[0].data = data[2][4][0][0];
+                this.leftData[1].data = data[2][4][0][1];
+                this.conventionalData = this.leftData;
+                this.newData[0].data = data[2][4][1][0];
+                this.newData[1].data = data[2][4][1][1];
+                this.alldata[0] = this.leftData[0];
+                this.alldata[1] = this.leftData[1];
+                this.alldata[2] = this.newData[0];
+                this.alldata[3] = this.newData[1];
+                this.initChart();
+            }
+        })
         // index数据
         this.$bus.$on('indexData', (params) => {
             const data = params.param1;
+            this.tabindex = params.param2;
             this.leftData[0].data = data[4][0][0];
             this.leftData[1].data = data[4][0][1];
             this.conventionalData = this.leftData;
