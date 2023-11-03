@@ -37,7 +37,7 @@ export default {
                     // text: 'Bar Animation Delay',
                 },
                 legend: {
-                    bottom:10,
+                    bottom: 10,
                     textStyle: {
                         color: 'rgb(55, 209, 259)',
                     },
@@ -47,8 +47,8 @@ export default {
 
                 },
                 tooltip: {
-    trigger: 'axis'
-  },
+                    trigger: 'axis'
+                },
                 xAxis: {
                     name: 't/min',
                     data: Array.from({ length: 101 }, (_, i) => i),
@@ -99,7 +99,21 @@ export default {
 
     mounted() {
         this.initChart()
+        // GIS数据
+        this.$bus.$on('allData', (data) => {
+            this.leftData[0].data = data[2][3];
+            this.initChart();
+        });
+        // index数据
+        this.$bus.$on('indexData', (data) => {
+            this.leftData[0].data = data[6];
+            this.updateChart(this.leftData)
+        })
     },
+    beforeDestroy() {
+        this.$bus.$off('allData');
+        this.$bus.$off('indexData')
+    }
 
 }
 </script>

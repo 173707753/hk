@@ -31,22 +31,22 @@ export default {
                     name: '南阳',
                     data: [2678, 2677, 2657, 2679, 2500, 2269, 2271, 2385, 2298, 2221, 2221, 2152, 2112, 2113, 2124, 2169, 2211, 2149, 1947, 1938, 1893, 1951, 1975, 2023, 2117, 2189, 2192, 2211, 2247, 2080, 2106, 2132, 2084, 2017, 1960, 1927, 1843, 1722, 1672, 1627, 1627, 1623, 1622, 1621, 1614, 1625, 1613, 1621, 1605, 1606, 1621, 1603, 1624, 1608, 1622, 1631, 1630, 1615, 1627, 1624, 1627, 1684, 1719, 1721, 1808, 1880, 2016, 2242, 2418, 2600, 2811, 3000, 3258, 3420, 3574, 3606, 3528, 3379, 3473, 3512, 3538, 3542, 3501, 3631, 3730, 3790, 3720, 3677, 3646, 3595, 3472, 3509, 3393, 3394, 3412, 3162],
                 },
-               
+
             ],
             newData: [
                 {
                     name: '南阳',
                     data: [24, 35, 54, 115, 134, 135, 101, 71, 38, 14, 5, 4, 4, 3, 0, 3, 4, 5, 9, 6, 7, 11, 19, 19, 23, 20, 11, 10, 16, 18, 26, 26, 28, 23, 19, 11, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6, 7, 16, 18, 20, 20, 39, 61, 86, 95, 96, 100, 87, 73, 75, 69, 63, 69]
                 },
-             
+
             ],
         };
     },
     created() {
-        this.$bus.$on('chart3',()=>{
+        this.$bus.$on('chart3', () => {
             this.changeEnergy(2)
         })
-        this.$bus.$on('chart4',()=>{
+        this.$bus.$on('chart4', () => {
             this.changeNewenergy(2)
         })
     },
@@ -60,12 +60,12 @@ export default {
         },
         changeEnergy(flag) {
             this.updateChart(this.conventionalData);
-            if(flag === 2) return
+            if (flag === 2) return
             this.$bus.$emit('left3')
         },
         changeNewenergy(flag) {
             this.updateChart(this.newData);
-            if(flag === 2) return 
+            if (flag === 2) return
             this.$bus.$emit('left4')
         },
         updateChart(data) {
@@ -140,7 +140,25 @@ export default {
 
     mounted() {
         this.initChart()
+        // GIS数据
+        this.$bus.$on('allData', (data) => {
+            this.chartDate[0].data = data[2][2];
+            this.conventionalData[0].data = data[2][2];
+            this.newData[0].data = data[2][2];
+            this.initChart();
+        });
+        // index数据
+        this.$bus.$on('indexData', (data) => {
+            this.chartDate[0].data = data[6];
+            this.conventionalData[0].data = data[6];
+            this.newData[0].data = data[6];
+            this.updateChart(this.leftData)
+        })
     },
+    beforeDestroy() {
+        this.$bus.$off('allData');
+        this.$bus.$off('indexData')
+    }
 
 }
 </script>
