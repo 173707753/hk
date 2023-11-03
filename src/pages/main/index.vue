@@ -203,7 +203,7 @@ export default {
 
       console.log(index);
       // 发送折线图数据
-      this.$bus.$emit('indexData', this.allData[index])
+      this.$bus.$emit('indexData', { param1: this.allData[index], param2: index})
       // console.log(this.allData[index]);
 
       this.tabList.map(val => {

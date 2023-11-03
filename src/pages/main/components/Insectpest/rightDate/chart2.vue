@@ -15,6 +15,7 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
+            tabindex: '',
             leftData: [
                 {
                     name: '断面数据',
@@ -54,9 +55,6 @@ export default {
                 },
                 toolbox: {
                 },
-                tooltip: {
-                    trigger: 'axis'
-                },
                 xAxis: {
                     name: 't/min',
                     data: Array.from({ length: 101 }, (_, i) => i),
@@ -67,6 +65,9 @@ export default {
                             fontWeight: 'bold'
                         }
                     },
+                },
+                tooltip: {
+                    trigger: 'axis'
                 },
                 yAxis: [
                     {
@@ -106,6 +107,31 @@ export default {
     },
     mounted() {
         this.initChart()
+        // 接收tab切换的数据
+        this.$bus.$on('indexData', (params) => {
+            const dataAll = params.param1;
+            const index = params.param2;
+            console.log(dataAll,'all',index);
+            this.leftData[0].data = dataAll[1];
+            this.updateChart(this.leftData[0].data)
+            this.tabindex = index
+            console.log(this.tabindex,'index');
+        });
+        // 接收gis的数据
+        const that = this
+        this.$bus.$on('allData', (selectData) => {
+            console.log(that.tabindex,'tab2');
+            if (that.tabindex === 0) {
+                this.leftData[0].data = selectData[0][1];
+                console.log( this.leftData[0].data,'yes');
+                this.updateChart(this.leftData[0].data)
+            }
+            if (that.tabindex === 1) {
+                this.leftData[0].data = selectData[1][1];
+                console.log( this.leftData[0].data,'ok');
+                this.updateChart(this.leftData[0].data)
+            }
+        })
     },
 }
 </script>

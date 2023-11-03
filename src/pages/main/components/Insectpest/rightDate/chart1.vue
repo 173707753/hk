@@ -20,6 +20,7 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
+            tabindex: '',
             chartDate: [
                 {
                     name: '火电发电',
@@ -61,12 +62,14 @@ export default {
         };
     },
     created() {
-        this.$bus.$on('left1',()=>{
+        // 按钮联动
+        this.$bus.$on('left1', () => {
             this.changeEnergy(2)
         });
-        this.$bus.$on('left2',()=>{
+        this.$bus.$on('left2', () => {
             this.changeNewenergy(2)
         });
+
     },
     methods: {
         //Echarts数据渲染
@@ -78,12 +81,12 @@ export default {
         },
         changeEnergy(flag) {
             this.updateChart(this.conventionalData);
-            if(flag === 2 ) return;
+            if (flag === 2) return;
             this.$bus.$emit('chart1')
         },
         changeNewenergy(flag) {
             this.updateChart(this.newData);
-            if(flag === 2) return
+            if (flag === 2) return
             this.$bus.$emit('chart2')
         },
         updateChart(data) {
@@ -156,8 +159,36 @@ export default {
         }
     },
     mounted() {
-        this.initChart()
-    },
+        this.initChart();
+        // 接收tab切换的数据
+        this.$bus.$on('indexData', (params) => {
+            const dataAll = params.param1;
+            const index = params.param2;
+            this.chartDate[0].data = dataAll[0][0];
+            this.chartDate[1].data = dataAll[0][1];
+            this.conventionalData = this.chartDate
+            this.updateChart(this.chartDate)
+            this.tabindex = index
+            //    console.log(this.tabindex,'tab11');
+        });
+        //接收gis的数据
+        const that = this
+        this.$bus.$on('allData', (selectData) => {
+            // console.log(that.tabindex, 'tab12');
+            if (that.tabindex === 0) {
+                this.chartDate[0].data = selectData[0][0][0];
+                this.chartDate[1].data = selectData[0][0][1];
+                this.conventionalData = this.chartDate
+                this.updateChart(this.chartDate)
+            }
+            if (that.tabindex === 1) {
+                this.chartDate[0].data = selectData[1][0][0];
+                this.chartDate[1].data = selectData[1][0][1];
+                this.conventionalData = this.chartDate
+                this.updateChart(this.chartDate)
+            }
+        })
+    }
 }
 </script>
 <style lang="scss" scoped>
