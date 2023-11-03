@@ -13,6 +13,7 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
+            tabindex: 0,
             leftData: [
                 {
                     name: '负荷',
@@ -106,9 +107,21 @@ export default {
             this.leftData[0].data = data[2][3];
             this.initChart();
         });
+        const that = this
+        this.$bus.$on('allData1', (data) => {
+            if (that.tabindex === 0) {
+                this.leftData[0].data = data[1][7];
+                this.initChart();
+            }
+            if (that.tabindex === 1) {
+                this.leftData[0].data = data[2][7];
+                this.initChart();
+            }
+        })
         // index数据
         this.$bus.$on('indexData', (params) => {
             const data = params.param1;
+            this.tabindex = params.param2;
             this.leftData[0].data = data[7];
             this.updateChart(this.leftData)
         })
