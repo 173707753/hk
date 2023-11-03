@@ -18,6 +18,7 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
+            tabindex:'',
             chartDate: [
                 {
                     name: '南阳',
@@ -135,6 +136,38 @@ export default {
     },
     mounted() {
         this.initChart()
+        // 接收tab切换的数据
+        this.$bus.$on('indexData', (params) => {
+            const dataAll = params.param1;
+            const index = params.param2;
+            this.chartDate[0].data = dataAll[2][1];
+            this.newData[0].data =  dataAll[2][0]; 
+            this.conventionalData=this.chartDate
+            
+            this.updateChart(this.chartDate);
+            this.tabindex=index
+            // console.log( this.tabindex,'tab31');
+        });
+        //接收gis的数据
+        const that = this
+        this.$bus.$on('allData',(selectData)=>{
+            // console.log(that.tabindex,'tab32');
+            if(that.tabindex === 0){
+            this.chartDate[0].data = selectData[0][2][1];
+            this.newData[0].data =  selectData[0][2][0]; 
+            this.conventionalData=this.chartDate;
+            this.updateChart(this.conventionalData)
+            // console.log(this.conventionalData,'ok');
+            }
+            if(that.tabindex === 1) {
+                this.chartDate[0].data = selectData[1][2][1];
+            this.newData[0].data =  selectData[1][2][0]; 
+            this.conventionalData=this.chartDate;
+            // console.log(this.conventionalData,'ok');
+            this.updateChart(this.conventionalData)
+            }
+          
+        })
     },
 }
 </script>
