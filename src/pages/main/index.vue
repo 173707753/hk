@@ -189,7 +189,7 @@ export default {
     }
   },
   created() {
-    this.tabList[2].show = true
+    this.tabList[0].show = true
     this.tabList.map(val => {
       console.log(val);
       // if (val.type === this.$route.query.type) {
@@ -203,7 +203,7 @@ export default {
 
       console.log(index);
       // 发送折线图数据
-      this.$bus.$emit('indexData', { param1: this.allData[index], param2: index})
+      this.$bus.$emit('indexData', { param1: this.allData[index], param2: index })
       // console.log(this.allData[index]);
 
       this.tabList.map(val => {
