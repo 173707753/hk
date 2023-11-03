@@ -86,6 +86,17 @@ export default {
         this.init(selectData[2][3])
       }
     });
+    this.$bus.$on('allData', (selectData) => {
+      // console.log(that.tabindex,'kkk');
+      if (that.tabindex === 0) {
+        this.option.series[0].data = selectData[0][3];
+        this.init(selectData[1][3])
+      }
+      if (that.tabindex === 1) {
+        this.option.series[0].data = selectData[1][3];
+        this.init(selectData[2][3])
+      }
+    });
   },
   methods: {
     init(seriesData) {

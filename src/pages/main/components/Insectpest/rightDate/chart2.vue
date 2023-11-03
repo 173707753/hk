@@ -132,6 +132,20 @@ export default {
                 this.updateChart(this.leftData[0].data)
             }
         })
+        // 
+        this.$bus.$on('allData', (selectData) => {
+            console.log(that.tabindex,'tab2');
+            if (that.tabindex === 0) {
+                this.leftData[0].data = selectData[0][1];
+                console.log( this.leftData[0].data,'yes');
+                this.updateChart(this.leftData[0].data)
+            }
+            if (that.tabindex === 1) {
+                this.leftData[0].data = selectData[1][1];
+                console.log( this.leftData[0].data,'ok');
+                this.updateChart(this.leftData[0].data)
+            }
+        })
     },
 }
 </script>

@@ -173,6 +173,7 @@ export default {
         });
         //接收gis的数据
         const that = this
+        // 查找具体的南阳
         this.$bus.$on('allData1', (selectData) => {
            console.log(selectData,'new');
             if (that.tabindex === 0) {
@@ -184,6 +185,21 @@ export default {
             if (that.tabindex === 1) {
                 this.chartDate[0].data = selectData[2][0][0];
                 this.chartDate[1].data = selectData[2][0][1];
+                this.conventionalData = this.chartDate
+                this.updateChart(this.chartDate)
+            }
+        })
+        // 省
+        this.$bus.$on('allData',(selectData)=>{
+            if (that.tabindex === 0) {
+                this.chartDate[0].data = selectData[0][0][0];
+                this.chartDate[1].data = selectData[0][0][1];
+                this.conventionalData = this.chartDate
+                this.updateChart(this.chartDate)
+            }
+            if (that.tabindex === 1) {
+                this.chartDate[0].data = selectData[1][0][0];
+                this.chartDate[1].data = selectData[1][0][1];
                 this.conventionalData = this.chartDate
                 this.updateChart(this.chartDate)
             }
