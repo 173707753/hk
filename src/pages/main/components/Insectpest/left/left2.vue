@@ -119,7 +119,8 @@ export default {
             this.initChart();
         });
         // index数据
-        this.$bus.$on('indexData', (data) => {
+        this.$bus.$on('indexData', (params) => {
+            const data = params.param1;
             this.leftData[0].data = data[5];
             this.updateChart(this.leftData)
         })

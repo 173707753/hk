@@ -148,7 +148,8 @@ export default {
             this.initChart();
         });
         // index数据
-        this.$bus.$on('indexData', (data) => {
+        this.$bus.$on('indexData', (params) => {
+            const data = params.param1;
             this.chartDate[0].data = data[6];
             this.conventionalData[0].data = data[6];
             this.newData[0].data = data[6];
