@@ -542,7 +542,8 @@ export default {
       })
     },
     clickMap(data) {
-      console.log(this.nowType);
+      console.log(data);
+      if (data.seriesType == 'scatter') return
       this.nextDow = false
       if (this.nowType === 'country') {
         console.log(1111);
