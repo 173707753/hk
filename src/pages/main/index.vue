@@ -176,6 +176,10 @@ export default {
           ],
         ]
       ],
+      data1: {
+        selectedProvince: 1,
+        selectedArea: 1
+      }
     }
   },
   created() {
@@ -196,9 +200,13 @@ export default {
 
       console.log(index);
       // 发送折线图数据
-      this.$bus.$emit('indexData', { param1: this.allData[index], param2: index })
+      if (this.data1.selectedArea) {
+        this.$bus.$emit('indexData', { param1: this.allData[index], param2: index })
+      }
       // console.log(this.allData[index]);
-
+      this.$bus.$on("allData2", (data) => {
+        this.data1 = data;
+      })
       this.tabList.map(val => {
         // val.class = 'animated fadeOut'
         val.show = false

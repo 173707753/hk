@@ -7,10 +7,10 @@
             <!-- 折线图容器 -->
             <div id="main3" class="chart"></div>
             <!-- 按钮浮动在折线图上 -->
-            <div class="button-container">
+            <!-- <div class="button-container">
                 <div @click="changeEnergy(1)" class="energy-button conventional">抽蓄电量</div>
                 <div @click="changeNewenergy(1)" class="energy-button new">发电功率</div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

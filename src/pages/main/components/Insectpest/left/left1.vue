@@ -12,7 +12,7 @@
                 <div @click="changeNewenergy(1)" class="energy-button new">新能源</div>
             </div>
         </div>
-        <PopupComponent v-if="isMouseOverBot" @close-popup="hidePopup" />
+        <PopupComponent v-if="isMouseOverBot" @close-popup="hidePopup" :alldata="alldata" />
     </div>
 </template>
 
@@ -185,7 +185,7 @@ export default {
         showPopup() {
             this.isMouseOverBot = true;
             //传输数据
-            this.$bus.$emit('tableData', this.alldata)
+            // this.$bus.$emit('tableData', this.alldata)
         },
         hidePopup() {
             this.isMouseOverBot = false;
@@ -222,6 +222,7 @@ export default {
         this.initChart();
         // GIS数据
         this.$bus.$on('allData', (data) => {
+            console.log(data, '我接受的省份数据');
             this.leftData[0].data = data[2][0][0][0];
             this.leftData[1].data = data[2][0][0][1];
             this.conventionalData = this.leftData;
