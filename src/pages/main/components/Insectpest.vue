@@ -5,9 +5,9 @@
       <div class="Insectpest_t_left">
         <div class="scrollable-content">
           <left1 />
-          <left2 style="margin-top: 5px;" />
-          <left3 style="margin-top: 5px;" />
-          <left4 style="margin-top: 5px;" />
+          <left2 style="margin-top: 2vh" />
+          <left3 style="margin-top: 2vh" />
+          <left4 style="margin-top: 2vh" />
         </div>
       </div>
       <!-- 中间地图 -->
@@ -18,6 +18,7 @@
         <Map />
       </div>
       <!-- 右边数据 -->
+      <!-- <div class="title">源网储荷优化调度</div> -->
       <div class="Insectpest_t_right">
         <div class="title">源网储荷优化调度</div>
         <div class="content">
@@ -34,8 +35,9 @@
             <chart4 />
           </div>
         </div>
-
       </div>
+
+
     </div>
     <!-- 底部 -->
     <div class="Insectpest_b">
@@ -60,14 +62,17 @@ import left4 from './Insectpest/left/left4'
 import left5 from './Insectpest/left5'
 import Map from './Insectpest/map'
 import chart1 from './Insectpest/rightDate/chart1'
-import chart2 from './Insectpest/rightDate/chart1'
-import chart3 from './Insectpest/rightDate/chart1'
-import chart4 from './Insectpest/rightDate/chart1'
+import chart2 from './Insectpest/rightDate/chart2'
+import chart3 from './Insectpest/rightDate/chart3'
+import chart4 from './Insectpest/rightDate/chart4'
 
 // import watcherStatistical from './Insectpest/watcherStatistical'
 // import watcherEnvironmental from './Insectpest/watcherEnvironmental'
 import warningInformation from './Insectpest/warningInformation'
 import greenServices from './Insectpest/greenServices'
+
+import Vue from 'vue';
+export const EventBus = new Vue()
 export default {
   components: {
     Map,
@@ -115,6 +120,7 @@ export default {
       height: 60vh;
       /* 启用垂直滚动条 */
       overflow-y: auto;
+      overflow-x: hidden;
 
       /* 自定义滚动条样式 */
       &::-webkit-scrollbar {
@@ -146,12 +152,20 @@ export default {
   .Insectpest_t_right {
     width: 27%;
     height: 60vh;
+    position: relative;
 
     .title {
+      width: 100%;
+      height: 40px;
+      padding-bottom: 10px;
       color: #fff;
-      font-size: 24px;
+      // background: pink;
+      font-size: 28px;
       text-align: center;
-      margin-bottom: 10px;
+      position: absolute;
+      top: -25px;
+      right: 0px;
+      font-weight: 600
     }
 
     .content {
@@ -159,6 +173,7 @@ export default {
       height: 58vh;
       overflow-x: hidden;
       overflow-y: scroll;
+      margin-top: 26px;
     }
 
     /* 定义滚动条的样式 */
@@ -177,14 +192,14 @@ export default {
 
     .top {
       width: 100%;
-      height: 30vh;
+      height: 34vh;
       // background-color: red;
     }
 
     .bot {
       margin-top: 2vh;
       width: 100%;
-      height: 28vh;
+      height: 34vh;
       // background-color: red;
     }
   }
@@ -193,23 +208,23 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
-    margin-top: 1.5%;
+    margin-top: 0.5%;
 
     .Insectpest_b_left {
       width: 27%;
       // background-color: #fff;
-      height: 20vh;
+      height: 26vh;
     }
 
     .Insectpest_b_center {
       width: 45%;
-      // height: 20vh;
+      height: 26vh;
       // background-color: #fff;
     }
 
     .Insectpest_b_right {
       width: 27%;
-      height: 20vh;
+      height: 26vh;
       // background-color: #fff;
     }
   }

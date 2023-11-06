@@ -12,66 +12,28 @@
         浙江省杭州市拱墅区 -->
       </div>
       <div class="smalltab">
-        <img
-          width="40%"
-          height="auto"
-          @click="changeStatis(1)"
-          :class="statics == '1' ? `clickSmalls` : ''"
-          v-if="!tabs"
-          src="../../../../assets/img/ch/climate.png"
-          alt=""
-        />
-        <img
-          width="40%"
-          height="auto"
-          @click="changeStatis(2)"
-          :class="statics == '2' ? `clickSmalls` : ''"
-          v-if="!tabs"
-          src="../../../../assets/img/ch/soils.png"
-          alt=""
-        />
-        <img
-          width="40%"
-          height="auto"
-          @click="changeStatis(3)"
-          :class="statics == '3' ? `clickSmalls` : ''"
-          v-if="tabs"
-          src="../../../../assets/img/ch/climates.png"
-          alt=""
-        />
-        <img
-          width="40%"
-          height="auto"
-          @click="changeStatis(4)"
-          :class="statics == '4' ? `clickSmalls` : ''"
-          v-if="tabs"
-          src="../../../../assets/img/ch/soil.png"
-          alt=""
-        />
+        <img width="40%" height="auto" @click="changeStatis(1)" :class="statics == '1' ? `clickSmalls` : ''" v-if="!tabs"
+          src="../../../../assets/img/ch/climate.png" alt="" />
+        <img width="40%" height="auto" @click="changeStatis(2)" :class="statics == '2' ? `clickSmalls` : ''" v-if="!tabs"
+          src="../../../../assets/img/ch/soils.png" alt="" />
+        <img width="40%" height="auto" @click="changeStatis(3)" :class="statics == '3' ? `clickSmalls` : ''" v-if="tabs"
+          src="../../../../assets/img/ch/climates.png" alt="" />
+        <img width="40%" height="auto" @click="changeStatis(4)" :class="statics == '4' ? `clickSmalls` : ''" v-if="tabs"
+          src="../../../../assets/img/ch/soil.png" alt="" />
       </div>
     </div>
     <div class="environmentChart" v-if="!tabs">
-      <e-chart
-        id="environmentChart"
-        class="environmentChart"
-        ref="environmentChartOption"
-        :option="environmentChartOption"
-      ></e-chart>
+      <e-chart id="environmentChart" class="environmentChart" ref="environmentChartOption"
+        :option="environmentChartOption"></e-chart>
     </div>
     <div class="soil" v-if="tabs">
-      <e-chart
-        id="soil"
-        class="soil"
-        ref="soilOption"
-        :option="soilOption"
-      ></e-chart>
+      <e-chart id="soil" class="soil" ref="soilOption" :option="soilOption"></e-chart>
     </div>
   </div>
 </template>
 
 <script>
 import EChart from "@/components/EChart.vue";
-import * as echarts from "echarts";
 export default {
   components: {
     EChart,
@@ -209,7 +171,7 @@ export default {
             data: [2, 5, 10, 15, 8, 12, 14, 20, 23, 26, 30, 35, 40],
           },
           {
-              symbolSize: 1, //拐点大小
+            symbolSize: 1, //拐点大小
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -224,7 +186,7 @@ export default {
             data: [5, 7, 10, 15, 8, 12, 14, 80, 23, 50, 30, 35, 60],
           },
           {
-              symbolSize: 1, //拐点大小
+            symbolSize: 1, //拐点大小
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -239,7 +201,7 @@ export default {
             data: [34, 67, 23, 77, 8, 12, 80, 20, 23, 26, 30, 50, 40],
           },
           {
-              symbolSize: 1, //拐点大小
+            symbolSize: 1, //拐点大小
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -254,7 +216,7 @@ export default {
             data: [],
           },
           {
-              symbolSize: 1, //拐点大小
+            symbolSize: 1, //拐点大小
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -269,7 +231,7 @@ export default {
             data: [],
           },
           {
-              symbolSize: 1, //拐点大小
+            symbolSize: 1, //拐点大小
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -284,7 +246,7 @@ export default {
             data: [],
           },
           {
-              symbolSize: 1, //拐点大小
+            symbolSize: 1, //拐点大小
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -365,7 +327,7 @@ export default {
         },
         series: [
           {
-              symbolSize: 1, //拐点大小
+            symbolSize: 1, //拐点大小
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -380,7 +342,7 @@ export default {
             data: [2, 5, 10, 15, 8, 12, 14, 20, 23, 26, 30, 35, 40],
           },
           {
-              symbolSize: 1, //拐点大小
+            symbolSize: 1, //拐点大小
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -395,7 +357,7 @@ export default {
             data: [2, 5, 10, 7, 8, 12, 10, 20, 23, 26, 20, 35, 40],
           },
           {
-              symbolSize: 1, //拐点大小
+            symbolSize: 1, //拐点大小
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -410,7 +372,7 @@ export default {
             data: [],
           },
           {
-              symbolSize: 1, //拐点大小
+            symbolSize: 1, //拐点大小
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -425,7 +387,7 @@ export default {
             data: [],
           },
           {
-              symbolSize: 1, //拐点大小
+            symbolSize: 1, //拐点大小
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -484,14 +446,17 @@ export default {
   background-image: url("../../../../assets/img/ch/环境指数/环境指数.png");
   background-size: 100% auto;
   background-repeat: no-repeat;
+
   .environmentChart {
     width: 100%;
     height: 100%;
   }
+
   .soil {
     width: 100%;
     height: 100%;
   }
+
   .st_dw {
     width: 55%;
     font-size: 1.6vh;
@@ -499,6 +464,7 @@ export default {
     align-items: center;
     justify-content: center;
   }
+
   .smalltab {
     width: 45%;
     position: relative;
@@ -506,12 +472,15 @@ export default {
     margin-right: 2%;
     justify-content: flex-end;
     align-items: flex-end;
+
     img {
       z-index: 9999;
       cursor: pointer;
     }
+
     .small_tabs {
       position: relative;
+
       p {
         cursor: pointer;
         z-index: 9999;
@@ -520,11 +489,14 @@ export default {
         margin-top: 5%;
         position: absolute;
       }
+
       font-size: 1vh;
       text-align: right;
     }
+
     .small_tabsed {
       position: relative;
+
       p {
         cursor: pointer;
         z-index: 9999;
@@ -532,27 +504,33 @@ export default {
         top: 4%;
         position: absolute;
       }
+
       font-size: 0.5vh;
       text-align: left;
       margin-left: -1px;
     }
   }
+
   .st_bo {
     display: flex;
     margin-top: 5%;
     justify-content: space-around;
+
     .desc {
       font-size: 1vh;
       color: #afbae0;
     }
+
     p {
       margin-top: 1vh;
     }
+
     .nyzb {
       flex: 1;
       text-align: center;
       position: relative;
       border-right: 1px solid #00a3ff3d;
+
       .water_zb {
         // 水波纹的大小位置设置
         width: 4vw;
@@ -560,8 +538,10 @@ export default {
         left: 23%;
         top: -9%;
         border: 2px solid #ff650b;
-        box-shadow: 2px 2px 30px #ff650b; /* 阴影效果 */
+        box-shadow: 2px 2px 30px #ff650b;
+        /* 阴影效果 */
       }
+
       .water_zs {
         // 水波纹的大小位置设置
         width: 5vw;
@@ -569,25 +549,30 @@ export default {
         left: 28%;
         top: -13%;
         border: 2px solid #ff650b;
-        box-shadow: 2px 2px 30px #ff650b; /* 阴影效果 */
+        box-shadow: 2px 2px 30px #ff650b;
+        /* 阴影效果 */
       }
+
       .count {
         font-family: countFont;
         color: #ffbf2c;
         font-weight: 600;
         font-size: 3vh;
       }
+
       .dw {
         font-size: 1vh;
         margin-left: 2px;
         color: #ffbf2c;
       }
     }
+
     .lsjp {
       flex: 1;
       text-align: center;
       position: relative;
       border-right: 1px solid #00a3ff3d;
+
       .water_jp {
         // 水波纹的大小位置设置
         width: 4vw;
@@ -595,24 +580,29 @@ export default {
         left: 23%;
         top: -9%;
         border: 2px solid #35ece8;
-        box-shadow: 2px 2px 30px #35ece8; /* 阴影效果 */
+        box-shadow: 2px 2px 30px #35ece8;
+        /* 阴影效果 */
       }
+
       .count {
         font-family: countFont;
         color: #35ece8;
         font-weight: 600;
         font-size: 3vh;
       }
+
       .dw {
         font-size: 1vh;
         color: #35ece8;
         margin-left: 2px;
       }
     }
+
     .lszz {
       flex: 1;
       text-align: center;
       position: relative;
+
       .water_zz {
         // 水波纹的大小位置设置
         width: 4vw;
@@ -620,8 +610,10 @@ export default {
         left: 23%;
         top: -9%;
         border: 2px solid #59ff85;
-        box-shadow: 2px 2px 30px #59ff85; /* 阴影效果 */
+        box-shadow: 2px 2px 30px #59ff85;
+        /* 阴影效果 */
       }
+
       .water_bj {
         // 水波纹的大小位置设置
         width: 5vw;
@@ -629,14 +621,17 @@ export default {
         left: 28%;
         top: -13%;
         border: 2px solid #35ece8;
-        box-shadow: 2px 2px 30px #35ece8; /* 阴影效果 */
+        box-shadow: 2px 2px 30px #35ece8;
+        /* 阴影效果 */
       }
+
       .count {
         font-family: countFont;
         color: #3dd780;
         font-weight: 600;
         font-size: 3vh;
       }
+
       .dw {
         font-size: 1vh;
         color: #3dd780;

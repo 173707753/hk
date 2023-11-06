@@ -7,7 +7,7 @@ import Element from 'element-ui'
 // 引入自定义封装第三方插件
 import router from './router'
 import store from './store'
-import animated from 'animate.css/animate.compat.css' 
+import animated from 'animate.css/animate.compat.css'
 // 引入 js 自定义文件
 import './error' // vue 错误日志
 
@@ -20,8 +20,11 @@ Vue.use(Element)
 Vue.use(animated)
 Vue.config.productionTip = false
 
-new Vue({
+const vm = new Vue({
 	router,
 	store,
+	beforeCreate() {
+		Vue.prototype.$bus = this //安装全局事件总线，$bus就是当前应用的vm
+	},
 	render: (h) => h(App),
 }).$mount('#app')

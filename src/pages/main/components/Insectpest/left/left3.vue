@@ -1,10 +1,17 @@
 <template>
     <div class="bot">
         <div class="st_titles">
-            储能:抽蓄
+            储能数据
         </div>
-        <!-- 渲染位置 -->
-        <div id="main3" style="height: 100%;width: 100%;"></div>
+        <div class="chart-container">
+            <!-- 折线图容器 -->
+            <div id="main3" class="chart"></div>
+            <!-- 按钮浮动在折线图上 -->
+            <!-- <div class="button-container">
+                <div @click="changeEnergy(1)" class="energy-button conventional">抽蓄电量</div>
+                <div @click="changeNewenergy(1)" class="energy-button new">发电功率</div>
+            </div> -->
+        </div>
     </div>
 </template>
 
@@ -13,15 +20,36 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
-            leftData: [
+            tabindex: 0,
+            chartDate: [
                 {
-                    name: '抽蓄发电',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                }
+                    name: '储能数据',
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                },
+            ],
+            conventionalData: [
+                {
+                    name: '储能数据',
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                },
+
+            ],
+            newData: [
+                {
+                    name: '储能数据',
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                },
+
             ],
         };
     },
     created() {
+        this.$bus.$on('chart3', () => {
+            this.changeEnergy(2)
+        })
+        this.$bus.$on('chart4', () => {
+            this.changeNewenergy(2)
+        })
     },
     methods: {
         //Echarts数据渲染
@@ -31,21 +59,38 @@ export default {
             var option = this.getOption();
             this.chartInstance.setOption(option);
         },
-        getOption(data = this.leftData) {
+        changeEnergy(flag) {
+            this.updateChart(this.conventionalData);
+            if (flag === 2) return
+            this.$bus.$emit('left3')
+        },
+        changeNewenergy(flag) {
+            this.updateChart(this.newData);
+            if (flag === 2) return
+            this.$bus.$emit('left4')
+        },
+        updateChart(data) {
+            if (this.chartInstance) {
+                this.chartInstance.dispose(); // 销毁图表实例
+            }
+            this.initChart();
+            this.chartInstance.setOption(this.getOption(data)); // 设置新数据
+        },
+        getOption(data = this.chartDate) {
             return {
                 title: {
-                    // text: 'Bar Animation Delay',
+                },
+                tooltip: {
+                    trigger: 'axis'
                 },
                 legend: {
+                    bottom: 10,
                     textStyle: {
-                        color: 'rgb(55, 209, 259)',
+                        color: '#fff',
                     },
                     data: data.map(item => item.name),
+                    left: 'center'
                 },
-                toolbox: {
-
-                },
-                tooltip: {},
                 xAxis: {
                     name: 't/min',
                     data: Array.from({ length: 101 }, (_, i) => i),
@@ -77,7 +122,7 @@ export default {
                 ],
                 series: data.map(item => ({
                     name: item.name,
-                    type: 'line',
+                    type: 'bar',
                     data: item.data,
                     emphasis: {
                         focus: 'series'
@@ -96,7 +141,42 @@ export default {
 
     mounted() {
         this.initChart()
+        // GIS数据
+        this.$bus.$on('allData', (data) => {
+            this.chartDate[0].data = data[2][2];
+            this.conventionalData[0].data = data[2][2];
+            this.newData[0].data = data[2][2];
+            this.initChart();
+        });
+        const that = this
+        this.$bus.$on('allData1', (data) => {
+            if (that.tabindex === 0) {
+                this.chartDate[0].data = data[1][6];
+                this.conventionalData[0].data = data[1][6];
+                this.newData[0].data = data[1][6];
+                this.initChart();
+            }
+            if (that.tabindex === 1) {
+                this.chartDate[0].data = data[2][6];
+                this.conventionalData[0].data = data[2][6];
+                this.newData[0].data = data[2][6];
+                this.initChart();
+            }
+        })
+        // index数据
+        this.$bus.$on('indexData', (params) => {
+            const data = params.param1;
+            this.tabindex = params.param2;
+            this.chartDate[0].data = data[6];
+            this.conventionalData[0].data = data[6];
+            this.newData[0].data = data[6];
+            this.updateChart(this.leftData)
+        })
     },
+    beforeDestroy() {
+        this.$bus.$off('allData');
+        this.$bus.$off('indexData')
+    }
 
 }
 </script>
@@ -104,11 +184,58 @@ export default {
 <style lang="scss" scoped>
 .bot {
     width: 100%;
+    /* height: 100%; */
     z-index: 99999;
-    height: 34.2vh;
-    background-image: url('../../../../../assets/img/ch/chbg.png');
-    background-size: 100% auto;
+    height: 34vh;
+    /* padding-bottom: 5.5vh; */
+    /* height: 28vh; */
+    background-size: 100% 107%;
     background-repeat: no-repeat;
-
+    background-image: url('../../../../../assets/img/ch/chbg.png');
 }
+
+.chart-container {
+    position: relative;
+    height: calc(100% - 4vh);
+
+    .chart {
+        width: 100%;
+        height: 100%;
+    }
+
+    .button-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .energy-button {
+        padding: 1px 2px;
+        margin: 2px;
+        border-radius: 3px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        font-weight: bold;
+        color: rgb(55, 209, 259);
+        transition: background-color 0.3s;
+
+        &.conventional {
+            background-color: rgba(84, 122, 194, .5);
+        }
+
+        &.new {
+            background-color: rgba(84, 122, 194, .5);
+        }
+
+        &:hover {
+            color: rgb(2, 188, 233);
+            background-color: rgb(14, 33, 72);
+        }
+    }
+}
+
+/* .chartclass{
+
+} */
 </style>

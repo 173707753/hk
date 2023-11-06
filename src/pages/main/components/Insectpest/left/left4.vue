@@ -4,7 +4,7 @@
             负荷数据
         </div>
         <!-- 渲染位置 -->
-        <div id="main4" style="height: 100%;width: 100%;"></div>
+        <div id="main4" style="height: calc(100% - 4vh);width: 100%;"></div>
     </div>
 </template>
 
@@ -13,10 +13,13 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
+            tabindex: 0,
             leftData: [
                 {
                     name: '负荷',
-                    data: [2460, 3009, 2638, 2679, 2585, 2645, 2666, 2552, 2576, 2494, 2508, 2481, 2484, 2562, 2505, 2584, 2575, 2526, 2402, 2461, 2455, 2491, 2412, 2476, 2376, 2593, 2538, 2549, 2453, 2404, 2454, 2332, 2227, 2339, 2316, 2355, 2353, 2348, 2322, 2305, 2367, 2334, 2352, 2343, 2285, 2479, 2399, 2277, 2303, 2324, 2285, 2284, 2246, 2298, 2268, 2324, 2355, 2365, 2437, 2572, 2542, 2515, 2537, 2480, 2526, 2575, 2557, 2688, 2733, 2673, 2593, 2717, 2681, 2750, 2883, 2755, 2760, 2724, 2709, 2715, 2761, 2795, 2837, 2825, 2874, 2863, 2933, 2855, 2846, 2916, 2804, 2872, 2755, 2904, 2869, 2875]
+                    data: [
+                        49100, 48783, 48019, 47363, 46921, 46673, 46086, 45767, 45142, 44714, 44316, 43945, 43648, 43461, 43276, 42982, 42955, 42579, 42421, 42393, 42525, 42620, 42884, 43396, 44765, 45257, 45341, 44744, 44278, 44605, 44688, 44964, 45485, 46680, 47094, 47751, 47996, 48853, 49814, 49761, 50204, 50600, 51115, 51734, 52318, 53114, 52935, 52617, 52793, 52837, 53178, 53150, 52763, 52391, 52425, 52615, 53302, 53494, 53589, 53436, 53169, 53306, 52659, 53000, 53373, 53770, 54305, 53979, 53852, 53813, 53904, 53667, 53601, 53233, 53004, 52954, 53614, 53733, 54005, 54268, 54117, 53854, 53922, 54294, 54660, 54482, 53886, 53294, 52944, 52000, 51311
+                    ]
                 }
             ],
         };
@@ -37,6 +40,7 @@ export default {
                     // text: 'Bar Animation Delay',
                 },
                 legend: {
+                    bottom: 10,
                     textStyle: {
                         color: 'rgb(55, 209, 259)',
                     },
@@ -45,7 +49,9 @@ export default {
                 toolbox: {
 
                 },
-                tooltip: {},
+                tooltip: {
+                    trigger: 'axis'
+                },
                 xAxis: {
                     name: 't/min',
                     data: Array.from({ length: 101 }, (_, i) => i),
@@ -96,7 +102,34 @@ export default {
 
     mounted() {
         this.initChart()
+        // GIS数据
+        this.$bus.$on('allData', (data) => {
+            this.leftData[0].data = data[2][3];
+            this.initChart();
+        });
+        const that = this
+        this.$bus.$on('allData1', (data) => {
+            if (that.tabindex === 0) {
+                this.leftData[0].data = data[1][7];
+                this.initChart();
+            }
+            if (that.tabindex === 1) {
+                this.leftData[0].data = data[2][7];
+                this.initChart();
+            }
+        })
+        // index数据
+        this.$bus.$on('indexData', (params) => {
+            const data = params.param1;
+            this.tabindex = params.param2;
+            this.leftData[0].data = data[7];
+            this.updateChart(this.leftData)
+        })
     },
+    beforeDestroy() {
+        this.$bus.$off('allData');
+        this.$bus.$off('indexData')
+    }
 
 }
 </script>

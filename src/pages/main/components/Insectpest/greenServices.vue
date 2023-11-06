@@ -13,7 +13,7 @@
         <img width="40%" height="auto" @click="changeStatis(4)" :class="statics == '4' ? `clickSmalls` : ''" v-if="tabs" src="../../../../assets/img/ch/chx.png" alt="">
       </div>
     </div> -->
-    <div class="st_bo" v-if="!tabs">
+    <!-- <div class="st_bo" v-if="!tabs">
       <div class="nyzb">
         <img
           width="50%"
@@ -68,7 +68,7 @@
         </p>
         <p class="desc">农药减排</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -100,9 +100,10 @@ export default {
 .top {
   width: 100%;
   z-index: 99999;
-  height: 24vh;
+  height: 26vh;
+  // height: 100%;
   background-image: url("../../../../assets/img/ch/绿色服务/绿色服务.png");
-  background-size: 100% auto;
+  background-size: 100% 107%;
   background-repeat: no-repeat;
   .st_dw {
     width: 55%;

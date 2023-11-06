@@ -5,9 +5,11 @@
       <div v-for="(item, index) in dataimg" :key="index" class="item">
         <img width="88%" height="auto" class="bg" :src="item.src" alt="">
         <div class="contant"
-          :style="item.type == 1 ? 'color:#FFC22E' : item.type == 2 ? 'color:#5EC2F2' : 'color:#FF4528'">
+          :style="item.type == 1 ? 'color:#FFC22E' : item.type == 2 ? 'color:#5EC2F2' : item.type == 3 ? 'color:#FF4528' : 'color:#bfc'">
           <img width="13%" height="auto" :src="item.summer" alt="">
-          <p class="txt">{{ item.txt }}</p>
+          <p class="txt" :title="item.txt">
+            {{ item.txt.length > 10 ? item.txt.slice(0, 9) + '...' : item.txt }}
+          </p>
           <p class="date">{{ item.date }}</p>
         </div>
       </div>
@@ -31,12 +33,12 @@ export default {
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "省网电量保供裕度系数",
-          type: 2
+          type: 1
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "区域电网电力保供裕度系数",
-          type: 3
+          type: 1
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
@@ -51,12 +53,12 @@ export default {
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "区域电网水电电力电量消纳率",
-          type: 3
+          type: 2
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "省网新能源电力电量消纳率",
-          type: 1
+          type: 2
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
@@ -76,22 +78,32 @@ export default {
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "紧急大功率支撑",
-          type: 1
-        },
-        {
-          src: require("../../../../assets/img/ch/card.png"),
-          txt: "跨区转送能力",
-          type: 2
-        },
-        {
-          src: require("../../../../assets/img/ch/card.png"),
-          txt: "应急备用平衡度",
           type: 3
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
-          txt: "保供备用平衡度",
-          type: 1
+          txt: "跨区转送能力",
+          type: 3
+        },
+        {
+          src: require("../../../../assets/img/ch/card.png"),
+          txt: "省网保供备用均衡度",
+          type: 4
+        },
+        {
+          src: require("../../../../assets/img/ch/card.png"),
+          txt: "省网应急备用均衡度",
+          type: 4
+        },
+        {
+          src: require("../../../../assets/img/ch/card.png"),
+          txt: "区域电网保供备用均衡度",
+          type: 4
+        },
+        {
+          src: require("../../../../assets/img/ch/card.png"),
+          txt: "区域电网应急备用均衡度",
+          type: 4
         },
         // {
         //   src: require("../../../../assets/img/ch/card.png"),
@@ -123,11 +135,11 @@ export default {
 .top {
   width: 100%;
   z-index: 99999;
-  height: 24vh;
-  background-image: url("../../../../assets/img/ch/预警信息/预警信息.png");
-  background-size: 100% auto;
+  // height: 20vh;
+  height: 100%;
+  background-image: url("../../../../assets/img/ch/绿色服务/绿色服务.png");
+  background-size: 100% 107%;
   background-repeat: no-repeat;
-  background-position-y: 10%;
 
   .st_tops {
     width: 100%;
@@ -149,7 +161,7 @@ export default {
       width: 25%;
 
       .bg {
-        margin-bottom: 1%;
+        margin-bottom: 3.5%;
       }
 
       .contant {
@@ -160,7 +172,7 @@ export default {
         position: absolute;
         top: 15%;
         width: 80%;
-        left: 10%;
+        left: 5%;
         display: flex;
         align-items: center;
         justify-content: space-around;
@@ -186,3 +198,4 @@ export default {
   }
 }
 </style>
+
