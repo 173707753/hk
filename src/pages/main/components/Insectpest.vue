@@ -160,10 +160,10 @@ export default {
       padding-bottom: 10px;
       color: #fff;
       // background: pink;
-      font-size: 28px;
+      font-size: 3vh;
       text-align: center;
       position: absolute;
-      top: -25px;
+      top: -30px;
       right: 0px;
       font-weight: 600
     }

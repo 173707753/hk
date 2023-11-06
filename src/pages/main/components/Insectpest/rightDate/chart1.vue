@@ -1,5 +1,5 @@
 <template>
-    <div class="top">
+    <div class="top" @mouseenter="showPopup" @mouseleave="hidePopup">
         <div class="st_titles">
             电源数据
         </div>
@@ -12,7 +12,12 @@
                 <div @click="changeNewenergy(1)" class="energy-button new">新能源</div>
             </div>
         </div>
+        <div v-if="isPopupVisible" class="popup">
+            <!-- 弹框内容 -->
+            <p>这是弹框内容</p>
+        </div>
     </div>
+    
 </template>
 
 <script>
@@ -20,6 +25,7 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
+            isPopupVisible: true,
             tabindex: 0,
             chartDate: [
                 {
@@ -156,6 +162,12 @@ export default {
                     return idx * 5;
                 }
             };
+        },
+        showPopup() {
+            this.isPopupVisible = true;
+        },
+        hidePopup() {
+            this.isPopupVisible = false;
         }
     },
     mounted() {
@@ -175,7 +187,7 @@ export default {
         const that = this
         // 查找具体的南阳
         this.$bus.$on('allData1', (selectData) => {
-           console.log(selectData,'new');
+            console.log(selectData, 'new');
             if (that.tabindex === 0) {
                 this.chartDate[0].data = selectData[1][0][0];
                 this.chartDate[1].data = selectData[1][0][1];
@@ -190,7 +202,7 @@ export default {
             }
         })
         // 省
-        this.$bus.$on('allData',(selectData)=>{
+        this.$bus.$on('allData', (selectData) => {
             if (that.tabindex === 0) {
                 this.chartDate[0].data = selectData[0][0][0];
                 this.chartDate[1].data = selectData[0][0][1];
@@ -230,6 +242,7 @@ export default {
     }
 
     .button-container {
+        display: flex;
         position: absolute;
         top: 10px;
         right: 10px;
