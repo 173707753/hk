@@ -9,7 +9,7 @@
         <div style="color: rgb(226, 236, 255);font-size: 3vh;font-weight: bold;position: absolute;top: 30%;left: 9%;">
           电力大数据
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 4.8vh;font-weight: bold;position: absolute;top: 53%;left: 31%;">
+        <div style="color: rgb(226, 236, 255);font-size: 2vw;font-weight: bold;position: absolute;top: 53%;left: 31%;">
           电力碳中和智能化调度
         </div>
         <div class="right">

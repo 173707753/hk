@@ -14,7 +14,7 @@
         </div>
         <div v-if="isPopupVisible" class="popup">
             <!-- 弹框内容 -->
-            <p>这是弹框内容</p>
+            <!-- <p>这是弹框内容</p> -->
         </div>
     </div>
     

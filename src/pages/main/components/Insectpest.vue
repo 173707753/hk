@@ -20,7 +20,10 @@
       <!-- 右边数据 -->
       <!-- <div class="title">源网储荷优化调度</div> -->
       <div class="Insectpest_t_right">
-        <div class="title">源网储荷优化调度</div>
+        <div class="box">
+          <div class="title">源网储荷优化调度</div>
+          <div class="nowTime">{{ currentTime }}</div>
+        </div>
         <div class="content">
           <div class="top">
             <chart1 />
@@ -90,11 +93,36 @@ export default {
   },
   data() {
     return {
+      currentTime: this.getCurrentTime(),
       role: 'watcher'
     }
   },
+  // created() {
+  //   this.role = 'production' // 生产者
+  // },
   created() {
     this.role = 'production' // 生产者
+    // 每隔一秒更新一次时间
+    this.timer = setInterval(() => {
+      this.currentTime = this.getCurrentTime();
+    }, 1000);
+  },
+  beforeDestroy() {
+    // 在组件销毁前清除定时器，防止内存泄漏
+    clearInterval(this.timer);
+  },
+  methods:{
+    getCurrentTime() {
+      const now = new Date();
+      const currentHour = now.getHours();
+      const currentMinute = now.getMinutes();
+      const currentSecond = now.getSeconds();
+      return `${this.padZero(currentHour)}:${this.padZero(currentMinute)}:${this.padZero(currentSecond)}`;
+    },
+    padZero(value) {
+      // 辅助函数用于确保数字始终有两位，例如：2 -> "02"
+      return value < 10 ? `0${value}` : value;
+    }
   }
 }
 </script>
@@ -153,19 +181,34 @@ export default {
     width: 27%;
     height: 60vh;
     position: relative;
-
-    .title {
+    .box{
+      display: flex;
       width: 100%;
       height: 40px;
       padding-bottom: 10px;
       color: #fff;
       // background: pink;
       font-size: 3vh;
-      text-align: center;
+      // text-align: center;
+      // align-items: center;
+      align-items: end;
+      justify-content: space-around;
       position: absolute;
       top: -30px;
-      right: 0px;
+      right: 0;
       font-weight: 600
+    }
+    .title {
+  
+      font-size: 3vh;
+    
+      font-weight: 600
+      ma
+    }
+    .nowTime{
+      color: #fff;
+      font-size: 2vh;
+  // align-items: end;
     }
 
     .content {
@@ -228,5 +271,6 @@ export default {
       // background-color: #fff;
     }
   }
+
 }
 </style>
