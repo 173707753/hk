@@ -499,6 +499,9 @@ export default {
                     // 其他选项则传入全部数据
                     this.$bus.$emit('allData', this.allData);
                 }
+            } else {
+                // 地图跳转
+                this.$bus.$emit('left5Data', filteredData);
             }
 
             this.$bus.$emit('allData2', { selectedProvince: this.selectedProvince, selectedArea: this.selectedArea })
