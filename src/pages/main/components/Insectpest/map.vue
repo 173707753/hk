@@ -419,7 +419,7 @@ export default {
             name: "火电发电",
             symbolSize: [28, 32],
             data: [{
-              name: '宜昌',
+              name: '湖北省',
               value: [111.51378, 31.23989],
               datas: [{ bianhao: 123, zhuangtai: '123' }]
             }],
@@ -542,7 +542,8 @@ export default {
       })
     },
     clickMap(data) {
-      console.log(this.nowType);
+      console.log(data);
+      if (data.seriesType == 'scatter') return
       this.nextDow = false
       if (this.nowType === 'country') {
         console.log(1111);

@@ -1,4 +1,4 @@
-const defaultDocumentTitle = '数据大屏' //默认html页面 title 值
+const defaultDocumentTitle = '电力碳中和智能化调度' //默认html页面 title 值
 
 // vue.config.js
 module.exports = {
