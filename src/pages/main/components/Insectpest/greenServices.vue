@@ -30,7 +30,7 @@
         <p>
           <span class="count">2456</span>
         </p>
-        <p class="desc">服务人数</p>
+        <p class="desc">河南省出力</p>
       </div>
       <div class="lsjp">
         <img
@@ -48,9 +48,9 @@
         <p>
           <span class="count">2234</span>
         </p>
-        <p class="desc">服务面积</p>
+        <p class="desc">江西省出力</p>
       </div>
-      <div class="lszz">
+      <div class="lszz ">
         <img
           width="50%"
           height="auto"
@@ -66,7 +66,61 @@
         <p>
           <span class="count">2234</span>
         </p>
-        <p class="desc">农药减排</p>
+        <p class="desc">湖北省出力</p>
+      </div>
+      <div class="hns">
+        <img
+          width="50%"
+          height="auto"
+          src="../../../../assets/img/ch/绿色服务/service.png"
+          alt=""
+          class="rotating_pic"
+        />
+        <img
+          src="../../../../assets/img/ch/绿色服务/service2.png"
+          alt=""
+          class="rotating2_pic"
+        />
+        <p>
+          <span class="count">2456</span>
+        </p>
+        <p class="desc">湖南省出力</p>
+      </div>
+      <div class="hzdwc">
+        <img
+          width="50%"
+          height="auto"
+          src="../../../../assets/img/ch/绿色服务/area.png"
+          alt=""
+          class="rotating_pic"
+        />
+        <img
+          src="../../../../assets/img/ch/绿色服务/area2.png"
+          alt=""
+          class="rotating2_pic"
+        />
+        <p>
+          <span class="count">2234</span>
+        </p>
+        <p class="desc">华中电网出力</p>
+      </div>
+      <div class="hzdwb ">
+        <img
+          width="50%"
+          height="auto"
+          src="../../../../assets/img/ch/绿色服务/pesticide.png"
+          alt=""
+          class="rotating_pic"
+        />
+        <img
+          src="../../../../assets/img/ch/绿色服务/pesticide2.png"
+          alt=""
+          class="rotating2_pic"
+        />
+        <p>
+          <span class="count">2234</span>
+        </p>
+        <p class="desc">华中电网备份</p>
       </div>
     </div> -->
   </div>
@@ -151,12 +205,14 @@ export default {
     }
   }
   .st_bo {
+    // width: 100%;
     display: flex;
     margin-top: 5%;
     justify-content: space-around;
     .desc {
-      font-size: 1.8vh;
+      font-size: 1.5vh;
       color: #C5C5C5;
+      font-weight: 600;
       font-family: PingFangSC-Medium, PingFang SC;
           position: relative;
     top: -7vh;
@@ -174,7 +230,7 @@ export default {
       }
       .rotating2_pic {
         position: relative;
-        margin-top: -12.5vh;
+        margin-top: -10.5vh;
         animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
       }
       // .water_zb {
@@ -201,7 +257,7 @@ export default {
         font-weight: 600;
         font-size: 3vh;
         position: relative;
-        top: -11vh;
+        top: -10.4vh;
       }
       .dw {
         font-size: 1vh;
@@ -219,7 +275,7 @@ export default {
       }
       .rotating2_pic {
         position: relative;
-        margin-top: -12.5vh;
+        margin-top: -10.5vh;
        animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
       }
       // .water_jp {
@@ -237,7 +293,7 @@ export default {
         font-weight: 600;
         font-size: 3vh;
         position: relative;
-        top: -11vh;
+        top: -10.4vh;
       }
       .dw {
         font-size: 1vh;
@@ -249,39 +305,107 @@ export default {
       flex: 1;
       text-align: center;
       position: relative;
+      border-right: 1px solid #00a3ff3d;
+     
       .rotating_pic {
         animation: myfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
       }
       .rotating2_pic {
         position: relative;
-        margin-top: -12.5vh;
+        margin-top: -10.5vh;
         animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
       }
-      // .water_zz {
-      //   // 水波纹的大小位置设置
-      //   width: 4vw;
-      //   height: 4vw;
-      //   left: 23%;
-      //   top: -9%;
-      //   border: 2px solid #59ff85;
-      //   box-shadow: 2px 2px 30px #59ff85; /* 阴影效果 */
-      // }
-      // .water_bj {
-      //   // 水波纹的大小位置设置
-      //   width: 5vw;
-      //   height: 5vw;
-      //   left: 28%;
-      //   top: -13%;
-      //   border: 2px solid #35ece8;
-      //   box-shadow: 2px 2px 30px #35ece8; /* 阴影效果 */
-      // }
       .count {
         font-family: countFont;
         color: #3dd780;
         font-weight: 600;
         font-size: 3vh;
         position: relative;
-        top: -11vh;
+        top: -10.4vh;
+      }
+      .dw {
+        font-size: 1vh;
+        color: #3dd780;
+        margin-left: 2px;
+      }
+    }
+    .hns {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      border-right: 1px solid #00a3ff3d;
+     
+      .rotating_pic {
+        animation: myfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+      }
+      .rotating2_pic {
+        position: relative;
+        margin-top: -10.5vh;
+        animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+      }
+      .count {
+        font-family: countFont;
+        color: #3dd780;
+        font-weight: 600;
+        font-size: 3vh;
+        position: relative;
+        top: -10.4vh;
+      }
+      .dw {
+        font-size: 1vh;
+        color: #3dd780;
+        margin-left: 2px;
+      }
+    }
+    .hzdwc {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      border-right: 1px solid #00a3ff3d;
+     
+      .rotating_pic {
+        animation: myfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+      }
+      .rotating2_pic {
+        position: relative;
+        margin-top: -10.5vh;
+        animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+      }
+      .count {
+        font-family: countFont;
+        color: #3dd780;
+        font-weight: 600;
+        font-size: 3vh;
+        position: relative;
+        top: -10.4vh;
+      }
+      .dw {
+        font-size: 1vh;
+        color: #3dd780;
+        margin-left: 2px;
+      }
+    }
+    .hzdwb {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      border-right: 1px solid #00a3ff3d;
+     
+      .rotating_pic {
+        animation: myfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+      }
+      .rotating2_pic {
+        position: relative;
+        margin-top: -10.5vh;
+        animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+      }
+      .count {
+        font-family: countFont;
+        color: #3dd780;
+        font-weight: 600;
+        font-size: 3vh;
+        position: relative;
+        top: -10.4vh;
       }
       .dw {
         font-size: 1vh;

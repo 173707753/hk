@@ -306,6 +306,7 @@ export default {
     }
 
     .button-container {
+        display: flex;
         position: absolute;
         top: 10px;
         right: 10px;

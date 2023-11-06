@@ -113,9 +113,8 @@ export default {
             const index = params.param2;
             console.log(dataAll,'all',index);
             this.leftData[0].data = dataAll[1];
-            this.updateChart(this.leftData[0].data)
+            this.updateChart(this.leftData)
             this.tabindex = index
-            console.log(this.tabindex,'index');
         });
         // 接收gis的数据
         const that = this
@@ -123,27 +122,26 @@ export default {
             console.log(that.tabindex,'tab2');
             if (that.tabindex === 0) {
                 this.leftData[0].data = selectData[1][1];
-                console.log( this.leftData[0].data,'yes');
-                this.updateChart(this.leftData[0].data)
+                // console.log( this.leftData[0].data,'yes');
+                this.updateChart(this.leftData)
             }
             if (that.tabindex === 1) {
                 this.leftData[0].data = selectData[2][1];
-                console.log( this.leftData[0].data,'ok');
-                this.updateChart(this.leftData[0].data)
+                // console.log( this.leftData[0].data,'ok');
+                this.updateChart(this.leftData)
             }
         })
         // 
         this.$bus.$on('allData', (selectData) => {
-            console.log(that.tabindex,'tab2');
             if (that.tabindex === 0) {
                 this.leftData[0].data = selectData[0][1];
-                console.log( this.leftData[0].data,'yes');
-                this.updateChart(this.leftData[0].data)
+                // console.log( this.leftData[0].data,'yes');
+                this.updateChart(this.leftData)
             }
             if (that.tabindex === 1) {
                 this.leftData[0].data = selectData[1][1];
-                console.log( this.leftData[0].data,'ok');
-                this.updateChart(this.leftData[0].data)
+                // console.log( this.leftData[0].data,'ok');
+                this.updateChart(this.leftData)
             }
         })
     },
