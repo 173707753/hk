@@ -1,139 +1,123 @@
 <template>
   <div class="top">
-    <div class="st_titles">数据总览</div>
+    <div class="st_titles">运行评估总览</div>
     <div class="st_tops">
-      <!-- <div class="st_dw">
-        <img width="10%" height="auto" src="../../../../assets/img/ch/zb.png" alt="">
-        浙江省杭州市拱墅区
-      </div> -->
-      <!-- <div class="smalltab">
-        <img width="40%" height="auto" @click="changeStatis(1)" :class="statics == '1' ? `clickSmalls` : ''" v-if="!tabs" src="../../../../assets/img/ch/sjx.png" alt="">
-        <img width="40%" height="auto" @click="changeStatis(2)" :class="statics == '2' ? `clickSmalls` : ''" v-if="!tabs" src="../../../../assets/img/ch/chw.png" alt="">
-        <img width="40%" height="auto" @click="changeStatis(3)" :class="statics == '3' ? `clickSmalls` : ''" v-if="tabs" src="../../../../assets/img/ch/sjw.png" alt="">
-        <img width="40%" height="auto" @click="changeStatis(4)" :class="statics == '4' ? `clickSmalls` : ''" v-if="tabs" src="../../../../assets/img/ch/chx.png" alt="">
-      </div> -->
     </div>
     <div class="dwasda" v-if="!tabs">
       <div class="st_bo">
         <div class="nyzb">
           <div>
-            <!-- <img
-              width="50%"
-              height="auto"
-              src="../../../../assets/img/ch/绿色服务/service.png"
-              alt=""
-              class="rotating_pic"
-            /> -->
             <img
-              width="100%"
+              width="120%"
               src="../../../../assets/img/ch/绿色服务/service2.png"
               alt=""
               class="rotating2_pic"
             />
           </div>
-          <p class="count" >
-            <span >2456</span>
-          </p>
-          <p class="desc">河南省</p>
+            <div class="count">
+              <chat :id="`hnchat`" :option="gethnoption(1)"></chat>
+            </div>
+          <p class="desc">湖北省发电</p>
         </div>
-        <div class="lsjp">
-          <!-- <img
-            width="50%"
-            height="auto"
-            src="../../../../assets/img/ch/绿色服务/area.png"
-            alt=""
-            class="rotating_pic"
-          /> -->
-          <img
-            width="100%"
-            src="../../../../assets/img/ch/绿色服务/area2.png"
-            alt=""
-            class="rotating2_pic"
-          />
-          <p class="count">
-            <span >2234</span>
-          </p>
-          <p class="desc">江西省</p>
+        <div class="nyzb">
+          <div>
+            <img
+              width="120%"
+              src="../../../../assets/img/ch/绿色服务/service2.png"
+              alt=""
+              class="rotating2_pic"
+            />
+          </div>
+            <div class="count">
+              <chat :id="`hnchat1`" :option="gethnoption(2)"></chat>
+            </div>
+          <p class="desc">河南省发电</p>
         </div>
-        <div class="lszz">
-          <!-- <img
-            width="50%"
-            height="auto"
-            src="../../../../assets/img/ch/绿色服务/pesticide.png"
-            alt=""
-            class="rotating_pic"
-          /> -->
-          <img
-            width="100%"
-            src="../../../../assets/img/ch/绿色服务/pesticide2.png"
-            alt=""
-            class="rotating2_pic"
-          />
-          <p class="count">
-            <span >2234</span>
-          </p>
-          <p class="desc">湖北省</p>
+        <div class="nyzb">
+          <div>
+            <img
+              width="120%"
+              src="../../../../assets/img/ch/绿色服务/service2.png"
+              alt=""
+              class="rotating2_pic"
+            />
+          </div>
+            <div class="count">
+              <chat :id="`hnchat2`" :option="gethnoption(3)"></chat>
+            </div>
+          <p class="desc">江西省发电</p>
+        </div>
+        <div class="nyzb">
+          <div>
+            <img
+              width="120%"
+              src="../../../../assets/img/ch/绿色服务/service2.png"
+              alt=""
+              class="rotating2_pic"
+            />
+          </div>
+            <div class="count">
+              <chat :id="`hnchat3`" :option="gethnoption(4)"></chat>
+            </div>
+          <p class="desc">湖南省发电</p>
         </div>
       </div>
       <div class="st_bo">
         <div class="nyzb">
           <div>
-            <!-- <img
-              width="50%"
-              height="auto"
-              src="../../../../assets/img/ch/绿色服务/service.png"
-              alt=""
-              class="rotating_pic"
-            /> -->
             <img
-              width="100%"
+              width="120%"
               src="../../../../assets/img/ch/绿色服务/service2.png"
               alt=""
               class="rotating2_pic"
             />
           </div>
-          <p>
-            <span class="count">2456</span>
-          </p>
-          <p class="desc">湖南省</p>
+            <div class="count">
+              <chat :id="`hnchat4`" :option="gethnoption(5)"></chat>
+            </div>
+          <p class="desc">全网发电</p>
         </div>
-        <div class="lsjp">
-          <!-- <img
-            width="50%"
-            height="auto"
-            src="../../../../assets/img/ch/绿色服务/area.png"
-            alt=""
-            class="rotating_pic"
-          /> -->
-          <img
-            width="100%"
-            src="../../../../assets/img/ch/绿色服务/area2.png"
-            alt=""
-            class="rotating2_pic"
-          />
-          <p>
-            <span class="count">2234</span>
-          </p>
-          <p class="desc">华中电网出力</p>
+        <div class="nyzb">
+          <div>
+            <img
+              width="120%"
+              src="../../../../assets/img/ch/绿色服务/service2.png"
+              alt=""
+              class="rotating2_pic"
+            />
+          </div>
+            <div class="count">
+              <chat :id="`hnchat5`" :option="gethnoption(6)"></chat>
+            </div>
+          <p class="desc">全网备用</p>
         </div>
-        <div class="lszz">
-          <!-- <img
-            width="50%"
-            height="auto"
-            src="../../../../assets/img/ch/绿色服务/pesticide.png"
-            alt=""
-            class="rotating_pic"
-          /> -->
-          <img
-            width="100%"
-            src="../../../../assets/img/ch/绿色服务/pesticide2.png"
-            alt=""
-            class="rotating2_pic"
-          />
-          <p>
-            <span class="count">2234</span>
-          </p>
-          <p class="desc">华中电网备用</p>
+        <div class="nyzb">
+          <div>
+            <img
+              width="120%"
+              src="../../../../assets/img/ch/绿色服务/service2.png"
+              alt=""
+              class="rotating2_pic"
+            />
+          </div>
+            <div class="count">
+              <chat :id="`hnchat6`" :option="gethnoption(7)"></chat>
+            </div>
+          <p class="desc">全网送电</p>
+        </div>
+        <div class="nyzb">
+          <div>
+            <img
+              width="120%"
+              src="../../../../assets/img/ch/绿色服务/service2.png"
+              alt=""
+              class="rotating2_pic"
+            />
+          </div>
+            <div class="count">
+              <chat :id="`hnchat7`" :option="gethnoption(8)"></chat>
+            </div>
+          <p class="desc">全网受电</p>
         </div>
       </div>
     </div>
@@ -141,14 +125,123 @@
 </template>
 
 <script>
+import chat from '../../../../components/EChart.vue'
 export default {
   data() {
     return {
       tabs: false,
       statics: 0,
+      hnoption: {
+        tooltip: {
+        },
+        series: [
+          {
+            type: 'pie',
+            radius: '50%',
+            center: ['41%', '49%'],
+            radius: ['30%', '60%'],
+            // roseType: 'radius',
+            itemStyle: {
+              // borderRadius: 2
+            },
+            label: {
+              show: false
+            },
+            emphasis: {
+              label: {
+                show: true
+              }
+            },
+            data: [
+            ]
+          },
+        ]
+      }
     };
   },
+  components: {
+    chat
+  },
   methods: {
+    gethnoption(val) {
+      let obj = JSON.parse(JSON.stringify(this.hnoption))
+      obj.tooltip = {
+        backgroundColor: 'rgba(0,0,0,0)',//背景颜色（此时为默认色）
+          borderRadius: 0,
+          borderWidth: 0,
+          trigger: 'item',
+          formatter: function (params) {
+            var res = ''
+            res = `
+              <div style="padding:0px 5px;background:rgba(0,0,0,0.6);border:1px solid #5EC3F3">
+                <p style="font-size:14px;color:#37D1F9">${params.name}</p>
+                <p style="font-size:14px;color:#37D1F9">${params.value}(P/MW)</p>
+              </div>
+            `
+            return res
+          }
+      }
+      if (val == 1) {
+        obj.series[0].data = [
+        { value: 245114.639, name: '火力发电' },
+        { value: 336636.93976, name: '水力发电' },
+        { value: -32481.375, name: '抽蓄发电' },
+        { value: 239013.00 , name: '光伏发电' },
+        { value: 217983.00 , name: '风力发电' }]
+        return obj
+      }  if (val == 2) {
+        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
+        { value: 336636.93976, name: '水力发电' },
+        { value: 232481.375, name: '抽蓄发电' },
+        { value: 139013.00 , name: '光伏发电' },
+        { value: 217983.00 , name: '风力发电' }]
+        return obj
+      }  if (val == 3) {
+        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
+        { value: 336636.93976, name: '水力发电' },
+        { value: -32481.375, name: '抽蓄发电' },
+        { value: 639013.00 , name: '光伏发电' },
+        { value: 217983.00 , name: '风力发电' }]
+        return obj
+      }  if (val == 4) {
+        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
+        { value: 336636.93976, name: '水力发电' },
+        { value: -32481.375, name: '抽蓄发电' },
+        { value: 139013.00 , name: '光伏发电' },
+        { value: 217983.00 , name: '风力发电' }]
+        return obj
+      }  if (val == 5) {
+        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
+        { value: 336636.93976, name: '水力发电' },
+        { value: -32481.375, name: '抽蓄发电' },
+        { value: 139013.00 , name: '光伏发电' },
+        { value: 217983.00 , name: '风力发电' }]
+        return obj
+      }  if (val == 6) {
+        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
+        { value: 336636.93976, name: '水力发电' },
+        { value: -32481.375, name: '抽蓄发电' },
+        { value: 239013.00 , name: '光伏发电' },
+        { value: 217983.00 , name: '风力发电' }]
+        return obj
+      }  if (val == 7) {
+        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
+        { value: 336636.93976, name: '水力发电' },
+        { value: -32481.375, name: '抽蓄发电' },
+        { value: 239013.00 , name: '光伏发电' },
+        { value: 217983.00 , name: '风力发电' }]
+        return obj
+      }  if (val == 8) {
+        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
+        { value: 336636.93976, name: '水力发电' },
+        { value: -32481.375, name: '抽蓄发电' },
+        { value: 339013.00 , name: '光伏发电' },
+        { value: 217983.00 , name: '风力发电' }]
+        return obj
+      }
+      // console.log(obj, 111)
+      // return obj
+    },
     changeStatis(val) {
       this.statics = val;
       setTimeout(() => {
@@ -228,7 +321,7 @@ export default {
       color: #C5C5C5;
       font-family: PingFangSC-Medium, PingFang SC;
           position: relative;
-    top: -6vh;
+    // top: -6vh;
     }
     p {
       // margin-top: 1vh;
@@ -244,6 +337,7 @@ export default {
       .rotating2_pic {
         position: relative;
         margin-top: 0vh;
+        margin-left: -0.7vw;
         animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
       }
       // .water_zb {
@@ -265,12 +359,8 @@ export default {
       //   box-shadow: 2px 2px 30px #FF650B; /* 阴影效果 */
       // }
       .count {
-        font-family: countFont;
-        color: #ffbf2c;
-        font-weight: 600;
-        font-size: 3vh;
-        position: relative;
-        top: -11vh;
+        position: absolute;
+        top: 0;
       }
       .dw {
         font-size: 1vh;
@@ -289,6 +379,7 @@ export default {
       .rotating2_pic {
         position: relative;
         margin-top: 0vh;
+        margin-left: -0.7vw;
        animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
       }
       // .water_jp {
@@ -324,6 +415,7 @@ export default {
       .rotating2_pic {
         position: relative;
         margin-top: 0vh;
+        margin-left: -0.7vw;
         animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
       }
       // .water_zz {
