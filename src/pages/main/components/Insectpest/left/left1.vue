@@ -27,7 +27,7 @@ export default {
     data() {
         return {
             tabindex: 0,
-            titleName:'',
+            titleName:'河南洛北济源',
             leftData: [
                // thermalPower 火电
                {
@@ -260,11 +260,17 @@ export default {
                 this.conventionalData = this.leftData;
                 this.newData[0].data = data[1][4][1][0];
                 this.newData[1].data = data[1][4][1][1];
-                this.alldata[0] = this.leftData[0];
-                this.alldata[1] = this.leftData[1];
-                this.alldata[2] = this.newData[0];
-                this.alldata[3] = this.newData[1];
-                this.initChart();
+                // this.alldata[0] = this.leftData[0];
+                // this.alldata[1] = this.leftData[1];
+                // this.alldata[2] = this.newData[0];
+                // this.alldata[3] = this.newData[1];
+                this.alldata[0].data=data[1][4][0][0]
+                this.alldata[1].data=data[1][4][0][1]
+                this.alldata[2].data=data[1][6]
+                this.alldata[3].data=data[1][4][1][0]
+                this.alldata[4].data=data[1][6][1][1]
+                this.updateChart(this.alldata)
+                // this.initChart();
             }
             if (that.tabindex === 1) {
                 this.leftData[0].data = data[2][4][0][0];
@@ -272,11 +278,17 @@ export default {
                 this.conventionalData = this.leftData;
                 this.newData[0].data = data[2][4][1][0];
                 this.newData[1].data = data[2][4][1][1];
-                this.alldata[0] = this.leftData[0];
-                this.alldata[1] = this.leftData[1];
-                this.alldata[2] = this.newData[0];
-                this.alldata[3] = this.newData[1];
-                this.initChart();
+                // this.alldata[0] = this.leftData[0];
+                // this.alldata[1] = this.leftData[1];
+                // this.alldata[2] = this.newData[0];
+                // this.alldata[3] = this.newData[1];
+                this.alldata[0].data=data[1][4][0][0]
+                this.alldata[1].data=data[1][4][0][1]
+                this.alldata[2].data=data[1][6]
+                this.alldata[3].data=data[1][4][1][0]
+                this.alldata[4].data=data[1][6][1][1]
+                this.updateChart(this.alldata)
+                // this.initChart();
             }
         })
         // index数据

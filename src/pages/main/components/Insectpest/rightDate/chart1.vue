@@ -1,5 +1,5 @@
 <template>
-    <div class="top" @mouseenter="showPopup" @mouseleave="hidePopup">
+    <div class="top" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             电源数据
         </div>
@@ -13,21 +13,20 @@
                 <div @click="changeNewenergy(1)" class="energy-button new">新能源</div>
             </div>
         </div>
-        <div v-if="isPopupVisible" class="popup">
-            <!-- 弹框内容 -->
-            <!-- <p>这是弹框内容</p> -->
-        </div>
+        <!-- <PopupComponent v-if="isMouseOverBot" @close-popup="hidePopup" :alldata="totalData"/> -->
     </div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
+// import PopupComponent from '../PopupComponent.vue'
 export default {
+    // components: { PopupComponent },
     data() {
         return {
-            isPopupVisible: true,
+            isMouseOverBot: false,
             tabindex: 0,
-            titleName: '',
+            titleName: '河南洛北济源',
             chartDate: [
                 {
                     name: '火电发电',
@@ -131,11 +130,11 @@ export default {
         getOption(data = this.chartDate) {
             return {
                 title: {
-                    text:  this.titleName,
+                    text: this.titleName,
                     textStyle: {
-                        color: '#fff', 
+                        color: '#fff',
                     },
-                    left: '5%', 
+                    left: '5%',
 
                 },
                 tooltip: {
@@ -195,12 +194,36 @@ export default {
                 }
             };
         },
+        //鼠标移入移出
         showPopup() {
-            this.isPopupVisible = true;
+            this.isMouseOverBot = true;
+            //传输数据
+            // this.$bus.$emit('tableData', this.alldata)
         },
         hidePopup() {
-            this.isPopupVisible = false;
-        }
+            this.isMouseOverBot = false;
+        },
+        onBotMouseLeave(event) {
+            // 获取鼠标位置
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+
+            // 获取 PopupComponent 的 DOM 元素
+            const popupElement = this.$refs.popup;
+
+            // 获取 PopupComponent 的位置和尺寸
+            const popupRect = popupElement.getBoundingClientRect();
+
+            // 判断鼠标是否在 PopupComponent 区域内
+            if (
+                mouseX < popupRect.left ||
+                mouseX > popupRect.right ||
+                mouseY < popupRect.top ||
+                mouseY > popupRect.bottom
+            ) {
+                this.hidePopup();
+            }
+        },
     },
     mounted() {
         this.initChart();
@@ -220,7 +243,7 @@ export default {
             this.totalData[2].data = dataAll[2][0]
             this.totalData[3].data = this.newData[0].data
             this.totalData[4].data = this.newData[1].data
-            console.log(this.totalData, 'total');
+            // console.log(this.totalData, 'total');
             this.updateChart(this.totalData)
             // 
 
@@ -230,18 +253,32 @@ export default {
         const that = this
         // 查找具体的南阳
         this.$bus.$on('allData1', (selectData) => {
-            this.titleName=selectData[0].name
+            this.titleName = selectData[0].name
             if (that.tabindex === 0) {
                 this.chartDate[0].data = selectData[1][0][0];
                 this.chartDate[1].data = selectData[1][0][1];
                 this.conventionalData = this.chartDate
-                this.updateChart(this.chartDate)
+                // this.updateChart(this.chartDate)
+                // 总电源
+                this.totalData[0].data = selectData[1][0][0]
+                this.totalData[1].data = selectData[1][0][1]
+                this.totalData[2].data = selectData[1][2][0]
+                this.totalData[3].data = this.newData[0].data
+                this.totalData[4].data = this.newData[1].data
+                this.updateChart(this.totalData)
             }
             if (that.tabindex === 1) {
                 this.chartDate[0].data = selectData[2][0][0];
                 this.chartDate[1].data = selectData[2][0][1];
                 this.conventionalData = this.chartDate
-                this.updateChart(this.chartDate)
+                // this.updateChart(this.chartDate)
+                // 总电源
+                this.totalData[0].data = selectData[2][0][1]
+                this.totalData[1].data = selectData[2][0][2]
+                this.totalData[2].data = selectData[2][2][0]
+                this.totalData[3].data = this.newData[0].data
+                this.totalData[4].data = this.newData[1].data
+                this.updateChart(this.totalData)
             }
         })
         // 省
