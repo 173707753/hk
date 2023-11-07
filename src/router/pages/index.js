@@ -1,8 +1,8 @@
 export default [
 	{
 		path: '/',
-		name: '数据详情',
-		redirect: '/main',
+		name: '首页',
+		redirect: '/home',
 	},
 	{
 		path: '/home',
@@ -17,5 +17,19 @@ export default [
 		meta: { isTab: false },
 		component: () =>
 			import(/* webpackChunkName: "pages" */ '@/pages/main/index.vue'),
+	},
+	{
+		path: '/login',
+		name: 'Login',
+		meta: { isTab: false },
+		component: () =>
+			import('@/pages/home/login.vue'),
+	},
+	{
+		path: '/register',
+		name: 'Register',
+		meta: { isTab: false },
+		component: () =>
+			import('@/pages/home/register.vue'),
 	},
 ]

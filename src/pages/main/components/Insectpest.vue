@@ -20,6 +20,9 @@
       <!-- 右边数据 -->
       <!-- <div class="title">源网储荷优化调度</div> -->
       <div class="Insectpest_t_right">
+        <div class="return">
+          <router-link to="/home">返回</router-link>
+        </div>
         <div class="title">源网储荷优化调度</div>
         <div class="content">
           <div class="top">
@@ -153,6 +156,37 @@ export default {
     width: 27%;
     height: 60vh;
     position: relative;
+
+    .return {
+      width: 100%;
+      position: absolute;
+      left: 94%;
+      top: -2%;
+      z-index: 999;
+
+      /* 新增的样式规则 */
+      a {
+        text-decoration: none;
+        /* 去掉下划线 */
+        background-color: rgba(25, 58, 115, .5);
+        /* 背景颜色 */
+        color: white;
+        /* 文本颜色 */
+        padding: 5px 10px;
+        /* 内边距 */
+        border-radius: 5px;
+        /* 圆角 */
+        font-size: 1.8vh;
+        /* 字体大小 */
+        transition: background-color 0.3s;
+        /* 添加过渡效果 */
+      }
+
+      a:hover {
+        background-color: #0073e6;
+        /* 鼠标悬停时的背景颜色 */
+      }
+    }
 
     .title {
       width: 100%;

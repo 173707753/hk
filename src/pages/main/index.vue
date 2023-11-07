@@ -10,7 +10,8 @@
           电力大数据
         </div>
         <div style="color: rgb(226, 236, 255);font-size: 4.8vh;font-weight: bold;position: absolute;top: 53%;left: 31%;">
-          电力碳中和智能化调度
+          <!-- 电力碳中和智能化调度 -->
+          新型电力系统智能化调度
         </div>
         <div class="right">
           <div v-for="(item, index) in tabList" :key="index" class="tabs">
@@ -214,7 +215,10 @@ export default {
       // this.tabList[index].class = 'animated fadeIn'
       this.tabList[index].show = true
     }
-  }
+  },
+  beforeDestroy() {
+    this.$bus.$off('allData2')
+  },
 }
 </script>
 
