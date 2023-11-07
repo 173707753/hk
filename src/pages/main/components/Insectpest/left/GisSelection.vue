@@ -207,7 +207,7 @@ export default {
                 ],
                 //洛北济源
                 [
-                    { name: '洛北济源' },
+                    { name: '河南洛北济源' },
                     //最大供电能力
                     [
                         // chart1
@@ -324,7 +324,7 @@ export default {
                 ],
                 // 南阳
                 [
-                    { name: '南阳' },
+                    { name: '河南南阳' },
                     //最大供电能力
                     [
                         // chart1

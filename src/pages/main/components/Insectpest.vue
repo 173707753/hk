@@ -20,10 +20,10 @@
       <!-- 右边数据 -->
       <!-- <div class="title">源网储荷优化调度</div> -->
       <div class="Insectpest_t_right">
-        <div class="return">
-          <router-link to="/home">返回</router-link>
+        <div class="box">
+          <div class="title">源网储荷优化调度</div>
+          <div class="nowTime">{{ currentTime }}</div>
         </div>
-        <div class="title">源网储荷优化调度</div>
         <div class="content">
           <div class="top">
             <chart1 />
@@ -93,11 +93,36 @@ export default {
   },
   data() {
     return {
+      currentTime: this.getCurrentTime(),
       role: 'watcher'
     }
   },
+  // created() {
+  //   this.role = 'production' // 生产者
+  // },
   created() {
     this.role = 'production' // 生产者
+    // 每隔一秒更新一次时间
+    this.timer = setInterval(() => {
+      this.currentTime = this.getCurrentTime();
+    }, 1000);
+  },
+  beforeDestroy() {
+    // 在组件销毁前清除定时器，防止内存泄漏
+    clearInterval(this.timer);
+  },
+  methods:{
+    getCurrentTime() {
+      const now = new Date();
+      const currentHour = now.getHours();
+      const currentMinute = now.getMinutes();
+      const currentSecond = now.getSeconds();
+      return `${this.padZero(currentHour)}:${this.padZero(currentMinute)}:${this.padZero(currentSecond)}`;
+    },
+    padZero(value) {
+      // 辅助函数用于确保数字始终有两位，例如：2 -> "02"
+      return value < 10 ? `0${value}` : value;
+    }
   }
 }
 </script>
@@ -156,50 +181,34 @@ export default {
     width: 27%;
     height: 60vh;
     position: relative;
-
-    .return {
-      width: 100%;
-      position: absolute;
-      left: 94%;
-      top: -2%;
-      z-index: 999;
-
-      /* 新增的样式规则 */
-      a {
-        text-decoration: none;
-        /* 去掉下划线 */
-        background-color: rgba(25, 58, 115, .5);
-        /* 背景颜色 */
-        color: white;
-        /* 文本颜色 */
-        padding: 5px 10px;
-        /* 内边距 */
-        border-radius: 5px;
-        /* 圆角 */
-        font-size: 1.8vh;
-        /* 字体大小 */
-        transition: background-color 0.3s;
-        /* 添加过渡效果 */
-      }
-
-      a:hover {
-        background-color: #0073e6;
-        /* 鼠标悬停时的背景颜色 */
-      }
-    }
-
-    .title {
+    .box{
+      display: flex;
       width: 100%;
       height: 40px;
       padding-bottom: 10px;
       color: #fff;
       // background: pink;
       font-size: 3vh;
-      text-align: center;
+      // text-align: center;
+      // align-items: center;
+      align-items: end;
+      justify-content: space-around;
       position: absolute;
       top: -30px;
-      right: 0px;
+      right: 0;
       font-weight: 600
+    }
+    .title {
+  
+      font-size: 3vh;
+    
+      font-weight: 600
+      ma
+    }
+    .nowTime{
+      color: #fff;
+      font-size: 2vh;
+  // align-items: end;
     }
 
     .content {
@@ -262,5 +271,6 @@ export default {
       // background-color: #fff;
     }
   }
+
 }
 </style>

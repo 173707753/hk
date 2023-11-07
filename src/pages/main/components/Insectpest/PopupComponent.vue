@@ -16,12 +16,12 @@
                 v-if="tableData.some(item => item.thermalPower !== '')"></el-table-column>
             <el-table-column prop="hydroelectric" label="水电发电(P/MW)" align="center"
                 v-if="tableData.some(item => item.hydroelectric !== '')"></el-table-column>
+                <el-table-column prop="pumpedStorage" label="抽蓄发电(P/MW)" align="center"
+                v-if="tableData.some(item => item.pumpedStorage !== '')"></el-table-column>
             <el-table-column prop="windPower" label="风电发电(P/MW)" align="center"
                 v-if="tableData.some(item => item.windPower !== '')"></el-table-column>
             <el-table-column prop="photovoltaicPanel" label="光伏发电(P/MW)" align="center"
                 v-if="tableData.some(item => item.photovoltaicPanel !== '')"></el-table-column>
-            <!-- <el-table-column prop="pumpedStorage" label="抽蓄发电" align="center"
-                v-if="tableData.some(item => item.pumpedStorage !== '')"></el-table-column> -->
         </el-table>
         <!-- 分页器 固定在底部 -->
         <!-- <el-pagination style=" position: absolute;bottom: 4px;left: 0;right: 0;" :current-page="currentPage"
@@ -174,6 +174,7 @@ export default {
     },
     created() {
         // this.updatedTable();
+        console.log(this.alldata,'props');
     },
     methods: {
         // //计算当前页
@@ -196,8 +197,9 @@ export default {
                         area: '洛北济源',  // 你的地区信息
                         thermalPower: this.alldata[0].data[i],
                         hydroelectric: this.alldata[1].data[i],
-                        windPower: this.alldata[2].data[i],
-                        photovoltaicPanel: this.alldata[3].data[i],  // 你的光伏发电信息
+                        pumpedStorage:this.alldata[2].data[i],
+                        windPower: this.alldata[3].data[i],
+                        photovoltaicPanel: this.alldata[4].data[i],  // 你的光伏发电信息
                     });
                 }
             }, 400)
