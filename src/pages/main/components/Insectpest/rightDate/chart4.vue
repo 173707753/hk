@@ -13,6 +13,7 @@ import * as echarts from "echarts";
 export default {
   data() {
     return {
+      colorLine:['#bfc', '#FFC22E','#FF4528','#5EC2F2', '#fff'],
       tabindex: 0,
       myChart: null,
       option: {
@@ -57,6 +58,9 @@ export default {
             type: 'line',
             // symbol: 'circle',
             name: '负荷',
+            itemStyle: {
+                        color: '#bfc', // 设置单独的颜色
+                    },
           },
         ]
       }
