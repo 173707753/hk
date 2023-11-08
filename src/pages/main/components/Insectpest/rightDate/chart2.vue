@@ -111,7 +111,7 @@ export default {
         this.$bus.$on('indexData', (params) => {
             const dataAll = params.param1;
             const index = params.param2;
-            console.log(dataAll,'all',index);
+            // console.log(dataAll,'all',index);
             this.leftData[0].data = dataAll[1];
             this.updateChart(this.leftData)
             this.tabindex = index

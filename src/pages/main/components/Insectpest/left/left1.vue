@@ -99,7 +99,7 @@ export default {
         };
     },
     // created() {
-    //     this.
+    //     this.updateChart(this.alldata)
     // },
     methods: {
         //Echarts数据渲染
@@ -130,7 +130,7 @@ export default {
             this.initChart();
             this.chartInstance.setOption(this.getOption(data)); // 设置新数据
         },
-        getOption(data = this.leftData) {
+        getOption(data = this.alldata) {
             return {
                 title: {
                     text:  this.titleName,
@@ -239,16 +239,23 @@ export default {
         this.initChart();
         // GIS数据
         this.$bus.$on('allData', (data) => {
+            this.titleName=data[2][4].name
             console.log(data, '我接受的省份数据');
             this.leftData[0].data = data[2][0][0][0];
             this.leftData[1].data = data[2][0][0][1];
             this.conventionalData = this.leftData;
             this.newData[0].data = data[2][0][1][0];
             this.newData[1].data = data[2][0][1][1];
-            this.alldata[0] = this.leftData[0];
-            this.alldata[1] = this.leftData[1];
-            this.alldata[2] = this.newData[0];
-            this.alldata[3] = this.newData[1];
+            // this.alldata[0] = this.leftData[0];
+            // this.alldata[1] = this.leftData[1];
+            // this.alldata[2] = this.newData[0];
+            // this.alldata[3] = this.newData[1];
+            this.alldata[0].data = data[2][0][0][0]
+            this.alldata[1].data=data[2][0][0][1]
+            this.alldata[2].data = data[2][3]
+            this.alldata[3].data = data[2][0][1][0]
+            this.alldata[4].data=data[2][0][1][1]
+            this.updateChart(this.alldata)
             this.initChart();
         });
         const that = this
@@ -268,9 +275,9 @@ export default {
                 this.alldata[1].data=data[1][4][0][1]
                 this.alldata[2].data=data[1][6]
                 this.alldata[3].data=data[1][4][1][0]
-                this.alldata[4].data=data[1][6][1][1]
+                this.alldata[4].data=data[1][4][1][1]
                 this.updateChart(this.alldata)
-                // this.initChart();
+                this.initChart();
             }
             if (that.tabindex === 1) {
                 this.leftData[0].data = data[2][4][0][0];
@@ -286,9 +293,9 @@ export default {
                 this.alldata[1].data=data[1][4][0][1]
                 this.alldata[2].data=data[1][6]
                 this.alldata[3].data=data[1][4][1][0]
-                this.alldata[4].data=data[1][6][1][1]
+                this.alldata[4].data=data[1][4][1][1]
                 this.updateChart(this.alldata)
-                // this.initChart();
+                this.initChart();
             }
         })
         // index数据
