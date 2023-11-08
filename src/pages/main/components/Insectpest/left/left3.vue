@@ -20,6 +20,7 @@ import * as echarts from 'echarts'
 export default {
     data() {
         return {
+            colorLine: ['#bfc','#FFC22E', '#5EC2F2', '#FF4528',  '#fff'],
             tabindex: 0,
             chartDate: [
                 {
@@ -120,12 +121,15 @@ export default {
                         },
                     },
                 ],
-                series: data.map(item => ({
+                series: data.map((item,index) => ({
                     name: item.name,
                     type: 'bar',
                     data: item.data,
                     emphasis: {
                         focus: 'series'
+                    },
+                    itemStyle: {
+                        color: this.colorLine[index], // 设置单独的颜色
                     },
                     animationDelay: function (idx) {
                         return idx * 10;

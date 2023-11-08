@@ -27,6 +27,7 @@ export default {
             isMouseOverBot: false,
             tabindex: 0,
             titleName: '河南洛北济源',
+            colorLine: ['#bfc','#FFC22E', '#5EC2F2', '#FF4528','#fff'],
             chartDate: [
                 {
                     name: '火电发电',
@@ -177,12 +178,15 @@ export default {
                         },
                     },
                 ],
-                series: data.map(item => ({
+                series: data.map((item, index) => ({
                     name: item.name,
                     type: 'bar',
                     data: item.data,
                     emphasis: {
                         focus: 'series'
+                    },
+                    itemStyle: {
+                        color: this.colorLine[index], // 设置单独的颜色
                     },
                     animationDelay: function (idx) {
                         return idx * 10;
@@ -204,6 +208,7 @@ export default {
             this.isMouseOverBot = false;
         },
         onBotMouseLeave(event) {
+
             // 获取鼠标位置
             const mouseX = event.clientX;
             const mouseY = event.clientY;
@@ -236,7 +241,7 @@ export default {
             this.conventionalData = this.chartDate
             this.updateChart(this.chartDate)
             this.tabindex = index
-            console.log(this.tabindex, 'tabindex');
+            // console.log(this.tabindex, 'tabindex');
             // 总电源
             this.totalData[0].data = dataAll[0][0]
             this.totalData[1].data = dataAll[0][1]
@@ -289,17 +294,14 @@ export default {
                 this.chartDate[1].data = selectData[0][0][1];
                 this.conventionalData = this.chartDate
                 // this.updateChart(this.chartDate)
-                console.log(that.tabindex, 'tab0');
                 this.totalData[0].data = selectData[0][0][0]
                 this.totalData[1].data = selectData[0][0][1]
                 this.totalData[2].data = selectData[0][2][0]
                 this.totalData[3].data = this.newData[0].data
                 this.totalData[4].data = this.newData[1].data
                 this.updateChart(this.totalData)
-                console.log(this.totalData, 'ooo');
             }
             if (that.tabindex === 1) {
-                console.log(that.tabindex, 'tab1');
                 this.chartDate[0].data = selectData[1][0][0];
                 this.chartDate[1].data = selectData[1][0][1];
                 this.conventionalData = this.chartDate
@@ -310,7 +312,6 @@ export default {
                 this.totalData[3].data = this.newData[0].data
                 this.totalData[4].data = this.newData[1].data
                 this.updateChart(this.totalData)
-                console.log(this.totalData, '1111');
             }
         })
     }
