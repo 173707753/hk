@@ -180,7 +180,8 @@ export default {
       data1: {
         selectedProvince: 1,
         selectedArea: 1
-      }
+      },
+
     }
   },
   created() {
@@ -192,29 +193,32 @@ export default {
       // }
 
     })
+
   },
   mounted() {
     this.chaneTab(0);
+    this.$bus.$on('allData', (data) => {
+    this.allData = data;
+  })
   },
   methods: {
     chaneTab(index) {
+// 发送折线图数据
 
-      console.log(index);
-      // 发送折线图数据
-      if (this.data1.selectedArea) {
-        this.$bus.$emit('indexData', { param1: this.allData[index], param2: index })
-      }
-      // console.log(this.allData[index]);
-      this.$bus.$on("allData2", (data) => {
-        this.data1 = data;
-      })
-      this.tabList.map(val => {
-        // val.class = 'animated fadeOut'
-        val.show = false
-      })
-      // this.tabList[index].class = 'animated fadeIn'
-      this.tabList[index].show = true
-    }
+  this.$bus.$emit('indexData', { param1: this.allData[index], param2: index })
+
+
+// console.log(this.allData[index]);
+this.$bus.$on("allData2", (data) => {
+  this.data1 = data;
+})
+this.tabList.map(val => {
+  // val.class = 'animated fadeOut'
+  val.show = false
+})
+// this.tabList[index].class = 'animated fadeIn'
+this.tabList[index].show = true
+}
   },
   beforeDestroy() {
     this.$bus.$off('allData2')
