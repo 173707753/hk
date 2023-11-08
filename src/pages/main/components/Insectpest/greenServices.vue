@@ -139,8 +139,8 @@ export default {
             type: 'pie',
             radius: '50%',
             center: ['41%', '49%'],
-            radius: ['30%', '60%'],
-            // roseType: 'radius',
+            radius: ['2%', '60%'],
+            roseType: 'radius',
             itemStyle: {
               // borderRadius: 2
             },
