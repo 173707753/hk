@@ -157,7 +157,7 @@ export default {
 .home {
   width: 100%;
   height: 100%;
-  padding-top: 3%;
+  padding-top: 1%;
   background-image: url('../../assets/img/home/bg.jpg');
   background-size: 100% auto;
   background-position-y: 100%;
@@ -250,18 +250,18 @@ export default {
   }
 
   .home_bottom {
-    font-size: 2.5vh;
+    font-size: 2vh;
     width: 100%;
     position: absolute;
-    left: 90%;
-    top: 8%;
+    left: 93%;
+    top: 3%;
     z-index: 999;
 
     /* 新增的样式规则 */
     a {
       text-decoration: none;
       /* 去掉下划线 */
-      background-color: rgb(25, 58, 115);
+      // background-color: rgb(25, 58, 115);
       /* 背景颜色 */
       color: white;
       /* 文本颜色 */
@@ -269,14 +269,14 @@ export default {
       /* 内边距 */
       border-radius: 5px;
       /* 圆角 */
-      font-size: 2.5vh;
+      font-size: 2vh;
       /* 字体大小 */
       transition: background-color 0.3s;
       /* 添加过渡效果 */
     }
 
     a:hover {
-      background-color: #0073e6;
+      color: #0073e6;
       /* 鼠标悬停时的背景颜色 */
     }
   }
