@@ -10,7 +10,7 @@ export default {
     },
     data() {
         return {
-            legendData: [],
+            seriesData: [],
         }
     },
     methods: {
@@ -20,15 +20,22 @@ export default {
             var myChart = echarts.init(chartDom);
             var option;
             option = {
+                color: ['#FFC22E', 'red', '#67F9D8', '#FFE434', '#56A3F1', '#FF917C'],
                 title: {
+                    left: 'center',
                     text: this.allcharts.txt,
                     textStyle: {
                         fontSize: 18,  // 根据需要设置标题的字体大小
                         fontWeight: 'bold',  // 根据需要设置标题的字体粗细
+                        color: '#fff'
                     },
                 },
                 legend: {
                     bottom: '0',
+                    textStyle: {
+                        fontWeight: 'bold',
+                        color: '#fff'
+                    }
                 },
                 radar: {
                     indicator: [
@@ -38,35 +45,43 @@ export default {
                         { name: '14:00', },
                         { name: '16:00', },
                         { name: '20:00', }
-                    ]
+                    ],
+                    //修改indicator文字的颜色
+                    axisName: {
+                        formatter: '时间：{value}',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                    },
+                    splitNumber: 4,
+                    splitArea: {
+                        areaStyle: {
+                            color: ['#77EADF', '#26C3BE', '#64AFE9', '#428BD4'],
+                            shadowColor: 'rgba(0, 0, 0, 0.2)',
+                            shadowBlur: 10
+                        }
+                    },
                 },
                 series: [
                     {
                         type: 'radar',
-                        data: [
-                            {
-                                value: this.allcharts.data[0],
-                                name: this.allcharts.name[0] + '(P/MW)',
-                                label: {
-                                    show: true,
-                                }
-                            },
-                            {
-                                value: this.allcharts.data[1],
-                                name: this.allcharts.name[1] + '(P/MW)',
-                                label: {
-                                    show: true,
-                                }
-                            }
-                        ]
+                        data: this.seriesData,
                     }
                 ]
             };
-
             option && myChart.setOption(option);
         },
     },
     mounted() {
+        // 处理数据
+        this.seriesData = this.allcharts.data.map((item, index) => ({
+            value: item,
+            name: this.allcharts.name[index],
+            label: {
+                show: true,
+                color: '#fff',
+                fontWeight: 'bold',
+            },
+        }))
         this.initChart();
     },
 }
@@ -84,6 +99,7 @@ export default {
     padding: 20px;
     z-index: 9999;
     border-radius: 6px;
-    background-color: #fff;
+    background-color: rgba(0, 25, 47, 0.7);
+    // background-color: rgb(255, 255, 255);
 }
 </style>

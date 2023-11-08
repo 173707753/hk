@@ -104,7 +104,7 @@ export default {
 };
 </script>
  
-<style scoped lang='scss'>
+<style lang='scss' scoped>
 .login {
     width: 100%;
     height: 100vh;
@@ -131,12 +131,13 @@ export default {
             display: flex;
             justify-content: flex-end;
         }
+
+        p {
+            font-size: 2.5vh;
+            text-align: center;
+            font-weight: 600;
+        }
     }
 
-    p {
-        font-size: 2.5vh;
-        text-align: center;
-        font-weight: 600;
-    }
 }
 </style>

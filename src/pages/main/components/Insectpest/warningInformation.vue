@@ -62,7 +62,12 @@ export default {
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "省网电力保供裕度系数",
-          type: 1
+          name: ["省网电力保供裕度系数"],
+          type: 1,
+          data: [
+            //电力 6 10 12 14 16 20
+            [0.778393, 0.780356, 0.761555, 0.738178, 0.627902, 0.312963],
+          ]
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
@@ -78,7 +83,11 @@ export default {
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "省网跨区消纳直流能力",
-          type: 3
+          name: ["省网跨区消纳直流能力"],
+          type: 3,
+          data: [
+            [0.941529, 1.00833, 0.99983, 0.999792, 1.00372, 1.662200367]
+          ]
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
@@ -88,7 +97,12 @@ export default {
         {
           src: require("../../../../assets/img/ch/card.png"),
           txt: "省网电量保供裕度系数",
-          type: 1
+          name: ["省网电量保供裕度系数"],
+          type: 1,
+          data: [
+            //电量 6 10 12 14 16 20
+            [0.7161, 0.769858, 0.761004, 0.714304, 0.566868, 0.321235]
+          ]
         },
         {
           src: require("../../../../assets/img/ch/card.png"),
@@ -177,9 +191,9 @@ export default {
       }, 150);
     },
     showChart(data) {
-      this.isClickOverBot = true;
+      this.isClickOverBot = !this.isClickOverBot;
       this.allcharts = data;
-      console.log(this.allcharts, '数据');
+      // console.log(this.allcharts, '数据');
     },
   },
 };

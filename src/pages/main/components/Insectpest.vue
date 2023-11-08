@@ -21,6 +21,9 @@
       <!-- <div class="title">源网储荷优化调度</div> -->
       <div class="Insectpest_t_right">
         <div class="box">
+          <div class="returnHome">
+            <router-link to="/home">返回</router-link>
+          </div>
           <div class="title">源网储荷优化调度</div>
           <div class="nowTime">{{ currentTime }}</div>
         </div>
@@ -111,7 +114,7 @@ export default {
     // 在组件销毁前清除定时器，防止内存泄漏
     clearInterval(this.timer);
   },
-  methods:{
+  methods: {
     getCurrentTime() {
       const now = new Date();
       const currentHour = now.getHours();
@@ -181,7 +184,8 @@ export default {
     width: 27%;
     height: 60vh;
     position: relative;
-    .box{
+
+    .box {
       display: flex;
       width: 100%;
       height: 40px;
@@ -198,17 +202,40 @@ export default {
       right: 0;
       font-weight: 600
     }
-    .title {
-  
-      font-size: 3vh;
-    
-      font-weight: 600
-      ma
+
+    .returnHome {
+      width: 100%;
+      position: absolute;
+      left: 94%;
+      top: -2%;
+      z-index: 999;
+
+      a {
+        text-decoration: none;
+        background-color: rgba(25, 58, 115, .5);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 1.8vh;
+        transition: background-color 0.3s;
+      }
+
+      a:hover {
+        background-color: #0073e6;
+      }
     }
-    .nowTime{
+
+    .title {
+
+      font-size: 3vh;
+
+      font-weight: 600 ma
+    }
+
+    .nowTime {
       color: #fff;
       font-size: 2vh;
-  // align-items: end;
+      // align-items: end;
     }
 
     .content {
