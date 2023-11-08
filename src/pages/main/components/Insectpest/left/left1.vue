@@ -13,7 +13,7 @@
                 <div @click="changeNewenergy(1)" class="energy-button new">新能源</div>
             </div>
         </div>
-        <PopupComponent v-if="isMouseOverBot" @close-popup="hidePopup" :alldata="alldata" />
+        <PopupComponent v-if="isMouseOverBot" ref="popup" @close-popup="hidePopup" :alldata="alldata" />
     </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
         return {
             tabindex: 0,
             titleName: '河南洛北济源',
-            colorLine: ['#bfc','#FFC22E', '#5EC2F2', '#FF4528','#fff'],
+            colorLine: ['#bfc', '#FFC22E', '#5EC2F2', '#FF4528', '#fff'],
             leftData: [
                 // thermalPower 火电
                 {
@@ -182,7 +182,7 @@ export default {
                         },
                     },
                 ],
-                series: data.map((item,index) => ({
+                series: data.map((item, index) => ({
                     name: item.name,
                     type: 'bar',
                     data: item.data,
@@ -190,8 +190,8 @@ export default {
                         focus: 'series'
                     },
                     itemStyle: {
-                    color: this.colorLine[index], // 设置单独的颜色
-        },
+                        color: this.colorLine[index], // 设置单独的颜色
+                    },
                     animationDelay: function (idx) {
                         return idx * 10;
                     }
@@ -215,19 +215,23 @@ export default {
             // 获取鼠标位置
             const mouseX = event.clientX;
             const mouseY = event.clientY;
-
             // 获取 PopupComponent 的 DOM 元素
-            const popupElement = this.$refs.popup;
-
+            const popupElement = this.$refs.popup.$refs.popup;
+            const leftElement = this.$el;
             // 获取 PopupComponent 的位置和尺寸
             const popupRect = popupElement.getBoundingClientRect();
+            const leftRect = leftElement.getBoundingClientRect();
 
             // 判断鼠标是否在 PopupComponent 区域内
             if (
-                mouseX < popupRect.left ||
+                // mouseX < popupRect.left ||
                 mouseX > popupRect.right ||
                 mouseY < popupRect.top ||
-                mouseY > popupRect.bottom
+                mouseY > popupRect.bottom ||
+                mouseX < leftRect.left ||
+                // mouseX > leftRect.right ||
+                mouseY < leftRect.top ||
+                mouseY > leftRect.bottom
             ) {
                 console.log('离开');
                 this.hidePopup();

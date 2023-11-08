@@ -1,5 +1,5 @@
 <template>
-    <div class="bot">
+    <div class="bot" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             储能数据
         </div>
@@ -12,15 +12,21 @@
                 <div @click="changeNewenergy(1)" class="energy-button new">发电功率</div>
             </div> -->
         </div>
+        <PopupComponent v-if="isMouseOverBot" ref="popup2" @close-popup="hidePopup" :alldata="chartDate" />
     </div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
+import PopupComponent from '../PopupComponent.vue'
 export default {
+    components: {
+        PopupComponent,
+    },
     data() {
         return {
-            colorLine: ['#bfc','#FFC22E', '#5EC2F2', '#FF4528',  '#fff'],
+            isMouseOverBot: false,
+            colorLine: ['#bfc', '#FFC22E', '#5EC2F2', '#FF4528', '#fff'],
             tabindex: 0,
             chartDate: [
                 {
@@ -121,7 +127,7 @@ export default {
                         },
                     },
                 ],
-                series: data.map((item,index) => ({
+                series: data.map((item, index) => ({
                     name: item.name,
                     type: 'bar',
                     data: item.data,
@@ -140,7 +146,42 @@ export default {
                     return idx * 5;
                 }
             };
-        }
+        },
+        //鼠标移入移出
+        showPopup() {
+            this.isMouseOverBot = true;
+            //传输数据
+            // this.$bus.$emit('tableData', this.alldata)
+        },
+        hidePopup() {
+            this.isMouseOverBot = false; // 隐藏弹窗
+        },
+        onBotMouseLeave(event) {
+            // 获取鼠标位置
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+            // 获取 PopupComponent 的 DOM 元素
+            const popupElement = this.$refs.popup2.$refs.popup;
+            const leftElement = this.$el;
+            // 获取 PopupComponent 的位置和尺寸
+            const popupRect = popupElement.getBoundingClientRect();
+            const leftRect = leftElement.getBoundingClientRect();
+
+            // 判断鼠标是否在 PopupComponent 区域内
+            if (
+                // mouseX < popupRect.left ||
+                mouseX > popupRect.right ||
+                mouseY < popupRect.top ||
+                mouseY > popupRect.bottom ||
+                mouseX < leftRect.left ||
+                // mouseX > leftRect.right ||
+                mouseY < leftRect.top ||
+                mouseY > leftRect.bottom
+            ) {
+                console.log('离开');
+                this.hidePopup();
+            }
+        },
     },
 
     mounted() {
