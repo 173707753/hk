@@ -13,15 +13,15 @@
                 <div @click="changeNewenergy(1)" class="energy-button new">新能源</div>
             </div>
         </div>
-        <!-- <PopupComponent v-if="isMouseOverBot" @close-popup="hidePopup" :alldata="totalData"/> -->
+        <PopupComponent v-if="isMouseOverBot" @close-popup="hidePopup" :alldata="totalData"/>
     </div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
-// import PopupComponent from '../PopupComponent.vue'
+import PopupComponent from '../PopupComponent.vue'
 export default {
-    // components: { PopupComponent },
+    components: { PopupComponent },
     data() {
         return {
             isMouseOverBot: false,

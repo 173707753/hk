@@ -216,7 +216,7 @@ export default {
 
 <style lang="scss" scoped>
 .popup {
-    position: absolute;
+    position: fixed;
     top: 13.5%;
     left: 28.94%;
     width: 39.9%;
