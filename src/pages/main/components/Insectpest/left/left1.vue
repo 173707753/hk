@@ -27,10 +27,10 @@ export default {
     data() {
         return {
             tabindex: 0,
-            titleName:'河南洛北济源',
+            titleName: '河南洛北济源',
             leftData: [
-               // thermalPower 火电
-               {
+                // thermalPower 火电
+                {
                     name: '火电发电',
                     data: [2678, 2677, 2657, 2679, 2500, 2269, 2271, 2385, 2298, 2221, 2221, 2152, 2112, 2113, 2124, 2169, 2211, 2149, 1947, 1938, 1893, 1951, 1975, 2023, 2117, 2189, 2192, 2211, 2247, 2080, 2106, 2132, 2084, 2017, 1960, 1927, 1843, 1722, 1672, 1627, 1627, 1623, 1622, 1621, 1614, 1625, 1613, 1621, 1605, 1606, 1621, 1603, 1624, 1608, 1622, 1631, 1630, 1615, 1627, 1624, 1627, 1684, 1719, 1721, 1808, 1880, 2016, 2242, 2418, 2600, 2811, 3000, 3258, 3420, 3574, 3606, 3528, 3379, 3473, 3512, 3538, 3542, 3501, 3631, 3730, 3790, 3720, 3677, 3646, 3595, 3472, 3509, 3393, 3394, 3412, 3162],
                 },
@@ -39,7 +39,7 @@ export default {
                     name: '水电发电',
                     data: [243, 541, 314, 380, 73, 891, 1022, 396, 527, 407, 229, 75, 306, 532, 531, 738, 298, 247, 85, 83, 80, 391, 81, 534, 81, 830, 757, 827, 72, 592, 539, 80, 78, 303, 292, 62, 61, 61, 39, 37, 39, 37, 38, 41, 186, 533, 531, 88, 61, 65, 63, 62, 42, 44, 43, 43, 42, 43, 203, 940, 543, 393, 543, 912, 809, 913, 917, 803, 1255, 1011, 351, 496, 40, 375, 567, 58, 49, 271, 206, 353, 311, 39, 518, 280, 323, 96, 772, 622, 512, 369, 468, 697, 69, 1034, 1051, 1024],
                 },
-               
+
                 // {
                 //     name: '抽蓄发电',
                 //     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -119,7 +119,7 @@ export default {
             if (flag === 2) return;
             this.$bus.$emit('left2')
         },
-        
+
         totalEnergy() {
             this.updateChart(this.alldata)
         },
@@ -130,21 +130,21 @@ export default {
             this.initChart();
             this.chartInstance.setOption(this.getOption(data)); // 设置新数据
         },
-        getOption(data = this.alldata) {
+        getOption(data = this.leftData) {
             return {
                 title: {
-                    text:  this.titleName,
+                    text: this.titleName,
                     textStyle: {
-                        color: '#fff', 
+                        color: '#fff',
                     },
-                    left: '5%', 
+                    left: '5%',
                 },
                 legend: {
                     bottom: 10,
                     textStyle: {
                         color: 'rgb(55, 209, 259)',
                     },
-                    data: data.map(item => item.name),
+                    // data: data.map(item => item.name),
                 },
                 toolbox: {
 
@@ -239,7 +239,7 @@ export default {
         this.initChart();
         // GIS数据
         this.$bus.$on('allData', (data) => {
-            this.titleName=data[2][4].name
+            this.titleName = data[2][4].name
             console.log(data, '我接受的省份数据');
             this.leftData[0].data = data[2][0][0][0];
             this.leftData[1].data = data[2][0][0][1];
@@ -251,16 +251,16 @@ export default {
             // this.alldata[2] = this.newData[0];
             // this.alldata[3] = this.newData[1];
             this.alldata[0].data = data[2][0][0][0]
-            this.alldata[1].data=data[2][0][0][1]
+            this.alldata[1].data = data[2][0][0][1]
             this.alldata[2].data = data[2][3]
             this.alldata[3].data = data[2][0][1][0]
-            this.alldata[4].data=data[2][0][1][1]
+            this.alldata[4].data = data[2][0][1][1]
             this.updateChart(this.alldata)
             this.initChart();
         });
         const that = this
         this.$bus.$on('allData1', (data) => {
-            this.titleName=data[0].name
+            this.titleName = data[0].name
             if (that.tabindex === 0) {
                 this.leftData[0].data = data[1][4][0][0];
                 this.leftData[1].data = data[1][4][0][1];
@@ -271,11 +271,11 @@ export default {
                 // this.alldata[1] = this.leftData[1];
                 // this.alldata[2] = this.newData[0];
                 // this.alldata[3] = this.newData[1];
-                this.alldata[0].data=data[1][4][0][0]
-                this.alldata[1].data=data[1][4][0][1]
-                this.alldata[2].data=data[1][6]
-                this.alldata[3].data=data[1][4][1][0]
-                this.alldata[4].data=data[1][4][1][1]
+                this.alldata[0].data = data[1][4][0][0]
+                this.alldata[1].data = data[1][4][0][1]
+                this.alldata[2].data = data[1][6]
+                this.alldata[3].data = data[1][4][1][0]
+                this.alldata[4].data = data[1][4][1][1]
                 this.updateChart(this.alldata)
                 this.initChart();
             }
@@ -289,11 +289,11 @@ export default {
                 // this.alldata[1] = this.leftData[1];
                 // this.alldata[2] = this.newData[0];
                 // this.alldata[3] = this.newData[1];
-                this.alldata[0].data=data[1][4][0][0]
-                this.alldata[1].data=data[1][4][0][1]
-                this.alldata[2].data=data[1][6]
-                this.alldata[3].data=data[1][4][1][0]
-                this.alldata[4].data=data[1][4][1][1]
+                this.alldata[0].data = data[1][4][0][0]
+                this.alldata[1].data = data[1][4][0][1]
+                this.alldata[2].data = data[1][6]
+                this.alldata[3].data = data[1][4][1][0]
+                this.alldata[4].data = data[1][4][1][1]
                 this.updateChart(this.alldata)
                 this.initChart();
             }
@@ -314,10 +314,10 @@ export default {
             // this.updateChart(this.leftData)
             // 总电源
             this.alldata[0].data = data[4][0][0];
-            this.alldata[1].data =data [4][0][1];
+            this.alldata[1].data = data[4][0][1];
             this.alldata[2].data = data[6];
-            this.alldata[3].data =data [4][1][0];
-            this.alldata[4].data =data[4][1][1]
+            this.alldata[3].data = data[4][1][0];
+            this.alldata[4].data = data[4][1][1]
             this.updateChart(this.alldata)
         })
     },

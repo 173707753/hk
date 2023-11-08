@@ -145,7 +145,7 @@ export default {
                     textStyle: {
                         color: '#fff',
                     },
-                    data: data.map(item => item.name),
+                    // data: data.map(item => item.name),
                     left: 'center'
                 },
                 xAxis: {
@@ -236,7 +236,7 @@ export default {
             this.conventionalData = this.chartDate
             this.updateChart(this.chartDate)
             this.tabindex = index
-               console.log(this.tabindex,'tabindex');
+            console.log(this.tabindex, 'tabindex');
             // 总电源
             this.totalData[0].data = dataAll[0][0]
             this.totalData[1].data = dataAll[0][1]
@@ -283,23 +283,23 @@ export default {
         })
         // 省
         this.$bus.$on('allData', (selectData) => {
-            this.titleName=selectData[2][4].name
+            this.titleName = selectData[2][4].name
             if (that.tabindex === 0) {
                 this.chartDate[0].data = selectData[0][0][0];
                 this.chartDate[1].data = selectData[0][0][1];
                 this.conventionalData = this.chartDate
                 // this.updateChart(this.chartDate)
-                console.log(that.tabindex,'tab0');
+                console.log(that.tabindex, 'tab0');
                 this.totalData[0].data = selectData[0][0][0]
                 this.totalData[1].data = selectData[0][0][1]
                 this.totalData[2].data = selectData[0][2][0]
                 this.totalData[3].data = this.newData[0].data
                 this.totalData[4].data = this.newData[1].data
                 this.updateChart(this.totalData)
-                console.log(this.totalData,'ooo');
+                console.log(this.totalData, 'ooo');
             }
             if (that.tabindex === 1) {
-                console.log(that.tabindex,'tab1');
+                console.log(that.tabindex, 'tab1');
                 this.chartDate[0].data = selectData[1][0][0];
                 this.chartDate[1].data = selectData[1][0][1];
                 this.conventionalData = this.chartDate
@@ -310,7 +310,7 @@ export default {
                 this.totalData[3].data = this.newData[0].data
                 this.totalData[4].data = this.newData[1].data
                 this.updateChart(this.totalData)
-                console.log(this.totalData,'1111');
+                console.log(this.totalData, '1111');
             }
         })
     }
