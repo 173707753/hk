@@ -13,15 +13,15 @@
                 <div @click="changeNewenergy(1)" class="energy-button new">新能源</div>
             </div>
         </div>
-        <!-- <PopupComponent v-if="isMouseOverBot" @close-popup="hidePopup" :alldata="totalData"/> -->
+        <PopupComponent v-if="isMouseOverBot" @close-popup="hidePopup" :alldata="totalData" />
     </div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
-// import PopupComponent from '../PopupComponent.vue'
+import PopupComponent from '../PopupComponent.vue'
 export default {
-    // components: { PopupComponent },
+    components: { PopupComponent },
     data() {
         return {
             isMouseOverBot: false,
@@ -86,7 +86,7 @@ export default {
                     name: "光伏发电",
                     data: []
                 }
-            ]
+            ],
         };
     },
     created() {
@@ -198,7 +198,7 @@ export default {
         showPopup() {
             this.isMouseOverBot = true;
             //传输数据
-            // this.$bus.$emit('tableData', this.alldata)
+            this.$bus.$emit('tableData', this.alldata)
         },
         hidePopup() {
             this.isMouseOverBot = false;
@@ -327,46 +327,46 @@ export default {
     background-size: 100% 107%;
     background-repeat: no-repeat;
     background-image: url('../../../../../assets/img/ch/chbg.png');
-}
 
-.chart-container {
-    position: relative;
-    height: calc(100% - 4vh);
+    .chart-container {
+        position: relative;
+        height: calc(100% - 4vh);
 
-    .chart {
-        width: 100%;
-        height: 100%;
-    }
-
-    .button-container {
-        display: flex;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-    }
-
-    .energy-button {
-        padding: 1px 2px;
-        margin: 2px;
-        border-radius: 3px;
-        font-size: 14px;
-        cursor: pointer;
-        text-align: center;
-        font-weight: bold;
-        color: rgb(55, 209, 259);
-        transition: background-color 0.3s;
-
-        &.conventional {
-            background-color: rgba(84, 122, 194, .5);
+        .chart {
+            width: 100%;
+            height: 100%;
         }
 
-        &.new {
-            background-color: rgba(84, 122, 194, .5);
+        .button-container {
+            display: flex;
+            position: absolute;
+            top: 10px;
+            right: 10px;
         }
 
-        &:hover {
-            color: rgb(2, 188, 233);
-            background-color: rgb(14, 33, 72);
+        .energy-button {
+            padding: 1px 2px;
+            margin: 2px;
+            border-radius: 3px;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            color: rgb(55, 209, 259);
+            transition: background-color 0.3s;
+
+            &.conventional {
+                background-color: rgba(84, 122, 194, .5);
+            }
+
+            &.new {
+                background-color: rgba(84, 122, 194, .5);
+            }
+
+            &:hover {
+                color: rgb(2, 188, 233);
+                background-color: rgb(14, 33, 72);
+            }
         }
     }
 }

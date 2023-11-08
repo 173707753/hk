@@ -16,7 +16,7 @@
                 v-if="tableData.some(item => item.thermalPower !== '')"></el-table-column>
             <el-table-column prop="hydroelectric" label="水电发电(P/MW)" align="center"
                 v-if="tableData.some(item => item.hydroelectric !== '')"></el-table-column>
-                <el-table-column prop="pumpedStorage" label="抽蓄发电(P/MW)" align="center"
+            <el-table-column prop="pumpedStorage" label="抽蓄发电(P/MW)" align="center"
                 v-if="tableData.some(item => item.pumpedStorage !== '')"></el-table-column>
             <el-table-column prop="windPower" label="风电发电(P/MW)" align="center"
                 v-if="tableData.some(item => item.windPower !== '')"></el-table-column>
@@ -174,7 +174,7 @@ export default {
     },
     created() {
         // this.updatedTable();
-        console.log(this.alldata,'props');
+        console.log(this.alldata, 'props');
     },
     methods: {
         // //计算当前页
@@ -197,7 +197,7 @@ export default {
                         area: '洛北济源',  // 你的地区信息
                         thermalPower: this.alldata[0].data[i],
                         hydroelectric: this.alldata[1].data[i],
-                        pumpedStorage:this.alldata[2].data[i],
+                        pumpedStorage: this.alldata[2].data[i],
                         windPower: this.alldata[3].data[i],
                         photovoltaicPanel: this.alldata[4].data[i],  // 你的光伏发电信息
                     });
@@ -216,7 +216,7 @@ export default {
 
 <style lang="scss" scoped>
 .popup {
-    position: absolute;
+    position: fixed;
     top: 13.5%;
     left: 28.94%;
     width: 39.9%;

@@ -205,7 +205,7 @@ export default {
             // this.$bus.$emit('tableData', this.alldata)
         },
         hidePopup() {
-            this.isMouseOverBot = false;
+            this.isMouseOverBot = false; // 隐藏弹窗
         },
         onBotMouseLeave(event) {
             // 获取鼠标位置
@@ -225,6 +225,7 @@ export default {
                 mouseY < popupRect.top ||
                 mouseY > popupRect.bottom
             ) {
+                console.log('离开');
                 this.hidePopup();
             }
         },

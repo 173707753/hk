@@ -11,6 +11,7 @@ export default {
     data() {
         return {
             seriesData: [],
+            indicatorData: []
         }
     },
     methods: {
@@ -20,7 +21,7 @@ export default {
             var myChart = echarts.init(chartDom);
             var option;
             option = {
-                color: ['#FFC22E', 'red', '#67F9D8', '#FFE434', '#56A3F1', '#FF917C'],
+                color: ['blue', 'yellow', '#67F9D8', '#FFE434', '#56A3F1', '#eee'],
                 title: {
                     left: 'center',
                     text: this.allcharts.txt,
@@ -38,24 +39,28 @@ export default {
                     }
                 },
                 radar: {
-                    indicator: [
-                        { name: '6:00', },
-                        { name: '10:00', },
-                        { name: '12:00', },
-                        { name: '14:00', },
-                        { name: '16:00', },
-                        { name: '20:00', }
-                    ],
+                    indicator: this.indicatorData,
+                    // [
+                    // { name: '6:00', },
+                    // { name: '10:00', },
+                    // { name: '12:00', },
+                    // { name: '14:00', },
+                    // { name: '16:00', },
+                    // { name: '20:00', }
+                    // ],
                     //修改indicator文字的颜色
                     axisName: {
-                        formatter: '时间：{value}',
+                        formatter: '{value}',
                         color: '#fff',
                         fontWeight: 'bold',
                     },
                     splitNumber: 4,
                     splitArea: {
                         areaStyle: {
-                            color: ['#77EADF', '#26C3BE', '#64AFE9', '#428BD4'],
+                            color: ['rgba(0,0,0,0)'
+                                // '#77EADF',
+                                // '#26C3BE', '#64AFE9', '#428BD4'
+                            ],
                             shadowColor: 'rgba(0, 0, 0, 0.2)',
                             shadowBlur: 10
                         }
@@ -75,13 +80,14 @@ export default {
         // 处理数据
         this.seriesData = this.allcharts.data.map((item, index) => ({
             value: item,
-            name: this.allcharts.name[index],
+            name: this.allcharts.time[index],
             label: {
-                show: true,
+                // show: true,
                 color: '#fff',
                 fontWeight: 'bold',
             },
-        }))
+        })),
+            this.indicatorData = this.allcharts.indicatorData
         this.initChart();
     },
 }
@@ -99,7 +105,7 @@ export default {
     padding: 20px;
     z-index: 9999;
     border-radius: 6px;
-    background-color: rgba(0, 25, 47, 0.7);
+    background-color: rgba(0, 25, 47, 0.9);
     // background-color: rgb(255, 255, 255);
 }
 </style>
