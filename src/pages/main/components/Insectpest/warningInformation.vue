@@ -229,6 +229,7 @@ export default {
         -webkit-animation-timing-function: ease-in-out;
         animation-timing-function: ease-in-out;
         animation-iteration-count: 1;
+       
       }
 
       text-align: center;
@@ -236,14 +237,13 @@ export default {
       width: 25%;
 
       .bg {
-        margin-bottom: 3.5%;
+        margin-bottom: 1.5%;
       }
 
       .contant {
         img {
           // animation: myfirst 1s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
         }
-
         position: absolute;
         top: 15%;
         width: 80%;
@@ -265,9 +265,11 @@ export default {
         }
 
         .txt {
+          cursor: pointer;
           font-size: 1.5vh;
-          cursor: default;
+          // cursor: default;
           margin-left: 13%;
+          margin-top: 3px;
         }
       }
     }
