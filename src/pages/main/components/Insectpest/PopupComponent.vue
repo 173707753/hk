@@ -25,9 +25,9 @@
             <el-table-column prop="SectionData" label="断面数据(P/MW)" align="center"
                 v-if="tableData.some(item => item.SectionData)"></el-table-column>
             <el-table-column prop="PumpingPower" label="抽蓄功率(P/MW)" align="center"
-                v-if="tableData.some(item => item.PumpingPower)"></el-table-column>
+                v-if="tableData.some(item => item.PumpingPower ? item.PumpingPower : item.PumpingPower === 0 ? true : false)"></el-table-column>
             <el-table-column prop="PumpedCapacity" label="抽蓄电量(P/MW)" align="center"
-                v-if="tableData.some(item => item.PumpedCapacity)"></el-table-column>
+                v-if="tableData.some(item => item.PumpedCapacity ? item.PumpedCapacity : item.PumpedCapacity === 0 ? true : false)"></el-table-column>
             <el-table-column prop="loadPower" label="负荷功率(P/MW)" align="center"
                 v-if="tableData.some(item => item.loadPower)"></el-table-column>
         </el-table>
@@ -212,7 +212,8 @@ export default {
                             photovoltaicPanel: this.alldata[4].data[i],
                         });
                     }
-                } else if (this.alldata[0].name === '断面数据') {
+                }
+                else if (this.alldata[0].name === '断面数据') {
                     this.tableName = '断面数据'
                     for (let i = 0; i < this.time.length; i++) {
                         this.tableData.push({
@@ -220,7 +221,8 @@ export default {
                             SectionData: this.alldata[0].data[i],
                         });
                     }
-                } else if (this.alldata[0].name === '储能数据') {
+                }
+                else if (this.alldata[0].name === '储能数据') {
                     this.tableName = '储能数据'
                     for (let i = 0; i < this.time.length; i++) {
                         this.tableData.push({
@@ -229,12 +231,23 @@ export default {
                             // PumpedCapacity: this.alldata[1].data[i],
                         });
                     }
-                } else if (this.alldata[0].name === '负荷') {
+                }
+                else if (this.alldata[0].name === '负荷') {
                     this.tableName = '负荷数据'
                     for (let i = 0; i < this.time.length; i++) {
                         this.tableData.push({
                             time: this.time[i],
                             loadPower: this.alldata[0].data[i],
+                        });
+                    }
+                }
+                else if (this.alldata[0].name === '储能 数据') {
+                    this.tableName = '储能数据'
+                    for (let i = 0; i < this.time.length; i++) {
+                        this.tableData.push({
+                            time: this.time[i],
+                            PumpingPower: this.alldata[0].data[i],
+                            PumpedCapacity: this.alldata[1].data[i],
                         });
                     }
                 }
