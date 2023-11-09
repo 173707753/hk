@@ -229,12 +229,21 @@ export default {
                             // PumpedCapacity: this.alldata[1].data[i],
                         });
                     }
-                } else if (this.alldata[0].name === '负荷') {
+                } else if (this.alldata[0].name === '负荷数据') {
                     this.tableName = '负荷数据'
                     for (let i = 0; i < this.time.length; i++) {
                         this.tableData.push({
                             time: this.time[i],
                             loadPower: this.alldata[0].data[i],
+                        });
+                    }
+                } else if (this.alldata[0].name === '储能 数据') {
+                    this.tableName = '储能数据'
+                    for (let i = 0; i < this.time.length; i++) {
+                        this.tableData.push({
+                            time: this.time[i],
+                            PumpingPower: this.alldata[0].data[i],
+                            PumpedCapacity: this.alldata[1].data[i],
                         });
                     }
                 }

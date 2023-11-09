@@ -1,5 +1,5 @@
 <template>
-    <div class="top">
+    <div class="top" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             电网数据
         </div>
@@ -7,14 +7,19 @@
             <!-- 折线图容器 -->
             <div id="chart2" class="chart"></div>
         </div>
+        <PopupComponent v-if="isMouseOverBot" ref="popup2" @close-popup="hidePopup" :alldata="leftData" />
+        
     </div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
+import PopupComponent from '../PopupComponent.vue'
 export default {
+    components: { PopupComponent },
     data() {
         return {
+            isMouseOverBot: false,
             colorLine:['#bfc'],
             tabindex: 0,
             leftData: [
@@ -107,7 +112,42 @@ export default {
                     return idx * 5;
                 }
             };
-        }
+        },
+                //鼠标移入移出
+                showPopup() {
+            this.isMouseOverBot = true;
+            //传输数据
+            this.$bus.$emit('tableData', this.alldata)
+        },
+        hidePopup() {
+            this.isMouseOverBot = false;
+        },
+        onBotMouseLeave(event) {
+            // 获取鼠标位置
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+            // 获取 PopupComponent 的 DOM 元素
+            const popupElement = this.$refs.popup2.$refs.popup;
+            const leftElement = this.$el;
+            // 获取 PopupComponent 的位置和尺寸
+            const popupRect = popupElement.getBoundingClientRect();
+            const leftRect = leftElement.getBoundingClientRect();
+
+            // 判断鼠标是否在 PopupComponent 区域内
+            if (
+                // mouseX < popupRect.left ||
+                mouseX > popupRect.right ||
+                mouseY < popupRect.top ||
+                mouseY > popupRect.bottom ||
+                mouseX < leftRect.left ||
+                // mouseX > leftRect.right ||
+                mouseY < leftRect.top ||
+                mouseY > leftRect.bottom
+            ) {
+                console.log('离开');
+                this.hidePopup();
+            }
+        },
     },
     mounted() {
         this.initChart()

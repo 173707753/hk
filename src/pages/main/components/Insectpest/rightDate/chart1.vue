@@ -13,7 +13,7 @@
                 <div @click="changeNewenergy(1)" class="energy-button new">新能源</div>
             </div>
         </div>
-        <PopupComponent v-if="isMouseOverBot" @close-popup="hidePopup" :alldata="totalData" />
+        <PopupComponent v-if="isMouseOverBot" ref="popup1" @close-popup="hidePopup" :alldata="totalData" />
     </div>
 </template>
 
@@ -208,24 +208,28 @@ export default {
             this.isMouseOverBot = false;
         },
         onBotMouseLeave(event) {
-
             // 获取鼠标位置
             const mouseX = event.clientX;
             const mouseY = event.clientY;
-
             // 获取 PopupComponent 的 DOM 元素
-            const popupElement = this.$refs.popup;
-
+            const popupElement = this.$refs.popup1.$refs.popup;
+            const leftElement = this.$el;
             // 获取 PopupComponent 的位置和尺寸
             const popupRect = popupElement.getBoundingClientRect();
+            const leftRect = leftElement.getBoundingClientRect();
 
             // 判断鼠标是否在 PopupComponent 区域内
             if (
-                mouseX < popupRect.left ||
+                // mouseX < popupRect.left ||
                 mouseX > popupRect.right ||
                 mouseY < popupRect.top ||
-                mouseY > popupRect.bottom
+                mouseY > popupRect.bottom ||
+                mouseX < leftRect.left ||
+                // mouseX > leftRect.right ||
+                mouseY < leftRect.top ||
+                mouseY > leftRect.bottom
             ) {
+                console.log('离开');
                 this.hidePopup();
             }
         },
