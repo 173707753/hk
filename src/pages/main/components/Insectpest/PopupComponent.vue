@@ -25,9 +25,9 @@
             <el-table-column prop="SectionData" label="断面数据(P/MW)" align="center"
                 v-if="tableData.some(item => item.SectionData)"></el-table-column>
             <el-table-column prop="PumpingPower" label="抽蓄功率(P/MW)" align="center"
-                v-if="tableData.some(item => item.PumpingPower)"></el-table-column>
+                v-if="tableData.some(item => item.PumpingPower ? item.PumpingPower : item.PumpingPower === 0 ? true : false)"></el-table-column>
             <el-table-column prop="PumpedCapacity" label="抽蓄电量(P/MW)" align="center"
-                v-if="tableData.some(item => item.PumpedCapacity)"></el-table-column>
+                v-if="tableData.some(item => item.PumpedCapacity ? item.PumpedCapacity : item.PumpedCapacity === 0 ? true : false)"></el-table-column>
             <el-table-column prop="loadPower" label="负荷功率(P/MW)" align="center"
                 v-if="tableData.some(item => item.loadPower)"></el-table-column>
         </el-table>
