@@ -34,6 +34,7 @@
 
 <script>
 import Insectpest from './components/Insectpest'
+import util from '@/utils/request.js';
 export default {
   components: {
     Insectpest
@@ -185,6 +186,11 @@ export default {
     }
   },
   created() {
+    util
+        .get('/get_region')
+        .then((response) => {
+        })
+        .catch((error) => {});
     this.tabList[0].show = true;
     this.tabList.map(val => {
       console.log(val);

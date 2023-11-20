@@ -15,10 +15,10 @@ module.exports = {
 	devServer: {
 		proxy: {
 			'/api':{
-				target:'http://192.168.1.20:7904/',
-				pathRewrite:{
-						'^/api':'api'
-					}
+				target:'http://10.13.64.231:8080/',
+				// pathRewrite:{
+				// 		'^/api':'api'
+				// 	}
 			}
 		}
 	}
