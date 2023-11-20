@@ -1,4 +1,4 @@
-import { get } from '../request'
+import { get } from '../utils/request'
 
 //登录
-export const login = (data) => get('/api/market/login/login', data)
+export const login = (data) => get('/get_region', data)
