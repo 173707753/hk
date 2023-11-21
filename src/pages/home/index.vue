@@ -15,7 +15,7 @@
     </div>
     <div class="home_center">
       <div class="left">
-        <div @click="getfade('itermStyleKeyzz', 'itermStylezz')" :key="itermStyleKeyzz"
+        <div :key="itermStyleKeyzz"
           @mouseenter="changeMask('itermStyleKeyzz', 'itermStylezz', 'in')"
           @mouseleave="changeMask('itermStyleKeyzz', 'itermStylezz', 'out')" :class="itermStylezz" class="item">
           <div>
@@ -24,7 +24,7 @@
           </div>
           <img class="bg" src="../../assets/img/home/left1.png" alt="">
         </div>
-        <div @click="getfade('itermStyleKeyly', 'itermStylely')"
+        <div @click="tozb"
           @mouseenter="changeMask('itermStyleKeyly', 'itermStylely', 'in')"
           @mouseleave="changeMask('itermStyleKeyly', 'itermStylely', 'out')" :key="itermStyleKeyly" class="item"
           :class="itermStylely">
@@ -35,7 +35,7 @@
           <img class="bg" src="../../assets/img/home/left2.png" alt="">
         </div>
 
-        <div @click="getfade('itermStyleKeych', 'itermStylech')"
+        <div
           @mouseenter="changeMask('itermStyleKeych', 'itermStylech', 'in')"
           @mouseleave="changeMask('itermStyleKeych', 'itermStylech', 'out')" :key="itermStyleKeych" class="item"
           :class="itermStylech">
@@ -50,7 +50,7 @@
         <img src="../../assets/img/home/xz.gif" width="120%" height="auto" alt="">
       </div>
       <div class="right">
-        <div @click="getfade('itermStyleKeyyz', 'itermStyleyz')" :key="itermStyleKeyyz"
+        <div @click="getfade" :key="itermStyleKeyyz"
           @mouseenter="changeMask('itermStyleKeyyz', 'itermStyleyz', 'in')"
           @mouseleave="changeMask('itermStyleKeyyz', 'itermStyleyz', 'out')" :class="itermStyleyz" class="item">
           <div style="margin-left: 8%;">
@@ -59,7 +59,7 @@
           </div>
           <img class="bg" src="../../assets/img/home/right1.png" alt="">
         </div>
-        <div @click="getfade('itermStyleKeysy', 'itermStylesy')" :key="itermStyleKeysy"
+        <div :key="itermStyleKeysy"
           @mouseenter="changeMask('itermStyleKeysy', 'itermStylesy', 'in')"
           @mouseleave="changeMask('itermStyleKeysy', 'itermStylesy', 'out')" :class="itermStylesy" class="item">
           <div style="left:-10%">
@@ -68,7 +68,7 @@
           </div>
           <img class="bg" src="../../assets/img/home/right2.png" alt="">
         </div>
-        <div @click="getfade('itermStyleKeydj', 'itermStyledj')" :key="itermStyleKeydj"
+        <div :key="itermStyleKeydj"
           @mouseenter="changeMask('itermStyleKeydj', 'itermStyledj', 'in')"
           @mouseleave="changeMask('itermStyleKeydj', 'itermStyledj', 'out')" :class="itermStyledj" class="item">
           <div style="margin-left: 8%;">
@@ -120,18 +120,10 @@ export default {
   methods: {
     // 点击缩小
     getfade(k, c) {
-      /*
-        k 键值
-        c class类名
-       */
-      this.$router.push('main?type=' + c)
-      this[k] = this[k] + '1'
-      this[c] = 'clickSmalls'
-      if (this[c] === 'clickSmalls') {
-        setTimeout(() => {
-          this[c] = ''
-        }, 300)
-      }
+      this.$router.push('main')
+    },
+    tozb() {
+      this.$router.push('stark')
     },
     changeMask(k, c, t) {
       // console.log(k,c,t)
