@@ -522,11 +522,12 @@ export default {
                 // 处理POST请求的响应
                 if (response && response.code === 200) {
                     // 请求成功的处理逻辑
-                    // console.log('POST请求成功1', response);
+                    console.log('POST请求成功1', response);
                     this.computerAreaData(response);
                 } else {
                     // 请求失败的处理逻辑
-                    console.error('POST请求失败', response);
+                    // console.error('POST请求失败', response);
+                    this.$message.error('服务器错误')
                 }
             })
             .catch(error => {
@@ -543,13 +544,16 @@ export default {
                     this.$bus.$emit('trueData1', response.data)
                 } else {
                     // 请求失败的处理逻辑
-                    console.error('POST请求失败', response);
+                    // console.error('POST请求失败', response);
+                    this.$message.error('服务器错误')
                 }
             })
             .catch(error => {
                 // 处理POST请求的错误
-                console.error('POST请求错误', error);
+                // console.error('POST请求错误', error);
+                this.$message.error('服务器错误')
             });
+
         // 默认选中河南省洛北济源
         this.selectedProvince = "河南省";
         this.selectedArea = "洛北济源";
@@ -629,13 +633,53 @@ export default {
                         this.computerAreaData(response);
                     } else {
                         // 请求失败的处理逻辑
-                        console.error('POST请求失败', response);
+                        // console.error('POST请求失败', response);
+                        this.$message.error('服务器错误')
                     }
                 })
                 .catch(error => {
                     // 处理POST请求的错误
                     console.error('POST请求错误', error);
                 });
+               // 
+               // 右侧结果数据
+               util.post('/api/get_result_data', postData)
+            .then(response => {
+                // 处理POST请求的响应
+                if (response && response.code === 200) {
+                    // 请求成功的处理逻辑
+                    this.$bus.$emit('trueData', response.data)
+                } else {
+                    // 请求失败的处理逻辑
+                    this.$message.error('服务器错误')
+                    // console.error('POST请求失败', response);
+                }
+            })
+            .catch(error => {
+                // 处理POST请求的错误
+                console.error('POST请求错误', error);
+            });
+            // 右侧储能结果
+            util.post('/api/get_take_quantuty', postData)
+            .then(response => {
+                // 处理POST请求的响应
+                if (response && response.code === 200) {
+                    // 请求成功的处理逻辑
+                    // console.log('POST请求成功lm333', response);
+                    // this.$bus.$emit('trueData', response.data)
+                } else {
+                    // 请求失败的处理逻辑
+                    this.$message.error('服务器错误')
+                    // console.error('POST请求失败', response);
+                }
+            })
+            .catch(error => {
+                // 处理POST请求的错误
+                // console.error('POST请求错误', error);
+                this.$message.error('服务器错误')
+            });
+            
+            
         },
         onCancel() {
             // 在取消时重置选择

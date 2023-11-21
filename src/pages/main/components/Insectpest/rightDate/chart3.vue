@@ -27,33 +27,45 @@ export default {
             chartDate: [
                 {
                     name: '储能 数据',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    data: [
+                        // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ]
                 },
             ],
             conventionalData: [
                 {
                     name: '储能 数据',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    data: [
+                        // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ]
                 },
             ],
             newData: [
                 {
                     name: '储能 数据',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    data: [
+                        // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ]
                 },
                 {
                     name: '储能 数据',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    data: [
+                        // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ]
                 },
             ],
             tableData:[
             {
                     name: '储能 数据',
-                    data: [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    data: [
+                        // 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ]
                 },
                 {
                     name: '抽蓄电量',
-                    data: [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    data: [
+                        // 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ]
                 },
             ]
         };
@@ -194,61 +206,69 @@ export default {
     mounted() {
         this.initChart()
         // 接收tab切换的数据
-        this.$bus.$on('indexData', (params) => {
-            const dataAll = params.param1;
-            const index = params.param2;
-            this.chartDate[0].data = dataAll[2][1];
-            this.newData[0].data = dataAll[2][0];
-            this.conventionalData = this.chartDate
+        // this.$bus.$on('indexData', (params) => {
+        //     const dataAll = params.param1;
+        //     const index = params.param2;
+        //     this.chartDate[0].data = dataAll[2][1];
+        //     this.newData[0].data = dataAll[2][0];
+        //     this.conventionalData = this.chartDate
 
-            this.updateChart(this.chartDate);
-            this.tabindex = index
-            // console.log( this.tabindex,'tab31');
-        });
+        //     this.updateChart(this.chartDate);
+        //     this.tabindex = index
+        //     // console.log( this.tabindex,'tab31');
+        // });
         //接收gis的数据
-        const that = this
-        this.$bus.$on('allData1', (selectData) => {
-            // console.log(that.tabindex,'tab32');
-            if (that.tabindex === 0) {
-                this.chartDate[0].data = selectData[1][2][0];
-                this.newData[0].data = selectData[1][2][1];
-                this.newData[1].data = selectData[1][2][2]
-                this.conventionalData = this.chartDate;
-                this.updateChart(this.conventionalData)
-                // console.log(this.conventionalData,'ok');
-            }
-            if (that.tabindex === 1) {
-                this.chartDate[0].data = selectData[2][2][0]; //发电功率
-                this.newData[0].data = selectData[2][2][1]; //南阳上水库
-                this.newData[1].data = selectData[2][2][2]   //南阳下水库
-                console.log(this.newData[1].data, '南阳下');
-                this.conventionalData = this.chartDate;
-                // console.log(this.conventionalData,'ok');
-                this.updateChart(this.conventionalData)
-            }
+        // const that = this
+        // this.$bus.$on('allData1', (selectData) => {
+        //     // console.log(that.tabindex,'tab32');
+        //     if (that.tabindex === 0) {
+        //         this.chartDate[0].data = selectData[1][2][0];
+        //         this.newData[0].data = selectData[1][2][1];
+        //         this.newData[1].data = selectData[1][2][2]
+        //         this.conventionalData = this.chartDate;
+        //         this.updateChart(this.conventionalData)
+        //         // console.log(this.conventionalData,'ok');
+        //     }
+        //     if (that.tabindex === 1) {
+        //         this.chartDate[0].data = selectData[2][2][0]; //发电功率
+        //         this.newData[0].data = selectData[2][2][1]; //南阳上水库
+        //         this.newData[1].data = selectData[2][2][2]   //南阳下水库
+        //         console.log(this.newData[1].data, '南阳下');
+        //         this.conventionalData = this.chartDate;
+        //         // console.log(this.conventionalData,'ok');
+        //         this.updateChart(this.conventionalData)
+        //     }
 
-        })
-        // 
-        this.$bus.$on('allData', (selectData) => {
-            // console.log(that.tabindex,'tab32');
-            if (that.tabindex === 0) {
-                this.chartDate[0].data = selectData[0][2][0];
-                this.newData[0].data = selectData[0][2][1];
-                // this.newData[1].data= selectData[0][2][2]
-                this.conventionalData = this.chartDate;
-                this.updateChart(this.conventionalData)
-                // console.log(this.conventionalData,'ok');
-            }
-            if (that.tabindex === 1) {
-                this.chartDate[0].data = selectData[1][2][0]; //发电功率
-                this.newData[0].data = selectData[1][2][1]; //南阳上水库
-                //  this.newData[1].data= selectData[2][2][2]   //南阳下水库
-                //  console.log( this.newData[1].data,'南阳下');
-                this.conventionalData = this.chartDate;
-                // console.log(this.conventionalData,'ok');
-                this.updateChart(this.conventionalData)
-            }
+        // })
+        // // 
+        // this.$bus.$on('allData', (selectData) => {
+        //     // console.log(that.tabindex,'tab32');
+        //     if (that.tabindex === 0) {
+        //         this.chartDate[0].data = selectData[0][2][0];
+        //         this.newData[0].data = selectData[0][2][1];
+        //         // this.newData[1].data= selectData[0][2][2]
+        //         this.conventionalData = this.chartDate;
+        //         this.updateChart(this.conventionalData)
+        //         // console.log(this.conventionalData,'ok');
+        //     }
+        //     if (that.tabindex === 1) {
+        //         this.chartDate[0].data = selectData[1][2][0]; //发电功率
+        //         this.newData[0].data = selectData[1][2][1]; //南阳上水库
+        //         //  this.newData[1].data= selectData[2][2][2]   //南阳下水库
+        //         //  console.log( this.newData[1].data,'南阳下');
+        //         this.conventionalData = this.chartDate;
+        //         // console.log(this.conventionalData,'ok');
+        //         this.updateChart(this.conventionalData)
+        //     }
 
+        // })
+        this.$bus.$on('trueData', (alldata) => {
+            // alldata.data.forEach((item) => {
+            //     this.chartDate[0].data.push(item.take_generation)
+            //     this.conventionalData[0].data.push(item.take_generation)
+            //     this.newData[0].data.push(item.take_generation)
+            // })
+            // this.updateChart(this.chartDate)
         })
     },
 }
