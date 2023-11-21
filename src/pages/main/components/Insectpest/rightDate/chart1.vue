@@ -98,6 +98,9 @@ export default {
         this.$bus.$on('left2', () => {
             this.changeNewenergy(2)
         });
+        this.$bus.$on('total1',()=>{
+            this.totalEnergy(2)
+        })
         this.updateChart(this.totalData)
     },
     methods: {
@@ -118,8 +121,10 @@ export default {
             if (flag === 2) return
             this.$bus.$emit('chart2')
         },
-        totalEnergy() {
+        totalEnergy(flag) {
             this.updateChart(this.totalData)
+            if(flag === 2)  return
+            this.$bus.$emit('total2')
         },
         updateChart(data) {
             if (this.chartInstance) {

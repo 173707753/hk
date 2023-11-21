@@ -8,7 +8,7 @@
             <div id="main1" class="chart"></div>
             <!-- 按钮浮动在折线图上 -->
             <div class="button-container">
-                <div @click="totalEnergy" class="energy-button new">总电源</div>
+                <div @click="totalEnergy(1)" class="energy-button new">总电源</div>
                 <div @click="changeEnergy(1)" class="energy-button conventional">常规电源</div>
                 <div @click="changeNewenergy(1)" class="energy-button new">新能源</div>
             </div>
@@ -121,8 +121,10 @@ export default {
             this.$bus.$emit('left2')
         },
 
-        totalEnergy() {
+        totalEnergy(flag) {
             this.updateChart(this.alldata)
+            if(flag === 2 ) return
+            this.$bus.$emit('total1')
         },
         updateChart(data) {
             if (this.chartInstance) {
@@ -244,6 +246,10 @@ export default {
         });
         this.$bus.$on('chart2', () => {
             this.changeNewenergy(2)
+        });
+        this.$bus.$on('total2', () => {
+            this.totalEnergy(2)
+            
         });
         this.initChart();
         // GIS数据
