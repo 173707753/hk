@@ -14,11 +14,11 @@ module.exports = {
 	productionSourceMap: false,
 	devServer: {
 		proxy: {
-			'/api':{
-				target:'http://10.13.64.231:8080/',
-				// pathRewrite:{
-				// 		'^/api':'api'
-				// 	}
+			'/api': {
+				target: 'http://10.13.64.51:8080/',
+				// pathRewrite: {
+				// 	'^/api': 'api'
+				// }
 			}
 		}
 	}

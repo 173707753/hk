@@ -34,7 +34,7 @@
 
 <script>
 import Insectpest from './components/Insectpest'
-import util from '@/utils/request.js';
+// import util from '@/utils/request.js';
 export default {
   components: {
     Insectpest
@@ -63,6 +63,7 @@ export default {
         class: 'animated fadeIn',
       },
       ],
+      flag: 2,
       // 折线图数据
       allData: [
         // 最大供电能力
@@ -186,11 +187,14 @@ export default {
     }
   },
   created() {
-    util
-        .get('/get_region')
-        .then((response) => {
-        })
-        .catch((error) => {});
+    // util
+    //   .get('/api/get_region')
+    //   .then((response) => {
+    //     console.log(response, 'response');
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
     this.tabList[0].show = true;
     this.tabList.map(val => {
       console.log(val);
@@ -204,29 +208,37 @@ export default {
   mounted() {
     this.chaneTab(0);
     this.$bus.$on('allData', (data) => {
-    this.allData = data;
-  })
+      this.allData = data;
+    });
+    // 发送标识符
+    this.$bus.$emit('flagData', this.flag)
   },
   methods: {
     chaneTab(index) {
-// 发送折线图数据
+      // 发送折线图数据
 
-  this.$bus.$emit('indexData', { param1: this.allData[index], param2: index })
-
-
-// console.log(this.allData[index]);
-this.$bus.$on("allData2", (data) => {
-  this.data1 = data;
-})
-this.tabList.map(val => {
-  // val.class = 'animated fadeOut'
-  val.show = false
-})
-// this.tabList[index].class = 'animated fadeIn'
-this.tabList[index].show = true
-}
+      this.$bus.$emit('indexData', { param1: this.allData[index], param2: index })
+      // 接收省份区域数据
+      this.$bus.$on("allData2", (data) => {
+        this.data1 = data;
+      })
+      this.tabList.map(val => {
+        // val.class = 'animated fadeOut'
+        val.show = false
+      })
+      // this.tabList[index].class = 'animated fadeIn'
+      this.tabList[index].show = true
+      if (index === 0) {
+        this.flag = 2
+      } else if (index === 1) {
+        this.flag = 1
+      }
+      // 发送标识符
+      this.$bus.$emit('flagData', this.flag)
+    }
   },
   beforeDestroy() {
+    this.$bus.$off('allData')
     this.$bus.$off('allData2')
   },
 }

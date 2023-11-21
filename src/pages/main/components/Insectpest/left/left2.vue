@@ -25,7 +25,7 @@ export default {
                 {
                     name: '断面数据',
                     data: [
-                        2410.27, 3800, 3800, 3800, 3800, 3800, 3175.235, 2621.535, 2120.017557, 1824.496346, 1864.61, 1264.41, 958.15, 1265.31, 1534.9, 1938.86, 2035.8, 2015.72, 1714.98, 1858.54, 1437.81, 1576.877361, 1829.56, 2649.85, 3198.38, 3112.755, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3617.587105, 3548.414121, 2432.665066, 2221.536633, 2546.727124, 1730.239546, 875.5616174, 768.6928239, 446.3551938, 20.865, 154.0326695, 250.6634437, 518.4214486, 621.2954051, 930.96, 1211.77, 1106.12, 1159.42, 1312.2, 1751.77, 1722.67, 1861.86, 2047.29, 1965.1, 2048.87, 736.555, 1160.57, 984.93, 1191.94, 1197.19, 1841.41, 2827.83, 2295.810629, 3714.36, 2454.165, 1802.357343, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800
+                        // 2410.27, 3800, 3800, 3800, 3800, 3800, 3175.235, 2621.535, 2120.017557, 1824.496346, 1864.61, 1264.41, 958.15, 1265.31, 1534.9, 1938.86, 2035.8, 2015.72, 1714.98, 1858.54, 1437.81, 1576.877361, 1829.56, 2649.85, 3198.38, 3112.755, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3617.587105, 3548.414121, 2432.665066, 2221.536633, 2546.727124, 1730.239546, 875.5616174, 768.6928239, 446.3551938, 20.865, 154.0326695, 250.6634437, 518.4214486, 621.2954051, 930.96, 1211.77, 1106.12, 1159.42, 1312.2, 1751.77, 1722.67, 1861.86, 2047.29, 1965.1, 2048.87, 736.555, 1160.57, 984.93, 1191.94, 1197.19, 1841.41, 2827.83, 2295.810629, 3714.36, 2454.165, 1802.357343, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800
                     ],
                 }
             ],
@@ -162,33 +162,40 @@ export default {
     mounted() {
         this.initChart()
         // GIS数据
-        this.$bus.$on('allData', (data) => {
-            this.leftData[0].data = data[2][1];
-            this.initChart();
-        });
-        const that = this
-        this.$bus.$on('allData1', (data) => {
-            if (that.tabindex === 0) {
-                this.leftData[0].data = data[1][5];
-                this.initChart();
-            }
-            if (that.tabindex === 1) {
-                this.leftData[0].data = data[2][5];
-                this.initChart();
-            }
+        // this.$bus.$on('allData', (data) => {
+        //     this.leftData[0].data = data[2][1];
+        //     this.initChart();
+        // });
+        // const that = this
+        // this.$bus.$on('allData1', (data) => {
+        //     if (that.tabindex === 0) {
+        //         this.leftData[0].data = data[1][5];
+        //         this.initChart();
+        //     }
+        //     if (that.tabindex === 1) {
+        //         this.leftData[0].data = data[2][5];
+        //         this.initChart();
+        //     }
+        // })
+        // // index数据
+        // this.$bus.$on('indexData', (params) => {
+        //     const data = params.param1;
+        //     this.tabindex = params.param2;
+        //     this.leftData[0].data = data[5];
+        //     this.updateChart(this.leftData)
+        // });
+
+        this.$bus.$on("trueData1", (data) => {
+            // console.log("你好", data);
+            data.forEach((item) => {
+                this.leftData[0].data.push(item.fracture_data)
+            })
+            this.updateChart(this.leftData)
         })
 
-        // index数据
-        this.$bus.$on('indexData', (params) => {
-            const data = params.param1;
-            this.tabindex = params.param2;
-            this.leftData[0].data = data[5];
-            this.updateChart(this.leftData)
-        });
     },
     beforeDestroy() {
-        this.$bus.$off('allData');
-        this.$bus.$off('indexData')
+        this.$bus.$off('trueData1');
     }
 
 }
