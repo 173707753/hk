@@ -3,7 +3,11 @@
     <div class="home_top">
       <img src="../../assets/img/home/top.png" width="100%" height="auto" alt="">
       <div class="home_title">
-        <img src="../../assets/img/home/wz.png" width="20%" height="auto" alt="">
+        <!-- <img src="../../assets/img/home/wz.png" width="20%" height="auto" alt=""> -->
+        <div style="color: rgb(226, 236, 255);font-size: 4.4vh;font-weight: bold;position: absolute;top: 53%;left: 38%;">
+          <!-- 电力碳中和智能化调度 -->
+          新型电力系统智能化调度
+        </div>
       </div>
       <div class="home_g">
         <img src="../../assets/img/home/g.png" width="40%" height="auto" alt="">
@@ -15,8 +19,8 @@
           @mouseenter="changeMask('itermStyleKeyzz', 'itermStylezz', 'in')"
           @mouseleave="changeMask('itermStyleKeyzz', 'itermStylezz', 'out')" :class="itermStylezz" class="item">
           <div>
-            <p>智慧种植</p>
-            <img width="8%" height="auto" src="../../assets/img/home/智慧种植.png" alt="">
+            <p>运行数据管理</p>
+            <img width="8%" height="auto" alt="">
           </div>
           <img class="bg" src="../../assets/img/home/left1.png" alt="">
         </div>
@@ -25,18 +29,19 @@
           @mouseleave="changeMask('itermStyleKeyly', 'itermStylely', 'out')" :key="itermStyleKeyly" class="item"
           :class="itermStylely">
           <div style="right:38%">
-            <p>智慧林业</p>
-            <img width="8%" height="auto" src="../../assets/img/home/智慧林业.png" alt="">
+            <p>运行评估指标</p>
+            <img width="8%" height="auto" alt="">
           </div>
           <img class="bg" src="../../assets/img/home/left2.png" alt="">
         </div>
+
         <div @click="getfade('itermStyleKeych', 'itermStylech')"
           @mouseenter="changeMask('itermStyleKeych', 'itermStylech', 'in')"
           @mouseleave="changeMask('itermStyleKeych', 'itermStylech', 'out')" :key="itermStyleKeych" class="item"
           :class="itermStylech">
           <div>
-            <p>智慧虫害</p>
-            <img width="8%" height="auto" src="../../assets/img/home/智慧虫害.png" alt="">
+            <p>调度知识管理</p>
+            <img width="8%" height="auto" alt="">
           </div>
           <img class="bg" src="../../assets/img/home/left3.png" alt="">
         </div>
@@ -48,37 +53,40 @@
         <div @click="getfade('itermStyleKeyyz', 'itermStyleyz')" :key="itermStyleKeyyz"
           @mouseenter="changeMask('itermStyleKeyyz', 'itermStyleyz', 'in')"
           @mouseleave="changeMask('itermStyleKeyyz', 'itermStyleyz', 'out')" :class="itermStyleyz" class="item">
-          <div>
-            <img width="8%" height="auto" src="../../assets/img/home/智慧养殖.png" alt="">
-            <p>智慧养殖</p>
+          <div style="margin-left: 8%;">
+            <!-- <img width="8%" height="auto" src="../../assets/img/home/智慧养殖.png" alt=""> -->
+            <p>多能协同调度</p>
           </div>
           <img class="bg" src="../../assets/img/home/right1.png" alt="">
         </div>
         <div @click="getfade('itermStyleKeysy', 'itermStylesy')" :key="itermStyleKeysy"
           @mouseenter="changeMask('itermStyleKeysy', 'itermStylesy', 'in')"
           @mouseleave="changeMask('itermStyleKeysy', 'itermStylesy', 'out')" :class="itermStylesy" class="item">
-          <div style="left:-18%">
-            <img width="8%" height="auto" src="../../assets/img/home/智慧溯源.png" alt="">
-            <p>智慧溯源</p>
+          <div style="left:-10%">
+            <!-- <img width="8%" height="auto" src="../../assets/img/home/智慧溯源.png" alt=""> -->
+            <p>备用精准测算</p>
           </div>
           <img class="bg" src="../../assets/img/home/right2.png" alt="">
         </div>
         <div @click="getfade('itermStyleKeydj', 'itermStyledj')" :key="itermStyleKeydj"
           @mouseenter="changeMask('itermStyleKeydj', 'itermStyledj', 'in')"
           @mouseleave="changeMask('itermStyleKeydj', 'itermStyledj', 'out')" :class="itermStyledj" class="item">
-          <div>
-            <img width="8%" height="auto" src="../../assets/img/home/数字党建.png" alt="">
-            <p>数字党建</p>
+          <div style="margin-left: 8%;">
+            <!-- <img width="8%" height="auto" src="../../assets/img/home/数字党建.png" alt=""> -->
+            <p>运行优化评估</p>
           </div>
           <img class="bg" src="../../assets/img/home/right3.png" alt="">
         </div>
       </div>
     </div>
     <div class="home_bottom">
-      <!-- <img class="" width="100%" height="auto" src="../../assets/img/home/bottom.png" alt=""> -->
+      <router-link to="/login">
+        登录
+      </router-link>
     </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -149,7 +157,7 @@ export default {
 .home {
   width: 100%;
   height: 100%;
-  padding-top: 3%;
+  padding-top: 1%;
   background-image: url('../../assets/img/home/bg.jpg');
   background-size: 100% auto;
   background-position-y: 100%;
@@ -242,14 +250,36 @@ export default {
   }
 
   .home_bottom {
-    color: #63CFFF;
-    font-size: 1vh;
-    text-align: center;
-    margin-left: 10px;
+    font-size: 2vh;
     width: 100%;
     position: absolute;
-    bottom: 3%;
-    background-image: url('../../assets/img/home/bottom.png');
-    background-size: 100% auto;
+    left: 93%;
+    top: 3%;
+    z-index: 999;
+
+    /* 新增的样式规则 */
+    a {
+      text-decoration: none;
+      /* 去掉下划线 */
+      // background-color: rgb(25, 58, 115);
+      /* 背景颜色 */
+      color: white;
+      /* 文本颜色 */
+      padding: 5px 10px;
+      /* 内边距 */
+      border-radius: 5px;
+      /* 圆角 */
+      font-size: 2vh;
+      /* 字体大小 */
+      transition: background-color 0.3s;
+      /* 添加过渡效果 */
+    }
+
+    a:hover {
+      color: #0073e6;
+      /* 鼠标悬停时的背景颜色 */
+    }
   }
-}</style>
+
+}
+</style>

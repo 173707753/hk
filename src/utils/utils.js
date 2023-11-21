@@ -69,19 +69,19 @@ const formatJson = (keys, list) => {
 	return list.map((v) => keys.map((j) => v[j]))
 }
 
-export const exportJsonToExcel = (
-	fileName = '',
-	option = {
-		headers: [], //excel 头部
-		keys: [], //excel 需要筛选的 key
-		list: [], //excel 需要打印的 list 数据
-	}
-) => {
-	const { headers = [], keys = [], list = [] } = option
-	const data = formatJson(keys, list)
-	const { export_json_to_excel } = require('../assets/js/Export2Excel')
-	export_json_to_excel(headers, data, fileName)
-}
+// export const exportJsonToExcel = (
+// 	fileName = '',
+// 	option = {
+// 		headers: [], //excel 头部
+// 		keys: [], //excel 需要筛选的 key
+// 		list: [], //excel 需要打印的 list 数据
+// 	}
+// ) => {
+// 	const { headers = [], keys = [], list = [] } = option
+// 	const data = formatJson(keys, list)
+// 	const { export_json_to_excel } = require('../assets/js/Export2Excel')
+// 	export_json_to_excel(headers, data, fileName)
+// }
 
 export function setStorage(key, value) {
 	localStorage.setItem(key, JSON.stringify(value))

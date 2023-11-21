@@ -1,4 +1,4 @@
-const defaultDocumentTitle = '数据大屏' //默认html页面 title 值
+const defaultDocumentTitle = '电力碳中和智能化调度' //默认html页面 title 值
 
 // vue.config.js
 module.exports = {
@@ -14,11 +14,11 @@ module.exports = {
 	productionSourceMap: false,
 	devServer: {
 		proxy: {
-			'/api':{
-				target:'http://192.168.1.20:7904/',
-				pathRewrite:{
-						'^/api':'api'
-					}
+			'/api': {
+				target: 'http://10.13.64.51:8080/',
+				// pathRewrite: {
+				// 	'^/api': 'api'
+				// }
 			}
 		}
 	}

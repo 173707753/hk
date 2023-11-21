@@ -6,11 +6,12 @@
         <div class="main_g" style="margin-top: -6px;">
           <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 28px;font-weight: bold;position: absolute;top: 30%;left: 9%;">
+        <div style="color: rgb(226, 236, 255);font-size: 3vh;font-weight: bold;position: absolute;top: 30%;left: 9%;">
           电力大数据
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 36px;font-weight: bold;position: absolute;top: 50%;left: 33%;">
-          电力碳中和智能化调度
+        <div style="color: rgb(226, 236, 255);font-size: 4.8vh;font-weight: bold;position: absolute;top: 53%;left: 31%;">
+          <!-- 电力碳中和智能化调度 -->
+          新型电力系统智能化调度
         </div>
         <div class="right">
           <div v-for="(item, index) in tabList" :key="index" class="tabs">
@@ -33,6 +34,7 @@
 
 <script>
 import Insectpest from './components/Insectpest'
+// import util from '@/utils/request.js';
 export default {
   components: {
     Insectpest
@@ -61,6 +63,7 @@ export default {
         class: 'animated fadeIn',
       },
       ],
+      flag: 2,
       // 折线图数据
       allData: [
         // 最大供电能力
@@ -179,10 +182,19 @@ export default {
       data1: {
         selectedProvince: 1,
         selectedArea: 1
-      }
+      },
+
     }
   },
   created() {
+    // util
+    //   .get('/api/get_region')
+    //   .then((response) => {
+    //     console.log(response, 'response');
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
     this.tabList[0].show = true;
     this.tabList.map(val => {
       console.log(val);
@@ -191,19 +203,22 @@ export default {
       // }
 
     })
+
   },
   mounted() {
     this.chaneTab(0);
+    this.$bus.$on('allData', (data) => {
+      this.allData = data;
+    });
+    // 发送标识符
+    this.$bus.$emit('flagData', this.flag)
   },
   methods: {
     chaneTab(index) {
-
-      console.log(index);
       // 发送折线图数据
-      if (this.data1.selectedArea) {
-        this.$bus.$emit('indexData', { param1: this.allData[index], param2: index })
-      }
-      // console.log(this.allData[index]);
+
+      this.$bus.$emit('indexData', { param1: this.allData[index], param2: index })
+      // 接收省份区域数据
       this.$bus.$on("allData2", (data) => {
         this.data1 = data;
       })
@@ -213,8 +228,19 @@ export default {
       })
       // this.tabList[index].class = 'animated fadeIn'
       this.tabList[index].show = true
+      if (index === 0) {
+        this.flag = 2
+      } else if (index === 1) {
+        this.flag = 1
+      }
+      // 发送标识符
+      this.$bus.$emit('flagData', this.flag)
     }
-  }
+  },
+  beforeDestroy() {
+    this.$bus.$off('allData')
+    this.$bus.$off('allData2')
+  },
 }
 </script>
 

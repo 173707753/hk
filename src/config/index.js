@@ -1,4 +1,4 @@
-const baseUrl = 'http://192.168.1.20:7904' //请求地址
+const baseUrl = 'http://10.13.64.231:8080' //请求地址
 
 const statusWhiteList = [] //http的status默认放行不才用统一处理的,
 

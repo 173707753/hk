@@ -611,8 +611,8 @@ export default {
     });
     // 接收left5的map跳转数据
     this.$bus.$on('left5Data', (filteredData) => {
-      // console.log(filteredData, "地图");
       this.nowType = 'country'
+      // console.log(filteredData);
       this.clickMap(filteredData[0])
     });
   },
@@ -684,8 +684,8 @@ export default {
       })
     },
     clickMap(data) {
-      console.log(this.nowType);
-      console.log(data, "地图data");
+      console.log(data);
+      if (data.seriesType == 'scatter') return
       this.nextDow = false
       if (this.nowType === 'country') {
         console.log(1111);
@@ -695,7 +695,6 @@ export default {
         this.getProvince(data)
       }
       if (this.nowType === 'province') {
-
         this.mapChart.dispose() // 销毁地图
         this.mapChartOption.series[2].data = [{
           name: '南昌',

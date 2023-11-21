@@ -1,5 +1,5 @@
 <template>
-    <div class="bot">
+    <div class="bot" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             储能数据
         </div>
@@ -12,32 +12,45 @@
                 <div @click="changeNewenergy(1)" class="energy-button new">发电功率</div>
             </div> -->
         </div>
+        <PopupComponent v-if="isMouseOverBot" ref="popup2" @close-popup="hidePopup" :alldata="chartDate" />
     </div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
+import PopupComponent from '../PopupComponent.vue'
 export default {
+    components: {
+        PopupComponent,
+    },
     data() {
         return {
+            isMouseOverBot: false,
+            colorLine: ['#bfc', '#FFC22E', '#5EC2F2', '#FF4528', '#fff'],
             tabindex: 0,
             chartDate: [
                 {
                     name: '储能数据',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    data: [
+                        // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ]
                 },
             ],
             conventionalData: [
                 {
                     name: '储能数据',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    data: [
+                        // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ]
                 },
 
             ],
             newData: [
                 {
                     name: '储能数据',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    data: [
+                        // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ]
                 },
 
             ],
@@ -120,12 +133,15 @@ export default {
                         },
                     },
                 ],
-                series: data.map(item => ({
+                series: data.map((item, index) => ({
                     name: item.name,
                     type: 'bar',
                     data: item.data,
                     emphasis: {
                         focus: 'series'
+                    },
+                    itemStyle: {
+                        color: this.colorLine[index], // 设置单独的颜色
                     },
                     animationDelay: function (idx) {
                         return idx * 10;
@@ -136,46 +152,88 @@ export default {
                     return idx * 5;
                 }
             };
-        }
+        },
+        //鼠标移入移出
+        showPopup() {
+            this.isMouseOverBot = true;
+            //传输数据
+            // this.$bus.$emit('tableData', this.alldata)
+        },
+        hidePopup() {
+            this.isMouseOverBot = false; // 隐藏弹窗
+        },
+        onBotMouseLeave(event) {
+            // 获取鼠标位置
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+            // 获取 PopupComponent 的 DOM 元素
+            const popupElement = this.$refs.popup2.$refs.popup;
+            const leftElement = this.$el;
+            // 获取 PopupComponent 的位置和尺寸
+            const popupRect = popupElement.getBoundingClientRect();
+            const leftRect = leftElement.getBoundingClientRect();
+
+            // 判断鼠标是否在 PopupComponent 区域内
+            if (
+                // mouseX < popupRect.left ||
+                mouseX > popupRect.right ||
+                mouseY < popupRect.top ||
+                mouseY > popupRect.bottom ||
+                mouseX < leftRect.left ||
+                // mouseX > leftRect.right ||
+                mouseY < leftRect.top ||
+                mouseY > leftRect.bottom
+            ) {
+                console.log('离开');
+                this.hidePopup();
+            }
+        },
     },
 
     mounted() {
         this.initChart()
-        // GIS数据
-        this.$bus.$on('allData', (data) => {
-            this.chartDate[0].data = data[2][2];
-            this.conventionalData[0].data = data[2][2];
-            this.newData[0].data = data[2][2];
-            this.initChart();
-        });
-        const that = this
-        this.$bus.$on('allData1', (data) => {
-            if (that.tabindex === 0) {
-                this.chartDate[0].data = data[1][6];
-                this.conventionalData[0].data = data[1][6];
-                this.newData[0].data = data[1][6];
-                this.initChart();
-            }
-            if (that.tabindex === 1) {
-                this.chartDate[0].data = data[2][6];
-                this.conventionalData[0].data = data[2][6];
-                this.newData[0].data = data[2][6];
-                this.initChart();
-            }
-        })
-        // index数据
-        this.$bus.$on('indexData', (params) => {
-            const data = params.param1;
-            this.tabindex = params.param2;
-            this.chartDate[0].data = data[6];
-            this.conventionalData[0].data = data[6];
-            this.newData[0].data = data[6];
-            this.updateChart(this.leftData)
+        // // GIS数据
+        // this.$bus.$on('allData', (data) => {
+        //     this.chartDate[0].data = data[2][2];
+        //     this.conventionalData[0].data = data[2][2];
+        //     this.newData[0].data = data[2][2];
+        //     this.initChart();
+        // });
+        // const that = this
+        // this.$bus.$on('allData1', (data) => {
+        //     if (that.tabindex === 0) {
+        //         this.chartDate[0].data = data[1][6];
+        //         this.conventionalData[0].data = data[1][6];
+        //         this.newData[0].data = data[1][6];
+        //         this.initChart();
+        //     }
+        //     if (that.tabindex === 1) {
+        //         this.chartDate[0].data = data[2][6];
+        //         this.conventionalData[0].data = data[2][6];
+        //         this.newData[0].data = data[2][6];
+        //         this.initChart();
+        //     }
+        // })
+        // // index数据
+        // this.$bus.$on('indexData', (params) => {
+        //     const data = params.param1;
+        //     this.tabindex = params.param2;
+        //     this.chartDate[0].data = data[6];
+        //     this.conventionalData[0].data = data[6];
+        //     this.newData[0].data = data[6];
+        //     this.updateChart(this.leftData)
+        // })
+        this.$bus.$on('trueData', (alldata) => {
+            alldata.data.forEach((item) => {
+                this.chartDate[0].data.push(item.take_generation)
+                this.conventionalData[0].data.push(item.take_generation)
+                this.newData[0].data.push(item.take_generation)
+            })
+            this.updateChart(this.chartDate)
         })
     },
     beforeDestroy() {
-        this.$bus.$off('allData');
-        this.$bus.$off('indexData')
+        this.$bus.$off('trueData');
     }
 
 }
@@ -204,6 +262,7 @@ export default {
     }
 
     .button-container {
+        display: flex;
         position: absolute;
         top: 10px;
         right: 10px;

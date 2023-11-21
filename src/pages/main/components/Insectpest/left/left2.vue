@@ -1,24 +1,31 @@
 <template>
-    <div class="bot">
+    <div class="bot" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             电网数据
         </div>
         <!-- 渲染位置 -->
         <div id="main2" style="height: calc(100% - 4vh);width: 100%;"></div>
+        <PopupComponent v-if="isMouseOverBot" ref="popup1" @close-popup="hidePopup" :alldata="leftData" />
     </div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
+import PopupComponent from '../PopupComponent.vue'
 export default {
+    components: {
+        PopupComponent,
+    },
     data() {
         return {
+            isMouseOverBot: false,
+            colorLine: ['#bfc', '#FFC22E', '#5EC2F2', '#FF4528', '#fff'],
             tabindex: 0,
             leftData: [
                 {
                     name: '断面数据',
                     data: [
-                        2410.27, 3800, 3800, 3800, 3800, 3800, 3175.235, 2621.535, 2120.017557, 1824.496346, 1864.61, 1264.41, 958.15, 1265.31, 1534.9, 1938.86, 2035.8, 2015.72, 1714.98, 1858.54, 1437.81, 1576.877361, 1829.56, 2649.85, 3198.38, 3112.755, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3617.587105, 3548.414121, 2432.665066, 2221.536633, 2546.727124, 1730.239546, 875.5616174, 768.6928239, 446.3551938, 20.865, 154.0326695, 250.6634437, 518.4214486, 621.2954051, 930.96, 1211.77, 1106.12, 1159.42, 1312.2, 1751.77, 1722.67, 1861.86, 2047.29, 1965.1, 2048.87, 736.555, 1160.57, 984.93, 1191.94, 1197.19, 1841.41, 2827.83, 2295.810629, 3714.36, 2454.165, 1802.357343, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800
+                        // 2410.27, 3800, 3800, 3800, 3800, 3800, 3175.235, 2621.535, 2120.017557, 1824.496346, 1864.61, 1264.41, 958.15, 1265.31, 1534.9, 1938.86, 2035.8, 2015.72, 1714.98, 1858.54, 1437.81, 1576.877361, 1829.56, 2649.85, 3198.38, 3112.755, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3617.587105, 3548.414121, 2432.665066, 2221.536633, 2546.727124, 1730.239546, 875.5616174, 768.6928239, 446.3551938, 20.865, 154.0326695, 250.6634437, 518.4214486, 621.2954051, 930.96, 1211.77, 1106.12, 1159.42, 1312.2, 1751.77, 1722.67, 1861.86, 2047.29, 1965.1, 2048.87, 736.555, 1160.57, 984.93, 1191.94, 1197.19, 1841.41, 2827.83, 2295.810629, 3714.36, 2454.165, 1802.357343, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800, 3800
                     ],
                 }
             ],
@@ -95,12 +102,15 @@ export default {
                         },
                     },
                 ],
-                series: data.map(item => ({
+                series: data.map((item, index) => ({
                     name: item.name,
                     type: 'line',
                     data: item.data,
                     emphasis: {
                         focus: 'series'
+                    },
+                    itemStyle: {
+                        color: this.colorLine[index], // 设置单独的颜色
                     },
                     animationDelay: function (idx) {
                         return idx * 10;
@@ -111,39 +121,81 @@ export default {
                     return idx * 5;
                 }
             };
-        }
+        },
+        //鼠标移入移出
+        showPopup() {
+            this.isMouseOverBot = true;
+            //传输数据
+            // this.$bus.$emit('tableData', this.alldata)
+        },
+        hidePopup() {
+            this.isMouseOverBot = false; // 隐藏弹窗
+        },
+        onBotMouseLeave(event) {
+            // 获取鼠标位置
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+            // 获取 PopupComponent 的 DOM 元素
+            const popupElement = this.$refs.popup1.$refs.popup;
+            const leftElement = this.$el;
+            // 获取 PopupComponent 的位置和尺寸
+            const popupRect = popupElement.getBoundingClientRect();
+            const leftRect = leftElement.getBoundingClientRect();
+
+            // 判断鼠标是否在 PopupComponent 区域内
+            if (
+                // mouseX < popupRect.left ||
+                mouseX > popupRect.right ||
+                mouseY < popupRect.top ||
+                mouseY > popupRect.bottom ||
+                mouseX < leftRect.left ||
+                // mouseX > leftRect.right ||
+                mouseY < leftRect.top ||
+                mouseY > leftRect.bottom
+            ) {
+                console.log('离开');
+                this.hidePopup();
+            }
+        },
     },
 
     mounted() {
         this.initChart()
         // GIS数据
-        this.$bus.$on('allData', (data) => {
-            this.leftData[0].data = data[2][1];
-            this.initChart();
-        });
-        const that = this
-        this.$bus.$on('allData1', (data) => {
-            if (that.tabindex === 0) {
-                this.leftData[0].data = data[1][5];
-                this.initChart();
-            }
-            if (that.tabindex === 1) {
-                this.leftData[0].data = data[2][5];
-                this.initChart();
-            }
-        })
+        // this.$bus.$on('allData', (data) => {
+        //     this.leftData[0].data = data[2][1];
+        //     this.initChart();
+        // });
+        // const that = this
+        // this.$bus.$on('allData1', (data) => {
+        //     if (that.tabindex === 0) {
+        //         this.leftData[0].data = data[1][5];
+        //         this.initChart();
+        //     }
+        //     if (that.tabindex === 1) {
+        //         this.leftData[0].data = data[2][5];
+        //         this.initChart();
+        //     }
+        // })
+        // // index数据
+        // this.$bus.$on('indexData', (params) => {
+        //     const data = params.param1;
+        //     this.tabindex = params.param2;
+        //     this.leftData[0].data = data[5];
+        //     this.updateChart(this.leftData)
+        // });
 
-        // index数据
-        this.$bus.$on('indexData', (params) => {
-            const data = params.param1;
-            this.tabindex = params.param2;
-            this.leftData[0].data = data[5];
+        this.$bus.$on("trueData1", (data) => {
+            // console.log("你好", data);
+            data.forEach((item) => {
+                this.leftData[0].data.push(item.fracture_data)
+            })
             this.updateChart(this.leftData)
         })
+
     },
     beforeDestroy() {
-        this.$bus.$off('allData');
-        this.$bus.$off('indexData')
+        this.$bus.$off('trueData1');
     }
 
 }
