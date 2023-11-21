@@ -13,37 +13,35 @@
       <div style="width:60vw">
         <div style="margin-bottom: 10px;display: flex;align-items: center;">
           <el-select size="small" clearable v-model="time" placeholder="添加时间点" @change="addtime">
-            <el-option
-              v-for="item in timeoptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.label">
+            <el-option v-for="item in timeoptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
-          <div
-            :class="item.sel ? 'tablag' : ''"
-            class="tabsel"
-            v-for="item in tagitems"
-            :key="item.label"
+          <div :class="item.sel ? 'tablag' : ''" class="tabsel" v-for="item in tagitems" :key="item.label"
             @click="changeType(item)">
             {{ item.label }}
           </div>
         </div>
         <tables v-if="type == 1" style="height: 20vw;" :tableData="tableData" :tagtype="tagtype"></tables>
+        <tables2 v-if="type == 2" style="height: 20vw;" :tableData="tableData2" :tagtype="tagtype"></tables2>
       </div>
       <charts :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss"></charts>
-      
+      <div class="chartsZB2">
+        <charts2 v-if="type == 2" :key="chatkey1" ref="charts2" :id="`chartsZB2`" :option="optionsss2"></charts2>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import charts from './chart.vue'
+import charts2 from './chart2.vue'
 import tables from './tables.vue'
+import tables2 from './tables2.vue';
 export default {
   data() {
     return {
       chatkey: 0,
+      chatkey1: 1,
       tabList: [{
         title: '供电能力',
         show: true,
@@ -80,18 +78,18 @@ export default {
           text: '供电能力指标',
           left: 'center',
           textStyle: {
-              fontSize: 18,  // 根据需要设置标题的字体大小
-              fontWeight: 'bold',  // 根据需要设置标题的字体粗细
-              color: '#fff'
+            fontSize: 18,  // 根据需要设置标题的字体大小
+            fontWeight: 'bold',  // 根据需要设置标题的字体粗细
+            color: '#fff'
           },
         },
         legend: {
-            bottom: '0',
-            textStyle: {
-                fontWeight: 'bold',
-                color: '#fff'
-            },
-            data: ['6:30', '7:30']
+          bottom: '0',
+          textStyle: {
+            fontWeight: 'bold',
+            color: '#fff'
+          },
+          data: ['6:30', '7:30']
         },
         radar: {
           indicator: [
@@ -101,19 +99,19 @@ export default {
             { name: '江西', max: 38000 },
             { name: '全网', max: 52000 }
           ],
-            axisName: {
-              formatter: '{value}',
-              color: '#fff',
-              fontWeight: 'bold',
-            },
-            splitNumber: 3,
-            splitArea: {
-              areaStyle: {
-                color: ['rgba(0,0,0,0)'],
-                shadowColor: 'rgba(0, 0, 0, 0.2)',
-                shadowBlur: 10
-              }
-            },
+          axisName: {
+            formatter: '{value}',
+            color: '#fff',
+            fontWeight: 'bold',
+          },
+          splitNumber: 3,
+          splitArea: {
+            areaStyle: {
+              color: ['rgba(0,0,0,0)'],
+              shadowColor: 'rgba(0, 0, 0, 0.2)',
+              shadowBlur: 10
+            }
+          },
         },
         series: [
           {
@@ -132,6 +130,66 @@ export default {
           }
         ]
       },
+      optionsss2: {
+        color: ['blue', 'yellow', '#67F9D8', '#FFE434', '#56A3F1',],
+        tooltip: {
+          trigger: 'item'
+        },
+        title: {
+          text: '清洁能源消纳指标',
+          left: 'center',
+          textStyle: {
+            fontSize: 18,  // 根据需要设置标题的字体大小
+            fontWeight: 'bold',  // 根据需要设置标题的字体粗细
+            color: '#fff'
+          },
+        },
+        legend: {
+          bottom: '0',
+          textStyle: {
+            fontWeight: 'bold',
+            color: '#fff'
+          },
+          data: ['6:30', '7:30']
+        },
+        radar: {
+          indicator: [
+            { name: '河南', max: 6500 },
+            { name: '湖北', max: 16000 },
+            { name: '湖南', max: 30000 },
+            { name: '江西', max: 38000 },
+          ],
+          axisName: {
+            formatter: '{value}',
+            color: '#fff',
+            fontWeight: 'bold',
+          },
+          splitNumber: 3,
+          splitArea: {
+            areaStyle: {
+              color: ['rgba(0,0,0,0)'],
+              shadowColor: 'rgba(0, 0, 0, 0.2)',
+              shadowBlur: 10
+            }
+          },
+        },
+        series: [
+          {
+            name: '',
+            type: 'radar',
+            data: [
+              {
+                value: [4200, 3000, 20000, 35000],
+                name: '6:30'
+              },
+              {
+                value: [5000, 14000, 28000, 26000],
+                name: '7:30'
+              }
+            ]
+          }
+        ]
+      },
       tableData: [
         {
           date: '6.30',
@@ -142,7 +200,7 @@ export default {
           zip: 111,
           jxzip: '222',
           jxaddress: 122,
-          
+
         },
         {
           date: '7.30',
@@ -153,7 +211,46 @@ export default {
           zip: 111,
           jxzip: '222',
           jxaddress: 122,
-          
+
+        }
+      ],
+      tableData2: [
+        {
+          name: '河南',
+          // 电力
+          powered: '685',
+          powering: '320',
+          // 电量
+          electriced: '1907',
+          electricing: '1249',
+        },
+        {
+          name: '湖北',
+          powered: '21189',
+          powering: '2107',
+          electriced: '84186',
+          electricing: '7851',
+        },
+        {
+          name: '湖南',
+          powered: '3074',
+          powering: '4886',
+          electriced: '11331',
+          electricing: '19099',
+        },
+        {
+          name: '江西',
+          powered: '1083',
+          powering: '584',
+          electriced: '4327',
+          electricing: '2488',
+        },
+        {
+          name: '全国',
+          powered: '26031',
+          powering: '7897',
+          electriced: '101751',
+          electricing: '30687',
         }
       ],
       timeoptions: [{
@@ -177,50 +274,68 @@ export default {
   },
   components: {
     charts,
-    tables
+    charts2,
+    tables,
+    tables2
   },
   methods: {
     changeType(item) {
       this.tagitems.map(val => {
         val.sel = false
       })
+      if (item.label === '水电消纳' || item.label === '新能源消纳') {
+        // console.log("我进来没有");
+        this.optionsss.title.text = item.label + '电力指标'
+        this.optionsss2.title.text = item.label + '电量指标'
+        this.$refs.charts.setchart()
+        this.$refs.charts2.setchart()
+      }
+      // console.log("item是什么", item);
       this.tagtype = item.tagtype
       item.sel = !item.sel
     },
     chaneTab(index, title) {
+      console.log(title);
       this.tabList.map(val => {
         val.show = false
       })
       this.tagtype = 1 // 初始化标签
       // this.tableData = [] // 视情况决定是否清空表格数据
       if (index == 0) {
-        this.tagitems= [
+        this.optionsss.title.text = title + '指标'
+        this.tagitems = [
           { label: '电力保供系数', tagtype: 1, sel: true },
           { label: '电量保供系数', tagtype: 2, sel: false },
         ]
       }
       if (index == 1) {
-        this.tagitems= [
+        this.optionsss.title.text = '水电消纳电力指标'
+        this.optionsss2.title.text = '水电消纳电量指标'
+        this.optionsss.color = this.optionsss2.color
+        this.optionsss.radar.indicator = this.optionsss2.radar.indicator
+        this.tagitems = [
           { label: '水电消纳', tagtype: 1, sel: true },
           { label: '新能源消纳', tagtype: 2, sel: false },
         ]
       }
       if (index == 2) {
-        this.tagitems= [
+        this.optionsss.title.text = title + '指标'
+        this.tagitems = [
           { label: '省网', tagtype: 1, sel: true },
           { label: '区域电网', tagtype: 2, sel: false },
         ]
       }
       if (index == 3) {
-        this.tagitems= [
+        this.optionsss.title.text = title + '指标'
+        this.tagitems = [
           { label: '保供场景', tagtype: 1, sel: true },
           { label: '应急场景', tagtype: 2, sel: false },
         ]
       }
       this.type = this.tabList[index].type
-      this.optionsss.title.text = title + '指标'
       this.tabList[index].show = true
       this.$refs.charts.setchart()
+      this.$refs.charts2.setchart()
     },
     addtime() {
       this.$confirm(`确定添加${this.time}时间段吗？`, '提示', {
@@ -240,7 +355,7 @@ export default {
           zip: 111,
           jxzip: '222',
           jxaddress: 122,
-          
+
         })
         this.optionsss.legend.data = ['6:30', '7:30', '10:30']
         this.optionsss.series[0].data = [
@@ -258,7 +373,7 @@ export default {
           }
         ]
         this.$refs.charts.setchart()
-        this.chatkey ++
+        this.chatkey++
       }).catch(() => {
         // this.$message({
         //   type: 'info',
@@ -278,13 +393,15 @@ export default {
   background-image: url('../../assets/img/map/bg.jpg');
   background-size: 100% auto;
   background-position-y: 100%;
-  .title{
+
+  .title {
     font-size: 2vw;
     color: #fff;
     padding: 20px;
     text-align: center;
   }
-  .contain{
+
+  .contain {
     color: #fff;
     width: 30vw;
     margin-left: 3vw;
@@ -293,6 +410,7 @@ export default {
     padding-bottom: 14px;
     margin-top: 20px;
   }
+
   .tabs {
     width: 100%;
     position: relative;
@@ -311,7 +429,8 @@ export default {
       right: -34%;
     }
   }
-  .chartsZB{
+
+  .chartsZB {
     display: flex;
     margin-top: 20px;
     padding: 0 50px;
@@ -319,19 +438,23 @@ export default {
     width: 100%;
     justify-content: space-around;
   }
+
   /deep/.el-input__inner {
     background: rgba(0, 25, 47, 0.7);
     color: #fff;
   }
-  .tabsel{
+
+  .tabsel {
     color: #fff;
     margin-left: 20px;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
       color: #5b61b1;
     }
   }
-  .tablag{
+
+  .tablag {
     color: #5b61b1;
   }
 }
