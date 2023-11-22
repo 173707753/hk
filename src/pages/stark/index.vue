@@ -43,7 +43,6 @@
         <tables v-if="type == 1" style="height: 20vw" :tableData="tableData" :tagtype="tagtype"></tables>
         <tables2 v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype"></tables2>
         <tables4 v-if="type == 4" style="height: 20vw" :tableData="tableData4" :tagtype="tagtype"></tables4>
-        <charts v-if="type === '3'" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
         <div v-if="type === '3'" style="height: 20vw;">
           <charts style="margin: 0 auto;" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
         </div>
