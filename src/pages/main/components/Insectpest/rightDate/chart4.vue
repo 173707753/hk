@@ -184,12 +184,12 @@ export default {
     //     this.updateChart(this.leftData)
     //   }
     // });
-    this.$bus.$on('trueDataRight', (alldata) => {
-      alldata.forEach((item) => {
-        this.leftData[0].data.push(item.load_power)
-      })
-      this.initChart()
-    })
+    this.$bus.$on('rightData', (alldata) => {
+            alldata.forEach((item) => {
+                this.leftData[0].data.push(item.load_power)
+            })
+            this.initChart()
+        })
   },
 }
 </script>

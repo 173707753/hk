@@ -27,7 +27,7 @@ export default {
             isMouseOverBot: false,
             tabindex: 0,
             titleName: '河南洛北济源',
-            colorLine: ['#bfc', '#FFC22E', '#5EC2F2', '#FF4528', '#fff'],
+            colorLine: ['#bfc','#FFC22E', '#5EC2F2', '#FF4528','#fff'],
             chartDate: [
                 {
                     name: '火电发电',
@@ -106,7 +106,7 @@ export default {
         this.$bus.$on('left2', () => {
             this.changeNewenergy(2)
         });
-        this.$bus.$on('total1', () => {
+        this.$bus.$on('total1',()=>{
             this.totalEnergy(2)
         })
         this.updateChart(this.totalData)
@@ -131,7 +131,7 @@ export default {
         },
         totalEnergy(flag) {
             this.updateChart(this.totalData)
-            if (flag === 2) return
+            if(flag === 2)  return
             this.$bus.$emit('total2')
         },
         updateChart(data) {
@@ -332,7 +332,7 @@ export default {
         //     }
         // })
 
-        this.$bus.$on('trueDataRight', (alldata) => {
+        this.$bus.$on('rightData', (alldata) => {
             // console.log('具体区域数据1lm', alldata);
             alldata.forEach((item) => {
                 // 火电
