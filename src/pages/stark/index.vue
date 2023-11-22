@@ -9,28 +9,28 @@
         <img class="tabimg" width="170%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="" />
       </div>
     </div>
-    <div class="chartsZB" >
+    <div class="chartsZB"  >
       <div style="width: 60vw">
         <div style="
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-          ">
+          " :class="type === '3' ? 'threestyle':''">
           <el-select size="small" clearable v-model="time" placeholder="添加时间点" @change="addtime">
-            <el-option v-for="item in timeoptions" :key="item.value" :label="item.label" :value="item.label">
+            <el-option  v-for="item in timeoptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
 
-          <el-select style="margin-right: 5px" v-if="type === '3'" size="small" clearable v-model="power"
+          <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="power"
             placeholder="直流电路选择">
             <el-option v-for="item in poweroptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
-          <el-select v-if="type === '3'" size="small" clearable v-model="road" placeholder="转送通道选择">
+          <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="road" placeholder="转送通道选择">
             <el-option v-for="item in roadoptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
-          <el-select v-if="type === '3'" size="small" clearable v-model="bad" placeholder="故障路线选择">
+          <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="bad" placeholder="故障路线选择">
             <el-option v-for="item in badoptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
@@ -42,7 +42,7 @@
         </div>
         <tables v-if="type == 1" style="height: 20vw" :tableData="tableData" :tagtype="tagtype"></tables>
         <tables2 v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype"></tables2>
-        <charts v-if="type === '3'" style="height: 20vw"  :key="chatkey2" ref="charts" :id="`chartsZB22`"
+        <charts v-if="type === '3'" :key="chatkey2" ref="charts" :id="`chartsZB22`"
         :option="optionsss3"></charts>
       </div>
       <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" 
@@ -717,10 +717,8 @@ export default {
   }
 
   .threestyle {
-    display: block;
-    margin: 0 auto;
-    justify-content: space-around;
-    /* margin-right: 48%; */
+   margin-top: 4%;
+   margin-left: -6%;
   }
 
   ::v-deep .el-input__inner {
