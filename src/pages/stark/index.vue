@@ -57,7 +57,7 @@
 >>>>>>> 4b99615a4ad9e296bd4f70e4e8008b0ba2c22c55
       </div>
       <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss"></charts>
-      <charts v-if="type === '4'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss"></charts>
+      <charts4 v-if="type === '4'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss5"></charts4>
       <div class="chartsZB2">
         <charts3 v-if="type === '2'" :key="chatkey1" ref="charts3" :id="`chartsZB2`" :option="optionsss4"></charts3>
       </div>
@@ -75,6 +75,7 @@
 import charts from "./chart.vue";
 import charts2 from "./chart2.vue";
 import charts3 from "./chart3.vue";
+import charts4 from "./chart4.vue";
 import tables from "./tables.vue";
 import tables2 from "./tables2.vue";
 import tables4 from "./tables4.vue";
@@ -390,6 +391,96 @@ export default {
           },
         ],
       },
+      optionsss5: {
+        title: {
+          text: "省网支援自身及省网支援全网",
+          left: "center",
+          textStyle: {
+            fontSize: 18, // 根据需要设置标题的字体大小
+            fontWeight: "bold", // 根据需要设置标题的字体粗细
+            color: "#fff",
+          },
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        legend: {
+          bottom: "0",
+          textStyle: {
+            fontWeight: "bold",
+            color: "#fff",
+          },
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['河南', '湖北', '湖南', '江西'],
+            axisTick: {
+              alignWithLabel: true
+            },
+            axisLabel: {
+              textStyle: {
+                color: '#fff',  // 修改字体颜色
+                fontSize: 14,   // 修改字体大小
+                fontWeight: 'bold'  // 字体加粗
+              }
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            axisLabel: {
+              textStyle: {
+                color: '#fff',  // 修改字体颜色
+                fontSize: 14,    // 修改字体大小
+                fontWeight: 'bold'  // 字体加粗
+              }
+            }
+          }
+        ],
+        series: [
+          {
+            name: '省网支援自身',
+            type: 'bar',
+            color: '#981',
+            barWidth: 20,  // 减少柱状图宽度
+            label: {
+              show: true,
+              position: 'top',
+              textStyle: {
+                color: '#fff',  // 修改字体颜色
+                fontWeight: 'bold'
+              }
+            },
+            data: [0.708, 0.999, 1, 1]
+          },
+          {
+            name: '省网支援全网',
+            type: 'bar',
+            color: '#799',
+            barWidth: 20,  // 减少柱状图宽度
+            label: {
+              show: true,
+              position: 'top',
+              textStyle: {
+                color: '#fff',  // 修改字体颜色
+                fontWeight: 'bold'
+              }
+            },
+            data: [0.6551, 1, 0.774, 0.998]
+          }
+        ]
+      },
       tableData: [
         {
           date: "6:30",
@@ -662,6 +753,7 @@ export default {
     charts,
     charts2,
     charts3,
+    charts4,
     tables,
     tables2,
     tables4,
