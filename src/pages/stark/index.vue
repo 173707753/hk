@@ -46,7 +46,10 @@
       <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" :class="type === '3' ? 'threestyle' : ''"
         :option="optionsss"></charts>
       <div class="chartsZB2">
-        <charts2 v-if="type == 2" :key="chatkey1" ref="charts2" :id="`chartsZB2`" :option="optionsss2"></charts2>
+        <charts2 v-if="type === '2'" :key="chatkey1" ref="charts2" :id="`chartsZB2`" :option="optionsss4"></charts2>
+      </div>
+      <div class="chartsZB3">
+        <charts2 v-if="type === '2'" :key="chatkey1" ref="charts2" :id="`chartsZB3`" :option="optionsss2"></charts2>
       </div>
       <charts v-if="type === '3'" :key="chatkey2" ref="charts" :id="`chartsZB22`"
         :class="type === '3' ? 'threestyle' : ''" :option="optionsss3"></charts>
@@ -164,7 +167,7 @@ export default {
           trigger: "item",
         },
         title: {
-          text: "清洁能源消纳指标",
+          text: "",
           left: "center",
           textStyle: {
             fontSize: 18, // 根据需要设置标题的字体大小
@@ -278,6 +281,7 @@ export default {
           },
         ],
       },
+      optionsss4: {},
       tableData: [
         {
           date: "6.30",
@@ -413,15 +417,12 @@ export default {
   },
   methods: {
     changeType(item) {
-      console.log(item, "tem");
       this.tagitems.map((val) => {
         val.sel = false;
       });
       if (item.label === "水电消纳" || item.label === "新能源消纳") {
-        // console.log("我进来没有");
-        this.optionsss.title.text = item.label + "电力指标";
+        this.optionsss4.title.text = item.label + "电力指标";
         this.optionsss2.title.text = item.label + "电量指标";
-        this.$refs.charts.setchart();
         this.$refs.charts2.setchart();
       }
       if (item.label === "省网" || item.label === "区域电网") {
@@ -461,7 +462,7 @@ export default {
         }
         this.$refs.charts.setchart();
       }
-      // console.log("item是什么", item);
+      console.log("item是什么", item);
       this.tagtype = item.tagtype;
       item.sel = !item.sel;
     },
@@ -480,10 +481,9 @@ export default {
         ];
       }
       if (index == 1) {
-        this.optionsss.title.text = "水电消纳电力指标";
+        this.optionsss4 = this.optionsss2
+        this.optionsss4.title.text = "水电消纳电力指标";
         this.optionsss2.title.text = "水电消纳电量指标";
-        this.optionsss.color = this.optionsss2.color;
-        // this.optionsss.radar.indicator = this.optionsss2.radar.indicator;
         this.tagitems = [
           { label: "水电消纳", tagtype: 1, sel: true },
           { label: "新能源消纳", tagtype: 2, sel: false },
