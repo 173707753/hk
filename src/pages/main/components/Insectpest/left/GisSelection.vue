@@ -554,6 +554,21 @@ export default {
                 this.$message.error('服务器错误')
             });
 
+            // 初始化右边的数据
+            util.post('/api/get_result_data', this.postData)
+            .then(response => {
+                // 处理POST请求的响应
+                if (response && response.code === 200) {
+                    // 请求成功的处理逻辑
+                    this.computerRightData(response);
+                } else {
+                    this.$message.error('服务器错误')
+                }
+            })
+            .catch(error => {
+                this.$message.error('服务器错误')
+            });
+
         // 默认选中河南省洛北济源
         this.selectedProvince = "河南省";
         this.selectedArea = "洛北济源";
@@ -575,6 +590,11 @@ export default {
         // 接收各区域具体数据
         computerAreaData(data) {
             this.$bus.$emit('trueData', data)
+            console.log('具体区域数据', data);
+        },
+         // 接收右侧具体数据
+         computerRightData(data) {
+            this.$bus.$emit('rightData', data)
             console.log('具体区域数据', data);
         },
         onProvinceChange() {

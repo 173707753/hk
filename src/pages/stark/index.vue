@@ -9,28 +9,28 @@
         <img class="tabimg" width="170%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="" />
       </div>
     </div>
-    <div class="chartsZB" :style="type === '3' ? 'display: block;' : ''">
+    <div class="chartsZB" >
       <div style="width: 60vw">
         <div style="
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-          " :style="type === '3' ? 'justify-content: space-around;' : ''">
+          ">
           <el-select size="small" clearable v-model="time" placeholder="添加时间点" @change="addtime">
             <el-option v-for="item in timeoptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
 
           <el-select style="margin-right: 5px" v-if="type === '3'" size="small" clearable v-model="power"
-            placeholder="直流电路选择" @change="addpower">
+            placeholder="直流电路选择">
             <el-option v-for="item in poweroptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
-          <el-select v-if="type === '3'" size="small" clearable v-model="road" placeholder="转送通道选择" @change="addroad">
+          <el-select v-if="type === '3'" size="small" clearable v-model="road" placeholder="转送通道选择">
             <el-option v-for="item in roadoptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
-          <el-select v-if="type === '3'" size="small" clearable v-model="bad" placeholder="故障路线选择" @change="addbad">
+          <el-select v-if="type === '3'" size="small" clearable v-model="bad" placeholder="故障路线选择">
             <el-option v-for="item in badoptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
@@ -42,14 +42,14 @@
         </div>
         <tables v-if="type == 1" style="height: 20vw" :tableData="tableData" :tagtype="tagtype"></tables>
         <tables2 v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype"></tables2>
+        <charts v-if="type === '3'" style="height: 20vw"  :key="chatkey2" ref="charts" :id="`chartsZB22`"
+        :option="optionsss3"></charts>
       </div>
-      <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" :class="type === '3' ? 'threestyle' : ''"
+      <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" 
         :option="optionsss"></charts>
       <div class="chartsZB2">
         <charts2 v-if="type == 2" :key="chatkey1" ref="charts2" :id="`chartsZB2`" :option="optionsss2"></charts2>
       </div>
-      <charts v-if="type === '3'" :key="chatkey2" ref="charts" :id="`chartsZB22`"
-        :class="type === '3' ? 'threestyle' : ''" :option="optionsss3"></charts>
     </div>
   </div>
 </template>
@@ -364,16 +364,16 @@ export default {
       poweroptions: [
         {
           value: "1",
-          label: "区域电网跨区直流消纳能力",
+          label: "天中直流",
         },
-        {
-          value: "2",
-          label: "跨区转送能力",
-        },
-        {
-          value: "3",
-          label: "区域电网功率应急消纳能力",
-        },
+        // {
+        //   value: "2",
+        //   label: "跨区转送能力",
+        // },
+        // {
+        //   value: "3",
+        //   label: "区域电网功率应急消纳能力",
+        // },
       ],
       roadoptions: [
         {
@@ -392,12 +392,12 @@ export default {
       badoptions: [
         {
           value: "1",
-          label: "是",
+          label: "故障1",
         },
-        {
-          value: "2",
-          label: "否",
-        },
+        // {
+        //   value: "2",
+        //   label: "否",
+        // },
       ],
       time: "",
       power: "",
