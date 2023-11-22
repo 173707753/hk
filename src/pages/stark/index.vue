@@ -44,6 +44,9 @@
         <tables2 v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype"></tables2>
         <tables4 v-if="type == 4" style="height: 20vw" :tableData="tableData4" :tagtype="tagtype"></tables4>
         <charts v-if="type === '3'" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
+        <div v-if="type === '3'" style="height: 20vw;">
+          <charts style="margin: 0 auto;" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
+        </div>
       </div>
       <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss"></charts>
       <charts v-if="type === '4'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss"></charts>
@@ -52,6 +55,9 @@
       </div>
       <div class="chartsZB3">
         <charts2 v-if="type === '2'" :key="chatkey1" ref="charts2" :id="`chartsZB3`" :option="optionsss2"></charts2>
+      </div>
+      <div v-if="type === '3'" class="chartsZB4">
+        <!-- <charts2 v-if="type === '2'" :key="chatkey1" ref="charts2" :id="`chartsZB3`" :option="optionsss2"></charts2> -->
       </div>
     </div>
   </div>
@@ -873,6 +879,11 @@ export default {
     align-items: center;
     width: 100%;
     justify-content: space-around;
+  }
+
+  .chartsZB4 {
+    width: 30vw;
+    height: 30vw;
   }
 
   .threestyle {
