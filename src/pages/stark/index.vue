@@ -46,7 +46,7 @@
       <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" :class="type === '3' ? 'threestyle' : ''"
         :option="optionsss"></charts>
       <div class="chartsZB2">
-        <charts2 v-if="type === '2'" :key="chatkey1" ref="charts2" :id="`chartsZB2`" :option="optionsss4"></charts2>
+        <charts3 v-if="type === '2'" :key="chatkey1" ref="charts3" :id="`chartsZB2`" :option="optionsss4"></charts3>
       </div>
       <div class="chartsZB3">
         <charts2 v-if="type === '2'" :key="chatkey1" ref="charts2" :id="`chartsZB3`" :option="optionsss2"></charts2>
@@ -60,6 +60,7 @@
 <script>
 import charts from "./chart.vue";
 import charts2 from "./chart2.vue";
+import charts3 from "./chart3.vue";
 import tables from "./tables.vue";
 import tables2 from "./tables2.vue";
 export default {
@@ -221,6 +222,39 @@ export default {
           },
         ],
       },
+      optionsss24Indicator: [
+        { name: "河南", max: 6500 },
+        { name: "湖北", max: 16000 },
+        { name: "湖南", max: 30000 },
+        { name: "江西", max: 38000 },
+      ],
+      optionsss24data: [
+        {
+          value: [4200, 3000, 20000, 35000],
+          name: "6:30",
+        },
+        {
+          value: [5000, 14000, 28000, 26000],
+          name: "7:30",
+        },
+      ],
+      optionsss25Indicator: [
+        { name: "河南", max: 6500 },
+        { name: "湖北", max: 16000 },
+        { name: "湖南", max: 30000 },
+        { name: "江西", max: 38000 },
+        { name: "全网", max: 52000 },
+      ],
+      optionsss25data: [
+        {
+          value: [4200, 3000, 20000, 35000, 50000],
+          name: "6:30",
+        },
+        {
+          value: [5000, 14000, 28000, 26000, 42000],
+          name: "7:30",
+        },
+      ],
       optionsss3: {
         color: ["blue", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
@@ -281,7 +315,66 @@ export default {
           },
         ],
       },
-      optionsss4: {},
+      optionsss4: {
+        color: ["blue", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        tooltip: {
+          trigger: "item",
+        },
+        title: {
+          text: "",
+          left: "center",
+          textStyle: {
+            fontSize: 18, // 根据需要设置标题的字体大小
+            fontWeight: "bold", // 根据需要设置标题的字体粗细
+            color: "#fff",
+          },
+        },
+        legend: {
+          bottom: "0",
+          textStyle: {
+            fontWeight: "bold",
+            color: "#fff",
+          },
+          data: ["6:30", "7:30"],
+        },
+        radar: {
+          indicator: [
+            { name: "河南", max: 6500 },
+            { name: "湖北", max: 16000 },
+            { name: "湖南", max: 30000 },
+            { name: "江西", max: 38000 },
+          ],
+          axisName: {
+            formatter: "{value}",
+            color: "#fff",
+            fontWeight: "bold",
+          },
+          splitNumber: 3,
+          splitArea: {
+            areaStyle: {
+              color: ["rgba(0,0,0,0)"],
+              shadowColor: "rgba(0, 0, 0, 0.2)",
+              shadowBlur: 10,
+            },
+          },
+        },
+        series: [
+          {
+            name: "",
+            type: "radar",
+            data: [
+              {
+                value: [4200, 3000, 20000, 35000],
+                name: "6:30",
+              },
+              {
+                value: [5000, 14000, 28000, 26000],
+                name: "7:30",
+              },
+            ],
+          },
+        ],
+      },
       tableData: [
         {
           date: "6.30",
@@ -412,6 +505,7 @@ export default {
   components: {
     charts,
     charts2,
+    charts3,
     tables,
     tables2,
   },
@@ -421,9 +515,21 @@ export default {
         val.sel = false;
       });
       if (item.label === "水电消纳" || item.label === "新能源消纳") {
-        this.optionsss4.title.text = item.label + "电力指标";
+        if (item.label === "水电消纳") {
+          this.optionsss2.radar.indicator = this.optionsss24Indicator
+          this.optionsss4.radar.indicator = this.optionsss24Indicator
+          this.optionsss2.series[0].data = this.optionsss24data
+          this.optionsss4.series[0].data = this.optionsss24data
+        } else {
+          this.optionsss2.radar.indicator = this.optionsss25Indicator
+          this.optionsss4.radar.indicator = this.optionsss25Indicator
+          this.optionsss2.series[0].data = this.optionsss25data
+          this.optionsss4.series[0].data = this.optionsss25data
+        }
         this.optionsss2.title.text = item.label + "电量指标";
+        this.optionsss4.title.text = item.label + "电力指标";
         this.$refs.charts2.setchart();
+        this.$refs.charts3.setchart();
       }
       if (item.label === "省网" || item.label === "区域电网") {
         if (item.label === "区域电网") {
@@ -481,9 +587,8 @@ export default {
         ];
       }
       if (index == 1) {
-        this.optionsss4 = this.optionsss2
-        this.optionsss4.title.text = "水电消纳电力指标";
         this.optionsss2.title.text = "水电消纳电量指标";
+        this.optionsss4.title.text = "水电消纳电力指标";
         this.tagitems = [
           { label: "水电消纳", tagtype: 1, sel: true },
           { label: "新能源消纳", tagtype: 2, sel: false },
@@ -507,6 +612,7 @@ export default {
       this.tabList[index].show = true;
       this.$refs.charts.setchart();
       this.$refs.charts2.setchart();
+      this.$refs.charts3.setchart();
     },
     addtime() {
       this.$confirm(`确定添加${this.time}时间段吗？`, "提示", {
