@@ -22,7 +22,7 @@ export default {
     data() {
         return {
             isMouseOverBot: false,
-            colorLine:['#bfc','#FFC22E','#FF4528','#5EC2F2', '#fff'],
+            colorLine: ['#bfc', '#FFC22E', '#FF4528', '#5EC2F2', '#fff'],
             tabindex: 0,
             chartDate: [
                 {
@@ -54,8 +54,8 @@ export default {
                     ]
                 },
             ],
-            tableData:[
-            {
+            tableData: [
+                {
                     name: '储能 数据',
                     data: [
                         // 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -147,7 +147,7 @@ export default {
                         },
                     },
                 ],
-                series: data.map((item,index) => ({
+                series: data.map((item, index) => ({
                     name: item.name,
                     type: 'bar',
                     data: item.data,
@@ -167,8 +167,8 @@ export default {
                 }
             };
         },
-                //鼠标移入移出
-                showPopup() {
+        //鼠标移入移出
+        showPopup() {
             this.isMouseOverBot = true;
             //传输数据
             this.$bus.$emit('tableData', this.alldata)
@@ -262,7 +262,7 @@ export default {
         //     }
 
         // })
-        this.$bus.$on('trueData', (alldata) => {
+        this.$bus.$on('trueDataRight', (alldata) => {
             // alldata.data.forEach((item) => {
             //     this.chartDate[0].data.push(item.take_generation)
             //     this.conventionalData[0].data.push(item.take_generation)
