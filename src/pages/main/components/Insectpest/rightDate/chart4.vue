@@ -22,9 +22,7 @@ export default {
       leftData: [
         {
           name: '负荷数据',
-          data: [
-            49100, 48783, 48019, 47363, 46921, 46673, 46086, 45767, 45142, 44714, 44316, 43945, 43648, 43461, 43276, 42982, 42955, 42579, 42421, 42393, 42525, 42620, 42884, 43396, 44765, 45257, 45341, 44744, 44278, 44605, 44688, 44964, 45485, 46680, 47094, 47751, 47996, 48853, 49814, 49761, 50204, 50600, 51115, 51734, 52318, 53114, 52935, 52617, 52793, 52837, 53178, 53150, 52763, 52391, 52425, 52615, 53302, 53494, 53589, 53436, 53169, 53306, 52659, 53000, 53373, 53770, 54305, 53979, 53852, 53813, 53904, 53667, 53601, 53233, 53004, 52954, 53614, 53733, 54005, 54268, 54117, 53854, 53922, 54294, 54660, 54482, 53886, 53294, 52944, 52000, 51311
-          ],
+          data: [],
         },
       ],
     };
@@ -150,40 +148,12 @@ export default {
   },
   mounted() {
     this.initChart()
-    // 接收tab切换的数据
-    this.$bus.$on('indexData', (params) => {
-      const dataAll = params.param1;
-      const index = params.param2;
-      this.leftData[0].data = dataAll[3];
-      this.updateChart(this.leftData)
-      this.tabindex = index
-      // console.log(this.tabindex,'tab4');
-    });
-    // // 接收gis的数据
-    const that = this
-    this.$bus.$on('allData1', (selectData) => {
-      // console.log(that.tabindex,'kkk');
-      if (that.tabindex === 0) {
-        this.leftData[0].data = selectData[1][3];
-        this.updateChart(this.leftData)
-      }
-      if (that.tabindex === 1) {
-        this.leftData[0].data = selectData[2][3];
-        this.updateChart(this.leftData)
-      }
-    });
-    // 
-    this.$bus.$on('allData', (selectData) => {
-      // console.log(that.tabindex,'kkk');
-      if (that.tabindex === 0) {
-        this.leftData[0].data = selectData[0][3];
-        this.updateChart(this.leftData)
-      }
-      if (that.tabindex === 1) {
-        this.leftData[0].data = selectData[1][3];
-        this.updateChart(this.leftData)
-      }
-    });
+    this.$bus.$on('rightData', (alldata) => {
+      alldata.forEach((item) => {
+        this.leftData[0].data.push(item.load_power)
+      })
+      this.initChart()
+    })
   },
 }
 </script>

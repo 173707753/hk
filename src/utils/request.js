@@ -37,12 +37,12 @@ function doLogin() {
 const timeOut = 300000;
 const ajaxUrl =
     env === 'development' ?
-    '' //开发地址
-    :
-    env === 'production' ?
-    '/' //发布地址
-    :
-    '/'; //debug地址
+        '' //开发地址
+        :
+        env === 'production' ?
+            '/' //发布地址
+            :
+            '/'; //debug地址
 util.ajax = axios.create({
     baseURL: ajaxUrl,
     timeout: timeOut, //30000
@@ -54,7 +54,7 @@ util.ajax = axios.create({
         // "Authorization":window.token
     },
 });
-util.ajax.interceptors.request.use(function(response) {
+util.ajax.interceptors.request.use(function (response) {
     //发送重复请求时，把上一个pending给取消，避免造成重复请求，时长不一样，导致数据不正确
     //异步事件触发了两次，就需要最快2s完成，假设第一次异步3s返回，第二次异步0.5秒返回；那出现的情况就是，第一次触发的3s异步，1s内没有返回，1s后第二次触发异步，第一次的异步还没有返回，第二次的异步就就开始了，0.5秒后第二次异步返回了，但是最终结果响应的是第一次的异步
     removePending(response); //在一个axios发送前执行一下取消操作
@@ -68,7 +68,7 @@ util.ajax.interceptors.request.use(function(response) {
     return response
 
 })
-util.ajax.interceptors.response.use(function(response) {
+util.ajax.interceptors.response.use(function (response) {
     const config = response.config
     const { code } = response.data
     const prefix = localStorage.getItem("appName");
@@ -88,14 +88,14 @@ util.ajax.interceptors.response.use(function(response) {
 
                 // 重置一下配置
                 config.headers['Authorization'] = window.token
-                    // config.baseURL = '' // url已经带上了/api，避免出现/api/api的情况
+                // config.baseURL = '' // url已经带上了/api，避免出现/api/api的情况
                 setTimeout(() => {
-                        // 已经刷新了token，将所有队列中的请求进行重试
-                        requests.forEach(cb => cb(window.token))
-                            // 重试完了别忘了清空这个队列
-                        requests = []
-                    }, 2000)
-                    // 重试当前请求并返回promise
+                    // 已经刷新了token，将所有队列中的请求进行重试
+                    requests.forEach(cb => cb(window.token))
+                    // 重试完了别忘了清空这个队列
+                    requests = []
+                }, 2000)
+                // 重试当前请求并返回promise
                 return util.ajax(config)
             }).catch(res => {
                 // console.error('refreshtoken error =>', res)
@@ -145,7 +145,7 @@ function refreshToken() {
 }
 
 
-util.post = function(url, data, options) {
+util.post = function (url, data, options) {
     let param = common.deepCopy(data)
     const prefix = localStorage.getItem("appName");
 
@@ -159,15 +159,15 @@ util.post = function(url, data, options) {
     document.cookie = 'Authorization=' + auth + ";path=/;"
     document.cookie = 'displayName=' + window.displayName + ";path=/;"
     return util.ajax(Object.assign({
-            url, //请求地址，会加上配置的前缀地址
-            method: 'post', //请求类型
-            dataType: 'json',
-            data: param,
-            headers: { //请求头
-                "Authorization": window.token,
-                "Signature": hash
-            }
-        }, options || {}))
+        url, //请求地址，会加上配置的前缀地址
+        method: 'post', //请求类型
+        dataType: 'json',
+        data: param,
+        headers: { //请求头
+            "Authorization": window.token,
+            "Signature": hash
+        }
+    }, options || {}))
         .then(response => { //成功
             var data = response.data;
             if (response && response.status === "4001") {
@@ -227,7 +227,7 @@ util.post = function(url, data, options) {
         });
 };
 
-util.get = function(url) {
+util.get = function (url) {
     const prefix = localStorage.getItem("appName");
     if (url.indexOf("?") !== -1) {
         url = url + '&' + Math.random();
@@ -308,111 +308,26 @@ util.get = function(url) {
             return error;
         });
 };
-util.postjson = function(url, data) { //后台需要接json 格式的数据
-        const prefix = localStorage.getItem("appName");
+util.postjson = function (url, data) { //后台需要接json 格式的数据
+    const prefix = localStorage.getItem("appName");
 
-        return util.ajax({
-                url, //请求地址，会加上配置的前缀地址
-                method: 'post', //请求类型
-                data: JSON.stringify(data),
-                type: 'json',
-                headers: {
-                    //请求头
-                    "Authorization": window.token,
-                    "Signature": hash,
-                    'Content-Type': "application/json"
-                }
-            })
-            .then((response) => {
-                //成功
-                var data = response.data;
-                if (response && response.status === '4001') {
-                    window.location.href = response.url + '?callback=' + window.location.href;
-                } else if (data.code === 100) {
-                    return data;
-                } else if (data.code === 200) {
-                    // 请求错误
-                    return data;
-                } else if (data.code === 300) {
-                    // 页面跳转处理
-                    // ...
-                    // 无权限
-                    // return false;
-                    if (url === "/api/decoration/page/getPageInfo") {
-                        return data;
-                    } else {
-                        if (localStorage.getItem(prefix + 'authToken')) {
-                            // Modal.confirm({
-                            //     title: "提示",
-                            //     content: "无权限，请联系管理员userservice@sunther.com",
-                            //     onOk: () => {
-                            //         // window.rootapp.$EventBus.$emit('open-login');
-                            //     }
-                            // });
-                        } else {
-                            doLogin();
-                        }
-                        return false;
-                    }
-                } else if (data.code === 400) {
-                    if (prefix !== "wechat") {
-                        window.token = "";
-                        window.displayName = ""
-                        window.refreshtoken = "";
-                        localStorage.removeItem(prefix + "authToken");
-                        localStorage.removeItem(prefix + "refreshToken");
-                        localStorage.removeItem("userinfo");
-                        window.rootapp.go({ url: '/login' })
-                    }
-                    // window.location.href = configUrlObjectOut.loginInUrl
-                    return false;
-                }
-            })
-            .catch((error) => {
-                return error;
-            })
-    }
-    // 上传数据，包含图片，二进制流
-util.postFormData = function(url, data) {
-        const prefix = localStorage.getItem("appName");
-
-        var formdata = new FormData();
-        for (var key in data) {
-            var v = data[key];
-            if (key === 'file' && v.length) {
-                v.forEach((value, i) => {
-                    formdata.append('file', value);
-                })
-            } else {
-                formdata.append(key, v)
-            }
+    return util.ajax({
+        url, //请求地址，会加上配置的前缀地址
+        method: 'post', //请求类型
+        data: JSON.stringify(data),
+        type: 'json',
+        headers: {
+            //请求头
+            "Authorization": window.token,
+            "Signature": hash,
+            'Content-Type': "application/json"
         }
-        const ajax = axios.create({
-            baseURL: ajaxUrl,
-            // 上传文件超时时间为5分钟
-            timeout: 3000 * 60 * 5, //5分钟超时
-            withCredentials: true,
-            headers: {
-                //请求头
-                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-                'Access-Control-Allow-Headers': 'Authorization',
-                // "Authorization":window.token
-            },
-        });
-        return ajax({
-            url, //请求地址，会加上配置的前缀地址
-            method: 'post', //请求类型
-            data: formdata,
-            headers: {
-                //请求头
-                "Authorization": window.token,
-                'Content-Type': 'multipart/form-data',
-                "Signature": hash
-            }
-        }).then(response => {
+    })
+        .then((response) => {
+            //成功
             var data = response.data;
-            if (response && response.status === "4001") {
-                window.location.href = response.url + "?callback=" + window.location.href;
+            if (response && response.status === '4001') {
+                window.location.href = response.url + '?callback=' + window.location.href;
             } else if (data.code === 100) {
                 return data;
             } else if (data.code === 200) {
@@ -422,7 +337,7 @@ util.postFormData = function(url, data) {
                 // 页面跳转处理
                 // ...
                 // 无权限
-                //   return false;
+                // return false;
                 if (url === "/api/decoration/page/getPageInfo") {
                     return data;
                 } else {
@@ -440,7 +355,6 @@ util.postFormData = function(url, data) {
                     return false;
                 }
             } else if (data.code === 400) {
-                // console.log(window.rootapp);
                 if (prefix !== "wechat") {
                     window.token = "";
                     window.displayName = ""
@@ -454,9 +368,95 @@ util.postFormData = function(url, data) {
                 return false;
             }
         })
+        .catch((error) => {
+            return error;
+        })
+}
+// 上传数据，包含图片，二进制流
+util.postFormData = function (url, data) {
+    const prefix = localStorage.getItem("appName");
+
+    var formdata = new FormData();
+    for (var key in data) {
+        var v = data[key];
+        if (key === 'file' && v.length) {
+            v.forEach((value, i) => {
+                formdata.append('file', value);
+            })
+        } else {
+            formdata.append(key, v)
+        }
     }
-    // 零时，获取前台json文件用
-util.getjson = function(url) {
+    const ajax = axios.create({
+        baseURL: ajaxUrl,
+        // 上传文件超时时间为5分钟
+        timeout: 3000 * 60 * 5, //5分钟超时
+        withCredentials: true,
+        headers: {
+            //请求头
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Access-Control-Allow-Headers': 'Authorization',
+            // "Authorization":window.token
+        },
+    });
+    return ajax({
+        url, //请求地址，会加上配置的前缀地址
+        method: 'post', //请求类型
+        data: formdata,
+        headers: {
+            //请求头
+            "Authorization": window.token,
+            'Content-Type': 'multipart/form-data',
+            "Signature": hash
+        }
+    }).then(response => {
+        var data = response.data;
+        if (response && response.status === "4001") {
+            window.location.href = response.url + "?callback=" + window.location.href;
+        } else if (data.code === 100) {
+            return data;
+        } else if (data.code === 200) {
+            // 请求错误
+            return data;
+        } else if (data.code === 300) {
+            // 页面跳转处理
+            // ...
+            // 无权限
+            //   return false;
+            if (url === "/api/decoration/page/getPageInfo") {
+                return data;
+            } else {
+                if (localStorage.getItem(prefix + 'authToken')) {
+                    // Modal.confirm({
+                    //     title: "提示",
+                    //     content: "无权限，请联系管理员userservice@sunther.com",
+                    //     onOk: () => {
+                    //         // window.rootapp.$EventBus.$emit('open-login');
+                    //     }
+                    // });
+                } else {
+                    doLogin();
+                }
+                return false;
+            }
+        } else if (data.code === 400) {
+            // console.log(window.rootapp);
+            if (prefix !== "wechat") {
+                window.token = "";
+                window.displayName = ""
+                window.refreshtoken = "";
+                localStorage.removeItem(prefix + "authToken");
+                localStorage.removeItem(prefix + "refreshToken");
+                localStorage.removeItem("userinfo");
+                window.rootapp.go({ url: '/login' })
+            }
+            // window.location.href = configUrlObjectOut.loginInUrl
+            return false;
+        }
+    })
+}
+// 零时，获取前台json文件用
+util.getjson = function (url) {
     return util
         .ajax({
             url, //请求地址，会加上配置的前缀地址
@@ -479,83 +479,83 @@ util.getjson = function(url) {
         });
 };
 //用于接收解析二进制图
-util.getimg = function(url, data) {
-        const prefix = localStorage.getItem("appName");
+util.getimg = function (url, data) {
+    const prefix = localStorage.getItem("appName");
 
-        let param = common.deepCopy(data)
-        for (let key in param) {
-            if (param[key] instanceof Object) {
-                param[key] = JSON.stringify(param[key])
-            }
+    let param = common.deepCopy(data)
+    for (let key in param) {
+        if (param[key] instanceof Object) {
+            param[key] = JSON.stringify(param[key])
         }
-        param = qs.stringify(param, { indices: false });
-        document.cookie = 'Authorization=' + (localStorage.getItem(prefix + 'authToken') || "") + ";path=/"
-        document.cookie = 'displayName=' + window.displayName + ";path=/;"
-        return util.ajax({
-                url, //请求地址，会加上配置的前缀地址
-                method: 'get', //请求类型
-                dataType: 'json',
-                data: param,
-                responseType: 'blob', //解析二进制图片
-                headers: { //请求头
-                    "Authorization": window.token,
-                    "Signature": hash
-                }
-            })
-            .then((response) => {
-                //成功
-                var data = response.data;
-
-                if (response && response.status === '4001') {
-                    window.location.href = response.url + '?callback=' + window.location.href;
-                } else if (data.code === 100) {
-                    return data;
-                } else if (data.code === 200) {
-                    // 请求错误
-                    return false;
-                } else if (data.code === 300) {
-                    // 页面跳转处理
-                    // ...
-                    // 无权限
-                    // return false;
-                    if (url === "/api/decoration/page/getPageInfo") {
-                        return data;
-                    } else {
-                        if (localStorage.getItem(prefix + 'authToken')) {
-                            // Modal.confirm({
-                            //     title: "提示",
-                            //     content: "无权限，请联系管理员userservice@sunther.com",
-                            //     onOk: () => {
-                            //         // window.rootapp.$EventBus.$emit('open-login');
-                            //     }
-                            // });
-                        } else {
-                            doLogin();
-                        }
-                        return false;
-                    }
-                } else if (data.code === 400) {
-                    if (prefix !== "wechat") {
-                        window.token = "";
-                        window.displayName = ""
-                        window.refreshtoken = "";
-                        localStorage.removeItem(prefix + "authToken");
-                        localStorage.removeItem(prefix + "refreshToken");
-                        localStorage.removeItem("userinfo");
-                        window.rootapp.go({ url: '/login' })
-                    }
-                    // window.location.href = configUrlObjectOut.loginInUrl
-                    return false;
-                } else {
-                    return response
-                }
-            })
-            .catch((error) => {
-                return error;
-            })
     }
-    // 用于下载文件,get
-util.download = function(url) {
+    param = qs.stringify(param, { indices: false });
+    document.cookie = 'Authorization=' + (localStorage.getItem(prefix + 'authToken') || "") + ";path=/"
+    document.cookie = 'displayName=' + window.displayName + ";path=/;"
+    return util.ajax({
+        url, //请求地址，会加上配置的前缀地址
+        method: 'get', //请求类型
+        dataType: 'json',
+        data: param,
+        responseType: 'blob', //解析二进制图片
+        headers: { //请求头
+            "Authorization": window.token,
+            "Signature": hash
+        }
+    })
+        .then((response) => {
+            //成功
+            var data = response.data;
+
+            if (response && response.status === '4001') {
+                window.location.href = response.url + '?callback=' + window.location.href;
+            } else if (data.code === 100) {
+                return data;
+            } else if (data.code === 200) {
+                // 请求错误
+                return false;
+            } else if (data.code === 300) {
+                // 页面跳转处理
+                // ...
+                // 无权限
+                // return false;
+                if (url === "/api/decoration/page/getPageInfo") {
+                    return data;
+                } else {
+                    if (localStorage.getItem(prefix + 'authToken')) {
+                        // Modal.confirm({
+                        //     title: "提示",
+                        //     content: "无权限，请联系管理员userservice@sunther.com",
+                        //     onOk: () => {
+                        //         // window.rootapp.$EventBus.$emit('open-login');
+                        //     }
+                        // });
+                    } else {
+                        doLogin();
+                    }
+                    return false;
+                }
+            } else if (data.code === 400) {
+                if (prefix !== "wechat") {
+                    window.token = "";
+                    window.displayName = ""
+                    window.refreshtoken = "";
+                    localStorage.removeItem(prefix + "authToken");
+                    localStorage.removeItem(prefix + "refreshToken");
+                    localStorage.removeItem("userinfo");
+                    window.rootapp.go({ url: '/login' })
+                }
+                // window.location.href = configUrlObjectOut.loginInUrl
+                return false;
+            } else {
+                return response
+            }
+        })
+        .catch((error) => {
+            return error;
+        })
+}
+// 用于下载文件,get
+util.download = function (url) {
     let dom = document.createElement('a')
     dom.href = url
     dom.style.display = 'none'
@@ -565,68 +565,68 @@ util.download = function(url) {
     window.URL.revokeObjectURL(url);
 };
 
-util.pesdownload = function(url, type, ids) {
-        util.get('/api/user_service/user/validateToken')
-            .then((response) => {
-                if (response.code === 100) {
-                    window.location.href = url;
-                }
-            })
-    }
-    // 验证+下载
-util.validDownload = function(url, type, ids) {
-        util.get('/api/user_service/user/validateToken')
-            .then((response) => {
-                if (response.code === 100) {
-                    // localStorage.removeItem('isClickTabPesMobile')
-                    // const prefix = localStorage.getItem("appName");
-                    // if(prefix=='wechat'&&type=="下载") {
-                    //         let wechatUrl
-                    //         if(url.indexOf("?") > -1){
-                    //             wechatUrl = url+ "&access_token=" + localStorage.getItem(localStorage.getItem('appName')+'authToken');
-                    //         }else{
-                    //             wechatUrl = url+ "?access_token=" + localStorage.getItem(localStorage.getItem('appName')+'authToken');
-                    //         }
-                    //         let access_token =  localStorage.getItem(localStorage.getItem('appName')+'authToken');
-                    //         console.log(wechatUrl)
-                    //         wx.miniProgram.navigateTo({url: '/pages/downFile/downFile?wechatIds='+ids+"&access_token="+access_token}) // 跳转小程序的页面
-                    // }else{
-                    const prefix = localStorage.getItem("appName");
-                    if (prefix == 'wechat') {
-                        //处理pdf预览，没有返回按钮，手机无法返回的问题
-                        let u = navigator.userAgent;
-                        let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
-                        let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-                        let newUrl
-                        let decodeUrl = decodeURIComponent(url)
-                        let index = decodeUrl.indexOf("&fileDownNameOwnName=")
-                        let stdNoUrl
-                        if (index > -1) {
-                            stdNoUrl = decodeUrl.substring(index)
+util.pesdownload = function (url, type, ids) {
+    util.get('/api/user_service/user/validateToken')
+        .then((response) => {
+            if (response.code === 100) {
+                window.location.href = url;
+            }
+        })
+}
+// 验证+下载
+util.validDownload = function (url, type, ids) {
+    util.get('/api/user_service/user/validateToken')
+        .then((response) => {
+            if (response.code === 100) {
+                // localStorage.removeItem('isClickTabPesMobile')
+                // const prefix = localStorage.getItem("appName");
+                // if(prefix=='wechat'&&type=="下载") {
+                //         let wechatUrl
+                //         if(url.indexOf("?") > -1){
+                //             wechatUrl = url+ "&access_token=" + localStorage.getItem(localStorage.getItem('appName')+'authToken');
+                //         }else{
+                //             wechatUrl = url+ "?access_token=" + localStorage.getItem(localStorage.getItem('appName')+'authToken');
+                //         }
+                //         let access_token =  localStorage.getItem(localStorage.getItem('appName')+'authToken');
+                //         console.log(wechatUrl)
+                //         wx.miniProgram.navigateTo({url: '/pages/downFile/downFile?wechatIds='+ids+"&access_token="+access_token}) // 跳转小程序的页面
+                // }else{
+                const prefix = localStorage.getItem("appName");
+                if (prefix == 'wechat') {
+                    //处理pdf预览，没有返回按钮，手机无法返回的问题
+                    let u = navigator.userAgent;
+                    let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+                    let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                    let newUrl
+                    let decodeUrl = decodeURIComponent(url)
+                    let index = decodeUrl.indexOf("&fileDownNameOwnName=")
+                    let stdNoUrl
+                    if (index > -1) {
+                        stdNoUrl = decodeUrl.substring(index)
+                    }
+                    let stdNo = stdNoUrl && stdNoUrl.split("=")[1]
+                    if (isAndroid) {
+                        //这个是安卓操作系统
+                        if (url.indexOf("?") > -1) {
+                            // window.open(url + "&access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken'));
+                            newUrl = url + "&access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
+                        } else {
+                            // window.open(url + "?access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken'));
+                            newUrl = url + "?access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
                         }
-                        let stdNo = stdNoUrl && stdNoUrl.split("=")[1]
-                        if (isAndroid) {
-                            //这个是安卓操作系统
-                            if (url.indexOf("?") > -1) {
-                                // window.open(url + "&access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken'));
-                                newUrl = url + "&access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
-                            } else {
-                                // window.open(url + "?access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken'));
-                                newUrl = url + "?access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
-                            }
+                    }
+                    if (isIOS) {
+                        //这个是ios操作系统
+                        if (url.indexOf("?") > -1) {
+                            // window.location.href = url + "&access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
+                            newUrl = url + "&access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
+                        } else {
+                            // window.location.href = url + "?access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
+                            newUrl = url + "?access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
                         }
-                        if (isIOS) {
-                            //这个是ios操作系统
-                            if (url.indexOf("?") > -1) {
-                                // window.location.href = url + "&access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
-                                newUrl = url + "&access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
-                            } else {
-                                // window.location.href = url + "?access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
-                                newUrl = url + "?access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken');
-                            }
-                        }
+                    }
 
-                        $("body").append(`
+                    $("body").append(`
 							 <div id="pdfViewContainer">
 								 <div>
 									 <span id="closePDfview">
@@ -637,26 +637,26 @@ util.validDownload = function(url, type, ids) {
 								<iframe   src='${newUrl}' />
 							 </div>`);
 
+                } else {
+                    if (url.indexOf("?") > -1) {
+                        window.open(url + "&access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken'));
                     } else {
-                        if (url.indexOf("?") > -1) {
-                            window.open(url + "&access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken'));
-                        } else {
-                            window.open(url + "?access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken'));
-                        }
+                        window.open(url + "?access_token=" + localStorage.getItem(localStorage.getItem('appName') + 'authToken'));
                     }
-
-                    // }
-
                 }
-                $("#closePDfview").click(() => {
-                    $("#pdfViewContainer").remove();
-                })
 
+                // }
+
+            }
+            $("#closePDfview").click(() => {
+                $("#pdfViewContainer").remove();
             })
 
-    }
-    //导出文件
-util.exportfile = function(url, params) {
+        })
+
+}
+//导出文件
+util.exportfile = function (url, params) {
     return axios({
         // 用axios发送post请求
         method: "post",

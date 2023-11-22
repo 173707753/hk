@@ -32,7 +32,6 @@ export default {
                 {
                     name: '储能数据',
                     data: [
-                        // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
                     ]
                 },
             ],
@@ -40,7 +39,6 @@ export default {
                 {
                     name: '储能数据',
                     data: [
-                        // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
                     ]
                 },
 
@@ -49,7 +47,6 @@ export default {
                 {
                     name: '储能数据',
                     data: [
-                        // 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
                     ]
                 },
 
@@ -192,37 +189,6 @@ export default {
 
     mounted() {
         this.initChart()
-        // // GIS数据
-        // this.$bus.$on('allData', (data) => {
-        //     this.chartDate[0].data = data[2][2];
-        //     this.conventionalData[0].data = data[2][2];
-        //     this.newData[0].data = data[2][2];
-        //     this.initChart();
-        // });
-        // const that = this
-        // this.$bus.$on('allData1', (data) => {
-        //     if (that.tabindex === 0) {
-        //         this.chartDate[0].data = data[1][6];
-        //         this.conventionalData[0].data = data[1][6];
-        //         this.newData[0].data = data[1][6];
-        //         this.initChart();
-        //     }
-        //     if (that.tabindex === 1) {
-        //         this.chartDate[0].data = data[2][6];
-        //         this.conventionalData[0].data = data[2][6];
-        //         this.newData[0].data = data[2][6];
-        //         this.initChart();
-        //     }
-        // })
-        // // index数据
-        // this.$bus.$on('indexData', (params) => {
-        //     const data = params.param1;
-        //     this.tabindex = params.param2;
-        //     this.chartDate[0].data = data[6];
-        //     this.conventionalData[0].data = data[6];
-        //     this.newData[0].data = data[6];
-        //     this.updateChart(this.leftData)
-        // })
         this.$bus.$on('trueData', (alldata) => {
             alldata.data.forEach((item) => {
                 this.chartDate[0].data.push(item.take_generation)
