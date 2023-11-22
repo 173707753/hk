@@ -332,7 +332,7 @@ export default {
         //     }
         // })
 
-        this.$bus.$on('trueData', (alldata) => {
+        this.$bus.$on('rightData', (alldata) => {
             // console.log('具体区域数据1lm', alldata);
             alldata.forEach((item) => {
                 // 火电

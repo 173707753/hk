@@ -648,7 +648,7 @@ export default {
                 // 处理POST请求的响应
                 if (response && response.code === 200) {
                     // 请求成功的处理逻辑
-                    this.$bus.$emit('trueData', response.data)
+                    this.$bus.$emit('rightData', response.data)
                 } else {
                     // 请求失败的处理逻辑
                     this.$message.error('服务器错误')
