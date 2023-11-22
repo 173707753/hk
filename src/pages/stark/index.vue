@@ -9,8 +9,8 @@
         <img class="tabimg" width="170%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="" />
       </div>
     </div>
-    <div class="chartsZB">
-      <div style="width: 60vw">
+    <div class="chartsZB" >
+      <div style="width: 60vw" >
         <div style="
             margin-bottom: 10px;
             display: flex;
@@ -42,7 +42,9 @@
         </div>
         <tables v-if="type == 1" style="height: 20vw" :tableData="tableData" :tagtype="tagtype"></tables>
         <tables2 v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype"></tables2>
-        <charts v-if="type === '3'" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
+        <div v-if="type === '3'" style="height: 20vw;">
+          <charts style="margin: 0 auto;" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
+        </div>
       </div>
       <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss"></charts>
       <div class="chartsZB2">
@@ -50,6 +52,9 @@
       </div>
       <div class="chartsZB3">
         <charts2 v-if="type === '2'" :key="chatkey1" ref="charts2" :id="`chartsZB3`" :option="optionsss2"></charts2>
+      </div>
+      <div v-if="type === '3'" class="chartsZB4">
+        <!-- <charts2 v-if="type === '2'" :key="chatkey1" ref="charts2" :id="`chartsZB3`" :option="optionsss2"></charts2> -->
       </div>
     </div>
   </div>
@@ -843,7 +848,10 @@ export default {
     width: 100%;
     justify-content: space-around;
   }
-
+  .chartsZB4{
+    width: 30vw;
+    height: 30vw;
+  }
   .threestyle {
     display: block;
     margin: 0 auto;
