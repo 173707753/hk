@@ -5,43 +5,43 @@
     <el-table-column prop="date" label="时间" width="100">
     </el-table-column>
     <el-table-column label="河南">
-      <el-table-column prop="address" label="供电能力提升量">
+      <el-table-column prop="hnaddress" label="供电能力提升量">
       </el-table-column>
-      <el-table-column width="" prop="jxzip" v-if="tagtype == 1" label="当前负荷">
+      <el-table-column width="" prop="hnjxzip" v-if="tagtype == 1" label="当前负荷">
       </el-table-column>
-      <el-table-column width="" v-if="tagtype == 2" prop="jxzip" label="当前负荷用电量">
+      <el-table-column width="" v-if="tagtype == 2" prop="hnjxzip1" label="当前负荷用电量">
       </el-table-column>
     </el-table-column>
     <el-table-column label="江西">
       <el-table-column prop="jxaddress" label="供电能力提升量">
       </el-table-column>
-      <el-table-column width="" prop="jxzip" v-if="tagtype == 1" label="当前负荷">
+      <el-table-column width="" prop="jxjxzip" v-if="tagtype == 1" label="当前负荷">
       </el-table-column>
-      <el-table-column width="" v-if="tagtype == 2" prop="jxzip" label="当前负荷用电量">
+      <el-table-column width="" v-if="tagtype == 2" prop="jxjxzip1" label="当前负荷用电量">
       </el-table-column>
     </el-table-column>
     <el-table-column label="湖北">
-      <el-table-column prop="jxaddress" label="供电能力提升量">
+      <el-table-column prop="hbaddress" label="供电能力提升量">
       </el-table-column>
-      <el-table-column width="" prop="jxzip" v-if="tagtype == 1" label="当前负荷">
+      <el-table-column width="" prop="hbjxzip" v-if="tagtype == 1" label="当前负荷">
       </el-table-column>
-      <el-table-column width="" v-if="tagtype == 2" prop="jxzip" label="当前负荷用电量">
+      <el-table-column width="" v-if="tagtype == 2" prop="hbjxzip1" label="当前负荷用电量">
       </el-table-column>
     </el-table-column>
     <el-table-column label="湖南">
-      <el-table-column prop="jxaddress" label="供电能力提升量">
+      <el-table-column prop="hn1address" label="供电能力提升量">
       </el-table-column>
-      <el-table-column width="" prop="jxzip" v-if="tagtype == 1" label="当前负荷">
+      <el-table-column width="" prop="hn1jxzip" v-if="tagtype == 1" label="当前负荷">
       </el-table-column>
-      <el-table-column width="" v-if="tagtype == 2" prop="jxzip" label="当前负荷用电量">
+      <el-table-column width="" v-if="tagtype == 2" prop="hn1jxzip1" label="当前负荷用电量">
       </el-table-column>
     </el-table-column>
     <el-table-column label="全网">
-      <el-table-column prop="jxaddress" label="供电能力提升量">
+      <el-table-column prop="alladdress" label="供电能力提升量">
       </el-table-column>
-      <el-table-column width="" prop="jxzip" v-if="tagtype == 1" label="当前负荷">
+      <el-table-column width="" prop="alljxzip" v-if="tagtype == 1" label="当前负荷">
       </el-table-column>
-      <el-table-column width="" v-if="tagtype == 2" prop="jxzip" label="当前负荷用电量">
+      <el-table-column width="" v-if="tagtype == 2" prop="alljxzip1" label="当前负荷用电量">
       </el-table-column>
     </el-table-column>
     <!-- </div> -->
@@ -54,7 +54,10 @@ export default {
   data() {
     return {
     }
-  }
+  },
+  created() {
+    console.log('tableData', this.tableData);
+  },
 }
 </script>
 

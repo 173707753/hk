@@ -9,7 +9,11 @@
         <img class="tabimg" width="170%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="" />
       </div>
     </div>
+<<<<<<< HEAD
     <div class="chartsZB"  >
+=======
+    <div class="chartsZB">
+>>>>>>> 4b99615a4ad9e296bd4f70e4e8008b0ba2c22c55
       <div style="width: 60vw">
         <div style="
             margin-bottom: 10px;
@@ -42,16 +46,26 @@
         </div>
         <tables v-if="type == 1" style="height: 20vw" :tableData="tableData" :tagtype="tagtype"></tables>
         <tables2 v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype"></tables2>
+<<<<<<< HEAD
         <charts v-if="type === '3'" :key="chatkey2" ref="charts" :id="`chartsZB22`"
         :option="optionsss3"></charts>
+=======
+        <tables4 v-if="type == 4" style="height: 20vw" :tableData="tableData4" :tagtype="tagtype"></tables4>
+        <div v-if="type === '3'" style="height: 20vw;">
+          <charts style="margin: 0 auto;" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
+        </div>
+>>>>>>> 4b99615a4ad9e296bd4f70e4e8008b0ba2c22c55
       </div>
-      <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" 
-        :option="optionsss"></charts>
+      <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss"></charts>
+      <charts v-if="type === '4'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss"></charts>
       <div class="chartsZB2">
         <charts3 v-if="type === '2'" :key="chatkey1" ref="charts3" :id="`chartsZB2`" :option="optionsss4"></charts3>
       </div>
       <div class="chartsZB3">
         <charts2 v-if="type === '2'" :key="chatkey1" ref="charts2" :id="`chartsZB3`" :option="optionsss2"></charts2>
+      </div>
+      <div v-if="type === '3'" class="chartsZB4">
+        <!-- <charts2 v-if="type === '2'" :key="chatkey1" ref="charts2" :id="`chartsZB3`" :option="optionsss2"></charts2> -->
       </div>
     </div>
   </div>
@@ -63,6 +77,7 @@ import charts2 from "./chart2.vue";
 import charts3 from "./chart3.vue";
 import tables from "./tables.vue";
 import tables2 from "./tables2.vue";
+import tables4 from "./tables4.vue";
 export default {
   data() {
     return {
@@ -102,7 +117,7 @@ export default {
       tagtype: 1,
       type: "1",
       optionsss: {
-        color: ["blue", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -163,7 +178,7 @@ export default {
         ],
       },
       optionsss2: {
-        color: ["blue", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -256,7 +271,7 @@ export default {
         },
       ],
       optionsss3: {
-        color: ["blue", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -316,7 +331,7 @@ export default {
         ],
       },
       optionsss4: {
-        color: ["blue", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -377,24 +392,134 @@ export default {
       },
       tableData: [
         {
-          date: "6.30",
+          date: "6:30",
           name: "河南",
           hnprovince: "供电能力提升量",
           city: "当前负荷",
-          address: 123,
-          zip: 111,
-          jxzip: "222",
-          jxaddress: 122,
+          // 河南
+          hnaddress: '18078',
+          hnjxzip: '45257',
+          hnjxzip1: '44257',
+          // 江西
+          jxaddress: '8405.833',
+          jxjxzip: '20753',
+          jxjxzip1: "19753",
+          // 湖北
+          hbaddress: '7919.167',
+          hbjxzip: '40616',
+          hbjxzip1: "39616",
+          // 湖南
+          hn1address: '9356.667',
+          hn1jxzip: '19406',
+          hn1jxzip1: "18406",
+          // 全国
+          alladdress: '42356.6',
+          alljxzip: '126032',
+          alljxzip1: "122032",
         },
         {
-          date: "7.30",
+          date: "11:30",
           name: "河南",
           hnprovince: "供电能力提升量",
           city: "当前负荷",
-          address: 123,
-          zip: 111,
-          jxzip: "222",
-          jxaddress: 122,
+          // 河南
+          hnaddress: '23744.33',
+          hnjxzip: '53114',
+          hnjxzip1: '52114',
+          // 江西
+          jxaddress: '10688.23',
+          jxjxzip: '27738',
+          jxjxzip1: "26738",
+          // 湖北
+          hbaddress: '12666.67',
+          hbjxzip: '51956',
+          hbjxzip1: "50956",
+          // 湖南
+          hn1address: '7878.333',
+          hn1jxzip: '24369',
+          hn1jxzip1: "23369",
+          // 全国
+          alladdress: '51160.6',
+          alljxzip: '157177',
+          alljxzip1: "155177",
+        },
+        {
+          date: "12:00",
+          name: "河南",
+          hnprovince: "供电能力提升量",
+          city: "当前负荷",
+          // 河南
+          hnaddress: '24610.5',
+          hnjxzip: '52617',
+          hnjxzip1: '51617',
+          // 江西
+          jxaddress: '11732.5',
+          jxjxzip: '26758',
+          jxjxzip1: "25758",
+          // 湖北
+          hbaddress: '13155.83',
+          hbjxzip: '51717',
+          hbjxzip1: "50717",
+          // 湖南
+          hn1address: '8030',
+          hn1jxzip: '23847',
+          hn1jxzip1: "22847",
+          // 全国
+          alladdress: '54570.2',
+          alljxzip: '154939',
+          alljxzip1: "150939",
+        },
+        {
+          date: "18:00",
+          name: "河南",
+          hnprovince: "供电能力提升量",
+          city: "当前负荷",
+          // 河南
+          hnaddress: '9630.5',
+          hnjxzip: '53667',
+          hnjxzip1: '52667',
+          // 江西
+          jxaddress: '4567.5',
+          jxjxzip: '25919',
+          jxjxzip1: "24919",
+          // 湖北
+          hbaddress: '5695',
+          hbjxzip: '52875',
+          hbjxzip1: "51875",
+          // 湖南
+          hn1address: '7581.667',
+          hn1jxzip: '23049',
+          hn1jxzip1: "22049",
+          // 全国
+          alladdress: '18601',
+          alljxzip: '15510',
+          alljxzip1: "11510",
+        },
+        {
+          date: "21:30",
+          name: "河南",
+          hnprovince: "供电能力提升量",
+          city: "当前负荷",
+          // 河南
+          hnaddress: '9025.5',
+          hnjxzip: '54482',
+          hnjxzip1: '53482',
+          // 江西
+          jxaddress: '4275',
+          jxjxzip: '26116',
+          jxjxzip1: "25116",
+          // 湖北
+          hbaddress: '4450',
+          hbjxzip: '51643',
+          hbjxzip1: "50643",
+          // 湖南
+          hn1address: '7185.833',
+          hn1jxzip: '24011',
+          hn1jxzip1: "23011",
+          // 全国
+          alladdress: '15569.6',
+          alljxzip: '156252',
+          alljxzip1: "152252",
         },
       ],
       tableData2: [
@@ -436,26 +561,57 @@ export default {
           electricing: "30687",
         },
       ],
+      tableData4: [
+        {
+          leixing: '省网支援自身',
+          henan: '0.708',
+          hubei: '0.999',
+          hunan: '1',
+          jiangxi: '1',
+          quyu: ''
+        },
+        {
+          leixing: '省网支援全网',
+          henan: '0.6551',
+          hubei: '1',
+          hunan: '0.774',
+          jiangxi: '0.998',
+          quyu: ''
+        }
+        ,
+        {
+          leixing: '区域电网',
+          henan: '',
+          hubei: '',
+          hunan: '',
+          jiangxi: '',
+          quyu: '0.778898'
+        }
+      ],
       timeoptions: [
         {
           value: "1",
-          label: "10.30",
+          label: "6:30",
         },
         {
           value: "2",
-          label: "11.30",
+          label: "11:30",
         },
         {
           value: "3",
-          label: "12.30",
+          label: "12:00",
         },
         {
           value: "4",
-          label: "13.30",
+          label: "18:00",
         },
         {
           value: "5",
-          label: "14.30",
+          label: "21:30",
+        },
+        {
+          value: "6",
+          label: "22:00",
         },
       ],
       poweroptions: [
@@ -508,6 +664,7 @@ export default {
     charts3,
     tables,
     tables2,
+    tables4,
   },
   methods: {
     changeType(item) {
@@ -568,7 +725,7 @@ export default {
         }
         this.$refs.charts.setchart();
       }
-      console.log("item是什么", item);
+      // console.log("item是什么", item);
       this.tagtype = item.tagtype;
       item.sel = !item.sel;
     },
@@ -625,15 +782,31 @@ export default {
           // 发接口
           // this.tabledata.push() or this.tabledata重新赋值
           this.tableData.push({
-            date: "10.30",
+            date: "22:00",
             name: "河南",
             hnprovince: "供电能力提升量",
             city: "当前负荷",
-            address: 123,
-            zip: 111,
-            jxzip: "222",
-            jxaddress: 122,
-          });
+            // 河南
+            hnaddress: '8878',
+            hnjxzip: '55257',
+            hnjxzip1: '54257',
+            // 江西
+            jxaddress: '4005.833',
+            jxjxzip: '27753',
+            jxjxzip1: "26753",
+            // 湖北
+            hbaddress: '3919.167',
+            hbjxzip: '52616',
+            hbjxzip1: "51616",
+            // 湖南
+            hn1address: '6956.667',
+            hn1jxzip: '25406',
+            hn1jxzip1: "18406",
+            // 全国
+            alladdress: '13356.6',
+            alljxzip: '166032',
+            alljxzip1: "165032",
+          },);
           this.optionsss.legend.data = ["6:30", "7:30", "10:30"];
           this.optionsss.series[0].data = [
             {
@@ -714,6 +887,11 @@ export default {
     align-items: center;
     width: 100%;
     justify-content: space-around;
+  }
+
+  .chartsZB4 {
+    width: 30vw;
+    height: 30vw;
   }
 
   .threestyle {

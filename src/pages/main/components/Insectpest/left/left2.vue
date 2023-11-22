@@ -1,5 +1,6 @@
 <template>
-    <div class="bot" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
+    <div v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.6)" class="bot" @mouseenter="showPopup"
+        @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             电网数据
         </div>
@@ -18,6 +19,7 @@ export default {
     },
     data() {
         return {
+            loading: true,
             isMouseOverBot: false,
             colorLine: ['#bfc', '#FFC22E', '#5EC2F2', '#FF4528', '#fff'],
             tabindex: 0,
@@ -161,11 +163,12 @@ export default {
     mounted() {
         this.initChart()
         this.$bus.$on("trueData1", (data) => {
-            // console.log("你好", data);
+            console.log("你好", data);
             data.forEach((item) => {
                 this.leftData[0].data.push(item.fracture_data)
             })
             this.updateChart(this.leftData)
+            this.loading = false
         })
 
     },

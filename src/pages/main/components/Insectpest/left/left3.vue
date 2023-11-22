@@ -1,5 +1,6 @@
 <template>
-    <div class="bot" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
+    <div v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.6)" class="bot" @mouseenter="showPopup"
+        @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             储能数据
         </div>
@@ -25,6 +26,7 @@ export default {
     },
     data() {
         return {
+            loading: true,
             isMouseOverBot: false,
             colorLine: ['#bfc', '#FFC22E', '#5EC2F2', '#FF4528', '#fff'],
             tabindex: 0,
@@ -196,6 +198,7 @@ export default {
                 this.newData[0].data.push(item.take_generation)
             })
             this.updateChart(this.chartDate)
+            this.loading = false
         })
     },
     beforeDestroy() {

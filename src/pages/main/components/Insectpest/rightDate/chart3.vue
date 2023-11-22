@@ -1,5 +1,6 @@
 <template>
-    <div class="top" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
+    <div v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.6)" class="top" @mouseenter="showPopup"
+        @mouseleave="onBotMouseLeave">
         <div class="st_titles">储能数据</div>
         <div class="chart-container">
             <!-- 折线图容器 -->
@@ -21,6 +22,7 @@ export default {
     components: { PopupComponent },
     data() {
         return {
+            loading: true,
             isMouseOverBot: false,
             colorLine: ['#bfc', '#FFC22E', '#FF4528', '#5EC2F2', '#fff'],
             tabindex: 0,
@@ -194,12 +196,14 @@ export default {
     mounted() {
         this.initChart()
         this.$bus.$on('trueDataRight', (alldata) => {
+            console.log("alldata", alldata);
             // alldata.data.forEach((item) => {
             //     this.chartDate[0].data.push(item.take_generation)
             //     this.conventionalData[0].data.push(item.take_generation)
             //     this.newData[0].data.push(item.take_generation)
             // })
             // this.updateChart(this.chartDate)
+            this.loading = false
         })
     },
 }

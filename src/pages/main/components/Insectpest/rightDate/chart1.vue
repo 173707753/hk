@@ -1,5 +1,6 @@
 <template>
-    <div class="top" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
+    <div v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.6)" class="top" @mouseenter="showPopup"
+        @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             电源数据
         </div>
@@ -24,9 +25,10 @@ export default {
     components: { PopupComponent },
     data() {
         return {
+            loading: true,
             isMouseOverBot: false,
             tabindex: 0,
-            titleName: '河南洛北济源',
+            titleName: '河南省洛北济源',
             colorLine: ['#bfc', '#FFC22E', '#5EC2F2', '#FF4528', '#fff'],
             chartDate: [
                 {
@@ -224,7 +226,9 @@ export default {
     },
     mounted() {
         this.initChart();
-
+        this.$bus.$on('allData2', (data) => {
+            this.titleName = data.selectedProvince + data.selectedArea
+        })
         this.$bus.$on('rightData', (alldata) => {
             // console.log('具体区域数据1lm', alldata);
             alldata.forEach((item) => {
@@ -245,6 +249,7 @@ export default {
             this.totalData[3].data = this.newData[0].data
             this.totalData[4].data = this.newData[1].data
             this.updateChart(this.totalData)
+            this.loading = false
             // console.log("具体数据right", this.totalData);
         })
     }

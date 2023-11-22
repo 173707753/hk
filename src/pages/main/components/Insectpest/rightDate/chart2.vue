@@ -1,5 +1,6 @@
 <template>
-    <div class="top" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
+    <div v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.6)" class="top" @mouseenter="showPopup"
+        @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             电网数据
         </div>
@@ -19,6 +20,7 @@ export default {
     components: { PopupComponent },
     data() {
         return {
+            loading: true,
             isMouseOverBot: false,
             colorLine: ['#bfc'],
             tabindex: 0,
@@ -157,6 +159,7 @@ export default {
                 this.leftData[0].data.push(item.fracture_data)
             })
             this.updateChart(this.leftData)
+            this.loading = false
         })
     },
 }

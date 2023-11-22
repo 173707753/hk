@@ -170,6 +170,7 @@ export default {
           borderRadius: 0,
           borderWidth: 0,
           trigger: 'item',
+          
           formatter: function (params) {
             var res = ''
             res = `
@@ -182,6 +183,46 @@ export default {
           }
       }
       if (val == 1) {
+        obj.tooltip = {
+          backgroundColor: 'rgba(0,0,0,0)',//背景颜色（此时为默认色）
+          borderRadius: 0,
+          borderWidth: 0,
+          trigger: 'item',
+          
+          formatter: function (params) {
+            var res = ''
+            res = `
+              <div style="padding:0px 5px;background:rgba(0,0,0,0.6);border:1px solid #5EC3F3">
+                <p style="font-size:14px;color:#37D1F9">${params.name}</p>
+                <p style="font-size:14px;color:#37D1F9">${params.value}(P/MW)</p>
+              </div>
+            `
+            return res
+          },
+          position: function (point, params, dom, rect, size) {
+            // 获取可视区域的宽度和高度
+            const viewWidth = size.viewSize[0];
+            const viewHeight = size.viewSize[1];
+            
+            // 获取提示框内容的宽度和高度
+            const tooltipWidth = dom.offsetWidth;
+            const tooltipHeight = dom.offsetHeight;
+            
+            // 设置提示框的位置
+            let left = point[0];
+            let top = point[1];
+            
+            // 判断提示框是否超出可视范围，如果超出则调整位置
+            if (left + tooltipWidth > viewWidth) {
+              left = viewWidth - tooltipWidth;
+            }
+            if (top + tooltipHeight > viewHeight) {
+              top = viewHeight - tooltipHeight;
+            }
+            
+            return [left, top];
+          },
+        }
         obj.series[0].data = [
         { value: 245114.639, name: '火力发电' },
         { value: 336636.93976, name: '水力发电' },
@@ -211,6 +252,46 @@ export default {
         { value: 217983.00 , name: '风力发电' }]
         return obj
       }  if (val == 5) {
+        obj.tooltip = {
+          backgroundColor: 'rgba(0,0,0,0)',//背景颜色（此时为默认色）
+          borderRadius: 0,
+          borderWidth: 0,
+          trigger: 'item',
+          
+          formatter: function (params) {
+            var res = ''
+            res = `
+              <div style="padding:0px 5px;background:rgba(0,0,0,0.6);border:1px solid #5EC3F3">
+                <p style="font-size:14px;color:#37D1F9">${params.name}</p>
+                <p style="font-size:14px;color:#37D1F9">${params.value}(P/MW)</p>
+              </div>
+            `
+            return res
+          },
+          position: function (point, params, dom, rect, size) {
+            // 获取可视区域的宽度和高度
+            const viewWidth = size.viewSize[0];
+            const viewHeight = size.viewSize[1];
+            
+            // 获取提示框内容的宽度和高度
+            const tooltipWidth = dom.offsetWidth;
+            const tooltipHeight = dom.offsetHeight;
+            
+            // 设置提示框的位置
+            let left = point[0];
+            let top = point[1];
+            
+            // 判断提示框是否超出可视范围，如果超出则调整位置
+            if (left + tooltipWidth > viewWidth) {
+              left = viewWidth - tooltipWidth;
+            }
+            if (top + tooltipHeight > viewHeight) {
+              top = viewHeight - tooltipHeight;
+            }
+            
+            return [left, top];
+          },
+        }
         obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
         { value: 336636.93976, name: '水力发电' },
         { value: -32481.375, name: '抽蓄发电' },
