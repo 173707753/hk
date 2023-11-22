@@ -1,5 +1,6 @@
 <template>
-    <div class="bot" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
+    <div v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.6)" class="bot" @mouseenter="showPopup"
+        @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             负荷数据
         </div>
@@ -18,6 +19,7 @@ export default {
     },
     data() {
         return {
+            loading: true,
             isMouseOverBot: false,
             colorLine: ['#bfc', '#FFC22E', '#5EC2F2', '#FF4528', '#fff'],
             tabindex: 0,
@@ -151,6 +153,7 @@ export default {
                 this.leftData[0].data.push(item.receive_generation)
             })
             this.initChart()
+            this.loading = false
         })
     },
     beforeDestroy() {

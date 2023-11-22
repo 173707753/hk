@@ -138,6 +138,7 @@ export default {
 
         util.post('/api/get_elect_start', this.postData)
             .then(response => {
+
                 // 处理POST请求的响应
                 if (response && response.code === 200) {
                     // 请求成功的处理逻辑
@@ -173,8 +174,8 @@ export default {
                 this.$message.error('服务器错误', error)
             });
 
-            // 初始化右边的数据
-            util.post('/api/get_result_data', this.postData)
+        // 初始化右边的数据
+        util.post('/api/get_result_data', this.postData)
             .then(response => {
                 // 处理POST请求的响应
                 if (response && response.code === 200) {
@@ -185,7 +186,7 @@ export default {
                 }
             })
             .catch(error => {
-                this.$message.error('服务器错误')
+                this.$message.error('服务器错误', error)
             });
 
         // 默认选中河南省洛北济源
@@ -211,8 +212,8 @@ export default {
             this.$bus.$emit('trueData', data)
             console.log('具体区域数据', data);
         },
-         // 接收右侧具体数据
-         computerRightData(data) {
+        // 接收右侧具体数据
+        computerRightData(data) {
             this.$bus.$emit('rightData', data)
             console.log('具体区域数据', data);
         },
@@ -228,10 +229,10 @@ export default {
         // 传递数据出去
         onSubmit() {
             // 根据 selectedArea 进行筛选
-            const filteredData = this.left5Data.filter(item => item.name === this.selectedProvince);
+            // const filteredData = this.left5Data.filter(item => item.name === this.selectedProvince);
             // console.log(filteredData);
             // 地图跳转
-            this.$bus.$emit('left5Data', filteredData);
+            // this.$bus.$emit('left5Data', filteredData);
             // 传递省份，区域给index.vue
             this.$bus.$emit('allData2', { selectedProvince: this.selectedProvince, selectedArea: this.selectedArea })
 
@@ -246,59 +247,62 @@ export default {
                 district: this.selectedArea,
                 flag: this.flag,
             };
-            // 发起POST请求
-            util.post('/api/get_elect_start', postData)
-                .then(response => {
-                    // 处理POST请求的响应
-                    if (response && response.code === 200) {
-                        // 请求成功的处理逻辑
-                        // console.log('POST请求成功', response);
-                        this.computerAreaData(response);
-                    } else {
-                        // 请求失败的处理逻辑
-                        this.$message.error('服务器错误')
-                    }
-                })
-                .catch(error => {
-                    // 处理POST请求的错误
-                    console.error('POST请求错误', error);
-                });
-            // 
-            // 右侧结果数据
-            util.post('/api/get_result_data', postData)
-                .then(response => {
-                    // 处理POST请求的响应
-                    if (response && response.code === 200) {
-                        // 请求成功的处理逻辑
-                        this.$bus.$emit('rightData', response.data)
-                    } else {
-                        // 请求失败的处理逻辑
-                        this.$message.error('服务器错误')
-                    }
-                })
-                .catch(error => {
-                    // 处理POST请求的错误
-                    console.error('POST请求错误', error);
-                });
-            // 右侧储能结果
-            util.post('/api/get_take_quantuty', postData)
-                .then(response => {
-                    // 处理POST请求的响应
-                    if (response && response.code === 200) {
-                        // 请求成功的处理逻辑
-                        // console.log('POST请求成功lm333', response);
-                        // this.$bus.$emit('trueData', response.data)
-                    } else {
-                        // 请求失败的处理逻辑
-                        this.$message.error('服务器错误')
-                        // console.error('POST请求失败', response);
-                    }
-                })
-                .catch(error => {
-                    // 处理POST请求的错误
-                    this.$message.error('服务器错误', error)
-                });
+            if (this.selectedProvince) {
 
+                // 发起POST请求
+                util.post('/api/get_elect_start', postData)
+                    .then(response => {
+                        // 处理POST请求的响应
+                        if (response && response.code === 200) {
+                            // 请求成功的处理逻辑
+                            console.log('POST请求成功11111', response);
+                            this.computerAreaData(response);
+                        } else {
+                            // 请求失败的处理逻辑
+                            this.$message.error('服务器错误')
+                        }
+                    })
+                    .catch(error => {
+                        // 处理POST请求的错误
+                        console.error('POST请求错误', error);
+                    });
+                // 
+                // 右侧结果数据
+                util.post('/api/get_result_data', postData)
+                    .then(response => {
+                        // 处理POST请求的响应
+                        if (response && response.code === 200) {
+                            // 请求成功的处理逻辑
+                            this.$bus.$emit('rightData', response.data)
+                        } else {
+                            // 请求失败的处理逻辑
+                            this.$message.error('服务器错误')
+                        }
+                    })
+                    .catch(error => {
+                        // 处理POST请求的错误
+                        console.error('POST请求错误', error);
+                    });
+                // 右侧储能结果
+                util.post('/api/get_take_quantuty', postData)
+                    .then(response => {
+                        // 处理POST请求的响应
+                        if (response && response.code === 200) {
+                            // 请求成功的处理逻辑
+                            // console.log('POST请求成功lm333', response);
+                            // this.$bus.$emit('trueData', response.data)
+                        } else {
+                            // 请求失败的处理逻辑
+                            this.$message.error('服务器错误')
+                            // console.error('POST请求失败', response);
+                        }
+                    })
+                    .catch(error => {
+                        // 处理POST请求的错误
+                        this.$message.error('服务器错误', error)
+                    });
+
+            }
 
         },
         onCancel() {

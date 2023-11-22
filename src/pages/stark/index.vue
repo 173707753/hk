@@ -42,9 +42,11 @@
         </div>
         <tables v-if="type == 1" style="height: 20vw" :tableData="tableData" :tagtype="tagtype"></tables>
         <tables2 v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype"></tables2>
+        <tables4 v-if="type == 4" style="height: 20vw" :tableData="tableData4" :tagtype="tagtype"></tables4>
         <charts v-if="type === '3'" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
       </div>
       <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss"></charts>
+      <charts v-if="type === '4'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss"></charts>
       <div class="chartsZB2">
         <charts3 v-if="type === '2'" :key="chatkey1" ref="charts3" :id="`chartsZB2`" :option="optionsss4"></charts3>
       </div>
@@ -61,6 +63,7 @@ import charts2 from "./chart2.vue";
 import charts3 from "./chart3.vue";
 import tables from "./tables.vue";
 import tables2 from "./tables2.vue";
+import tables4 from "./tables4.vue";
 export default {
   data() {
     return {
@@ -100,7 +103,7 @@ export default {
       tagtype: 1,
       type: "1",
       optionsss: {
-        color: ["blue", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -161,7 +164,7 @@ export default {
         ],
       },
       optionsss2: {
-        color: ["blue", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -254,7 +257,7 @@ export default {
         },
       ],
       optionsss3: {
-        color: ["blue", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -314,7 +317,7 @@ export default {
         ],
       },
       optionsss4: {
-        color: ["blue", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -544,6 +547,33 @@ export default {
           electricing: "30687",
         },
       ],
+      tableData4: [
+        {
+          leixing: '省网支援自身',
+          henan: '0.708',
+          hubei: '0.999',
+          hunan: '1',
+          jiangxi: '1',
+          quyu: ''
+        },
+        {
+          leixing: '省网支援全网',
+          henan: '0.6551',
+          hubei: '1',
+          hunan: '0.774',
+          jiangxi: '0.998',
+          quyu: ''
+        }
+        ,
+        {
+          leixing: '区域电网',
+          henan: '',
+          hubei: '',
+          hunan: '',
+          jiangxi: '',
+          quyu: '0.778898'
+        }
+      ],
       timeoptions: [
         {
           value: "1",
@@ -620,6 +650,7 @@ export default {
     charts3,
     tables,
     tables2,
+    tables4,
   },
   methods: {
     changeType(item) {

@@ -1,5 +1,6 @@
 <template>
-    <div class="bot" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
+    <div v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.6)" class="bot" @mouseenter="showPopup"
+        @mouseleave="onBotMouseLeave">
         <div class="st_titles">
             电源数据
         </div>
@@ -26,8 +27,9 @@ export default {
     },
     data() {
         return {
+            loading: true,
             tabindex: 0,
-            titleName: '河南洛北济源',
+            titleName: '河南省洛北济源',
             colorLine: ['#bfc', '#FFC22E', '#5EC2F2', '#FF4528', '#fff'],
             leftData: [
                 // thermalPower 火电
@@ -245,6 +247,9 @@ export default {
 
         });
         this.initChart();
+        this.$bus.$on('allData2', (data) => {
+            this.titleName = data.selectedProvince + data.selectedArea
+        })
         this.$bus.$on('trueData', (alldata) => {
             // console.log('具体区域数据1', alldata.data);
             alldata.data.forEach((item) => {
@@ -265,6 +270,7 @@ export default {
             this.alldata[3].data = this.newData[0].data
             this.alldata[4].data = this.newData[1].data
             this.updateChart(this.alldata)
+            this.loading = false
             // console.log("具体数据left", this.leftData);
         })
     },

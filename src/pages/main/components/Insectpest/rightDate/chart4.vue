@@ -1,5 +1,6 @@
 <template>
-  <div class="top" @mouseenter="showPopup" @mouseleave="onBotMouseLeave">
+  <div v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.6)" class="top" @mouseenter="showPopup"
+    @mouseleave="onBotMouseLeave">
     <div class="st_titles">负荷数据</div>
     <div class="chart-container">
       <!-- 折线图容器 -->
@@ -16,6 +17,7 @@ export default {
   components: { PopupComponent },
   data() {
     return {
+      loading: true,
       isMouseOverBot: false,
       colorLine: ['#bfc'],
       tabindex: 0,
@@ -153,6 +155,7 @@ export default {
         this.leftData[0].data.push(item.load_power)
       })
       this.initChart()
+      this.loading = false
     })
   },
 }
