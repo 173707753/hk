@@ -286,7 +286,7 @@ export default {
                 // 右侧储能结果
                 util.post('/api/get_take_quantity', postData)
                     .then(response => {
-                        处理POST请求的响应
+                        // 处理POST请求的响应
                         if (response && response.code === 200) {
                             // 请求成功的处理逻辑
                             console.log('POST请求成功lm333', response);

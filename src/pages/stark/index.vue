@@ -18,9 +18,9 @@
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-          " :class="type === '3' ? 'threestyle':''">
+          " :class="type === '3' ? 'threestyle' : ''">
           <el-select size="small" clearable v-model="time" placeholder="添加时间点" @change="addtime">
-            <el-option  v-for="item in timeoptions" :key="item.value" :label="item.label" :value="item.label">
+            <el-option v-for="item in timeoptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
 
@@ -29,11 +29,13 @@
             <el-option v-for="item in poweroptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
-          <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="road" placeholder="转送通道选择">
+          <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="road"
+            placeholder="转送通道选择">
             <el-option v-for="item in roadoptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
-          <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="bad" placeholder="故障路线选择">
+          <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="bad"
+            placeholder="故障路线选择">
             <el-option v-for="item in badoptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
@@ -46,8 +48,7 @@
         <tables v-if="type == 1" style="height: 20vw" :tableData="tableData" :tagtype="tagtype"></tables>
         <tables2 v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype"></tables2>
 
-        <charts v-if="type === '3'" :key="chatkey2" ref="charts" :id="`chartsZB22`"
-        :option="optionsss3"></charts>
+        <charts v-if="type === '3'" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
 
         <tables4 v-if="type == 4" style="height: 20vw" :tableData="tableData4" :tagtype="tagtype"></tables4>
         <div v-if="type === '3'" style="height: 20vw;">
@@ -985,8 +986,8 @@ export default {
   }
 
   .threestyle {
-   margin-top: 4%;
-   margin-left: -6%;
+    margin-top: 4%;
+    margin-left: -6%;
   }
 
   ::v-deep .el-input__inner {
