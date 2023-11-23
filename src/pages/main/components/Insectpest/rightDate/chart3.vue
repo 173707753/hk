@@ -195,13 +195,26 @@ export default {
     },
     mounted() {
         this.initChart()
-        this.$bus.$on('trueDataRight', (alldata) => {
+        
+        this.$bus.$on('rightData', (alldata) => {
             console.log("alldata", alldata);
-            // alldata.data.forEach((item) => {
-            //     this.chartDate[0].data.push(item.take_generation)
-            //     this.conventionalData[0].data.push(item.take_generation)
-            //     this.newData[0].data.push(item.take_generation)
-            // })
+            alldata.forEach((item) => {
+                this.chartDate[0].data.push(item.take_quantity)
+            })
+            // this.updateChart(this.chartDate)
+            this.loading = false
+        })
+
+        this.$bus.$on('threeData', (alldata) => {
+            console.log("alldata", alldata);
+            // const nanUp= alldata[0]
+            // const nanDowm= alldata[1]
+            alldata[0].forEach((item) => {
+                this.newData[0].data.push(item.take_take_quantity)
+            })
+            alldata[1].forEach((item) => {
+                this.newData[1].data.push(item.take_take_quantity)
+            })  
             // this.updateChart(this.chartDate)
             this.loading = false
         })

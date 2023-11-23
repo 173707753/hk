@@ -9,11 +9,10 @@
         <img class="tabimg" width="170%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="" />
       </div>
     </div>
-<<<<<<< HEAD
-    <div class="chartsZB"  >
-=======
+    <!-- <div class="chartsZB"  > -->
+
     <div class="chartsZB">
->>>>>>> 4b99615a4ad9e296bd4f70e4e8008b0ba2c22c55
+
       <div style="width: 60vw">
         <div style="
             margin-bottom: 10px;
@@ -46,15 +45,14 @@
         </div>
         <tables v-if="type == 1" style="height: 20vw" :tableData="tableData" :tagtype="tagtype"></tables>
         <tables2 v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype"></tables2>
-<<<<<<< HEAD
+
         <charts v-if="type === '3'" :key="chatkey2" ref="charts" :id="`chartsZB22`"
         :option="optionsss3"></charts>
-=======
+
         <tables4 v-if="type == 4" style="height: 20vw" :tableData="tableData4" :tagtype="tagtype"></tables4>
         <div v-if="type === '3'" style="height: 20vw;">
           <charts style="margin: 0 auto;" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
         </div>
->>>>>>> 4b99615a4ad9e296bd4f70e4e8008b0ba2c22c55
       </div>
       <charts v-if="type === '1'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss"></charts>
       <charts4 v-if="type === '4'" :key="chatkey" ref="charts" :id="`chartsZB`" :option="optionsss5"></charts4>
