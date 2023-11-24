@@ -26,12 +26,12 @@ export default {
         }
     },
     mounted() {
-        console.log(this.option, this.id)
+        // console.log(this.option, this.id)
         this.setchart()
     },
     methods: {
         setchart() {
-            console.log(this.option, '---')
+            // console.log(this.option, '---')
             // 初始化图表
             this.chart = echarts.init(document.getElementById(this.id))
             // 设置图标的配置项

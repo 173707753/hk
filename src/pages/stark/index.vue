@@ -124,7 +124,7 @@ export default {
           trigger: "item",
         },
         title: {
-          text: "供电能力指标",
+          text: "电力保供系数指标",
           left: "center",
           textStyle: {
             fontSize: 18, // 根据需要设置标题的字体大小
@@ -138,15 +138,15 @@ export default {
             fontWeight: "bold",
             color: "#fff",
           },
-          data: ["6:30", "7:30"],
+          data: ["6:30:00", "11:30:00"],
         },
         radar: {
           indicator: [
-            { name: "河南", max: 6500 },
-            { name: "湖北", max: 16000 },
-            { name: "湖南", max: 30000 },
-            { name: "江西", max: 38000 },
-            { name: "全网", max: 52000 },
+            { name: "河南" },
+            { name: "江西" },
+            { name: "湖北" },
+            { name: "湖南" },
+            { name: "全网" },
           ],
           axisName: {
             formatter: "{value}",
@@ -168,12 +168,12 @@ export default {
             type: "radar",
             data: [
               {
-                value: [4200, 3000, 20000, 35000, 50000],
-                name: "6:30",
+                value: [0.399, 0.405, 0.195, 0.482, 0.336],
+                name: "6:30:00",
               },
               {
-                value: [5000, 14000, 28000, 26000, 42000],
-                name: "7:30",
+                value: [0.447, 0.385, 0.244, 0.323, 0.325],
+                name: "11:30:00",
               },
             ],
           },
@@ -483,71 +483,8 @@ export default {
         ]
       },
       tableData: [
-        {
-          date: "6:30",
-          name: "河南",
-          hnprovince: "供电能力提升量",
-          city: "当前负荷",
-          // 河南
-          hnaddress: '18078',
-          hnjxzip: '45257',
-          hnjxzip1: '44257',
-          // 江西
-          jxaddress: '8405.833',
-          jxjxzip: '20753',
-          jxjxzip1: "19753",
-          // 湖北
-          hbaddress: '7919.167',
-          hbjxzip: '40616',
-          hbjxzip1: "39616",
-          // 湖南
-          hn1address: '9356.667',
-          hn1jxzip: '19406',
-          hn1jxzip1: "18406",
-          // 全国
-          alladdress: '42356.6',
-          alljxzip: '126032',
-          alljxzip1: "122032",
-        },
       ],
       tableData2: [
-        {
-          name: "河南",
-          // 电力
-          powered: "685",
-          powering: "320",
-          // 电量
-          electriced: "1907",
-          electricing: "1249",
-        },
-        {
-          name: "湖北",
-          powered: "21189",
-          powering: "2107",
-          electriced: "84186",
-          electricing: "7851",
-        },
-        {
-          name: "湖南",
-          powered: "3074",
-          powering: "4886",
-          electriced: "11331",
-          electricing: "19099",
-        },
-        {
-          name: "江西",
-          powered: "1083",
-          powering: "584",
-          electriced: "4327",
-          electricing: "2488",
-        },
-        {
-          name: "全国",
-          powered: "26031",
-          powering: "7897",
-          electriced: "101751",
-          electricing: "30687",
-        },
       ],
       tableData4: [
         {
@@ -577,10 +514,6 @@ export default {
         }
       ],
       timeoptions: [
-        {
-          value: "",
-          label: "",
-        },
       ],
       poweroptions: [
         {
@@ -624,6 +557,11 @@ export default {
       power: "",
       road: "",
       bad: "",
+      postData: {
+        datatimes: '',
+        flag: 1,
+      },
+      chaneTabIndex: 0
     };
   },
   components: {
@@ -640,22 +578,57 @@ export default {
       this.tagitems.map((val) => {
         val.sel = false;
       });
+      if (item.label === "电力保供系数" || item.label === "电量保供系数") {
+        this.optionsss.title.text = item.label + "指标";
+        if (item.label === "电力保供系数") {
+          this.optionsss.series[0].data = [{
+            value: [0.399, 0.405, 0.195, 0.482, 0.336],
+            name: "6:30:00",
+          },
+          {
+            value: [0.447, 0.385, 0.244, 0.323, 0.325],
+            name: "11:30:00",
+          },]
+        } else {
+          this.optionsss.series[0].data = [{
+            value: [0.407, 0.305, 0.204, 0.353, 0.305],
+            name: "6:30:00",
+          },
+          {
+            value: [0.457, 0.395, 0.264, 0.343, 0.345],
+            name: "11:30:00",
+          },]
+        }
+        this.$refs.charts.setchart();
+      }
       if (item.label === "水电消纳" || item.label === "新能源消纳") {
         if (item.label === "水电消纳") {
           this.optionsss2.radar.indicator = this.optionsss24Indicator
           this.optionsss4.radar.indicator = this.optionsss24Indicator
           this.optionsss2.series[0].data = this.optionsss24data
           this.optionsss4.series[0].data = this.optionsss24data
+          this.postData.flag = 1
         } else {
           this.optionsss2.radar.indicator = this.optionsss25Indicator
           this.optionsss4.radar.indicator = this.optionsss25Indicator
           this.optionsss2.series[0].data = this.optionsss25data
           this.optionsss4.series[0].data = this.optionsss25data
+          this.postData.flag = 2
         }
         this.optionsss2.title.text = item.label + "电量指标";
         this.optionsss4.title.text = item.label + "电力指标";
         this.$refs.charts2.setchart();
         this.$refs.charts3.setchart();
+        // 发送清洁能源消纳能力指标表格数据
+        util.post('/api/get_clean_energy', this.postData)
+          .then((response) => {
+            // console.log('发送没有', this.postData);
+            // console.log(response.data, 'get_clean_energy');
+            this.computerFuel(response.data)
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
       if (item.label === "省网" || item.label === "区域电网") {
         if (item.label === "区域电网") {
@@ -699,20 +672,30 @@ export default {
       item.sel = !item.sel;
     },
     chaneTab(index, title) {
-      console.log(title);
+      // console.log(title);
+      this.chaneTabIndex = index
       this.tabList.map((val) => {
         val.show = false;
       });
       this.tagtype = 1; // 初始化标签
       // this.tableData = [] // 视情况决定是否清空表格数据
       if (index == 0) {
-        this.optionsss.title.text = title + "指标";
+        this.optionsss.title.text = "电力保供系数指标";
         this.tagitems = [
           { label: "电力保供系数", tagtype: 1, sel: true },
           { label: "电量保供系数", tagtype: 2, sel: false },
         ];
       }
       if (index == 1) {
+        // 发送清洁能源消纳能力指标表格数据
+        util.post('/api/get_clean_energy', this.postData)
+          .then((response) => {
+            // console.log(response.data, 'get_clean_energy');
+            this.computerFuel(response.data)
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         this.optionsss2.title.text = "水电消纳电量指标";
         this.optionsss4.title.text = "水电消纳电力指标";
         this.tagitems = [
@@ -747,75 +730,276 @@ export default {
         type: "warning",
       })
         .then(() => {
-          this.time = "";
-          // 发接口
-          // this.tabledata.push() or this.tabledata重新赋值
-          this.tableData.push({
-            date: "22:00",
-            name: "河南",
-            hnprovince: "供电能力提升量",
-            city: "当前负荷",
-            // 河南
-            hnaddress: '8878',
-            hnjxzip: '55257',
-            hnjxzip1: '54257',
-            // 江西
-            jxaddress: '4005.833',
-            jxjxzip: '27753',
-            jxjxzip1: "26753",
-            // 湖北
-            hbaddress: '3919.167',
-            hbjxzip: '52616',
-            hbjxzip1: "51616",
-            // 湖南
-            hn1address: '6956.667',
-            hn1jxzip: '25406',
-            hn1jxzip1: "18406",
-            // 全国
-            alladdress: '13356.6',
-            alljxzip: '166032',
-            alljxzip1: "165032",
-          },);
-          this.optionsss.legend.data = ["6:30", "7:30", "10:30"];
-          this.optionsss.series[0].data = [
-            {
-              value: [4200, 3000, 20000, 35000, 50000],
-              name: "6:30",
-            },
-            {
-              value: [5000, 14000, 28000, 26000, 42000],
-              name: "7:30",
-            },
-            {
-              value: [5200, 11000, 23000, 21000, 32000],
-              name: "10:30",
-            },
-          ];
+          this.postData.datatimes = this.time
+          // console.log(this.postData.datatimes, 'this.postData.datatimes');
+          // console.log(this.postData.datatimes.split(' ')[1], 'this.postData.datatimes.split');
+          const dateTime = this.postData.datatimes.split(' ')[1]
+          if (this.chaneTabIndex == 0) {
+            // 发送时间改变接口
+            util.post('/api/get_electricity_target_timing', this.postData)
+              .then((response) => {
+                // console.log(response.data, 'get_electricity_target_timing');
+                const alldata = response.data
+                this.tableData.push({
+                  date: dateTime,
+                  hnprovince: "供电能力提升量",
+                  city: "当前负荷",
+                  // 河南
+                  hnaddress: alldata[2].power_supply_lift,
+                  hnaddress2: parseInt(alldata[2].load_power_quantity * 0.407),
+                  hnjxzip: alldata[2].load_power,
+                  hnjxzip1: alldata[2].load_power_quantity,
+                  // 江西
+                  jxaddress: alldata[1].power_supply_lift,
+                  jxaddress2: parseInt(alldata[1].load_power_quantity * 0.305),
+                  jxjxzip: alldata[1].load_power,
+                  jxjxzip1: alldata[1].load_power_quantity,
+                  // 湖北
+                  hbaddress: alldata[3].power_supply_lift,
+                  hbaddress2: parseInt(alldata[3].load_power_quantity * 0.204),
+                  hbjxzip: alldata[3].load_power,
+                  hbjxzip1: alldata[2].load_power_quantity,
+                  // 湖南
+                  hn1address: alldata[4].power_supply_lift,
+                  hn1address2: parseInt(alldata[4].load_power_quantity * 0.353),
+                  hn1jxzip: alldata[4].load_power,
+                  hn1jxzip1: alldata[4].load_power_quantity,
+                  // 全国
+                  alladdress: alldata[0].power_supply_lift,
+                  alladdress2: parseInt(alldata[0].load_power_quantity * 0.305),
+                  alljxzip: alldata[0].load_power,
+                  alljxzip1: alldata[0].load_power_quantity,
+                },);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+          else if (this.chaneTabIndex == 1) {
+            // 发送时间改变接口
+            util.post('/api/get_clean_energy_timing', this.postData)
+              .then((response) => {
+                // console.log(response.data, 'get_clean_energy_timing');
+                const alldata = response.data
+                let index = 0
+                let j = 5
+                const henanData = {
+                  name: alldata[index].region,
+                  // 时间
+                  times: alldata[index].timing,
+                  // 电力
+                  powered: alldata[index].fuel,
+                  powering: alldata[index].fuel_to,
+                  // 电量
+                  electriced: alldata[j + 2].fuel_quantity,
+                  electricing: alldata[j + 2].fuel_to_quantity,
+                }
+                this.tableData2.push(henanData);
+                const hubeiData = {
+                  name: alldata[index + 1].region,
+                  // 时间
+                  times: alldata[index + 1].timing,
+                  // 电力
+                  powered: alldata[index + 1].fuel,
+                  powering: alldata[index + 1].fuel_to,
+                  // 电量
+                  electriced: alldata[j + 3].fuel_quantity,
+                  electricing: alldata[j + 3].fuel_to_quantity,
+                }
+                this.tableData2.push(hubeiData);
+                const hunanData = {
+                  name: alldata[index + 2].region,
+                  // 时间
+                  times: alldata[index + 2].timing,
+                  // 电力
+                  powered: alldata[index + 2].fuel,
+                  powering: alldata[index + 2].fuel_to,
+                  // 电量
+                  electriced: alldata[j + 4].fuel_quantity,
+                  electricing: alldata[j + 4].fuel_to_quantity,
+                }
+                this.tableData2.push(hunanData);
+                const jiangxiData = {
+                  name: alldata[index + 3].region,
+                  // 时间
+                  times: alldata[index + 3].timing,
+                  // 电力
+                  powered: alldata[index + 3].fuel,
+                  powering: alldata[index + 3].fuel_to,
+                  // 电量
+                  electriced: alldata[j + 1].fuel_quantity,
+                  electricing: alldata[j + 1].fuel_to_quantity,
+                }
+                this.tableData2.push(jiangxiData);
+                const quanwangData = {
+                  name: alldata[index + 4].region,
+                  // 时间
+                  times: alldata[index + 4].timing,
+                  // 电力
+                  powered: alldata[index + 4].fuel,
+                  powering: alldata[index + 4].fuel_to,
+                  // 电量
+                  electriced: alldata[j].fuel_quantity,
+                  electricing: alldata[j].fuel_to_quantity,
+                }
+                this.tableData2.push(quanwangData);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+          this.optionsss.legend.data.push(dateTime)
+          this.optionsss.series[0].data.push({
+            value: [0.507, 0.385, 0.284, 0.343, 0.355],
+            name: dateTime,
+          });
           this.$refs.charts.setchart();
           this.chatkey++;
+          this.postData.datatimes = ''
         })
-        .catch(() => {
-          // this.$message({
-          //   type: 'info',
-          //   message: '已取消删除'
-          // });
+        .catch((error) => {
+          console.log(error);
         });
     },
+    // 处理时间点
     computerTimes(alldata) {
       this.timeoptions = alldata.map((item, index) => ({
         value: index + 1,
+        // label: `2023-08-24 ${item}`,
         label: `2023-08-24 ${item}`,
-      }));
-      console.log(this.timeoptions, 'this.timeoptions');
-    },
 
+      }));
+      // console.log(this.timeoptions, 'this.timeoptions');
+    },
+    //处理供电能力表格数据
+    computerTable(alldata) {
+      // console.log(alldata, '供电能力表格');
+      for (let index = 0; index < 25; index = index + 5) {
+        // 提取当前地区的数据
+        const henanData = alldata[index + 2];
+        const hubeiData = alldata[index + 3];
+        const hunanData = alldata[index + 4];
+        const jiangxiData = alldata[index + 1];
+        const quanwangData = alldata[index];
+        const processedData = {
+          date: henanData.timing,
+          hnprovince: "供电能力提升量",
+          city: "当前负荷",
+          // 河南
+          hnaddress: henanData.power_supply_lift,
+          hnaddress2: parseInt(henanData.load_power_quantity * 0.407),
+          hnjxzip: henanData.load_power,
+          hnjxzip1: henanData.load_power_quantity,
+          // 江西
+          jxaddress: jiangxiData.power_supply_lift,
+          jxaddress2: parseInt(jiangxiData.load_power_quantity * 0.305),
+          jxjxzip: jiangxiData.load_power,
+          jxjxzip1: jiangxiData.load_power_quantity,
+          // 湖北
+          hbaddress: hubeiData.power_supply_lift,
+          hbaddress2: parseInt(hubeiData.load_power_quantity * 0.204),
+          hbjxzip: hubeiData.load_power,
+          hbjxzip1: hubeiData.load_power_quantity,
+          // 湖南
+          hn1address: hunanData.power_supply_lift,
+          hn1address2: parseInt(hunanData.load_power_quantity * 0.353),
+          hn1jxzip: hunanData.load_power,
+          hn1jxzip1: hunanData.load_power_quantity,
+          // 全国
+          alladdress: quanwangData.power_supply_lift,
+          alladdress2: parseInt(quanwangData.load_power_quantity * 0.305),
+          alljxzip: quanwangData.load_power,
+          alljxzip1: quanwangData.load_power_quantity,
+        };
+        this.tableData.push(processedData);
+      }
+      // console.log(this.tableData, 'this.tableData');
+    },
+    //清洁能源消纳能力指标表格数据
+    computerFuel(alldata) {
+      // console.log(alldata, '清洁alldata');
+      this.tableData2 = [];
+      let j = 25;
+      for (let index = 0; index < 5; index++) {
+        const henanData = {
+          name: alldata[index].region,
+          // 时间
+          times: alldata[index].timing,
+          // 电力
+          powered: alldata[index].fuel,
+          powering: alldata[index].fuel_to,
+          // 电量
+          electriced: alldata[j + 2].fuel_quantity,
+          electricing: alldata[j + 2].fuel_to_quantity,
+        }
+        this.tableData2.push(henanData);
+        const hubeiData = {
+          name: alldata[index + 5].region,
+          // 时间
+          times: alldata[index + 5].timing,
+          // 电力
+          powered: alldata[index + 5].fuel,
+          powering: alldata[index + 5].fuel_to,
+          // 电量
+          electriced: alldata[j + 3].fuel_quantity,
+          electricing: alldata[j + 3].fuel_to_quantity,
+        }
+        this.tableData2.push(hubeiData);
+        const hunanData = {
+          name: alldata[index + 10].region,
+          // 时间
+          times: alldata[index + 10].timing,
+          // 电力
+          powered: alldata[index + 10].fuel,
+          powering: alldata[index + 10].fuel_to,
+          // 电量
+          electriced: alldata[j + 4].fuel_quantity,
+          electricing: alldata[j + 4].fuel_to_quantity,
+        }
+        this.tableData2.push(hunanData);
+        const jiangxiData = {
+          name: alldata[index + 15].region,
+          // 时间
+          times: alldata[index + 15].timing,
+          // 电力
+          powered: alldata[index + 15].fuel,
+          powering: alldata[index + 15].fuel_to,
+          // 电量
+          electriced: alldata[j + 1].fuel_quantity,
+          electricing: alldata[j + 1].fuel_to_quantity,
+        }
+        this.tableData2.push(jiangxiData);
+        const quanwangData = {
+          name: alldata[index + 20].region,
+          // 时间
+          times: alldata[index + 20].timing,
+          // 电力
+          powered: alldata[index + 20].fuel,
+          powering: alldata[index + 20].fuel_to,
+          // 电量
+          electriced: alldata[j].fuel_quantity,
+          electricing: alldata[j].fuel_to_quantity,
+        }
+        this.tableData2.push(quanwangData);
+        j = j + 5
+      }
+    }
   },
   mounted() {
     // 获取时间点
     util.get('/api/get_data_timing')
       .then((response) => {
-        console.log(response.data, '11111');
+        // console.log(response.data, '11111');
         this.computerTimes(response.data.times)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    //获取供电能力表格数据
+    util.post('/api/get_electricity_target', this.postData)
+      .then((response) => {
+        // console.log(response.data, 'get_electricity_target');
+        this.computerTable(response.data)
       })
       .catch((error) => {
         console.log(error);
