@@ -27,17 +27,17 @@
           <div v-if="showInput">
           <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="power"
             placeholder="直流电路选择">
-            <el-option v-for="item in poweroptions" :key="item.value" :label="item.label" :value="item.label">
+            <el-option v-for="item in poweroptions" :key="item.value" :label="item.label" :value="item.value">
             </el-option>
           </el-select>
           <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="road"
             placeholder="转送通道选择">
-            <el-option v-for="item in roadoptions" :key="item.value" :label="item.label" :value="item.label">
+            <el-option v-for="item in roadoptions" :key="item.value" :label="item.label" :value="item.value">
             </el-option>
           </el-select>
           <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="bad"
             placeholder="故障路线选择">
-            <el-option v-for="item in badoptions" :key="item.value" :label="item.label" :value="item.label">
+            <el-option v-for="item in badoptions" :key="item.value" :label="item.label" :value="item.value">
             </el-option>
           </el-select>
         </div>
@@ -323,14 +323,14 @@ export default {
             name: "",
             type: "radar",
             data: [
-              {
-                value: [8000, 3000, 20000, 5000],
-                name: "6:30",
-              },
-              {
-                value: [9000, 4000, 28000, 6000],
-                name: "7:30",
-              },
+              // {
+              //   value: [8000, 3000, 20000, 5000],
+              //   name: "6:30",
+              // },
+              // {
+              //   value: [9000, 4000, 28000, 6000],
+              //   name: "7:30",
+              // },
             ],
           },
         ],
@@ -624,9 +624,16 @@ export default {
         // },
       ],
       time: "",
-      power: "",
-      road: "",
-      bad: "",
+      power: '1',
+      road: '1',
+      bad: '1',
+      henanthreeData:[],
+      hubeithreeData:[],
+      hunanthreeData:[],
+      jiangxithreeData:[],
+      powergrid1:[],
+      powergrid2:[],
+      powergrid3:[],
     };
   },
   components: {
@@ -660,6 +667,7 @@ export default {
         this.$refs.charts2.setchart();
         this.$refs.charts3.setchart();
       }
+      // if(item === )
       if (item.label === "省网" || item.label === "区域电网") {
         if (item.label === "区域电网") {
           this.showInput=true;
@@ -670,12 +678,24 @@ export default {
           ];
           this.optionsss3.series[0].data = [
             {
-              value: [5000, 5500, 6000],
-              name: "6:30",
+              value: [this.powergrid1[0].synthesize_target, this.powergrid2[0].synthesize_target, this.powergrid3[0].synthesize_target],
+              name: this.powergrid1[0].timing,
             },
             {
-              value: [4000, 5000, 5000],
-              name: "7:30",
+              value: [this.powergrid1[1].synthesize_target, this.powergrid2[1].synthesize_target, this.powergrid3[1].synthesize_target],
+              name: this.powergrid1[1].timing,
+            },
+            {
+              value: [this.powergrid1[2].synthesize_target, this.powergrid2[2].synthesize_target, this.powergrid3[2].synthesize_target],
+              name: this.powergrid1[2].timing,
+            },
+            {
+              value: [this.powergrid1[3].synthesize_target, this.powergrid2[3].synthesize_target, this.powergrid3[3].synthesize_target],
+              name: this.powergrid1[3].timing,
+            },
+            {
+              value: [this.powergrid1[4].synthesize_target, this.powergrid2[4].synthesize_target, this.powergrid3[4].synthesize_target],
+              name: this.powergrid1[4].timing,
             },
           ];
         } else {
@@ -688,12 +708,24 @@ export default {
           ];
           this.optionsss3.series[0].data = [
             {
-              value: [8000, 3000, 10000, 5000],
-              name: "6:30",
+              value: [this.henanthreeData[0].synthesize_target, this.hubeithreeData[0].synthesize_target, this.hunanthreeData[0].synthesize_target, this.jiangxithreeData[0].synthesize_target],
+              name: this.henanthreeData[0].timing,
             },
             {
-              value: [9000, 4000, 8000, 6000],
-              name: "7:30",
+              value: [this.henanthreeData[1].synthesize_target, this.hubeithreeData[1].synthesize_target, this.hunanthreeData[1].synthesize_target, this.jiangxithreeData[1].synthesize_target],
+              name: this.henanthreeData[1].timing,
+            },
+            {
+              value: [this.henanthreeData[2].synthesize_target, this.hubeithreeData[2].synthesize_target, this.hunanthreeData[2].synthesize_target, this.jiangxithreeData[2].synthesize_target],
+              name: this.henanthreeData[0].timing,
+            },
+            {
+              value: [this.henanthreeData[3].synthesize_target, this.hubeithreeData[3].synthesize_target, this.hunanthreeData[3].synthesize_target, this.jiangxithreeData[3].synthesize_target],
+              name: this.henanthreeData[3].timing,
+            },
+            {
+              value: [this.henanthreeData[4].synthesize_target, this.hubeithreeData[4].synthesize_target, this.hunanthreeData[4].synthesize_target, this.jiangxithreeData[4].synthesize_target],
+              name: this.henanthreeData[4].timing,
             },
           ];
         }
@@ -754,20 +786,22 @@ export default {
         .then(() => {
           this.time = "";
           // 发接口
-          // 
-        //   util.post('/api/get_result_data', postData)
-        // .then(response => {
-        //   // 处理POST请求的响应
-        //   if (response && response.code === 200) {
-        //     // 请求成功的处理逻辑
-        //     this.$bus.$emit('rightData', response.data)
-        //   } else {
-        //     // 请求失败的处理逻辑
-        //     this.$message.error('服务器错误')
-        //     // console.error('POST请求失败', response);
-        //   }
-        // })
-
+          util.post('/api/get_synthesize_target',)
+        .then(response => {
+          console.log(response,'time');
+          // 处理POST请求的响应
+          if (response && response.code === 200) {
+            // 请求成功的处理逻辑
+          
+          } else {
+            // 请求失败的处理逻辑
+            this.$message.error('服务器错误')
+          }
+        })
+        .catch(error => {
+          // 处理POST请求的错误
+          this.$message.error('服务器错误')
+        });
           // this.tabledata.push() or this.tabledata重新赋值
           this.tableData.push({
             date: "22:00",
@@ -839,6 +873,65 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+      // 初始化综合能力的图
+         util.post('/api/get_region_target',this.time)
+        .then(response => {
+          // console.log(response,'time');
+          // 处理POST请求的响应
+          if (response && response.code === 200) {
+            // 请求成功的处理逻辑
+            // 河南
+            this.henanthreeData[0]=response.data[0]
+            this.henanthreeData[1] = response.data[1]
+            this.henanthreeData[2] = response.data[2]
+            this.henanthreeData[3] = response.data[3]
+            this.henanthreeData[4] = response.data[4]
+            // 湖北
+            this.hubeithreeData[0]=response.data[5]
+            this.hubeithreeData[1] = response.data[6]
+            this.hubeithreeData[2] = response.data[7]
+            this.hubeithreeData[3] = response.data[8]
+            this.hubeithreeData[4] = response.data[9]
+            // 湖南
+            this.hunanthreeData[0]=response.data[10]
+            this.hunanthreeData[1] = response.data[11]
+            this.hunanthreeData[2] = response.data[12]
+            this.hunanthreeData[3] = response.data[13]
+            this.hunanthreeData[4] = response.data[14]
+            // 江西
+            this.jiangxithreeData[0]=response.data[15]
+            this.jiangxithreeData[1] = response.data[16]
+            this.jiangxithreeData[2] = response.data[17]
+            this.jiangxithreeData[3] = response.data[18]
+            this.jiangxithreeData[4] = response.data[19]
+            // 
+            this.powergrid1[0]=response.data[20]
+            this.powergrid1[1] = response.data[21]
+            this.powergrid1[2] = response.data[22]
+            this.powergrid1[3] = response.data[23]
+            this.powergrid1[4] = response.data[24]
+            // 
+            this.powergrid2[0]=response.data[25]
+            this.powergrid2[1] = response.data[26]
+            this.powergrid2[2] = response.data[27]
+            this.powergrid2[3] = response.data[28]
+            this.powergrid2[4] = response.data[29]
+            // 
+             this.powergrid3[0]=response.data[30]
+            this.powergrid3[1] = response.data[31]
+            this.powergrid3[2] = response.data[32]
+            this.powergrid3[3] = response.data[33]
+            this.powergrid3[4] = response.data[34]
+            
+          } else {
+            // 请求失败的处理逻辑
+            this.$message.error('服务器错误')
+          }
+        })
+        .catch(error => {
+          // 处理POST请求的错误
+          this.$message.error('服务器错误')
+        });
   },
 };
 </script>
