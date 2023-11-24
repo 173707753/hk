@@ -127,6 +127,7 @@ export default {
         }
     },
     created() {
+        localStorage.setItem('area', JSON.stringify(this.postData))
         util.get('/api/get_region')
             .then((response) => {
                 // console.log(response, '11111');
@@ -230,7 +231,8 @@ export default {
         onSubmit() {
             // 根据 selectedArea 进行筛选
             // const filteredData = this.left5Data.filter(item => item.name === this.selectedProvince);
-            // console.log(filteredData);
+            // console.log(filteredData, 111);
+            
             // 地图跳转
             // this.$bus.$emit('left5Data', filteredData);
             // 传递省份，区域给index.vue
@@ -247,6 +249,7 @@ export default {
                 district: this.selectedArea,
                 flag: this.flag,
             };
+            localStorage.setItem('area', JSON.stringify(postData))
             if (this.selectedProvince) {
 
                 // 发起POST请求

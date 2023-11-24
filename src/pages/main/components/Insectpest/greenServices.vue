@@ -117,7 +117,7 @@
             <div class="count">
               <chat :id="`hnchat7`" :option="gethnoption(8)"></chat>
             </div>
-          <p class="desc">全网受电</p>
+          <p class="desc">全网用电</p>
         </div>
       </div>
     </div>
@@ -125,11 +125,20 @@
 </template>
 
 <script>
+import util from '@/utils/request.js';
 import chat from '../../../../components/EChart.vue'
 export default {
   data() {
     return {
       tabs: false,
+      hunanData:{},
+      hubeiData:{},
+      jiangxiData:{},
+      henanData:{},
+      power1:[],
+      power2:[],
+      power3:[],
+      power4:[],
       statics: 0,
       hnoption: {
         tooltip: {
@@ -161,6 +170,31 @@ export default {
   },
   components: {
     chat
+  },
+  created() {
+    util.get('/api/get_overview_data')
+        .then(response => {
+          console.log(response,'res');
+          if (response && response.code === 200) {
+            // 请求成功的处理逻辑
+            this.hunanData=response.data[0]
+            this.hubeiData=response.data[1]
+            this.jiangxiData=response.data[2]
+            this.henanData=response.data[3]
+            this.power1=response.data[4].generation_summation
+            this.power2=response.data[5].receive_generation
+            this.power3=response.data[6].real_time_generation
+            this.power4=response.data[7].backup_generation_sum
+            console.log(this.power1,'111');
+
+          } else {
+            // 请求失败的处理逻辑
+            this.$message.error('服务器错误')
+          }
+        })
+        .catch(error => {
+          this.$message.error('服务器错误')
+        });
   },
   methods: {
     gethnoption(val) {
@@ -224,32 +258,35 @@ export default {
           },
         }
         obj.series[0].data = [
-        { value: 245114.639, name: '火力发电' },
-        { value: 336636.93976, name: '水力发电' },
-        { value: -32481.375, name: '抽蓄发电' },
-        { value: 239013.00 , name: '光伏发电' },
-        { value: 217983.00 , name: '风力发电' }]
+        { value: this.hubeiData.hubei.fire_generation, name: '火力发电'},
+        { value: this.hubeiData.hubei.water_generation, name: '水力发电' },
+        { value: this.hubeiData.hubei.take_generation, name: '抽蓄发电' },
+        { value: this.hubeiData.hubei.light_generation , name: '光伏发电' },
+        { value: this.hubeiData.hubei.wind_generation, name: '风力发电' }]
         return obj
       }  if (val == 2) {
-        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
-        { value: 336636.93976, name: '水力发电' },
-        { value: 232481.375, name: '抽蓄发电' },
-        { value: 139013.00 , name: '光伏发电' },
-        { value: 217983.00 , name: '风力发电' }]
+        obj.series[0].data = [
+          { value:this.henanData.henan.fire_generation,name: '火力发电' },
+        { value: this.henanData.henan.water_generation, name: '水力发电' },
+        { value: this.henanData.henan.take_generation, name: '抽蓄发电' },
+        { value: this.henanData.henan.light_generation, name: '光伏发电' },
+        { value: this.henanData.henan.wind_generation, name: '风力发电' }]
         return obj
       }  if (val == 3) {
-        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
-        { value: 336636.93976, name: '水力发电' },
-        { value: -32481.375, name: '抽蓄发电' },
-        { value: 639013.00 , name: '光伏发电' },
-        { value: 217983.00 , name: '风力发电' }]
+        obj.series[0].data = [
+        { value:this.jiangxiData.jiangxi.fire_generation,name: '火力发电' },
+        { value: this.jiangxiData.jiangxi.water_generation, name: '水力发电' },
+        { value: this.jiangxiData.jiangxi.take_generation, name: '抽蓄发电' },
+        { value: this.jiangxiData.jiangxi.light_generation, name: '光伏发电' },
+        { value: this.jiangxiData.jiangxi.wind_generation, name: '风力发电' }]
         return obj
       }  if (val == 4) {
-        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
-        { value: 336636.93976, name: '水力发电' },
-        { value: -32481.375, name: '抽蓄发电' },
-        { value: 139013.00 , name: '光伏发电' },
-        { value: 217983.00 , name: '风力发电' }]
+        obj.series[0].data = [
+        { value:this.hunanData.hunan.fire_generation,name: '火力发电' },
+        { value: this.hunanData.hunan.water_generation, name: '水力发电' },
+        { value: this.hunanData.hunan.take_generation, name: '抽蓄发电' },
+        { value: this.hunanData.hunan.light_generation, name: '光伏发电' },
+        { value: this.hunanData.hunan.wind_generation, name: '风力发电' }]
         return obj
       }  if (val == 5) {
         obj.tooltip = {
@@ -292,32 +329,31 @@ export default {
             return [left, top];
           },
         }
-        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
-        { value: 336636.93976, name: '水力发电' },
-        { value: -32481.375, name: '抽蓄发电' },
-        { value: 139013.00 , name: '光伏发电' },
-        { value: 217983.00 , name: '风力发电' }]
+        obj.series[0].data = [
+          { value: this.power1[0].data, name: '河南省' },
+        { value:this.power1[1].data, name: '江西省' },
+        { value: this.power1[2].data, name: '湖北省' },
+        { value: this.power1[3].data, name: '湖南省' }]
         return obj
       }  if (val == 6) {
-        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
-        { value: 336636.93976, name: '水力发电' },
-        { value: -32481.375, name: '抽蓄发电' },
-        { value: 239013.00 , name: '光伏发电' },
-        { value: 217983.00 , name: '风力发电' }]
+        obj.series[0].data = [
+        { value: this.power2[0].data, name: '河南省' },
+        { value:this.power2[1].data, name: '江西省' },
+        { value: this.power2[2].data, name: '湖北省' },
+        { value: this.power2[3].data, name: '湖南省' }]
         return obj
       }  if (val == 7) {
-        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
-        { value: 336636.93976, name: '水力发电' },
-        { value: -32481.375, name: '抽蓄发电' },
-        { value: 239013.00 , name: '光伏发电' },
-        { value: 217983.00 , name: '风力发电' }]
+        obj.series[0].data = [{ value: this.power3[0].data, name: '河南省' },
+        { value:this.power3[1].data, name: '江西省' },
+        { value: this.power3[2].data, name: '湖北省' },
+        { value: this.power3[3].data, name: '湖南省' }]
         return obj
       }  if (val == 8) {
-        obj.series[0].data = [{ value: 245114.639, name: '火力发电' },
-        { value: 336636.93976, name: '水力发电' },
-        { value: -32481.375, name: '抽蓄发电' },
-        { value: 339013.00 , name: '光伏发电' },
-        { value: 217983.00 , name: '风力发电' }]
+        obj.series[0].data = [{ value: this.power4[0].data, name: '河南省' },
+        { value:this.power4[1].data, name: '江西省' },
+        { value: this.power4[2].data, name: '湖北省' },
+        { value: this.power4[3].data, name: '湖南省' }]
+        
         return obj
       }
       // console.log(obj, 111)
