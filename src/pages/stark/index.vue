@@ -24,6 +24,7 @@
             </el-option>
           </el-select>
 
+          <div v-if="showInput">
           <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="power"
             placeholder="直流电路选择">
             <el-option v-for="item in poweroptions" :key="item.value" :label="item.label" :value="item.label">
@@ -39,6 +40,7 @@
             <el-option v-for="item in badoptions" :key="item.value" :label="item.label" :value="item.label">
             </el-option>
           </el-select>
+        </div>
 
           <div :class="item.sel ? 'tablag' : ''" class="tabsel" v-for="item in tagitems" :key="item.label"
             @click="changeType(item)">
@@ -85,6 +87,7 @@ export default {
       chatkey: 0,
       chatkey1: 1,
       chatkey2: 2,
+      showInput:false,
       tabList: [
         {
           title: "供电能力",
@@ -724,14 +727,14 @@ export default {
           value: "1",
           label: "西北送华东",
         },
-        {
-          value: "2",
-          label: "华东送华北",
-        },
-        {
-          value: "3",
-          label: "华南送华西",
-        },
+        // {
+        //   value: "2",
+        //   label: "华东送华北",
+        // },
+        // {
+        //   value: "3",
+        //   label: "华南送华西",
+        // },
       ],
       badoptions: [
         {
@@ -782,10 +785,11 @@ export default {
       }
       if (item.label === "省网" || item.label === "区域电网") {
         if (item.label === "区域电网") {
+          this.showInput=true;
           this.optionsss3.radar.indicator = [
             { name: "区域电网跨区", max: 9500 },
             { name: "跨区转送能力", max: 16000 },
-            { name: "区域电网大功率", max: 30000 },
+            { name: "区域电网大功率应急响应能力", max: 30000 },
           ];
           this.optionsss3.series[0].data = [
             {
@@ -798,6 +802,7 @@ export default {
             },
           ];
         } else {
+          this.showInput=false;
           this.optionsss3.radar.indicator = [
             { name: "河南", max: 9500 },
             { name: "湖北", max: 16000 },
@@ -872,6 +877,20 @@ export default {
         .then(() => {
           this.time = "";
           // 发接口
+          // 
+        //   util.post('/api/get_result_data', postData)
+        // .then(response => {
+        //   // 处理POST请求的响应
+        //   if (response && response.code === 200) {
+        //     // 请求成功的处理逻辑
+        //     this.$bus.$emit('rightData', response.data)
+        //   } else {
+        //     // 请求失败的处理逻辑
+        //     this.$message.error('服务器错误')
+        //     // console.error('POST请求失败', response);
+        //   }
+        // })
+
           // this.tabledata.push() or this.tabledata重新赋值
           this.tableData.push({
             date: "22:00",
