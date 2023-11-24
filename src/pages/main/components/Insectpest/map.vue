@@ -8,11 +8,14 @@
       <div>
         {{ mapChartOption.geo.map == 'china' ? '中国' : mapChartOption.geo.map }}
       </div>
-
+      
     </div>
     <div @showSelect="false" class="chart-container" @contextmenu.prevent="show()">
       <div id="mapChart" :style="heightStyle"></div>
     </div>
+    <div class="exports" title="报告导出" @click="exportbg">
+        <i class="el-icon-upload2"></i>
+      </div>
   </div>
 </template>
 
@@ -610,11 +613,11 @@ export default {
       this.province = res.data
     });
     // 接收left5的map跳转数据
-    this.$bus.$on('left5Data', (filteredData) => {
-      this.nowType = 'country'
-      // console.log(filteredData);
-      this.clickMap(filteredData[0])
-    });
+    // this.$bus.$on('left5Data', (filteredData) => {
+    //   this.nowType = 'country'
+    //   // console.log(filteredData);
+    //   this.clickMap(filteredData[0])
+    // });
   },
   methods: {
     goSearch(val) {
@@ -869,6 +872,25 @@ export default {
       })
       return
     },
+    // exportbg() {
+    //   let obj = JSON.parse(localStorage.getItem('area'))
+    //   console.log(obj)
+    //   window.open(`/api/get_send_pdf?region=${obj.region}&district=${obj.district}&datatime=${Date.now()}&flag=${obj.flag}`)
+    // },
+    downloadFile(filePath, name) {
+      const link = document.createElement('a')
+      link.style.display = 'none'
+      link.href = filePath
+      link.setAttribute('download', name)
+      document.body.appendChild(link)
+      link.click()
+    },
+    exportbg() {
+        let obj = JSON.parse(localStorage.getItem('area'))
+      console.log(obj)
+      const url = `/api/get_send_pdf?region=${obj.region}&district=${obj.district}&datatime=${Date.now()}&flag=${obj.flag}`
+      this.downloadFile(url, '报告.pdf')
+    },
   },
   beforeDestroy() {
     this.$bus.$off('left5Data')
@@ -1033,5 +1055,19 @@ export default {
     width: 100%;
     z-index: 1;
   }
+  
 }
+.exports{
+    // width: 100px;
+    // height: 100px;
+    // background: red;
+    position: absolute;
+    // right: 50%;
+    top: 10px;
+    z-index: 999999999999999999999999999;
+    right: 10px;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+  }
 </style>
