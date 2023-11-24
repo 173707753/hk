@@ -79,6 +79,7 @@ import charts4 from "./chart4.vue";
 import tables from "./tables.vue";
 import tables2 from "./tables2.vue";
 import tables4 from "./tables4.vue";
+import util from '@/utils/request.js';
 export default {
   data() {
     return {
@@ -508,110 +509,6 @@ export default {
           alljxzip: '126032',
           alljxzip1: "122032",
         },
-        {
-          date: "11:30",
-          name: "河南",
-          hnprovince: "供电能力提升量",
-          city: "当前负荷",
-          // 河南
-          hnaddress: '23744.33',
-          hnjxzip: '53114',
-          hnjxzip1: '52114',
-          // 江西
-          jxaddress: '10688.23',
-          jxjxzip: '27738',
-          jxjxzip1: "26738",
-          // 湖北
-          hbaddress: '12666.67',
-          hbjxzip: '51956',
-          hbjxzip1: "50956",
-          // 湖南
-          hn1address: '7878.333',
-          hn1jxzip: '24369',
-          hn1jxzip1: "23369",
-          // 全国
-          alladdress: '51160.6',
-          alljxzip: '157177',
-          alljxzip1: "155177",
-        },
-        {
-          date: "12:00",
-          name: "河南",
-          hnprovince: "供电能力提升量",
-          city: "当前负荷",
-          // 河南
-          hnaddress: '24610.5',
-          hnjxzip: '52617',
-          hnjxzip1: '51617',
-          // 江西
-          jxaddress: '11732.5',
-          jxjxzip: '26758',
-          jxjxzip1: "25758",
-          // 湖北
-          hbaddress: '13155.83',
-          hbjxzip: '51717',
-          hbjxzip1: "50717",
-          // 湖南
-          hn1address: '8030',
-          hn1jxzip: '23847',
-          hn1jxzip1: "22847",
-          // 全国
-          alladdress: '54570.2',
-          alljxzip: '154939',
-          alljxzip1: "150939",
-        },
-        {
-          date: "18:00",
-          name: "河南",
-          hnprovince: "供电能力提升量",
-          city: "当前负荷",
-          // 河南
-          hnaddress: '9630.5',
-          hnjxzip: '53667',
-          hnjxzip1: '52667',
-          // 江西
-          jxaddress: '4567.5',
-          jxjxzip: '25919',
-          jxjxzip1: "24919",
-          // 湖北
-          hbaddress: '5695',
-          hbjxzip: '52875',
-          hbjxzip1: "51875",
-          // 湖南
-          hn1address: '7581.667',
-          hn1jxzip: '23049',
-          hn1jxzip1: "22049",
-          // 全国
-          alladdress: '18601',
-          alljxzip: '15510',
-          alljxzip1: "11510",
-        },
-        {
-          date: "21:30",
-          name: "河南",
-          hnprovince: "供电能力提升量",
-          city: "当前负荷",
-          // 河南
-          hnaddress: '9025.5',
-          hnjxzip: '54482',
-          hnjxzip1: '53482',
-          // 江西
-          jxaddress: '4275',
-          jxjxzip: '26116',
-          jxjxzip1: "25116",
-          // 湖北
-          hbaddress: '4450',
-          hbjxzip: '51643',
-          hbjxzip1: "50643",
-          // 湖南
-          hn1address: '7185.833',
-          hn1jxzip: '24011',
-          hn1jxzip1: "23011",
-          // 全国
-          alladdress: '15569.6',
-          alljxzip: '156252',
-          alljxzip1: "152252",
-        },
       ],
       tableData2: [
         {
@@ -681,28 +578,8 @@ export default {
       ],
       timeoptions: [
         {
-          value: "1",
-          label: "6:30",
-        },
-        {
-          value: "2",
-          label: "11:30",
-        },
-        {
-          value: "3",
-          label: "12:00",
-        },
-        {
-          value: "4",
-          label: "18:00",
-        },
-        {
-          value: "5",
-          label: "21:30",
-        },
-        {
-          value: "6",
-          label: "22:00",
+          value: "",
+          label: "",
         },
       ],
       poweroptions: [
@@ -924,6 +801,25 @@ export default {
           // });
         });
     },
+    computerTimes(alldata) {
+      this.timeoptions = alldata.map((item, index) => ({
+        value: index + 1,
+        label: `2023-08-24 ${item}`,
+      }));
+      console.log(this.timeoptions, 'this.timeoptions');
+    },
+
+  },
+  mounted() {
+    // 获取时间点
+    util.get('/api/get_data_timing')
+      .then((response) => {
+        console.log(response.data, '11111');
+        this.computerTimes(response.data.times)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
