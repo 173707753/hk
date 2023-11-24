@@ -998,7 +998,7 @@ export default {
     //获取供电能力表格数据
     util.post('/api/get_electricity_target', this.postData)
       .then((response) => {
-        // console.log(response.data, 'get_electricity_target');
+        console.log(response.data, 'get_electricity_target');
         this.computerTable(response.data)
       })
       .catch((error) => {
