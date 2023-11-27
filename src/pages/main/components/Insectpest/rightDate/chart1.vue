@@ -231,6 +231,16 @@ export default {
         })
         this.$bus.$on('rightData', (alldata) => {
             // console.log('具体区域数据1lm', alldata);
+            this.chartDate[0].data = []
+            this.chartDate[1].data = []
+            this.newData[0].data = []
+            this.newData[1].data = []
+            this.totalData[0].data = []
+            this.totalData[1].data = []
+            this.totalData[2].data = []
+            this.totalData[3].data = []
+            this.totalData[4].data = []
+            this.conventionalData = []
             alldata.forEach((item) => {
                 // 火电
                 this.chartDate[0].data.push(item.fire_quantity)

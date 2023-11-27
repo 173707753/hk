@@ -163,7 +163,8 @@ export default {
     mounted() {
         this.initChart()
         this.$bus.$on("trueData1", (data) => {
-            console.log("你好", data);
+            // console.log("你好", data);
+            this.leftData[0].data = []
             data.forEach((item) => {
                 this.leftData[0].data.push(item.fracture_data)
             })

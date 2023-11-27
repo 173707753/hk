@@ -11,7 +11,7 @@
                 <div @click="changeEnergy(1)" class="energy-button conventional">发电功率</div>
                 <div @click="changeNewenergy(1)" class="energy-button new">抽蓄电量</div>
             </div>
-            <PopupComponent v-if="isMouseOverBot" ref="popup3" @close-popup="hidePopup" :alldata="tableData" />
+            <PopupComponent v-if="isMouseOverBot" ref="popup3" @close-popup="hidePopup" :alldata="newData" />
         </div>
     </div>
 </template>
@@ -202,18 +202,18 @@ export default {
             alldata.forEach((item) => {
                 this.chartDate[0].data.push(item.take_quantity)
             })
-           
+
             this.updateChart(this.chartDate)
             this.loading = false
         })
 
         this.$bus.$on('threeData', (threeData) => {
-            console.log(threeData,'three');
+            // console.log(threeData,'three');
             this.newData.forEach(item => item.data = [])
             threeData.forEach((item) => {
-                if(item.region === '南阳上'){
+                if (item.region === '南阳上') {
                     this.newData[0].data.push(item.take_quantity)
-                }else{
+                } else {
                     this.newData[1].data.push(item.take_quantity)
                 }
             })
