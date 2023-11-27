@@ -2,17 +2,17 @@
     <el-table :data="tableData" height="20vw" :header-cell-style="{ background: 'rgba(0,25,47,0.7)', color: '#fff' }"
         style="width: 100%">
         <!-- <div v-if="type == 1"> -->
-        <el-table-column prop="leixing" label="类型" width="100"></el-table-column>
+        <el-table-column prop="leixing" align="center" label="类型" width="100"></el-table-column>
         <el-table-column style="text-align: center;">
-            <el-table-column prop="henan" label="河南">
+            <el-table-column align="center" prop="henan" label="河南">
             </el-table-column>
-            <el-table-column prop="hubei" label="湖北">
+            <el-table-column align="center" prop="hubei" label="湖北">
             </el-table-column>
-            <el-table-column prop="hunan" label="湖南">
+            <el-table-column align="center" prop="hunan" label="湖南">
             </el-table-column>
-            <el-table-column prop="jiangxi" label="江西">
+            <el-table-column align="center" prop="jiangxi" label="江西">
             </el-table-column>
-            <el-table-column prop="quyu" label="区域电网">
+            <el-table-column align="center" prop="quyu" label="区域电网">
             </el-table-column>
         </el-table-column>
     </el-table>

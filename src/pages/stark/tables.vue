@@ -2,56 +2,56 @@
   <el-table :data="tableData" height="20vw" :header-cell-style="{ background: 'rgba(0,25,47,0.7)', color: '#fff' }"
     style="width: 100%">
     <!-- <div v-if="type == 1"> -->
-    <el-table-column prop="date" label="时间" width="100">
+    <el-table-column prop="date" align="center" label="时间" width="100">
     </el-table-column>
-    <el-table-column label="河南">
-      <el-table-column v-if="tagtype == 1" prop="hnaddress" label="供电能力提升量">
+    <el-table-column align="center" label="河南">
+      <el-table-column v-if="tagtype == 1" prop="hnaddress" align="center" label="供电能力提升量">
       </el-table-column>
-      <el-table-column width="" prop="hnjxzip" v-if="tagtype == 1" label="当前负荷">
+      <el-table-column width="80" prop="hnjxzip" v-if="tagtype == 1" align="center" label="当前负荷">
       </el-table-column>
-      <el-table-column v-if="tagtype == 2" prop="hnaddress2" label="供电能力提升量">
+      <el-table-column v-if="tagtype == 2" prop="hnaddress2" align="center" label="供电能力提升量">
       </el-table-column>
-      <el-table-column width="" v-if="tagtype == 2" prop="hnjxzip1" label="当前负荷用电量">
-      </el-table-column>
-    </el-table-column>
-    <el-table-column label="江西">
-      <el-table-column v-if="tagtype == 1" prop="jxaddress" label="供电能力提升量">
-      </el-table-column>
-      <el-table-column width="" prop="jxjxzip" v-if="tagtype == 1" label="当前负荷">
-      </el-table-column>
-      <el-table-column v-if="tagtype == 2" prop="jxaddress2" label="供电能力提升量">
-      </el-table-column>
-      <el-table-column width="" v-if="tagtype == 2" prop="jxjxzip1" label="当前负荷用电量">
+      <el-table-column width="" v-if="tagtype == 2" prop="hnjxzip1" align="center" label="当前负荷用电量">
       </el-table-column>
     </el-table-column>
-    <el-table-column label="湖北">
-      <el-table-column v-if="tagtype == 1" prop="hbaddress" label="供电能力提升量">
+    <el-table-column align="center" label="江西">
+      <el-table-column v-if="tagtype == 1" prop="jxaddress" align="center" label="供电能力提升量">
       </el-table-column>
-      <el-table-column width="" prop="hbjxzip" v-if="tagtype == 1" label="当前负荷">
+      <el-table-column width="80" prop="jxjxzip" v-if="tagtype == 1" align="center" label="当前负荷">
       </el-table-column>
-      <el-table-column v-if="tagtype == 2" prop="hbaddress2" label="供电能力提升量">
+      <el-table-column v-if="tagtype == 2" prop="jxaddress2" align="center" label="供电能力提升量">
       </el-table-column>
-      <el-table-column width="" v-if="tagtype == 2" prop="hbjxzip1" label="当前负荷用电量">
-      </el-table-column>
-    </el-table-column>
-    <el-table-column label="湖南">
-      <el-table-column v-if="tagtype == 1" prop="hn1address" label="供电能力提升量">
-      </el-table-column>
-      <el-table-column width="" prop="hn1jxzip" v-if="tagtype == 1" label="当前负荷">
-      </el-table-column>
-      <el-table-column v-if="tagtype == 2" prop="hn1address2" label="供电能力提升量">
-      </el-table-column>
-      <el-table-column width="" v-if="tagtype == 2" prop="hn1jxzip1" label="当前负荷用电量">
+      <el-table-column width="" v-if="tagtype == 2" prop="jxjxzip1" align="center" label="当前负荷用电量">
       </el-table-column>
     </el-table-column>
-    <el-table-column label="全网">
-      <el-table-column v-if="tagtype == 1" prop="alladdress" label="供电能力提升量">
+    <el-table-column align="center" label="湖北">
+      <el-table-column v-if="tagtype == 1" prop="hbaddress" align="center" label="供电能力提升量">
       </el-table-column>
-      <el-table-column width="" prop="alljxzip" v-if="tagtype == 1" label="当前负荷">
+      <el-table-column width="80" prop="hbjxzip" v-if="tagtype == 1" align="center" label="当前负荷">
       </el-table-column>
-      <el-table-column v-if="tagtype == 2" prop="alladdress2" label="供电能力提升量">
+      <el-table-column v-if="tagtype == 2" prop="hbaddress2" align="center" label="供电能力提升量">
       </el-table-column>
-      <el-table-column width="" v-if="tagtype == 2" prop="alljxzip1" label="当前负荷用电量">
+      <el-table-column width="" v-if="tagtype == 2" prop="hbjxzip1" align="center" label="当前负荷用电量">
+      </el-table-column>
+    </el-table-column>
+    <el-table-column align="center" label="湖南">
+      <el-table-column v-if="tagtype == 1" prop="hn1address" align="center" label="供电能力提升量">
+      </el-table-column>
+      <el-table-column width="80" prop="hn1jxzip" v-if="tagtype == 1" align="center" label="当前负荷">
+      </el-table-column>
+      <el-table-column v-if="tagtype == 2" prop="hn1address2" align="center" label="供电能力提升量">
+      </el-table-column>
+      <el-table-column width="" v-if="tagtype == 2" prop="hn1jxzip1" align="center" label="当前负荷用电量">
+      </el-table-column>
+    </el-table-column>
+    <el-table-column align="center" label="全网">
+      <el-table-column v-if="tagtype == 1" prop="alladdress" align="center" label="供电能力提升量">
+      </el-table-column>
+      <el-table-column width="80" prop="alljxzip" v-if="tagtype == 1" align="center" label="当前负荷">
+      </el-table-column>
+      <el-table-column v-if="tagtype == 2" prop="alladdress2" align="center" label="供电能力提升量">
+      </el-table-column>
+      <el-table-column width="" v-if="tagtype == 2" prop="alljxzip1" align="center" label="当前负荷用电量">
       </el-table-column>
     </el-table-column>
     <!-- </div> -->
