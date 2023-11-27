@@ -77,7 +77,7 @@ export default {
             this.chartInstance.setOption(option);
         },
         changeEnergy(flag) {
-            this.updateChart(this.conventionalData);
+            this.updateChart(this.chartDate);
             if (flag === 2) return
             this.$bus.$emit('chart3')
         },
@@ -198,22 +198,26 @@ export default {
 
         this.$bus.$on('rightData', (alldata) => {
             // console.log("alldataqqqq", alldata);
+            this.chartDate.forEach(item => item.data = [])
             alldata.forEach((item) => {
                 this.chartDate[0].data.push(item.take_quantity)
             })
+           
             this.updateChart(this.chartDate)
             this.loading = false
         })
 
         this.$bus.$on('threeData', (threeData) => {
+            console.log(threeData,'three');
+            this.newData.forEach(item => item.data = [])
             threeData.forEach((item) => {
                 if(item.region === '南阳上'){
-                    this.newData[0].data.push(item.take_take_quantity)
+                    this.newData[0].data.push(item.take_quantity)
                 }else{
-                    this.newData[1].data.push(item.take_take_quantity)
+                    this.newData[1].data.push(item.take_quantity)
                 }
             })
-            this.updateChart(this.chartDate)
+            this.updateChart(this.newData)
             this.loading = false
         })
     },
