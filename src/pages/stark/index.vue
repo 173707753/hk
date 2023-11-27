@@ -159,11 +159,11 @@ export default {
             { name: "湖南" },
           ],
           splitLine: {
-      lineStyle: {
-        type: "dashed" ,// 设置为虚线,
-      },
+            lineStyle: {
+              type: "dashed",// 设置为虚线,
+            },
 
-    },
+          },
           axisName: {
             formatter: "{value}",
             color: "#d4a5eb",
@@ -216,10 +216,10 @@ export default {
           indicator: [
           ],
           splitLine: {
-      lineStyle: {
-        type: "dashed" // 设置为虚线
-      }
-    },
+            lineStyle: {
+              type: "dashed" // 设置为虚线
+            }
+          },
           axisName: {
             formatter: "{value}",
             color: "#d4a5eb",
@@ -269,10 +269,10 @@ export default {
           indicator: [
           ],
           splitLine: {
-      lineStyle: {
-        type: "dashed" // 设置为虚线
-      }
-    },
+            lineStyle: {
+              type: "dashed" // 设置为虚线
+            }
+          },
           axisName: {
             formatter: "{value}",
             color: "#fff",
@@ -331,10 +331,10 @@ export default {
             { name: "江西", max: 38000 },
           ],
           splitLine: {
-      lineStyle: {
-        type: "dashed" // 设置为虚线
-      }
-    },
+            lineStyle: {
+              type: "dashed" // 设置为虚线
+            }
+          },
           axisName: {
             formatter: "{value}",
             color: "#d4a5eb",
@@ -579,12 +579,12 @@ export default {
           this.optionsss.series[0].data = []
           this.optionsss.series[0].data = this.allDataElectric
           this.postData.flag = 1
-          // console.log(this.optionsss.series[0].data);
+          // console.log(this.optionsss.series[0].data, 'this.optionsss.series[0].data');
         } else {
           this.optionsss.series[0].data = []
           this.optionsss.series[0].data = this.allDataPower
           this.postData.flag = 2
-          // console.log(this.optionsss.series[0].data);
+          // console.log(this.optionsss.series[0].data, 'this.optionsss.series[0].data');
         }
         this.$refs.charts.setchart();
       }
@@ -977,8 +977,8 @@ export default {
         this.tableData.push(processedData);
       }
       // console.log(this.tableData, 'this.tableData');
-      this.optionsss.series[0].data = this.allDataElectric
-      this.$refs.charts.setchart();
+      // this.optionsss.series[0].data = this.allDataElectric
+      // this.$refs.charts.setchart();
     },
     //清洁能源消纳能力指标表格数据
     computerFuel(alldata) {
@@ -1186,6 +1186,8 @@ export default {
       .then((response) => {
         // console.log(response.data, 'get_electricity_target');
         this.computerTable(response.data)
+        this.optionsss.series[0].data = this.allDataElectric
+        this.$refs.charts.setchart();
         this.loading = false
       })
       .catch((error) => {
@@ -1261,6 +1263,7 @@ export default {
     background: rgba(0, 25, 47, 0.7);
     color: #fff;
   }
+
   .tabsel {
     color: #fff;
     margin-left: 20px;
