@@ -195,7 +195,7 @@ export default {
     },
     mounted() {
         this.initChart()
-        
+
         this.$bus.$on('rightData', (alldata) => {
             // console.log("alldataqqqq", alldata);
             alldata.forEach((item) => {
