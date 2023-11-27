@@ -597,28 +597,17 @@ export default {
             { name: "跨区转送能力", max: 16000 },
             { name: "区域电网大功率", max: 30000 },
           ];
-          this.optionsss3.series[0].data = [
-            {
-              value: [this.powergrid1[0].synthesize_target, this.powergrid2[0].synthesize_target, this.powergrid3[0].synthesize_target],
-              name: this.powergrid1[0].timing,
-            },
-            {
-              value: [this.powergrid1[1].synthesize_target, this.powergrid2[1].synthesize_target, this.powergrid3[1].synthesize_target],
-              name: this.powergrid1[1].timing,
-            },
-            {
-              value: [this.powergrid1[2].synthesize_target, this.powergrid2[2].synthesize_target, this.powergrid3[2].synthesize_target],
-              name: this.powergrid1[2].timing,
-            },
-            {
-              value: [this.powergrid1[3].synthesize_target, this.powergrid2[3].synthesize_target, this.powergrid3[3].synthesize_target],
-              name: this.powergrid1[3].timing,
-            },
-            {
-              value: [this.powergrid1[4].synthesize_target, this.powergrid2[4].synthesize_target, this.powergrid3[4].synthesize_target],
-              name: this.powergrid1[4].timing,
-            },
-          ];
+          this.optionsss3.series[0].data = [];
+          for (let i = 0; i < 5; i++) {
+            this.optionsss3.series[0].data.push({
+              value: [
+                this.powergrid1[i].synthesize_target,
+                this.powergrid2[i].synthesize_target,
+                this.powergrid3[i].synthesize_target
+              ],
+              name: this.powergrid1[i].timing
+            });
+          }
         } else {
           this.showInput = false;
           this.optionsss3.radar.indicator = [
@@ -627,28 +616,18 @@ export default {
             { name: "湖南", max: 10000 },
             { name: "江西", max: 10000 },
           ];
-          this.optionsss3.series[0].data = [
-            {
-              value: [this.henanthreeData[0].synthesize_target, this.hubeithreeData[0].synthesize_target, this.hunanthreeData[0].synthesize_target, this.jiangxithreeData[0].synthesize_target],
-              name: this.henanthreeData[0].timing,
-            },
-            {
-              value: [this.henanthreeData[1].synthesize_target, this.hubeithreeData[1].synthesize_target, this.hunanthreeData[1].synthesize_target, this.jiangxithreeData[1].synthesize_target],
-              name: this.henanthreeData[1].timing,
-            },
-            {
-              value: [this.henanthreeData[2].synthesize_target, this.hubeithreeData[2].synthesize_target, this.hunanthreeData[2].synthesize_target, this.jiangxithreeData[2].synthesize_target],
-              name: this.henanthreeData[2].timing,
-            },
-            {
-              value: [this.henanthreeData[3].synthesize_target, this.hubeithreeData[3].synthesize_target, this.hunanthreeData[3].synthesize_target, this.jiangxithreeData[3].synthesize_target],
-              name: this.henanthreeData[3].timing,
-            },
-            {
-              value: [this.henanthreeData[4].synthesize_target, this.hubeithreeData[4].synthesize_target, this.hunanthreeData[4].synthesize_target, this.jiangxithreeData[4].synthesize_target],
-              name: this.henanthreeData[4].timing,
-            },
-          ];
+          this.optionsss3.series[0].data = [];
+          for (let i = 0; i < 5; i++) {
+            this.optionsss3.series[0].data.push({
+              value: [
+                this.henanthreeData[i].synthesize_target,
+                this.hubeithreeData[i].synthesize_target,
+                this.hunanthreeData[i].synthesize_target,
+                this.jiangxithreeData[i].synthesize_target
+              ],
+              name: this.henanthreeData[i].timing
+            });
+          }
         }
         this.$refs.charts.setchart();
       }
@@ -695,6 +674,24 @@ export default {
           { label: "省网直流消纳", tagtype: 1, sel: true },
           { label: "区域电网", tagtype: 2, sel: false },
         ];
+        this.optionsss3.radar.indicator = [
+            { name: "河南", max: 9500 },
+            { name: "湖北", max: 10000 },
+            { name: "湖南", max: 10000 },
+            { name: "江西", max: 10000 },
+          ];
+          this.optionsss3.series[0].data = [];
+          for (let i = 0; i < 5; i++) {
+            this.optionsss3.series[0].data.push({
+              value: [
+                this.henanthreeData[i].synthesize_target,
+                this.hubeithreeData[i].synthesize_target,
+                this.hunanthreeData[i].synthesize_target,
+                this.jiangxithreeData[i].synthesize_target
+              ],
+              name: this.henanthreeData[i].timing
+            });
+          }
       }
       if (index == 3) {
         this.optionsss.title.text = title + "指标";
@@ -1153,7 +1150,6 @@ export default {
           this.powergrid3[2] = response.data[32]
           this.powergrid3[3] = response.data[33]
           this.powergrid3[4] = response.data[34]
-
         } else {
           // 请求失败的处理逻辑
           this.$message.error('服务器错误')
