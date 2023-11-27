@@ -143,7 +143,7 @@ export default {
                 // 处理POST请求的响应
                 if (response && response.code === 200) {
                     // 请求成功的处理逻辑
-                    console.log('POST请求成功1', response);
+                    // console.log('POST请求成功1', response);
                     this.computerAreaData(response);
                 } else {
                     // 请求失败的处理逻辑
@@ -211,12 +211,12 @@ export default {
         // 接收各区域具体数据
         computerAreaData(data) {
             this.$bus.$emit('trueData', data)
-            console.log('具体区域数据', data);
+            // console.log('具体区域数据', data);
         },
         // 接收右侧具体数据
         computerRightData(data) {
             this.$bus.$emit('rightData', data)
-            console.log('具体区域数据', data);
+            // console.log('具体区域数据', data);
         },
         onProvinceChange() {
             // Reset片区 and时间选择
