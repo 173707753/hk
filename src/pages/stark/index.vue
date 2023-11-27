@@ -122,7 +122,7 @@ export default {
       tagtype: 1,
       type: "1",
       optionsss: {
-        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#68bb91", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -183,7 +183,7 @@ export default {
         ],
       },
       optionsss2: {
-        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#68bb91", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -276,7 +276,7 @@ export default {
         },
       ],
       optionsss3: {
-        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#68bb91", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -336,7 +336,7 @@ export default {
         ],
       },
       optionsss4: {
-        color: ["#eee", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
+        color: ["#68bb91", "yellow", "#67F9D8", "#FFE434", "#56A3F1"],
         tooltip: {
           trigger: "item",
         },
@@ -692,7 +692,7 @@ export default {
             },
             {
               value: [this.henanthreeData[2].synthesize_target, this.hubeithreeData[2].synthesize_target, this.hunanthreeData[2].synthesize_target, this.jiangxithreeData[2].synthesize_target],
-              name: this.henanthreeData[0].timing,
+              name: this.henanthreeData[2].timing,
             },
             {
               value: [this.henanthreeData[3].synthesize_target, this.hubeithreeData[3].synthesize_target, this.hunanthreeData[3].synthesize_target, this.jiangxithreeData[3].synthesize_target],
@@ -770,7 +770,7 @@ export default {
         type: "warning",
       })
         .then(() => {
-          this.time = "";
+          // this.time = "";
           this.postData.datatimes = this.time
           // console.log(this.postData.datatimes, 'this.postData.datatimes');
           // console.log(this.postData.datatimes.split(' ')[1], 'this.postData.datatimes.split');
@@ -891,13 +891,18 @@ export default {
           }
           else if (this.chaneTabIndex == 2) {
             // 发接口
-            util.post('/api/get_synthesize_target',)
+            util.post('/api/get_synthesize_target',this.postData)
               .then(response => {
                 console.log(response, 'time');
                 // 处理POST请求的响应
                 if (response && response.code === 200) {
                   // 请求成功的处理逻辑
-
+                  const addnewTime = response.data
+                  // if(this.tabList === 2 && this.tagitems.tagtype === 1){
+                    this.optionsss3.series[0].data.push({value:[addnewTime[0].synthesize_target,addnewTime[1].synthesize_target,addnewTime[2].synthesize_target,addnewTime[3].synthesize_target],name:this.time})
+                    // }else{
+                    // this.optionsss3.series[0].data.push({value:[addnewTime[4].synthesize_target,addnewTime[5].synthesize_target,addnewTime[6].synthesize_target],name:''})
+                    // }
                 } else {
                   // 请求失败的处理逻辑
                   this.$message.error('服务器错误')
