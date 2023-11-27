@@ -6,12 +6,12 @@
         <div class="main_g" style="margin-top: -6px;">
           <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 3vh;font-weight: bold;position: absolute;top: 30%;left: 9%;">
+        <div style="color: rgb(226, 236, 255);font-size: 3vh;font-weight: bold;position: absolute;top: 30%;left: 6%;">
           大电网调度数据管理
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 4.8vh;font-weight: bold;position: absolute;top: 53%;left: 31%;">
+        <div style="color: rgb(226, 236, 255);font-size: 4.8vh;font-weight: bold;position: absolute;top: 50%;left: 35%;">
           <!-- 电力碳中和智能化调度 -->
-          新型电力系统智能化调度
+          新型电力系统智能化调度评估
         </div>
         <div class="right">
           <div v-for="(item, index) in tabList" :key="index" class="tabs">

@@ -15,18 +15,16 @@
     </div>
     <div class="home_center">
       <div class="left">
-        <div @click="tozb"
-         :key="itermStyleKeyzz"
+        <div :key="itermStyleKeyzz"
           @mouseenter="changeMask('itermStyleKeyzz', 'itermStylezz', 'in')"
           @mouseleave="changeMask('itermStyleKeyzz', 'itermStylezz', 'out')" :class="itermStylezz" class="item">
           <div>
-            <p>调度数据管理</p>
+            <p>运行数据管理</p>
             <img width="8%" height="auto" alt="">
           </div>
           <img class="bg" src="../../assets/img/home/left1.png" alt="">
         </div>
-        <div style="width: 100%; height: 120px;"></div>
-        <!-- <div @click="tozb"
+        <div @click="tozb"
           @mouseenter="changeMask('itermStyleKeyly', 'itermStylely', 'in')"
           @mouseleave="changeMask('itermStyleKeyly', 'itermStylely', 'out')" :key="itermStyleKeyly" class="item"
           :class="itermStylely">
@@ -35,14 +33,14 @@
             <img width="8%" height="auto" alt="">
           </div>
           <img class="bg" src="../../assets/img/home/left2.png" alt="">
-        </div> -->
+        </div>
 
         <div
           @mouseenter="changeMask('itermStyleKeych', 'itermStylech', 'in')"
           @mouseleave="changeMask('itermStyleKeych', 'itermStylech', 'out')" :key="itermStyleKeych" class="item"
           :class="itermStylech">
           <div>
-            <p>调度优化评估</p>
+            <p>调度知识管理</p>
             <img width="8%" height="auto" alt="">
           </div>
           <img class="bg" src="../../assets/img/home/left3.png" alt="">
@@ -57,26 +55,25 @@
           @mouseleave="changeMask('itermStyleKeyyz', 'itermStyleyz', 'out')" :class="itermStyleyz" class="item">
           <div style="margin-left: 8%;">
             <!-- <img width="8%" height="auto" src="../../assets/img/home/智慧养殖.png" alt=""> -->
-            <p>备用精准测算</p>
+            <p>多能协同调度</p>
           </div>
           <img class="bg" src="../../assets/img/home/right1.png" alt="">
         </div>
-        <!-- <div :key="itermStyleKeysy"
+        <div :key="itermStyleKeysy"
           @mouseenter="changeMask('itermStyleKeysy', 'itermStylesy', 'in')"
           @mouseleave="changeMask('itermStyleKeysy', 'itermStylesy', 'out')" :class="itermStylesy" class="item">
           <div style="left:-10%">
-           
+            <!-- <img width="8%" height="auto" src="../../assets/img/home/智慧溯源.png" alt=""> -->
             <p>备用精准测算</p>
           </div>
           <img class="bg" src="../../assets/img/home/right2.png" alt="">
-        </div> -->
-        <div style="width: 100%; height: 120px;"></div>
+        </div>
         <div :key="itermStyleKeydj"
           @mouseenter="changeMask('itermStyleKeydj', 'itermStyledj', 'in')"
           @mouseleave="changeMask('itermStyleKeydj', 'itermStyledj', 'out')" :class="itermStyledj" class="item">
           <div style="margin-left: 8%;">
             <!-- <img width="8%" height="auto" src="../../assets/img/home/数字党建.png" alt=""> -->
-            <p>多能优化调度</p>
+            <p>运行优化评估</p>
           </div>
           <img class="bg" src="../../assets/img/home/right3.png" alt="">
         </div>

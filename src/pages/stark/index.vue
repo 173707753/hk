@@ -867,7 +867,7 @@ export default {
                     // 请求成功的处理逻辑
                     const addnewTime = response.data
                     // if(this.tabList === 2 && this.tagitems.tagtype === 1){
-                    this.optionsss3.series[0].data.push({ value: [addnewTime[0].synthesize_target, addnewTime[1].synthesize_target, addnewTime[2].synthesize_target, addnewTime[3].synthesize_target], name: this.time })
+                    // this.optionsss3.series[0].data.push({ value: [addnewTime[0].synthesize_target, addnewTime[1].synthesize_target, addnewTime[2].synthesize_target, addnewTime[3].synthesize_target], name: dateTime })
                     // }else{
                     // this.optionsss3.series[0].data.push({value:[addnewTime[4].synthesize_target,addnewTime[5].synthesize_target,addnewTime[6].synthesize_target],name:''})
                     // }
