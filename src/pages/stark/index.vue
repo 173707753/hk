@@ -675,23 +675,23 @@ export default {
           { label: "区域电网", tagtype: 2, sel: false },
         ];
         this.optionsss3.radar.indicator = [
-            { name: "河南", max: 9500 },
-            { name: "湖北", max: 10000 },
-            { name: "湖南", max: 10000 },
-            { name: "江西", max: 10000 },
-          ];
-          this.optionsss3.series[0].data = [];
-          for (let i = 0; i < 5; i++) {
-            this.optionsss3.series[0].data.push({
-              value: [
-                this.henanthreeData[i].synthesize_target,
-                this.hubeithreeData[i].synthesize_target,
-                this.hunanthreeData[i].synthesize_target,
-                this.jiangxithreeData[i].synthesize_target
-              ],
-              name: this.henanthreeData[i].timing
-            });
-          }
+          { name: "河南", max: 9500 },
+          { name: "湖北", max: 10000 },
+          { name: "湖南", max: 10000 },
+          { name: "江西", max: 10000 },
+        ];
+        this.optionsss3.series[0].data = [];
+        for (let i = 0; i < 5; i++) {
+          this.optionsss3.series[0].data.push({
+            value: [
+              this.henanthreeData[i].synthesize_target,
+              this.hubeithreeData[i].synthesize_target,
+              this.hunanthreeData[i].synthesize_target,
+              this.jiangxithreeData[i].synthesize_target
+            ],
+            name: this.henanthreeData[i].timing
+          });
+        }
       }
       if (index == 3) {
         this.optionsss.title.text = title + "指标";
@@ -805,7 +805,7 @@ export default {
                     legendValue1.push(alldata[4].power_coefficient)
                     this.allDataPower.push({
                       value: legendValue1,
-                      name: alldata[0].timing,
+                      name: dateTime,
                     })
                     this.optionsss.series[0].data = this.allDataPower
                   }
@@ -1253,4 +1253,5 @@ export default {
   .tablag {
     color: #5b61b1;
   }
-}</style>
+}
+</style>
