@@ -149,6 +149,7 @@ export default {
     mounted() {
         this.initChart()
         this.$bus.$on('trueData', (alldata) => {
+            this.leftData[0].data = []
             alldata.data.forEach((item) => {
                 this.leftData[0].data.push(item.receive_generation)
             })

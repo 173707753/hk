@@ -192,6 +192,9 @@ export default {
     mounted() {
         this.initChart()
         this.$bus.$on('trueData', (alldata) => {
+            this.chartDate[0].data = []
+            this.conventionalData[0].data = []
+            this.newData[0].data = []
             alldata.data.forEach((item) => {
                 this.chartDate[0].data.push(item.take_generation)
                 this.conventionalData[0].data.push(item.take_generation)
