@@ -24,12 +24,12 @@
             </el-option>
           </el-select>
 
-          <div v-if="showInput">
             <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="power"
               placeholder="直流电路选择">
               <el-option v-for="item in poweroptions" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
+              <div v-if="showInput">
             <el-select style="margin-left: 5px" v-if="type === '3'" size="small" clearable v-model="road"
               placeholder="转送通道选择">
               <el-option v-for="item in roadoptions" :key="item.value" :label="item.label" :value="item.value">
@@ -153,7 +153,7 @@ export default {
           ],
           axisName: {
             formatter: "{value}",
-            color: "#fff",
+            color: "#d4a5eb",
             fontWeight: "bold",
           },
           splitNumber: 3,
@@ -213,7 +213,7 @@ export default {
           ],
           axisName: {
             formatter: "{value}",
-            color: "#fff",
+            color: "#d4a5eb",
             fontWeight: "bold",
           },
           splitNumber: 3,
@@ -295,7 +295,7 @@ export default {
             fontWeight: "bold",
             color: "#fff",
           },
-          data: ["6:30", "7:30"],
+          // data: ["6:30", "7:30"],
         },
         radar: {
           indicator: [
@@ -306,7 +306,7 @@ export default {
           ],
           axisName: {
             formatter: "{value}",
-            color: "#fff",
+            color: "#d4a5eb",
             fontWeight: "bold",
           },
           splitNumber: 3,
@@ -366,7 +366,7 @@ export default {
           ],
           axisName: {
             formatter: "{value}",
-            color: "#fff",
+            color: "#d4a5eb",
             fontWeight: "bold",
           },
           splitNumber: 3,
@@ -537,14 +537,14 @@ export default {
           value: "1",
           label: "西北送华东",
         },
-        {
-          value: "2",
-          label: "华东送华北",
-        },
-        {
-          value: "3",
-          label: "华南送华西",
-        },
+        // {
+        //   value: "2",
+        //   label: "华东送华北",
+        // },
+        // {
+        //   value: "3",
+        //   label: "华南送华西",
+        // },
       ],
       badoptions: [
         {
@@ -643,8 +643,7 @@ export default {
             console.log(error);
           });
       }
-      // if(item === )
-      if (item.label === "省网" || item.label === "区域电网") {
+      if (item.label === "省网直流消纳" || item.label === "区域电网") {
         if (item.label === "区域电网") {
           this.showInput = true;
           this.optionsss3.radar.indicator = [
@@ -678,9 +677,9 @@ export default {
           this.showInput = false;
           this.optionsss3.radar.indicator = [
             { name: "河南", max: 9500 },
-            { name: "湖北", max: 16000 },
-            { name: "湖南", max: 30000 },
-            { name: "江西", max: 38000 },
+            { name: "湖北", max: 10000 },
+            { name: "湖南", max: 10000 },
+            { name: "江西", max: 10000 },
           ];
           this.optionsss3.series[0].data = [
             {
@@ -744,9 +743,10 @@ export default {
         ];
       }
       if (index == 2) {
+        
         this.optionsss.title.text = title + "指标";
         this.tagitems = [
-          { label: "省网", tagtype: 1, sel: true },
+          { label: "省网直流消纳", tagtype: 1, sel: true },
           { label: "区域电网", tagtype: 2, sel: false },
         ];
       }
@@ -1056,7 +1056,7 @@ export default {
       .catch((error) => {
         console.log(error);
       });
-    // 初始化综合能力的图
+    // // 初始化综合能力的图
     util.post('/api/get_region_target', this.time)
       .then(response => {
         // console.log(response,'time');
