@@ -155,8 +155,6 @@ export default {
         this.initChart()
         this.$bus.$on("trueData1", (data) => {
             // console.log(data,'datalm');
-            // 清空数据
-            this.leftData.forEach(item => (item.data = []));
             data.forEach((item) => {
                 this.leftData[0].data.push(item.fracture_data)
             })

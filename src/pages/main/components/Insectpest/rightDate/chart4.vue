@@ -151,8 +151,6 @@ export default {
   mounted() {
     this.initChart()
     this.$bus.$on('rightData', (alldata) => {
-      // 清空数据
-      this.leftData.forEach(item => (item.data = []));
       alldata.forEach((item) => {
         this.leftData[0].data.push(item.load_power)
       })

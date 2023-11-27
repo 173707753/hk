@@ -13,23 +13,23 @@
             <!-- <el-table-column prop="area" label="片区" align="center"
                 v-if="tableData.some(item => item.area !== '')">洛北济源</el-table-column> -->
             <el-table-column prop="thermalPower" label="火电发电(P/MW)" align="center"
-                v-if="tableData.some(item => item.thermalPower ? item.thermalPower : item.thermalPower === 0 ? true : false)"></el-table-column>
+                v-if="tableData.some(item => item.thermalPower)"></el-table-column>
             <el-table-column prop="hydroelectric" label="水电发电(P/MW)" align="center"
-                v-if="tableData.some(item => item.hydroelectric ? item.hydroelectric : item.hydroelectric === 0 ? true : false)"></el-table-column>
+                v-if="tableData.some(item => item.hydroelectric)"></el-table-column>
             <el-table-column prop="pumpedStorage" label="抽蓄发电(P/MW)" align="center"
-                v-if="tableData.some(item => item.pumpedStorage ? item.pumpedStorage : item.pumpedStorage === 0 ? true : false)"></el-table-column>
+                v-if="tableData.some(item => item.pumpedStorage)"></el-table-column>
             <el-table-column prop="windPower" label="风电发电(P/MW)" align="center"
-                v-if="tableData.some(item => item.windPower ? item.windPower : item.windPower === 0 ? true : false)"></el-table-column>
+                v-if="tableData.some(item => item.windPower)"></el-table-column>
             <el-table-column prop="photovoltaicPanel" label="光伏发电(P/MW)" align="center"
-                v-if="tableData.some(item => item.photovoltaicPanel ? item.photovoltaicPanel : item.photovoltaicPanel === 0 ? true : false)"></el-table-column>
+                v-if="tableData.some(item => item.photovoltaicPanel)"></el-table-column>
             <el-table-column prop="SectionData" label="断面数据(P/MW)" align="center"
-                v-if="tableData.some(item => item.SectionData ? item.SectionData : item.SectionData === 0 ? true : false)"></el-table-column>
+                v-if="tableData.some(item => item.SectionData)"></el-table-column>
             <el-table-column prop="PumpingPower" label="抽蓄功率(P/MW)" align="center"
                 v-if="tableData.some(item => item.PumpingPower ? item.PumpingPower : item.PumpingPower === 0 ? true : false)"></el-table-column>
             <el-table-column prop="PumpedCapacity" label="抽蓄电量(P/MW)" align="center"
                 v-if="tableData.some(item => item.PumpedCapacity ? item.PumpedCapacity : item.PumpedCapacity === 0 ? true : false)"></el-table-column>
             <el-table-column prop="loadPower" label="负荷功率(P/MW)" align="center"
-                v-if="tableData.some(item => item.loadPower ? item.loadPower : item.loadPower === 0 ? true : false)"></el-table-column>
+                v-if="tableData.some(item => item.loadPower)"></el-table-column>
         </el-table>
         <!-- 分页器 固定在底部 -->
         <!-- <el-pagination style=" position: absolute;bottom: 4px;left: 0;right: 0;" :current-page="currentPage"
@@ -336,63 +336,59 @@ export default {
 <style>
 .el-table {
     background-color: rgba(0, 0, 0, 0);
-}
+  }
+     .el-table tr {
+        background-color: rgba(0, 25, 47, 0.7);
+    }
 
-.el-table tr {
-    background-color: rgba(0, 25, 47, 0.7);
-}
+      .el-table,
+    .el-table__expanded-cell {
+        background-color: rgba(0, 0, 0, 0);
+        color: #fff;
+    }
 
-.el-table,
-.el-table__expanded-cell {
-    background-color: rgba(0, 0, 0, 0);
-    color: #fff;
-}
+     .el-table thead {
+        background-color: rgba(0, 25, 47, 0.7);
+    }
 
-.el-table thead {
-    background-color: rgba(0, 25, 47, 0.7);
-}
+     .el-table tbody tr:hover>td {
+        background-color: rgba(67, 145, 228, 0.2);
+    }
+    .el-table--enable-row-hover .el-table__body tr:hover>td.el-table__cell{
+      background-color: rgba(67, 145, 228, 0.2);
+    }
+     .el-table--scrollable-y .el-table__body-wrapper:-webkit-scrollbar {
+        /*隐藏滚轮*/
+        display: none;
+    }
 
-.el-table tbody tr:hover>td {
-    background-color: rgba(67, 145, 228, 0.2);
-}
-
-.el-table--enable-row-hover .el-table__body tr:hover>td.el-table__cell {
-    background-color: rgba(67, 145, 228, 0.2);
-}
-
-.el-table--scrollable-y .el-table__body-wrapper:-webkit-scrollbar {
-    /*隐藏滚轮*/
-    display: none;
-}
-
-.el-table--border,
-.el-table--group {
-    border-color: 4187B3;
-}
+     .el-table--border,
+    .el-table--group {
+        border-color: 4187B3;
+    }
 
 
-::-webkit-scrollbar {
-    width: 6px;
-    height: 8px;
-    background-color: rgba(32, 86, 131, 0.3);
-}
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 8px;
+        background-color: rgba(32, 86, 131, 0.3);
+    }
 
-::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, .3);
-    -webkit-box-shadow: inset 0 0 wpx rgba(0, 0, 0, .3);
-    background-color: #205683;
-    border-radius: 3px;
-}
+    ::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 2px rgba(0, 0, 0, .3);
+        -webkit-box-shadow: inset 0 0 wpx rgba(0, 0, 0, .3);
+        background-color: #205683;
+        border-radius: 3px;
+    }
 
-::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-    background: rgba(0, 0, 0, 0.2);
-}
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        background: rgba(0, 0, 0, 0.2);
+    }
 
-.el-table--border th.el-table__cell.gutter:last-of-type {
-    display: none;
-}
-</style>
+     .el-table--border th.el-table__cell.gutter:last-of-type {
+        display: none;
+    }</style>
 
 
