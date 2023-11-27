@@ -47,15 +47,18 @@
             {{ item.label }}
           </div>
         </div>
-        <tables v-loading="loading" v-if="type == 1" style="height: 20vw" :tableData="tableData" :tagtype="tagtype">
+        <tables v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.6)" v-if="type == 1" style="height: 20vw"
+          :tableData="tableData" :tagtype="tagtype">
         </tables>
-        <tables2 v-loading="loading" v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype">
+        <tables2 v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.6)" v-if="type == 2" style="height: 20vw"
+          :tableData="tableData2" :tagtype="tagtype">
         </tables2>
 
         <charts v-if="type === '3'" style="margin-left: 10%;" :key="chatkey2" ref="charts" :id="`chartsZB22`"
           :option="optionsss3"></charts>
 
-        <tables4 v-loading="loading" v-if="type == 4" style="height: 20vw" :tableData="tableData4" :tagtype="tagtype">
+        <tables4 v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.6)" v-if="type == 4" style="height: 20vw"
+          :tableData="tableData4" :tagtype="tagtype">
         </tables4>
         <div v-if="type === '3'" style="height: 20vw;">
           <charts style="margin: 0 auto;" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
@@ -706,6 +709,15 @@ export default {
       this.$refs.charts2.setchart();
       this.$refs.charts3.setchart();
     },
+    // 供电能力判断相同数据
+    isTimeAlreadyExists(dateTime) {
+      return this.tableData.some(item => item.date === dateTime);
+    },
+    // 清洁能源判断相同数据
+    isTimeAlreadyExists1(dateTime) {
+      console.log('在这里没有', this.tableData2.some(item => item.date === dateTime));
+      return this.tableData2.some(item => item.times === dateTime);
+    },
     addtime(data) {
       if (data) {
         this.$confirm(`确定添加${this.time}时间段吗？`, "提示", {
@@ -719,7 +731,17 @@ export default {
             // console.log(this.postData.datatimes.split(' ')[1], 'this.postData.datatimes.split');
             const dateTime = this.postData.datatimes.split(' ')[1]
             let dateTime0 = this.postData.datatimes.split(' ')[0]
-            if (this.chaneTabIndex == 0) {
+            if (this.isTimeAlreadyExists(dateTime)) {
+              this.$message.warning(`该${this.time}已存在数据，请勿重复添加。`);
+              this.time = ''
+              return;
+            }
+            if (this.isTimeAlreadyExists1(dateTime)) {
+              this.$message.warning(`该${this.time}已存在数据，请勿重复添加。`);
+              this.time = ''
+              return;
+            }
+            if ((this.chaneTabIndex == 0) && (!this.isTimeAlreadyExists(dateTime))) {
               // 发送时间改变接口
               util.post('/api/get_electricity_target_timing', this.postData)
                 .then((response) => {
@@ -796,7 +818,7 @@ export default {
                   console.log(error);
                 });
             }
-            else if (this.chaneTabIndex == 1) {
+            else if ((this.chaneTabIndex == 1) && (!this.isTimeAlreadyExists1(dateTime))) {
               // 发送时间改变接口
               util.post('/api/get_clean_energy_timing', this.postData)
                 .then((response) => {
@@ -810,6 +832,7 @@ export default {
                     const dateB = new Date(`${dateTime0} ${b.times}`);
                     return dateA - dateB;
                   });
+                  // console.log(this.tableData2, 'this.tableData22');
                 })
                 .catch((error) => {
                   console.log(error);
@@ -1234,5 +1257,4 @@ export default {
   .tablag {
     color: #5b61b1;
   }
-}
-</style>
+}</style>
