@@ -11,7 +11,7 @@
         </div>
         <div style="color: rgb(226, 236, 255);font-size: 4.8vh;font-weight: bold;position: absolute;top: 50%;left: 35%;">
           <!-- 电力碳中和智能化调度 -->
-          新型电力系统智能化调度评估
+          新型电力系统智能化调度
         </div>
         <div class="right">
           <div v-for="(item, index) in tabList" :key="index" class="tabs">
@@ -20,7 +20,8 @@
             </div>
             <!-- <div class="tabimg"> -->
 
-            <img :class="item.title === '新能源消纳'? 'newstyle':'tabimg'" width="150%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="">
+            <img :class="item.title === '新能源消纳' ? 'newstyle' : 'tabimg'" width="150%" v-if="item.show" height="auto"
+              src="../../assets/img/ch/tabg.png" alt="">
             <!-- </div> -->
           </div>
         </div>
@@ -178,7 +179,8 @@ export default {
             cursor: pointer;
             right: 2%;
           }
-          .newstyle{
+
+          .newstyle {
             position: absolute;
             top: -110%;
             z-index: 999;
