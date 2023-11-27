@@ -770,16 +770,15 @@ export default {
         type: "warning",
       })
         .then(() => {
-          this.time = "";
           this.postData.datatimes = this.time
-          // console.log(this.postData.datatimes, 'this.postData.datatimes');
+          console.log(this.postData.datatimes, 'this.postData.datatimes');
           // console.log(this.postData.datatimes.split(' ')[1], 'this.postData.datatimes.split');
           const dateTime = this.postData.datatimes.split(' ')[1]
           if (this.chaneTabIndex == 0) {
             // 发送时间改变接口
             util.post('/api/get_electricity_target_timing', this.postData)
               .then((response) => {
-                // console.log(response.data, 'get_electricity_target_timing');
+                console.log(response.data, 'get_electricity_target_timing');
                 const alldata = response.data
                 this.tableData.push({
                   date: dateTime,

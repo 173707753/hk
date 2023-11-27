@@ -136,7 +136,7 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
-
+        // console.log(this.postData, 'this.postData');
         util.post('/api/get_elect_start', this.postData)
             .then(response => {
 
@@ -232,7 +232,7 @@ export default {
             // 根据 selectedArea 进行筛选
             // const filteredData = this.left5Data.filter(item => item.name === this.selectedProvince);
             // console.log(filteredData, 111);
-            
+
             // 地图跳转
             // this.$bus.$emit('left5Data', filteredData);
             // 传递省份，区域给index.vue

@@ -154,7 +154,7 @@ export default {
                 mouseY < leftRect.top ||
                 mouseY > leftRect.bottom
             ) {
-                console.log('离开');
+                // console.log('离开');
                 this.hidePopup();
             }
         },
@@ -163,7 +163,9 @@ export default {
     mounted() {
         this.initChart()
         this.$bus.$on("trueData1", (data) => {
-            console.log("你好", data);
+            // console.log("你好", data);
+            // 清空数据
+            this.leftData.forEach(item => (item.data = []));
             data.forEach((item) => {
                 this.leftData[0].data.push(item.fracture_data)
             })

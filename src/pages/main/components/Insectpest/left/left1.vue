@@ -230,7 +230,7 @@ export default {
                 mouseY < leftRect.top ||
                 mouseY > leftRect.bottom
             ) {
-                console.log('离开');
+                // console.log('离开');
                 this.hidePopup();
             }
         },
@@ -252,6 +252,11 @@ export default {
         })
         this.$bus.$on('trueData', (alldata) => {
             // console.log('具体区域数据1', alldata.data);
+            // 清空数据
+            this.leftData.forEach(item => (item.data = []));
+            this.conventionalData.forEach(item => (item.data = []));
+            this.newData.forEach(item => (item.data = []));
+            this.alldata.forEach(item => (item.data = []));
             alldata.data.forEach((item) => {
                 // 火电
                 this.leftData[0].data.push(item.fire_generation)
@@ -264,6 +269,7 @@ export default {
                 // 抽蓄
                 this.alldata[2].data.push(item.take_generation)
             })
+            // console.log(this.leftData[0].data, 'this.leftData[0].data');
             this.conventionalData = this.leftData
             this.alldata[0].data = this.leftData[0].data
             this.alldata[1].data = this.leftData[1].data

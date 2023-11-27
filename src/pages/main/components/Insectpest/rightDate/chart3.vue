@@ -195,9 +195,11 @@ export default {
     },
     mounted() {
         this.initChart()
-        
+
         this.$bus.$on('rightData', (alldata) => {
-            console.log("alldata", alldata);
+            // console.log("alldata", alldata);
+            // 清空数据
+            this.chartDate.forEach(item => (item.data = []));
             alldata.forEach((item) => {
                 this.chartDate[0].data.push(item.take_quantity)
             })
@@ -206,7 +208,9 @@ export default {
         })
 
         this.$bus.$on('threeData', (alldata) => {
-            console.log("alldata", alldata);
+            // console.log("alldata", alldata);
+            // 清空数据
+            this.newData.forEach(item => (item.data = []));
             // const nanUp= alldata[0]
             // const nanDowm= alldata[1]
             alldata[0].forEach((item) => {
@@ -214,7 +218,7 @@ export default {
             })
             alldata[1].forEach((item) => {
                 this.newData[1].data.push(item.take_take_quantity)
-            })  
+            })
             // this.updateChart(this.chartDate)
             this.loading = false
         })

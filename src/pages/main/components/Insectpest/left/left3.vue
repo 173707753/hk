@@ -183,7 +183,7 @@ export default {
                 mouseY < leftRect.top ||
                 mouseY > leftRect.bottom
             ) {
-                console.log('离开');
+                // console.log('离开');
                 this.hidePopup();
             }
         },
@@ -192,6 +192,10 @@ export default {
     mounted() {
         this.initChart()
         this.$bus.$on('trueData', (alldata) => {
+            // 清空数据
+            this.chartDate.forEach(item => (item.data = []));
+            this.conventionalData.forEach(item => (item.data = []));
+            this.newData.forEach(item => (item.data = []));
             alldata.data.forEach((item) => {
                 this.chartDate[0].data.push(item.take_generation)
                 this.conventionalData[0].data.push(item.take_generation)
