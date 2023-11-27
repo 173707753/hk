@@ -47,13 +47,16 @@
             {{ item.label }}
           </div>
         </div>
-        <tables v-if="type == 1" style="height: 20vw" :tableData="tableData" :tagtype="tagtype"></tables>
-        <tables2 v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype"></tables2>
+        <tables v-loading="loading" v-if="type == 1" style="height: 20vw" :tableData="tableData" :tagtype="tagtype">
+        </tables>
+        <tables2 v-loading="loading" v-if="type == 2" style="height: 20vw" :tableData="tableData2" :tagtype="tagtype">
+        </tables2>
 
         <charts v-if="type === '3'" style="margin-left: 10%;" :key="chatkey2" ref="charts" :id="`chartsZB22`"
           :option="optionsss3"></charts>
 
-        <tables4 v-if="type == 4" style="height: 20vw" :tableData="tableData4" :tagtype="tagtype"></tables4>
+        <tables4 v-loading="loading" v-if="type == 4" style="height: 20vw" :tableData="tableData4" :tagtype="tagtype">
+        </tables4>
         <div v-if="type === '3'" style="height: 20vw;">
           <charts style="margin: 0 auto;" :key="chatkey2" ref="charts" :id="`chartsZB22`" :option="optionsss3"></charts>
         </div>
@@ -85,6 +88,7 @@ import util from '@/utils/request.js';
 export default {
   data() {
     return {
+      loading: true,
       chatkey: 0,
       chatkey1: 1,
       chatkey2: 2,
@@ -536,6 +540,16 @@ export default {
       });
       if (item.label === "电力保供系数" || item.label === "电量保供系数") {
         this.optionsss.title.text = item.label + "指标";
+        //获取供电能力表格数据
+        util.post('/api/get_electricity_target', this.postData)
+          .then((response) => {
+            // console.log(response.data, 'get_electricity_target');
+            this.computerTable(response.data)
+            this.loading = false
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         if (item.label === "电力保供系数") {
           this.optionsss.series[0].data = []
           this.optionsss.series[0].data = this.allDataElectric
@@ -692,136 +706,155 @@ export default {
       this.$refs.charts2.setchart();
       this.$refs.charts3.setchart();
     },
-    addtime() {
-      this.$confirm(`确定添加${this.time}时间段吗？`, "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-      })
-        .then(() => {
-          this.postData.datatimes = this.time
-          // console.log(this.postData.datatimes, 'this.postData.datatimes');
-          // console.log(this.postData.datatimes.split(' ')[1], 'this.postData.datatimes.split');
-          const dateTime = this.postData.datatimes.split(' ')[1]
-          if (this.chaneTabIndex == 0) {
-            // 发送时间改变接口
-            util.post('/api/get_electricity_target_timing', this.postData)
-              .then((response) => {
-                // console.log(response.data, 'get_electricity_target_timing');
-                const alldata = response.data
-                this.tableData.push({
-                  date: dateTime,
-                  hnprovince: "供电能力提升量",
-                  city: "当前负荷",
-                  // 河南
-                  hnaddress: alldata[2].power_supply_lift,
-                  hnaddress2: alldata[2].power_supply_lift_quantity,
-                  hnjxzip: alldata[2].load_power,
-                  hnjxzip1: alldata[2].load_power_quantity,
-                  // 江西
-                  jxaddress: alldata[1].power_supply_lift,
-                  jxaddress2: alldata[1].power_supply_lift_quantity,
-                  jxjxzip: alldata[1].load_power,
-                  jxjxzip1: alldata[1].load_power_quantity,
-                  // 湖北
-                  hbaddress: alldata[3].power_supply_lift,
-                  hbaddress2: alldata[3].power_supply_lift_quantity,
-                  hbjxzip: alldata[3].load_power,
-                  hbjxzip1: alldata[2].load_power_quantity,
-                  // 湖南
-                  hn1address: alldata[4].power_supply_lift,
-                  hn1address2: alldata[4].power_supply_lift_quantity,
-                  hn1jxzip: alldata[4].load_power,
-                  hn1jxzip1: alldata[4].load_power_quantity,
-                  // 全国
-                  alladdress: alldata[0].power_supply_lift,
-                  alladdress2: alldata[0].power_supply_lift_quantity,
-                  alljxzip: alldata[0].load_power,
-                  alljxzip1: alldata[0].load_power_quantity,
-                },);
-                if (this.postData.flag === 1) {
-                  // 电力系数
-                  let legendValue = [];
-                  legendValue.push(alldata[0].electric_coefficient)
-                  legendValue.push(alldata[1].electric_coefficient)
-                  legendValue.push(alldata[2].electric_coefficient)
-                  legendValue.push(alldata[3].electric_coefficient)
-                  legendValue.push(alldata[4].electric_coefficient)
-                  this.allDataElectric.push({
-                    value: legendValue,
-                    name: dateTime,
-                  })
-                  this.optionsss.series[0].data = this.allDataElectric
-                } else {
-                  let legendValue1 = [];
-                  // 电量系数
-                  legendValue1.push(alldata[0].power_coefficient)
-                  legendValue1.push(alldata[1].power_coefficient)
-                  legendValue1.push(alldata[2].power_coefficient)
-                  legendValue1.push(alldata[3].power_coefficient)
-                  legendValue1.push(alldata[4].power_coefficient)
-                  this.allDataPower.push({
-                    value: legendValue1,
-                    name: alldata[0].timing,
-                  })
-                  this.optionsss.series[0].data = this.allDataPower
-                }
-                this.$refs.charts.setchart();
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          }
-          else if (this.chaneTabIndex == 1) {
-            // 发送时间改变接口
-            util.post('/api/get_clean_energy_timing', this.postData)
-              .then((response) => {
-                // console.log(response.data, 'get_clean_energy_timing');
-                const alldata = response.data
-                this.addtimeflag = false
-                this.computerFuel(alldata)
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          }
-          else if (this.chaneTabIndex == 2) {
-            // 发接口
-            util.post('/api/get_synthesize_target', this.postData)
-              .then(response => {
-                console.log(response, 'time');
-                // 处理POST请求的响应
-                if (response && response.code === 200) {
-                  // 请求成功的处理逻辑
-                  const addnewTime = response.data
-                  // if(this.tabList === 2 && this.tagitems.tagtype === 1){
-                  this.optionsss3.series[0].data.push({ value: [addnewTime[0].synthesize_target, addnewTime[1].synthesize_target, addnewTime[2].synthesize_target, addnewTime[3].synthesize_target], name: this.time })
-                  // }else{
-                  // this.optionsss3.series[0].data.push({value:[addnewTime[4].synthesize_target,addnewTime[5].synthesize_target,addnewTime[6].synthesize_target],name:''})
-                  // }
-                } else {
-                  // 请求失败的处理逻辑
-                  this.$message.error('服务器错误')
-                }
-              })
-              .catch(error => {
-                // 处理POST请求的错误
-                this.$message.error('服务器错误', error)
-              });
-
-          }
-          // this.optionsss.legend.data.push(dateTime)
-          // this.optionsss.series[0].data.push({
-          //   value: [0.507, 0.385, 0.284, 0.343, 0.355],
-          //   name: dateTime,
-          // });
-          this.$refs.charts.setchart();
-          this.chatkey++;
-          this.postData.datatimes = ''
+    addtime(data) {
+      if (data) {
+        this.$confirm(`确定添加${this.time}时间段吗？`, "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
         })
-        .catch((error) => {
-          console.log(error);
-        });
+          .then(() => {
+            this.postData.datatimes = this.time
+            // console.log(this.postData.datatimes, 'this.postData.datatimes');
+            // console.log(this.postData.datatimes.split(' ')[1], 'this.postData.datatimes.split');
+            const dateTime = this.postData.datatimes.split(' ')[1]
+            let dateTime0 = this.postData.datatimes.split(' ')[0]
+            if (this.chaneTabIndex == 0) {
+              // 发送时间改变接口
+              util.post('/api/get_electricity_target_timing', this.postData)
+                .then((response) => {
+                  // console.log(response.data, 'get_electricity_target_timing');
+                  const alldata = response.data
+                  this.tableData.push({
+                    date: dateTime,
+                    hnprovince: "供电能力提升量",
+                    city: "当前负荷",
+                    // 河南
+                    hnaddress: alldata[2].power_supply_lift,
+                    hnaddress2: alldata[2].power_supply_lift_quantity,
+                    hnjxzip: alldata[2].load_power,
+                    hnjxzip1: alldata[2].load_power_quantity,
+                    // 江西
+                    jxaddress: alldata[1].power_supply_lift,
+                    jxaddress2: alldata[1].power_supply_lift_quantity,
+                    jxjxzip: alldata[1].load_power,
+                    jxjxzip1: alldata[1].load_power_quantity,
+                    // 湖北
+                    hbaddress: alldata[3].power_supply_lift,
+                    hbaddress2: alldata[3].power_supply_lift_quantity,
+                    hbjxzip: alldata[3].load_power,
+                    hbjxzip1: alldata[2].load_power_quantity,
+                    // 湖南
+                    hn1address: alldata[4].power_supply_lift,
+                    hn1address2: alldata[4].power_supply_lift_quantity,
+                    hn1jxzip: alldata[4].load_power,
+                    hn1jxzip1: alldata[4].load_power_quantity,
+                    // 全国
+                    alladdress: alldata[0].power_supply_lift,
+                    alladdress2: alldata[0].power_supply_lift_quantity,
+                    alljxzip: alldata[0].load_power,
+                    alljxzip1: alldata[0].load_power_quantity,
+                  },);
+
+                  // 对表格数据按照时间升序排序
+                  this.tableData.sort((a, b) => {
+                    const dateA = new Date(`${dateTime0} ${a.date}`);
+                    const dateB = new Date(`${dateTime0} ${b.date}`);
+                    return dateA - dateB;
+                  });
+                  // console.log(this.tableData, 'this.tableData');
+                  if (this.postData.flag === 1) {
+                    // 电力系数
+                    let legendValue = [];
+                    legendValue.push(alldata[0].electric_coefficient)
+                    legendValue.push(alldata[1].electric_coefficient)
+                    legendValue.push(alldata[2].electric_coefficient)
+                    legendValue.push(alldata[3].electric_coefficient)
+                    legendValue.push(alldata[4].electric_coefficient)
+                    this.allDataElectric.push({
+                      value: legendValue,
+                      name: dateTime,
+                    })
+                    this.optionsss.series[0].data = this.allDataElectric
+                  } else {
+                    let legendValue1 = [];
+                    // 电量系数
+                    legendValue1.push(alldata[0].power_coefficient)
+                    legendValue1.push(alldata[1].power_coefficient)
+                    legendValue1.push(alldata[2].power_coefficient)
+                    legendValue1.push(alldata[3].power_coefficient)
+                    legendValue1.push(alldata[4].power_coefficient)
+                    this.allDataPower.push({
+                      value: legendValue1,
+                      name: alldata[0].timing,
+                    })
+                    this.optionsss.series[0].data = this.allDataPower
+                  }
+                  this.$refs.charts.setchart();
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            }
+            else if (this.chaneTabIndex == 1) {
+              // 发送时间改变接口
+              util.post('/api/get_clean_energy_timing', this.postData)
+                .then((response) => {
+                  // console.log(response.data, 'get_clean_energy_timing');
+                  const alldata = response.data
+                  this.addtimeflag = false
+                  this.computerFuel(alldata)
+                  // 对表格数据按照时间升序排序
+                  this.tableData2.sort((a, b) => {
+                    const dateA = new Date(`${dateTime0} ${a.times}`);
+                    const dateB = new Date(`${dateTime0} ${b.times}`);
+                    return dateA - dateB;
+                  });
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            }
+            else if (this.chaneTabIndex == 2) {
+              // 发接口
+              util.post('/api/get_synthesize_target', this.postData)
+                .then(response => {
+                  console.log(response, 'time');
+                  // 处理POST请求的响应
+                  if (response && response.code === 200) {
+                    // 请求成功的处理逻辑
+                    const addnewTime = response.data
+                    // if(this.tabList === 2 && this.tagitems.tagtype === 1){
+                    this.optionsss3.series[0].data.push({ value: [addnewTime[0].synthesize_target, addnewTime[1].synthesize_target, addnewTime[2].synthesize_target, addnewTime[3].synthesize_target], name: this.time })
+                    // }else{
+                    // this.optionsss3.series[0].data.push({value:[addnewTime[4].synthesize_target,addnewTime[5].synthesize_target,addnewTime[6].synthesize_target],name:''})
+                    // }
+                  } else {
+                    // 请求失败的处理逻辑
+                    this.$message.error('服务器错误')
+                  }
+                })
+                .catch(error => {
+                  // 处理POST请求的错误
+                  this.$message.error('服务器错误', error)
+                });
+
+            }
+            // this.optionsss.legend.data.push(dateTime)
+            // this.optionsss.series[0].data.push({
+            //   value: [0.507, 0.385, 0.284, 0.343, 0.355],
+            //   name: dateTime,
+            // });
+            // this.$refs.charts.setchart();
+
+            this.chatkey++;
+            this.postData.datatimes = ''
+            this.time = ''
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
     // 处理时间点
     computerTimes(alldata) {
@@ -837,6 +870,7 @@ export default {
     computerTable(alldata) {
       // this.allData = alldata
       // console.log(alldata, '供电能力表格');
+      this.tableData = [];
       this.allDataElectric = [];
       this.allDataPower = [];
       for (let index = 0; index < 25; index = index + 5) {
@@ -1111,6 +1145,7 @@ export default {
       .then((response) => {
         // console.log(response.data, 'get_electricity_target');
         this.computerTable(response.data)
+        this.loading = false
       })
       .catch((error) => {
         console.log(error);
