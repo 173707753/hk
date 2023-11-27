@@ -197,25 +197,23 @@ export default {
         this.initChart()
         
         this.$bus.$on('rightData', (alldata) => {
-            console.log("alldata", alldata);
+            // console.log("alldataqqqq", alldata);
             alldata.forEach((item) => {
                 this.chartDate[0].data.push(item.take_quantity)
             })
-            // this.updateChart(this.chartDate)
+            this.updateChart(this.chartDate)
             this.loading = false
         })
 
-        this.$bus.$on('threeData', (alldata) => {
-            console.log("alldata", alldata);
-            // const nanUp= alldata[0]
-            // const nanDowm= alldata[1]
-            alldata[0].forEach((item) => {
-                this.newData[0].data.push(item.take_take_quantity)
+        this.$bus.$on('threeData', (threeData) => {
+            threeData.forEach((item) => {
+                if(item.region === '南阳上'){
+                    this.newData[0].data.push(item.take_take_quantity)
+                }else{
+                    this.newData[1].data.push(item.take_take_quantity)
+                }
             })
-            alldata[1].forEach((item) => {
-                this.newData[1].data.push(item.take_take_quantity)
-            })  
-            // this.updateChart(this.chartDate)
+            this.updateChart(this.chartDate)
             this.loading = false
         })
     },
