@@ -1,6 +1,6 @@
 <template>
   <div class="top">
-    <div class="st_titles">运行评估总览</div>
+    <div class="st_titles">优化调度评估总览</div>
     <div class="st_tops">
     </div>
     <div class="dwasda" v-if="!tabs">
