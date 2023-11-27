@@ -20,7 +20,7 @@
             </div>
             <!-- <div class="tabimg"> -->
 
-            <img class="tabimg" width="150%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="">
+            <img :class="item.title === '新能源消纳'? 'newstyle':'tabimg'" width="150%" v-if="item.show" height="auto" src="../../assets/img/ch/tabg.png" alt="">
             <!-- </div> -->
           </div>
         </div>
@@ -177,6 +177,13 @@ export default {
             z-index: 999;
             cursor: pointer;
             right: 2%;
+          }
+          .newstyle{
+            position: absolute;
+            top: -110%;
+            z-index: 999;
+            cursor: pointer;
+            right: -5%;
           }
         }
       }
