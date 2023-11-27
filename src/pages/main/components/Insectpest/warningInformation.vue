@@ -1,6 +1,6 @@
 <template>
   <div class="top">
-    <div class="st_titles">电网优化运行指标库</div>
+    <div class="st_titles">大电网优化调度评估指标库</div>
     <div style="display: flex;">
       <div class="title" style="color:#FFC22E;">供电能力指标</div>
       <div class="title" style="color:#5EC2F2;">清洁能源消纳能力指标</div>

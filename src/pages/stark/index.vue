@@ -115,6 +115,7 @@ export default {
           class: "animated fadeIn",
         },
       ],
+
       tagitems: [
         { label: "电力保供系数", tagtype: 1, sel: true },
         { label: "电量保供系数", tagtype: 2, sel: false },
@@ -150,6 +151,12 @@ export default {
             { name: "湖北" },
             { name: "湖南" },
           ],
+          splitLine: {
+      lineStyle: {
+        type: "dashed" ,// 设置为虚线,
+      },
+
+    },
           axisName: {
             formatter: "{value}",
             color: "#d4a5eb",
@@ -201,6 +208,11 @@ export default {
         radar: {
           indicator: [
           ],
+          splitLine: {
+      lineStyle: {
+        type: "dashed" // 设置为虚线
+      }
+    },
           axisName: {
             formatter: "{value}",
             color: "#d4a5eb",
@@ -249,6 +261,11 @@ export default {
         radar: {
           indicator: [
           ],
+          splitLine: {
+      lineStyle: {
+        type: "dashed" // 设置为虚线
+      }
+    },
           axisName: {
             formatter: "{value}",
             color: "#fff",
@@ -306,6 +323,11 @@ export default {
             { name: "湖南", max: 30000 },
             { name: "江西", max: 38000 },
           ],
+          splitLine: {
+      lineStyle: {
+        type: "dashed" // 设置为虚线
+      }
+    },
           axisName: {
             formatter: "{value}",
             color: "#d4a5eb",
@@ -791,10 +813,11 @@ export default {
                 if (response && response.code === 200) {
                   // 请求成功的处理逻辑
                   const addnewTime = response.data
-                  // if(this.tabList === 2 && this.tagitems.tagtype === 1){
-                  this.optionsss3.series[0].data.push({ value: [addnewTime[0].synthesize_target, addnewTime[1].synthesize_target, addnewTime[2].synthesize_target, addnewTime[3].synthesize_target], name: this.time })
+                  // if(this.postData.flag === 1){
+                  //   // 省内
+                  // this.optionsss3.series[0].data.push({ value: [addnewTime[0].synthesize_target, addnewTime[1].synthesize_target, addnewTime[2].synthesize_target, addnewTime[3].synthesize_target], name: dateTime })
                   // }else{
-                  // this.optionsss3.series[0].data.push({value:[addnewTime[4].synthesize_target,addnewTime[5].synthesize_target,addnewTime[6].synthesize_target],name:''})
+                  // this.optionsss3.series[0].data.push({value:[addnewTime[4].synthesize_target,addnewTime[5].synthesize_target,addnewTime[6].synthesize_target],name:dateTime})
                   // }
                 } else {
                   // 请求失败的处理逻辑
@@ -1181,7 +1204,6 @@ export default {
     background: rgba(0, 25, 47, 0.7);
     color: #fff;
   }
-
   .tabsel {
     color: #fff;
     margin-left: 20px;
