@@ -155,6 +155,7 @@ export default {
         this.initChart()
         this.$bus.$on("trueData1", (data) => {
             // console.log(data,'datalm');
+            this.leftData[0].data = []
             data.forEach((item) => {
                 this.leftData[0].data.push(item.fracture_data)
             })
