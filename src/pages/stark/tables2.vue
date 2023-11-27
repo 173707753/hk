@@ -2,19 +2,19 @@
     <el-table :data="tableData" height="20vw" :header-cell-style="{ background: 'rgba(0,25,47,0.7)', color: '#fff' }"
         style="width: 100%">
         <!-- <div v-if="type == 1"> -->
-        <el-table-column prop="times" label="时间" width="100"></el-table-column>
-        <el-table-column prop="name" v-if="tagtype == 1" label="水电消纳" width="100"></el-table-column>
-        <el-table-column prop="name" v-if="tagtype == 2" label="新能源消纳" width="100"></el-table-column>
-        <el-table-column label="电力" style="text-align: center;">
-            <el-table-column prop="powered" label="已消纳">
+        <el-table-column prop="times" align="center" label="时间" width="100"></el-table-column>
+        <el-table-column prop="name" align="center" v-if="tagtype == 1" label="水电消纳" width="100"></el-table-column>
+        <el-table-column prop="name" align="center" v-if="tagtype == 2" label="新能源消纳" width="100"></el-table-column>
+        <el-table-column label="电力" align="center" style="text-align: center;">
+            <el-table-column prop="powered" align="center" label="已消纳">
             </el-table-column>
-            <el-table-column prop="powering" label="可再消纳">
+            <el-table-column prop="powering" align="center" label="可再消纳">
             </el-table-column>
         </el-table-column>
-        <el-table-column label="电量">
-            <el-table-column prop="electriced" label="已消纳">
+        <el-table-column align="center" label="电量">
+            <el-table-column prop="electriced" align="center" label="已消纳">
             </el-table-column>
-            <el-table-column prop="electricing" label="可再消纳">
+            <el-table-column prop="electricing" align="center" label="可再消纳">
             </el-table-column>
         </el-table-column>
     </el-table>

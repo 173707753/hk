@@ -202,14 +202,14 @@ export default {
             fontWeight: "bold",
             color: "#fff",
           },
-          data: ["6:30", "7:30"],
+          data: ["6:30:00", "11:30:00"],
         },
         radar: {
           indicator: [
-            { name: "河南", max: 6500 },
-            { name: "湖北", max: 16000 },
-            { name: "湖南", max: 30000 },
-            { name: "江西", max: 38000 },
+            { name: "河南" },
+            { name: "湖北" },
+            { name: "湖南" },
+            { name: "江西" },
           ],
           axisName: {
             formatter: "{value}",
@@ -231,12 +231,12 @@ export default {
             type: "radar",
             data: [
               {
-                value: [4200, 3000, 20000, 35000],
-                name: "6:30",
+                value: [0.399, 0.405, 0.195, 0.482, 0.336],
+                name: "6:30:00",
               },
               {
-                value: [5000, 14000, 28000, 26000],
-                name: "7:30",
+                value: [0.447, 0.385, 0.244, 0.323, 0.325],
+                name: "11:30:00",
               },
             ],
           },
@@ -355,14 +355,14 @@ export default {
             fontWeight: "bold",
             color: "#fff",
           },
-          data: ["6:30", "7:30"],
+          data: ["6:30:00", "11:30:00"],
         },
         radar: {
           indicator: [
-            { name: "河南", max: 6500 },
-            { name: "湖北", max: 16000 },
-            { name: "湖南", max: 30000 },
-            { name: "江西", max: 38000 },
+            { name: "河南" },
+            { name: "湖北" },
+            { name: "湖南" },
+            { name: "江西" },
           ],
           axisName: {
             formatter: "{value}",
@@ -384,12 +384,12 @@ export default {
             type: "radar",
             data: [
               {
-                value: [4200, 3000, 20000, 35000],
-                name: "6:30",
+                value: [0.379, 0.385, 0.215, 0.462, 0.316],
+                name: "6:30:00",
               },
               {
-                value: [5000, 14000, 28000, 26000],
-                name: "7:30",
+                value: [0.417, 0.375, 0.274, 0.353, 0.355],
+                name: "11:30:00",
               },
             ],
           },
