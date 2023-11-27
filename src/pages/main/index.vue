@@ -7,7 +7,7 @@
           <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
         </div>
         <div style="color: rgb(226, 236, 255);font-size: 3vh;font-weight: bold;position: absolute;top: 30%;left: 9%;">
-          电力大数据
+          大电网调度数据管理
         </div>
         <div style="color: rgb(226, 236, 255);font-size: 4.8vh;font-weight: bold;position: absolute;top: 53%;left: 31%;">
           <!-- 电力碳中和智能化调度 -->
@@ -47,17 +47,17 @@ export default {
         type: 'itermStylezz',
         class: 'animated fadeIn',
       }, {
-        title: '能源消纳',
+        title: '新能源消纳',
         show: false,
         type: 'itermStylely',
         class: 'animated fadeIn',
       }, {
-        title: '储能调控',
+        title: '直流消纳',
         show: false,
         type: 'itermStylech',
         class: 'animated fadeIn',
       }, {
-        title: '应急调度',
+        title: '电力支援',
         show: false,
         type: 'itermStyleyz',
         class: 'animated fadeIn',

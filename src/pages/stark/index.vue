@@ -122,6 +122,7 @@ export default {
           class: "animated fadeIn",
         },
       ],
+
       tagitems: [
         { label: "电力保供系数", tagtype: 1, sel: true },
         { label: "电量保供系数", tagtype: 2, sel: false },
@@ -157,6 +158,12 @@ export default {
             { name: "湖北" },
             { name: "湖南" },
           ],
+          splitLine: {
+      lineStyle: {
+        type: "dashed" ,// 设置为虚线,
+      },
+
+    },
           axisName: {
             formatter: "{value}",
             color: "#d4a5eb",
@@ -208,6 +215,11 @@ export default {
         radar: {
           indicator: [
           ],
+          splitLine: {
+      lineStyle: {
+        type: "dashed" // 设置为虚线
+      }
+    },
           axisName: {
             formatter: "{value}",
             color: "#d4a5eb",
@@ -256,6 +268,11 @@ export default {
         radar: {
           indicator: [
           ],
+          splitLine: {
+      lineStyle: {
+        type: "dashed" // 设置为虚线
+      }
+    },
           axisName: {
             formatter: "{value}",
             color: "#fff",
@@ -313,6 +330,11 @@ export default {
             { name: "湖南", max: 30000 },
             { name: "江西", max: 38000 },
           ],
+          splitLine: {
+      lineStyle: {
+        type: "dashed" // 设置为虚线
+      }
+    },
           axisName: {
             formatter: "{value}",
             color: "#d4a5eb",
@@ -1239,7 +1261,6 @@ export default {
     background: rgba(0, 25, 47, 0.7);
     color: #fff;
   }
-
   .tabsel {
     color: #fff;
     margin-left: 20px;

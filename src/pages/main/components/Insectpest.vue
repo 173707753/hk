@@ -24,7 +24,7 @@
           <div class="returnHome">
             <!-- <router-link to="/home">返回</router-link> -->
           </div>
-          <div class="title">源网储荷优化调度</div>
+          <div class="title">多电源优化调度和备用精准度测算</div>
           <div class="nowTime">{{ currentTime }}</div>
         </div>
         <div class="content">
