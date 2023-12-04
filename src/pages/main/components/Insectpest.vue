@@ -195,7 +195,7 @@ export default {
       font-size: 3vh;
       // text-align: center;
       // align-items: center;
-      align-items: end;
+      align-items: flex-end;
       justify-content: space-around;
       position: absolute;
       top: -30px;
