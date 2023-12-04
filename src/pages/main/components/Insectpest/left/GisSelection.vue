@@ -112,7 +112,7 @@ export default {
                 region: '河南省',
                 district: '洛北济源',
                 flag: 2,
-            }
+            },
         };
     },
     computed: {

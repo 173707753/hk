@@ -28,6 +28,10 @@
                 v-if="tableData.some(item => item.PumpingPower ? item.PumpingPower : item.PumpingPower === 0 ? true : false)"></el-table-column>
             <el-table-column prop="PumpedCapacity" label="抽蓄电量(P/MW)" align="center"
                 v-if="tableData.some(item => item.PumpedCapacity ? item.PumpedCapacity : item.PumpedCapacity === 0 ? true : false)"></el-table-column>
+            <el-table-column prop="nanyangPumpedCapacity" label="南阳上抽蓄电量(P/MW)" align="center"
+                v-if="tableData.some(item => item.nanyangPumpedCapacity ? item.nanyangPumpedCapacity : item.nanyangPumpedCapacity === 0 ? true : false)"></el-table-column>
+            <el-table-column prop="nanyang1PumpedCapacity" label="南阳下抽蓄(P/MW)" align="center"
+                v-if="tableData.some(item => item.nanyang1PumpedCapacity ? item.nanyang1PumpedCapacity : item.nanyang1PumpedCapacity === 0 ? true : false)"></el-table-column>
             <el-table-column prop="loadPower" label="负荷功率(P/MW)" align="center"
                 v-if="tableData.some(item => item.loadPower ? item.loadPower : item.loadPower === 0 ? true : false)"></el-table-column>
         </el-table>
@@ -239,13 +243,25 @@ export default {
                     }
                 } else if (this.alldata[0].name === '储能 数据') {
                     this.tableName = '储能数据'
-                    for (let i = 0; i < this.time.length; i++) {
-                        this.tableData.push({
-                            time: this.time[i],
-                            PumpingPower: this.alldata[0].data[i],
-                            PumpedCapacity: this.alldata[1].data[i],
-                        });
+                    if (this.alldata.length === 3) {
+                        for (let i = 0; i < this.time.length; i++) {
+                            this.tableData.push({
+                                time: this.time[i],
+                                PumpingPower: this.alldata[0].data[i],
+                                nanyangPumpedCapacity: this.alldata[1].data[i],
+                                nanyang1PumpedCapacity: this.alldata[2].data[i],
+                            });
+                        }
+                    } else {
+                        for (let i = 0; i < this.time.length; i++) {
+                            this.tableData.push({
+                                time: this.time[i],
+                                PumpingPower: this.alldata[0].data[i],
+                                PumpedCapacity: this.alldata[1].data[i],
+                            });
+                        }
                     }
+
                 }
             }, 400)
         },

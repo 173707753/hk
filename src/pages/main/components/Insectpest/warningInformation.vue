@@ -316,7 +316,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-around;
-        max-width: 8vw;
+        max-width: 9vw;
 
         .contant_txt {
           display: flex;

@@ -8,14 +8,14 @@
       <div>
         {{ mapChartOption.geo.map == 'china' ? '中国' : mapChartOption.geo.map }}
       </div>
-      
+
     </div>
     <div @showSelect="false" class="chart-container" @contextmenu.prevent="show()">
       <div id="mapChart" :style="heightStyle"></div>
     </div>
     <div class="exports" title="报告导出" @click="exportbg">
-        <i class="el-icon-upload2"></i>
-      </div>
+      <i class="el-icon-upload2"></i>
+    </div>
   </div>
 </template>
 
@@ -687,11 +687,11 @@ export default {
       })
     },
     clickMap(data) {
-      console.log(data);
+      // console.log(data);
       if (data.seriesType == 'scatter') return
       this.nextDow = false
       if (this.nowType === 'country') {
-        console.log(1111);
+        // console.log(1111);
         this.mapChart.dispose() // 销毁地图
         // this.mapChartOption.series[1].data = [this.left5Data[0]] // 更新坐标为武汉市
         // this.geoCoordMap = [this.left5Data[0]] // 缓存波纹点
@@ -886,8 +886,8 @@ export default {
       link.click()
     },
     exportbg() {
-        let obj = JSON.parse(localStorage.getItem('area'))
-      console.log(obj)
+      let obj = JSON.parse(localStorage.getItem('area'))
+      // console.log(obj)
       const url = `/api/get_send_pdf?region=${obj.region}&district=${obj.district}&datatime=${Date.now()}&flag=${obj.flag}`
       this.downloadFile(url, '报告.pdf')
     },
@@ -1055,19 +1055,20 @@ export default {
     width: 100%;
     z-index: 1;
   }
-  
+
 }
-.exports{
-    // width: 100px;
-    // height: 100px;
-    // background: red;
-    position: absolute;
-    // right: 50%;
-    top: 10px;
-    z-index: 999999999999999999999999999;
-    right: 10px;
-    font-size: 28px;
-    color: #fff;
-    cursor: pointer;
-  }
+
+.exports {
+  // width: 100px;
+  // height: 100px;
+  // background: red;
+  position: absolute;
+  // right: 50%;
+  top: 10px;
+  z-index: 999999999999999999999999999;
+  right: 10px;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+}
 </style>
