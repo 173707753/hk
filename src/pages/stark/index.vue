@@ -325,10 +325,10 @@ export default {
         },
         radar: {
           indicator: [
-            { name: "河南", max: 9500 },
-            { name: "湖北", max: 16000 },
-            { name: "湖南", max: 30000 },
-            { name: "江西", max: 38000 },
+            { name: "河南" },
+            { name: "湖北" },
+            { name: "湖南" },
+            { name: "江西" },
           ],
           splitLine: {
             lineStyle: {
@@ -595,6 +595,7 @@ export default {
         this.addtimeflag = true
         util.post('/api/get_clean_energy', this.postData)
           .then((response) => {
+            0
             // console.log('发送没有', this.postData);
             // console.log(response.data, 'get_clean_energy');
             this.computerFuel(response.data)
@@ -617,9 +618,9 @@ export default {
           this.postData.flag = 2
           this.showInput = true;
           this.optionsss3.radar.indicator = [
-            { name: "区域电网跨区", max: 9500 },
-            { name: "跨区转送能力", max: 16000 },
-            { name: "区域电网大功率", max: 30000 },
+            { name: "区域电网跨区" },
+            { name: "跨区转送能力" },
+            { name: "区域电网大功率" },
           ];
           this.optionsss3.series[0].data = [];
           for (let i = 0; i < 5; i++) {
@@ -636,10 +637,10 @@ export default {
           this.showInput = false;
           this.postData.flag = 1
           this.optionsss3.radar.indicator = [
-            { name: "河南", max: 9500 },
-            { name: "湖北", max: 10000 },
-            { name: "湖南", max: 10000 },
-            { name: "江西", max: 10000 },
+            { name: "河南" },
+            { name: "湖北" },
+            { name: "湖南" },
+            { name: "江西" },
           ];
           this.optionsss3.series[0].data = [];
           for (let i = 0; i < 5; i++) {
@@ -700,10 +701,10 @@ export default {
           { label: "区域电网", tagtype: 2, sel: false },
         ];
         this.optionsss3.radar.indicator = [
-          { name: "河南", max: 9500 },
-          { name: "湖北", max: 10000 },
-          { name: "湖南", max: 10000 },
-          { name: "江西", max: 10000 },
+          { name: "河南" },
+          { name: "湖北" },
+          { name: "湖南" },
+          { name: "江西" },
         ];
         this.optionsss3.series[0].data = [];
         for (let i = 0; i < 5; i++) {
@@ -731,14 +732,14 @@ export default {
       this.$refs.charts2.setchart();
       this.$refs.charts3.setchart();
     },
-    // 供电能力判断相同数据
     isTimeAlreadyExists(dateTime) {
-      return this.tableData.some(item => item.date === dateTime);
-    },
-    // 清洁能源判断相同数据
-    isTimeAlreadyExists1(dateTime) {
-      // console.log('在这里没有', this.tableData2.some(item => item.date === dateTime));
-      return this.tableData2.some(item => item.times === dateTime);
+      if (this.chaneTabIndex == 0) {
+        // 供电能力判断相同数据
+        return this.tableData.some(item => item.date === dateTime);
+      } else if (this.chaneTabIndex == 1) {
+        // 清洁能源判断相同数据
+        return this.tableData2.some(item => item.times === dateTime);
+      }
     },
     addtime(data) {
       if (data) {
@@ -754,11 +755,6 @@ export default {
             const dateTime = this.postData.datatimes.split(' ')[1]
             let dateTime0 = this.postData.datatimes.split(' ')[0]
             if (this.isTimeAlreadyExists(dateTime)) {
-              this.$message.warning(`该${this.time}已存在数据，请勿重复添加。`);
-              this.time = ''
-              return;
-            }
-            if (this.isTimeAlreadyExists1(dateTime)) {
               this.$message.warning(`该${this.time}已存在数据，请勿重复添加。`);
               this.time = ''
               return;
@@ -839,7 +835,7 @@ export default {
                 .catch((error) => {
                   console.log(error);
                 });
-            } else if ((this.chaneTabIndex == 1) && (!this.isTimeAlreadyExists1(dateTime))) {
+            } else if ((this.chaneTabIndex == 1) && (!this.isTimeAlreadyExists(dateTime))) {
               // 发送时间改变接口
               util.post('/api/get_clean_energy_timing', this.postData)
                 .then((response) => {
@@ -862,7 +858,7 @@ export default {
               // 发接口
               util.post('/api/get_synthesize_target', this.postData)
                 .then(response => {
-                  console.log(response, 'time');
+                  // console.log(response, 'time');
                   // 处理POST请求的响应
                   if (response && response.code === 200) {
                     // 请求成功的处理逻辑

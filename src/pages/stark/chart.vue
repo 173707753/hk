@@ -33,6 +33,9 @@ export default {
 		setchart() {
 			// console.log(this.option, '---')
 			// 初始化图表
+			if (this.chart != null && this.chart != "" && this.chart != undefined) {
+				this.chart.dispose();//销毁
+			}
 			this.chart = echarts.init(document.getElementById(this.id))
 			// 设置图标的配置项
 			this.chart.setOption(this.option)

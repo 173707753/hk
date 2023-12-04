@@ -143,7 +143,7 @@ export default {
                 // 处理POST请求的响应
                 if (response && response.code === 200) {
                     // 请求成功的处理逻辑
-                    console.log('POST请求成功1', response);
+                    // console.log('POST请求成功1', response);
                     this.computerAreaData(response);
                 } else {
                     // 请求失败的处理逻辑
@@ -211,12 +211,12 @@ export default {
         // 接收各区域具体数据
         computerAreaData(data) {
             this.$bus.$emit('trueData', data)
-            console.log('具体区域数据', data);
+            // console.log('具体区域数据', data);
         },
         // 接收右侧具体数据
         computerRightData(data) {
             this.$bus.$emit('rightData', data)
-            console.log('具体区域数据', data);
+            // console.log('具体区域数据', data);
         },
         onProvinceChange() {
             // Reset片区 and时间选择
@@ -232,7 +232,7 @@ export default {
             // 根据 selectedArea 进行筛选
             // const filteredData = this.left5Data.filter(item => item.name === this.selectedProvince);
             // console.log(filteredData, 111);
-            
+
             // 地图跳转
             // this.$bus.$emit('left5Data', filteredData);
             // 传递省份，区域给index.vue
@@ -251,14 +251,13 @@ export default {
             };
             localStorage.setItem('area', JSON.stringify(postData))
             if (this.selectedProvince) {
-
                 // 发起POST请求
                 util.post('/api/get_elect_start', postData)
                     .then(response => {
                         // 处理POST请求的响应
                         if (response && response.code === 200) {
                             // 请求成功的处理逻辑
-                            console.log('POST请求成功11111', response);
+                            //console.log('POST请求成功11111', response);
                             this.computerAreaData(response);
                         } else {
                             // 请求失败的处理逻辑
@@ -292,7 +291,7 @@ export default {
                         // 处理POST请求的响应
                         if (response && response.code === 200) {
                             // 请求成功的处理逻辑
-                            console.log('POST请求成功lm333', response);
+                            // console.log('POST请求成功lm333', response);
                             this.$bus.$emit('threeData', response.data)
                         } else {
                             // 请求失败的处理逻辑

@@ -15,8 +15,7 @@
     </div>
     <div class="home_center">
       <div class="left">
-        <div :key="itermStyleKeyzz"
-          @mouseenter="changeMask('itermStyleKeyzz', 'itermStylezz', 'in')"
+        <div :key="itermStyleKeyzz" @mouseenter="changeMask('itermStyleKeyzz', 'itermStylezz', 'in')"
           @mouseleave="changeMask('itermStyleKeyzz', 'itermStylezz', 'out')" :class="itermStylezz" class="item">
           <div>
             <p>运行数据管理</p>
@@ -24,8 +23,7 @@
           </div>
           <img class="bg" src="../../assets/img/home/left1.png" alt="">
         </div>
-        <div @click="tozb"
-          @mouseenter="changeMask('itermStyleKeyly', 'itermStylely', 'in')"
+        <div @click="tozb" @mouseenter="changeMask('itermStyleKeyly', 'itermStylely', 'in')"
           @mouseleave="changeMask('itermStyleKeyly', 'itermStylely', 'out')" :key="itermStyleKeyly" class="item"
           :class="itermStylely">
           <div style="right:38%">
@@ -35,8 +33,7 @@
           <img class="bg" src="../../assets/img/home/left2.png" alt="">
         </div>
 
-        <div
-          @mouseenter="changeMask('itermStyleKeych', 'itermStylech', 'in')"
+        <div @mouseenter="changeMask('itermStyleKeych', 'itermStylech', 'in')"
           @mouseleave="changeMask('itermStyleKeych', 'itermStylech', 'out')" :key="itermStyleKeych" class="item"
           :class="itermStylech">
           <div>
@@ -50,8 +47,7 @@
         <img src="../../assets/img/home/xz.gif" width="120%" height="auto" alt="">
       </div>
       <div class="right">
-        <div @click="getfade" :key="itermStyleKeyyz"
-          @mouseenter="changeMask('itermStyleKeyyz', 'itermStyleyz', 'in')"
+        <div @click="getfade" :key="itermStyleKeyyz" @mouseenter="changeMask('itermStyleKeyyz', 'itermStyleyz', 'in')"
           @mouseleave="changeMask('itermStyleKeyyz', 'itermStyleyz', 'out')" :class="itermStyleyz" class="item">
           <div style="margin-left: 8%;">
             <!-- <img width="8%" height="auto" src="../../assets/img/home/智慧养殖.png" alt=""> -->
@@ -59,8 +55,7 @@
           </div>
           <img class="bg" src="../../assets/img/home/right1.png" alt="">
         </div>
-        <div :key="itermStyleKeysy"
-          @mouseenter="changeMask('itermStyleKeysy', 'itermStylesy', 'in')"
+        <div :key="itermStyleKeysy" @mouseenter="changeMask('itermStyleKeysy', 'itermStylesy', 'in')"
           @mouseleave="changeMask('itermStyleKeysy', 'itermStylesy', 'out')" :class="itermStylesy" class="item">
           <div style="left:-10%">
             <!-- <img width="8%" height="auto" src="../../assets/img/home/智慧溯源.png" alt=""> -->
@@ -68,8 +63,7 @@
           </div>
           <img class="bg" src="../../assets/img/home/right2.png" alt="">
         </div>
-        <div :key="itermStyleKeydj"
-          @mouseenter="changeMask('itermStyleKeydj', 'itermStyledj', 'in')"
+        <div :key="itermStyleKeydj" @mouseenter="changeMask('itermStyleKeydj', 'itermStyledj', 'in')"
           @mouseleave="changeMask('itermStyleKeydj', 'itermStyledj', 'out')" :class="itermStyledj" class="item">
           <div style="margin-left: 8%;">
             <!-- <img width="8%" height="auto" src="../../assets/img/home/数字党建.png" alt=""> -->
@@ -80,9 +74,9 @@
       </div>
     </div>
     <div class="home_bottom">
-      <router-link to="/login">
+      <!-- <router-link to="/login">
         登录
-      </router-link>
+      </router-link> -->
     </div>
   </div>
 </template>

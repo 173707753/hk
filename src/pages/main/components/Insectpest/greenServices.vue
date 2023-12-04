@@ -7,116 +7,76 @@
       <div class="st_bo">
         <div class="nyzb">
           <div>
-            <img
-              width="120%"
-              src="../../../../assets/img/ch/绿色服务/service2.png"
-              alt=""
-              class="rotating2_pic"
-            />
+            <img width="120%" src="../../../../assets/img/ch/绿色服务/service2.png" alt="" class="rotating2_pic" />
           </div>
-            <div class="count">
-              <chat :id="`hnchat`" :option="gethnoption(1)"></chat>
-            </div>
+          <div class="count">
+            <chat :id="`hnchat`" :option="gethnoption(1)"></chat>
+          </div>
           <p class="desc">湖北省发电</p>
         </div>
         <div class="nyzb">
           <div>
-            <img
-              width="120%"
-              src="../../../../assets/img/ch/绿色服务/service2.png"
-              alt=""
-              class="rotating2_pic"
-            />
+            <img width="120%" src="../../../../assets/img/ch/绿色服务/service2.png" alt="" class="rotating2_pic" />
           </div>
-            <div class="count">
-              <chat :id="`hnchat1`" :option="gethnoption(2)"></chat>
-            </div>
+          <div class="count">
+            <chat :id="`hnchat1`" :option="gethnoption(2)"></chat>
+          </div>
           <p class="desc">河南省发电</p>
         </div>
         <div class="nyzb">
           <div>
-            <img
-              width="120%"
-              src="../../../../assets/img/ch/绿色服务/service2.png"
-              alt=""
-              class="rotating2_pic"
-            />
+            <img width="120%" src="../../../../assets/img/ch/绿色服务/service2.png" alt="" class="rotating2_pic" />
           </div>
-            <div class="count">
-              <chat :id="`hnchat2`" :option="gethnoption(3)"></chat>
-            </div>
+          <div class="count">
+            <chat :id="`hnchat2`" :option="gethnoption(3)"></chat>
+          </div>
           <p class="desc">江西省发电</p>
         </div>
         <div class="nyzb">
           <div>
-            <img
-              width="120%"
-              src="../../../../assets/img/ch/绿色服务/service2.png"
-              alt=""
-              class="rotating2_pic"
-            />
+            <img width="120%" src="../../../../assets/img/ch/绿色服务/service2.png" alt="" class="rotating2_pic" />
           </div>
-            <div class="count">
-              <chat :id="`hnchat3`" :option="gethnoption(4)"></chat>
-            </div>
+          <div class="count">
+            <chat :id="`hnchat3`" :option="gethnoption(4)"></chat>
+          </div>
           <p class="desc">湖南省发电</p>
         </div>
       </div>
       <div class="st_bo">
         <div class="nyzb">
           <div>
-            <img
-              width="120%"
-              src="../../../../assets/img/ch/绿色服务/service2.png"
-              alt=""
-              class="rotating2_pic"
-            />
+            <img width="120%" src="../../../../assets/img/ch/绿色服务/service2.png" alt="" class="rotating2_pic" />
           </div>
-            <div class="count">
-              <chat :id="`hnchat4`" :option="gethnoption(5)"></chat>
-            </div>
+          <div class="count">
+            <chat :id="`hnchat4`" :option="gethnoption(5)"></chat>
+          </div>
           <p class="desc">全网发电</p>
         </div>
         <div class="nyzb">
           <div>
-            <img
-              width="120%"
-              src="../../../../assets/img/ch/绿色服务/service2.png"
-              alt=""
-              class="rotating2_pic"
-            />
+            <img width="120%" src="../../../../assets/img/ch/绿色服务/service2.png" alt="" class="rotating2_pic" />
           </div>
-            <div class="count">
-              <chat :id="`hnchat5`" :option="gethnoption(6)"></chat>
-            </div>
+          <div class="count">
+            <chat :id="`hnchat5`" :option="gethnoption(6)"></chat>
+          </div>
           <p class="desc">全网备用</p>
         </div>
         <div class="nyzb">
           <div>
-            <img
-              width="120%"
-              src="../../../../assets/img/ch/绿色服务/service2.png"
-              alt=""
-              class="rotating2_pic"
-            />
+            <img width="120%" src="../../../../assets/img/ch/绿色服务/service2.png" alt="" class="rotating2_pic" />
           </div>
-            <div class="count">
-              <chat :id="`hnchat6`" :option="gethnoption(7)"></chat>
-            </div>
+          <div class="count">
+            <chat :id="`hnchat6`" :option="gethnoption(7)"></chat>
+          </div>
           <p class="desc">全网送电</p>
         </div>
         <div class="nyzb">
           <div>
-            <img
-              width="120%"
-              src="../../../../assets/img/ch/绿色服务/service2.png"
-              alt=""
-              class="rotating2_pic"
-            />
+            <img width="120%" src="../../../../assets/img/ch/绿色服务/service2.png" alt="" class="rotating2_pic" />
           </div>
-            <div class="count">
-              <chat :id="`hnchat7`" :option="gethnoption(8)"></chat>
-            </div>
+          <div class="count">
+            <chat :id="`hnchat7`" :option="gethnoption(8)"></chat>
+          </div>
           <p class="desc">全网用电</p>
         </div>
       </div>
@@ -131,14 +91,14 @@ export default {
   data() {
     return {
       tabs: false,
-      hunanData:{},
-      hubeiData:{},
-      jiangxiData:{},
-      henanData:{},
-      power1:[],
-      power2:[],
-      power3:[],
-      power4:[],
+      hunanData: {},
+      hubeiData: {},
+      jiangxiData: {},
+      henanData: {},
+      power1: [],
+      power2: [],
+      power3: [],
+      power4: [],
       statics: 0,
       hnoption: {
         tooltip: {
@@ -173,48 +133,48 @@ export default {
   },
   created() {
     util.get('/api/get_overview_data')
-        .then(response => {
-          console.log(response,'res');
-          if (response && response.code === 200) {
-            // 请求成功的处理逻辑
-            this.hunanData=response.data[0]
-            this.hubeiData=response.data[1]
-            this.jiangxiData=response.data[2]
-            this.henanData=response.data[3]
-            this.power1=response.data[4].generation_summation
-            this.power2=response.data[5].receive_generation
-            this.power3=response.data[6].real_time_generation
-            this.power4=response.data[7].backup_generation_sum
-            console.log(this.power1,'111');
+      .then(response => {
+        // console.log(response,'res');
+        if (response && response.code === 200) {
+          // 请求成功的处理逻辑
+          this.hunanData = response.data[0]
+          this.hubeiData = response.data[1]
+          this.jiangxiData = response.data[2]
+          this.henanData = response.data[3]
+          this.power1 = response.data[4].generation_summation
+          this.power2 = response.data[5].receive_generation
+          this.power3 = response.data[6].real_time_generation
+          this.power4 = response.data[7].backup_generation_sum
+          // console.log(this.power1,'111');
 
-          } else {
-            // 请求失败的处理逻辑
-            this.$message.error('服务器错误')
-          }
-        })
-        .catch(error => {
+        } else {
+          // 请求失败的处理逻辑
           this.$message.error('服务器错误')
-        });
+        }
+      })
+      .catch(error => {
+        this.$message.error('服务器错误', error)
+      });
   },
   methods: {
     gethnoption(val) {
       let obj = JSON.parse(JSON.stringify(this.hnoption))
       obj.tooltip = {
         backgroundColor: 'rgba(0,0,0,0)',//背景颜色（此时为默认色）
-          borderRadius: 0,
-          borderWidth: 0,
-          trigger: 'item',
-          
-          formatter: function (params) {
-            var res = ''
-            res = `
+        borderRadius: 0,
+        borderWidth: 0,
+        trigger: 'item',
+
+        formatter: function (params) {
+          var res = ''
+          res = `
               <div style="padding:0px 5px;background:rgba(0,0,0,0.6);border:1px solid #5EC3F3">
                 <p style="font-size:14px;color:#37D1F9">${params.name}</p>
                 <p style="font-size:14px;color:#37D1F9">${params.value}(P/MW)</p>
               </div>
             `
-            return res
-          }
+          return res
+        }
       }
       if (val == 1) {
         obj.tooltip = {
@@ -222,7 +182,7 @@ export default {
           borderRadius: 0,
           borderWidth: 0,
           trigger: 'item',
-          
+
           formatter: function (params) {
             var res = ''
             res = `
@@ -237,15 +197,15 @@ export default {
             // 获取可视区域的宽度和高度
             const viewWidth = size.viewSize[0];
             const viewHeight = size.viewSize[1];
-            
+
             // 获取提示框内容的宽度和高度
             const tooltipWidth = dom.offsetWidth;
             const tooltipHeight = dom.offsetHeight;
-            
+
             // 设置提示框的位置
             let left = point[0];
             let top = point[1];
-            
+
             // 判断提示框是否超出可视范围，如果超出则调整位置
             if (left + tooltipWidth > viewWidth) {
               left = viewWidth - tooltipWidth;
@@ -253,48 +213,48 @@ export default {
             if (top + tooltipHeight > viewHeight) {
               top = viewHeight - tooltipHeight;
             }
-            
+
             return [left, top];
           },
         }
         obj.series[0].data = [
-        { value: this.hubeiData.hubei.fire_generation, name: '火力发电'},
-        { value: this.hubeiData.hubei.water_generation, name: '水力发电' },
-        { value: this.hubeiData.hubei.take_generation, name: '抽蓄发电' },
-        { value: this.hubeiData.hubei.light_generation , name: '光伏发电' },
-        { value: this.hubeiData.hubei.wind_generation, name: '风力发电' }]
+          { value: this.hubeiData.hubei.fire_generation, name: '火力发电' },
+          { value: this.hubeiData.hubei.water_generation, name: '水力发电' },
+          { value: this.hubeiData.hubei.take_generation, name: '抽蓄发电' },
+          { value: this.hubeiData.hubei.light_generation, name: '光伏发电' },
+          { value: this.hubeiData.hubei.wind_generation, name: '风力发电' }]
         return obj
-      }  if (val == 2) {
+      } if (val == 2) {
         obj.series[0].data = [
-          { value:this.henanData.henan.fire_generation,name: '火力发电' },
-        { value: this.henanData.henan.water_generation, name: '水力发电' },
-        { value: this.henanData.henan.take_generation, name: '抽蓄发电' },
-        { value: this.henanData.henan.light_generation, name: '光伏发电' },
-        { value: this.henanData.henan.wind_generation, name: '风力发电' }]
+          { value: this.henanData.henan.fire_generation, name: '火力发电' },
+          { value: this.henanData.henan.water_generation, name: '水力发电' },
+          { value: this.henanData.henan.take_generation, name: '抽蓄发电' },
+          { value: this.henanData.henan.light_generation, name: '光伏发电' },
+          { value: this.henanData.henan.wind_generation, name: '风力发电' }]
         return obj
-      }  if (val == 3) {
+      } if (val == 3) {
         obj.series[0].data = [
-        { value:this.jiangxiData.jiangxi.fire_generation,name: '火力发电' },
-        { value: this.jiangxiData.jiangxi.water_generation, name: '水力发电' },
-        { value: this.jiangxiData.jiangxi.take_generation, name: '抽蓄发电' },
-        { value: this.jiangxiData.jiangxi.light_generation, name: '光伏发电' },
-        { value: this.jiangxiData.jiangxi.wind_generation, name: '风力发电' }]
+          { value: this.jiangxiData.jiangxi.fire_generation, name: '火力发电' },
+          { value: this.jiangxiData.jiangxi.water_generation, name: '水力发电' },
+          { value: this.jiangxiData.jiangxi.take_generation, name: '抽蓄发电' },
+          { value: this.jiangxiData.jiangxi.light_generation, name: '光伏发电' },
+          { value: this.jiangxiData.jiangxi.wind_generation, name: '风力发电' }]
         return obj
-      }  if (val == 4) {
+      } if (val == 4) {
         obj.series[0].data = [
-        { value:this.hunanData.hunan.fire_generation,name: '火力发电' },
-        { value: this.hunanData.hunan.water_generation, name: '水力发电' },
-        { value: this.hunanData.hunan.take_generation, name: '抽蓄发电' },
-        { value: this.hunanData.hunan.light_generation, name: '光伏发电' },
-        { value: this.hunanData.hunan.wind_generation, name: '风力发电' }]
+          { value: this.hunanData.hunan.fire_generation, name: '火力发电' },
+          { value: this.hunanData.hunan.water_generation, name: '水力发电' },
+          { value: this.hunanData.hunan.take_generation, name: '抽蓄发电' },
+          { value: this.hunanData.hunan.light_generation, name: '光伏发电' },
+          { value: this.hunanData.hunan.wind_generation, name: '风力发电' }]
         return obj
-      }  if (val == 5) {
+      } if (val == 5) {
         obj.tooltip = {
           backgroundColor: 'rgba(0,0,0,0)',//背景颜色（此时为默认色）
           borderRadius: 0,
           borderWidth: 0,
           trigger: 'item',
-          
+
           formatter: function (params) {
             var res = ''
             res = `
@@ -309,15 +269,15 @@ export default {
             // 获取可视区域的宽度和高度
             const viewWidth = size.viewSize[0];
             const viewHeight = size.viewSize[1];
-            
+
             // 获取提示框内容的宽度和高度
             const tooltipWidth = dom.offsetWidth;
             const tooltipHeight = dom.offsetHeight;
-            
+
             // 设置提示框的位置
             let left = point[0];
             let top = point[1];
-            
+
             // 判断提示框是否超出可视范围，如果超出则调整位置
             if (left + tooltipWidth > viewWidth) {
               left = viewWidth - tooltipWidth;
@@ -325,35 +285,35 @@ export default {
             if (top + tooltipHeight > viewHeight) {
               top = viewHeight - tooltipHeight;
             }
-            
+
             return [left, top];
           },
         }
         obj.series[0].data = [
           { value: this.power1[0].data, name: '河南省' },
-        { value:this.power1[1].data, name: '江西省' },
-        { value: this.power1[2].data, name: '湖北省' },
-        { value: this.power1[3].data, name: '湖南省' }]
+          { value: this.power1[1].data, name: '江西省' },
+          { value: this.power1[2].data, name: '湖北省' },
+          { value: this.power1[3].data, name: '湖南省' }]
         return obj
-      }  if (val == 6) {
+      } if (val == 6) {
         obj.series[0].data = [
-        { value: this.power2[0].data, name: '河南省' },
-        { value:this.power2[1].data, name: '江西省' },
-        { value: this.power2[2].data, name: '湖北省' },
-        { value: this.power2[3].data, name: '湖南省' }]
+          { value: this.power2[0].data, name: '河南省' },
+          { value: this.power2[1].data, name: '江西省' },
+          { value: this.power2[2].data, name: '湖北省' },
+          { value: this.power2[3].data, name: '湖南省' }]
         return obj
-      }  if (val == 7) {
+      } if (val == 7) {
         obj.series[0].data = [{ value: this.power3[0].data, name: '河南省' },
-        { value:this.power3[1].data, name: '江西省' },
+        { value: this.power3[1].data, name: '江西省' },
         { value: this.power3[2].data, name: '湖北省' },
         { value: this.power3[3].data, name: '湖南省' }]
         return obj
-      }  if (val == 8) {
+      } if (val == 8) {
         obj.series[0].data = [{ value: this.power4[0].data, name: '河南省' },
-        { value:this.power4[1].data, name: '江西省' },
+        { value: this.power4[1].data, name: '江西省' },
         { value: this.power4[2].data, name: '湖北省' },
         { value: this.power4[3].data, name: '湖南省' }]
-        
+
         return obj
       }
       // console.log(obj, 111)
@@ -383,6 +343,7 @@ export default {
   background-image: url("../../../../assets/img/ch/绿色服务/绿色服务.png");
   background-size: 100% 107%;
   background-repeat: no-repeat;
+
   .st_dw {
     width: 55%;
     font-size: 1.6vh;
@@ -390,6 +351,7 @@ export default {
     align-items: center;
     justify-content: center;
   }
+
   .smalltab {
     width: 45%;
     position: relative;
@@ -397,12 +359,15 @@ export default {
     margin-right: 2%;
     justify-content: flex-end;
     align-items: flex-end;
+
     img {
       z-index: 9999;
       cursor: pointer;
     }
+
     .small_tabs {
       position: relative;
+
       p {
         cursor: pointer;
         z-index: 9999;
@@ -411,11 +376,14 @@ export default {
         margin-top: 5%;
         position: absolute;
       }
+
       font-size: 1vh;
       text-align: right;
     }
+
     .small_tabsed {
       position: relative;
+
       p {
         cursor: pointer;
         z-index: 9999;
@@ -423,40 +391,50 @@ export default {
         top: 4%;
         position: absolute;
       }
+
       font-size: 0.5vh;
       text-align: left;
       margin-left: -1px;
     }
   }
+
   .st_bo {
     display: flex;
     margin-top: -2%;
     justify-content: space-around;
     height: 20vh;
+
     .desc {
       font-size: 1.8vh;
       color: #C5C5C5;
       font-family: PingFangSC-Medium, PingFang SC;
-          position: relative;
-    // top: -6vh;
+      position: relative;
+      // top: -6vh;
     }
+
     p {
       // margin-top: 1vh;
     }
+
     .nyzb {
       flex: 1;
       text-align: center;
       position: relative;
       border-right: 1px solid #00a3ff3d;
+
       .rotating_pic {
-        animation: myfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+        animation: myfirst 1.5s linear infinite;
+        /*开始动画后无限循环，用来控制rotate*/
       }
+
       .rotating2_pic {
         position: relative;
         margin-top: 0vh;
         margin-left: -0.7vw;
-        animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+        animation: nmyfirst 1.5s linear infinite;
+        /*开始动画后无限循环，用来控制rotate*/
       }
+
       // .water_zb {
       //   // 水波纹的大小位置设置
       //   width: 4vw;
@@ -479,26 +457,33 @@ export default {
         position: absolute;
         top: 0;
       }
+
       .dw {
         font-size: 1vh;
         margin-left: 2px;
         color: #ffbf2c;
       }
     }
+
     .lsjp {
       flex: 1;
       text-align: center;
       position: relative;
       border-right: 1px solid #00a3ff3d;
+
       .rotating_pic {
-        animation: myfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+        animation: myfirst 1.5s linear infinite;
+        /*开始动画后无限循环，用来控制rotate*/
       }
+
       .rotating2_pic {
         position: relative;
         margin-top: 0vh;
         margin-left: -0.7vw;
-       animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+        animation: nmyfirst 1.5s linear infinite;
+        /*开始动画后无限循环，用来控制rotate*/
       }
+
       // .water_jp {
       //   // 水波纹的大小位置设置
       //   width: 4vw;
@@ -516,25 +501,32 @@ export default {
         position: relative;
         top: -11vh;
       }
+
       .dw {
         font-size: 1vh;
         color: #35ece8;
         margin-left: 2px;
       }
     }
+
     .lszz {
       flex: 1;
       text-align: center;
       position: relative;
+
       .rotating_pic {
-        animation: myfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+        animation: myfirst 1.5s linear infinite;
+        /*开始动画后无限循环，用来控制rotate*/
       }
+
       .rotating2_pic {
         position: relative;
         margin-top: 0vh;
         margin-left: -0.7vw;
-        animation: nmyfirst 1.5s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
+        animation: nmyfirst 1.5s linear infinite;
+        /*开始动画后无限循环，用来控制rotate*/
       }
+
       // .water_zz {
       //   // 水波纹的大小位置设置
       //   width: 4vw;
@@ -561,6 +553,7 @@ export default {
         position: relative;
         top: -11vh;
       }
+
       .dw {
         font-size: 1vh;
         color: #3dd780;
@@ -568,22 +561,24 @@ export default {
       }
     }
   }
-  .dwasda{
+
+  .dwasda {
     max-height: 20vh;
     overflow: hidden;
     overflow-y: scroll;
   }
+
   .dwasda::-webkit-scrollbar {
-      width: 4px;
-    }
+    width: 4px;
+  }
 
-    .dwasda::-webkit-scrollbar-track {
-      background: #525579;
-    }
+  .dwasda::-webkit-scrollbar-track {
+    background: #525579;
+  }
 
-    .dwasda::-webkit-scrollbar-thumb {
-      background: #4f668e;
-      /* 滚动条滑块颜色 */
-    }
+  .dwasda::-webkit-scrollbar-thumb {
+    background: #4f668e;
+    /* 滚动条滑块颜色 */
+  }
 }
 </style>

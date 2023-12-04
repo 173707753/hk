@@ -137,16 +137,16 @@ export default {
 
             // 判断鼠标是否在 PopupComponent 区域内
             if (
-                // mouseX < popupRect.left ||
-                mouseX > popupRect.right ||
+                mouseX < popupRect.left ||
+                // mouseX > popupRect.right ||
                 mouseY < popupRect.top ||
                 mouseY > popupRect.bottom ||
-                mouseX < leftRect.left ||
-                // mouseX > leftRect.right ||
+                // mouseX < leftRect.left ||
+                mouseX > leftRect.right ||
                 mouseY < leftRect.top ||
                 mouseY > leftRect.bottom
             ) {
-                console.log('离开');
+                // console.log('离开');
                 this.hidePopup();
             }
         },

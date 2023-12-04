@@ -140,7 +140,7 @@ export default {
                 mouseY < leftRect.top ||
                 mouseY > leftRect.bottom
             ) {
-                console.log('离开');
+                // console.log('离开');
                 this.hidePopup();
             }
         },
