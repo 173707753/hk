@@ -11,7 +11,7 @@
                 <div @click="changeEnergy(1)" class="energy-button conventional">发电功率</div>
                 <div @click="changeNewenergy(1)" class="energy-button new">抽蓄电量</div>
             </div>
-            <PopupComponent v-if="isMouseOverBot" ref="popup3" @close-popup="hidePopup" :alldata="newData" />
+            <PopupComponent v-if="isMouseOverBot" ref="popup3" @close-popup="hidePopup" :alldata="tableData" />
         </div>
     </div>
 </template>
@@ -54,7 +54,11 @@ export default {
                     data: []
                 },
                 {
-                    name: '抽蓄电量',
+                    name: '南阳上电量',
+                    data: []
+                },
+                {
+                    name: '南阳下电量',
                     data: []
                 },
             ]
@@ -204,6 +208,7 @@ export default {
             })
 
             this.updateChart(this.chartDate)
+            this.tableData[0].data=this.chartDate[0].data
             this.loading = false
         })
 
@@ -218,6 +223,9 @@ export default {
                 }
             })
             this.updateChart(this.newData)
+            this.tableData[1].data=this.newData[0].data
+            this.tableData[2].data=this.newData[1].data
+            // console.log(this.tableData,'table');
             this.loading = false
         })
     },
