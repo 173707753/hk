@@ -4,8 +4,8 @@
         <div v-if="tableData.length === 0" style="text-align: center; margin-top: 20%;color: #fff;font-size: 24px;">
             数据正在接收请稍后...
         </div>
-        <el-table v-else :header-cell-style="{ background: 'rgba(0,25,47,0.7)', color: '#fff' }" :data="tableData"
-            style="width: 100%;margin-top: 2%;" border max-height="400">
+        <el-table height="22.5vw" v-else :header-cell-style="{ background: 'rgba(0,25,47,0.7)', color: '#fff' }"
+            :data="tableData" style="width: 100%;margin-top: 2%;" border max-height="400">
             <!-- <el-table-column prop="date" label="日期" align="center"
                 v-if="tableData.some(item => item.date !== '')">2023/8/24</el-table-column> -->
             <el-table-column prop="time" label="时间" align="center"

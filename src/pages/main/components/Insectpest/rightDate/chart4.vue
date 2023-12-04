@@ -151,7 +151,7 @@ export default {
   mounted() {
     this.initChart()
     this.$bus.$on('rightData', (alldata) => {
-      console.log(alldata, 'alldata');
+      // console.log(alldata, 'alldata');
       this.leftData[0].data = []
       alldata.forEach((item) => {
         this.leftData[0].data.push(item.load_power)

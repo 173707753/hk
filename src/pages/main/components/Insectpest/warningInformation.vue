@@ -14,7 +14,7 @@
           :style="item.style ? item.style : item.type == 1 ? 'color:#FFC22E' : item.type == 2 ? 'color:#5EC2F2' : item.type == 3 ? 'color:#FF4528' : 'color:#bfc'">
           <!-- <img width="13%" height="auto" :src="item.summer" alt=""> -->
           <p class="txt" :title="item.txt">
-            {{ item.txt.length > 10 ? item.txt.slice(0, 9) + '...' : item.txt }}
+            {{ item.txt }}
           </p>
           <!-- <p class="date">{{ item.date }}</p> -->
         </div>
@@ -293,7 +293,7 @@ export default {
         -webkit-animation-timing-function: ease-in-out;
         animation-timing-function: ease-in-out;
         animation-iteration-count: 1;
-       
+
       }
 
       text-align: center;
@@ -308,6 +308,7 @@ export default {
         img {
           // animation: myfirst 1s linear infinite;  /*开始动画后无限循环，用来控制rotate*/
         }
+
         position: absolute;
         top: 15%;
         width: 80%;
@@ -315,6 +316,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-around;
+        max-width: 8vw;
 
         .contant_txt {
           display: flex;
@@ -334,6 +336,10 @@ export default {
           // cursor: default;
           margin-left: 13%;
           margin-top: 3px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 9vw;
         }
       }
     }

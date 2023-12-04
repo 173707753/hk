@@ -103,23 +103,27 @@ export default {
         district: this.data1.selectedArea,
         flag: this.flag,
       };
-      // 右侧结果数据
-      util.post('/api/get_result_data', postData)
-        .then(response => {
-          // 处理POST请求的响应
-          if (response && response.code === 200) {
-            // 请求成功的处理逻辑
-            this.$bus.$emit('rightData', response.data)
-          } else {
-            // 请求失败的处理逻辑
-            this.$message.error('服务器错误')
-            // console.error('POST请求失败', response);
-          }
-        })
-        .catch(error => {
-          // 处理POST请求的错误
-          console.error('POST请求错误', error);
-        });
+      if (this.data1.selectedProvince) {
+        // 右侧结果数据
+        util.post('/api/get_result_data', postData)
+          .then(response => {
+            // 处理POST请求的响应
+            if (response && response.code === 200) {
+              // 请求成功的处理逻辑
+              this.$bus.$emit('rightData', response.data)
+            } else {
+              // 请求失败的处理逻辑
+              this.$message.error('服务器错误')
+              // console.error('POST请求失败', response);
+            }
+          })
+          .catch(error => {
+            // 处理POST请求的错误
+            console.error('POST请求错误', error);
+          });
+      } else {
+        this.$message.error('请选择单位和片区')
+      }
       // 接收省份区域数据
       this.$bus.$on("allData2", (data) => {
         this.data1 = data;

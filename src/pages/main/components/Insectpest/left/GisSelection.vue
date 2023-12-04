@@ -235,6 +235,7 @@ export default {
 
             // 地图跳转
             // this.$bus.$emit('left5Data', filteredData);
+
             // 传递省份，区域给index.vue
             this.$bus.$emit('allData2', { selectedProvince: this.selectedProvince, selectedArea: this.selectedArea })
 
@@ -311,6 +312,8 @@ export default {
             this.selectedProvince = "";
             this.selectedArea = "";
             this.selectedTime = "";
+            // 传递省份，区域给index.vue
+            this.$bus.$emit('allData2', { selectedProvince: this.selectedProvince, selectedArea: this.selectedArea })
         },
 
     },
@@ -328,7 +331,7 @@ export default {
 .gis-selection {
     display: flex;
     flex-direction: column;
-    font-size: 20px;
+    font-size: 2.2vh;
 
     .date-selection {
         display: flex;
@@ -338,13 +341,14 @@ export default {
     .button-container {
         display: flex;
         flex-direction: row;
+        margin-left: 0.29vw;
 
         .energy-button {
-            padding: 1px 2px;
-            margin-top: 3px;
-            margin-left: 2px;
-            border-radius: 3px;
-            font-size: 18px;
+            padding: 0.1vh 0.2vh;
+            margin-top: 0.3vh;
+            margin-left: 0.2vh;
+            border-radius: 0.4vh;
+            font-size: 2vh;
             cursor: pointer;
             text-align: center;
             font-weight: bold;
@@ -370,7 +374,7 @@ export default {
 }
 
 .select {
-    margin: 10px;
+    margin: 1.2vh;
 
     label {
         font-weight: bold;
@@ -381,7 +385,7 @@ export default {
     select {
         background-color: rgb(7, 39, 87);
         width: 86%;
-        height: 34px;
+        height: 4vh;
         font-weight: bold;
         color: #fff;
     }
