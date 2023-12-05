@@ -799,7 +799,7 @@ export default {
       var a = ''
       this.province.features.map(val => {
         if (val.properties.name === data.name) {
-          console.log(22222)
+          // console.log(22222)
           if (val.properties.childrenNum > 0) {
             a = '_full'
           }

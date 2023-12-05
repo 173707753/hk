@@ -3,7 +3,7 @@
     <div class="st_titles">优化调度评估总览</div>
     <div class="st_tops">
     </div>
-    <div class="dwasda" v-if="!tabs">
+    <div class="dwasda" v-if="tabs">
       <div class="st_bo">
         <div class="nyzb">
           <div>
@@ -90,7 +90,7 @@ import chat from '../../../../components/EChart.vue'
 export default {
   data() {
     return {
-      loading: true,
+      loading:true,
       tabs: false,
       hunanData: {},
       hubeiData: {},
@@ -133,8 +133,6 @@ export default {
     chat
   },
   created() {
-  },
-  mounted() {
     util.get('/api/get_overview_data')
       .then(response => {
         // console.log(response,'res');
@@ -149,10 +147,12 @@ export default {
           this.power3 = response.data[6].real_time_generation
           this.power4 = response.data[7].backup_generation_sum
           // console.log(this.power1,'111');
-          this.loading = false
+          this.tabs=true
+          this.loading=false
         } else {
           // 请求失败的处理逻辑
           this.$message.error('服务器错误')
+          this.tabs=false
         }
       })
       .catch(error => {

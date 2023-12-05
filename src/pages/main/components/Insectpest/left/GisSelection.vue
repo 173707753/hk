@@ -304,6 +304,8 @@ export default {
                         this.$message.error('服务器错误', error)
                     });
 
+            } else {
+                this.$message.error('请选择单位和片区')
             }
 
         },
@@ -341,7 +343,7 @@ export default {
     .button-container {
         display: flex;
         flex-direction: row;
-        margin-left: 0.29vw;
+        margin-left: 1%;
 
         .energy-button {
             padding: 0.1vh 0.2vh;
