@@ -203,8 +203,8 @@ export default {
         this.$bus.$on('rightData', (alldata) => {
             // console.log("alldataqqqq", alldata);
             this.chartDate.forEach(item => item.data = [])
-            alldata.forEach((item) => {
-                this.chartDate[0].data.push(item.take_quantity)
+            alldata.data.forEach((item) => {
+                this.chartDate[0].data.push(item.take_power)
             })
 
             this.updateChart(this.chartDate)
@@ -226,6 +226,7 @@ export default {
             this.tableData[1].data=this.newData[0].data
             this.tableData[2].data=this.newData[1].data
             // console.log(this.tableData,'table');
+            // console.log(this.tabindex);
             this.loading = false
         })
     },

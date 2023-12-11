@@ -153,7 +153,7 @@ export default {
     this.$bus.$on('rightData', (alldata) => {
       // console.log(alldata, 'alldata');
       this.leftData[0].data = []
-      alldata.forEach((item) => {
+      alldata.data.forEach((item) => {
         this.leftData[0].data.push(item.load_power)
       })
       this.initChart()
