@@ -133,7 +133,36 @@ export default {
     chat
   },
   created() {
-    util.get('/api/get_overview_data')
+    // 获取当前时间
+
+const now = new Date();
+const year = now.getFullYear(); // 获取当前年份
+const month = now.getMonth() + 1; // 获取当前月份（注意：月份从 0 开始计数）
+const day = now.getDate(); // 获取当前日期
+const hour = now.getHours(); // 获取当前小时数
+const minute = now.getMinutes(); // 获取当前分钟数
+const second = now.getSeconds(); // 获取当前秒
+// 格式化时间字符串
+const formattedTimeStr = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')} ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
+
+console.log(formattedTimeStr,'now'); 
+const timeComponents = formattedTimeStr.split(' ')[1].split(':'); // 将时间字符串分割成时、分、秒三个部分
+let newhour = parseInt(timeComponents[0]);
+let newminute = parseInt(timeComponents[1]);
+
+// 计算最近的 15 分钟时间
+if (newminute % 15 !== 0) {
+  newminute = Math.floor(newminute / 15) * 15; // 向上取整到最近的 15 的倍数
+  if (newminute === 60) {
+    newhour = (newhour + 1) % 24; // 如果分钟数进位到 60，小时数也需要进位
+  }
+}
+// 格式化调整后的时间
+const adjustedTimeStr = `2023-08-24 ${newhour.toString().padStart(2, '0')}:${newminute.toString().padStart(2, '0')}:00`;
+
+// console.log(adjustedTimeStr,'ooo'); // 输出调整后的时间字符串
+
+    util.get('/api/get_overview_data?datetiming='+adjustedTimeStr)
       .then(response => {
         // console.log(response,'res');
         if (response && response.code === 200) {
@@ -142,10 +171,10 @@ export default {
           this.hubeiData = response.data[1]
           this.jiangxiData = response.data[2]
           this.henanData = response.data[3]
-          this.power1 = response.data[4].generation_summation
-          this.power2 = response.data[5].receive_generation
-          this.power3 = response.data[6].real_time_generation
-          this.power4 = response.data[7].backup_generation_sum
+          this.power1 = response.data[4].generation_summation //全网
+          this.power3 = response.data[5].receive_generation //受电
+          this.power4 = response.data[6].real_time_generation //实时用电
+          this.power2 = response.data[7].backup_generation_sum  //备用总和
           // console.log(this.power1,'111');
           this.tabs=true
           this.loading=false
@@ -221,35 +250,35 @@ export default {
           },
         }
         obj.series[0].data = [
-          { value: this.hubeiData.hubei.fire_generation, name: '火力发电' },
-          { value: this.hubeiData.hubei.water_generation, name: '水力发电' },
-          { value: this.hubeiData.hubei.take_generation, name: '抽蓄发电' },
-          { value: this.hubeiData.hubei.light_generation, name: '光伏发电' },
-          { value: this.hubeiData.hubei.wind_generation, name: '风力发电' }]
+          { value: this.hubeiData.fire_generation, name: '火力发电' },
+          { value: this.hubeiData.water_generation, name: '水力发电' },
+          { value: this.hubeiData.take_generation, name: '抽蓄发电' },
+          { value: this.hubeiData.light_generation, name: '光伏发电' },
+          { value: this.hubeiData.wind_generation, name: '风力发电' }]
         return obj
       } if (val == 2) {
         obj.series[0].data = [
-          { value: this.henanData.henan.fire_generation, name: '火力发电' },
-          { value: this.henanData.henan.water_generation, name: '水力发电' },
-          { value: this.henanData.henan.take_generation, name: '抽蓄发电' },
-          { value: this.henanData.henan.light_generation, name: '光伏发电' },
-          { value: this.henanData.henan.wind_generation, name: '风力发电' }]
+          { value: this.henanData.fire_generation, name: '火力发电' },
+          { value: this.henanData.water_generation, name: '水力发电' },
+          { value: this.henanData.take_generation, name: '抽蓄发电' },
+          { value: this.henanData.light_generation, name: '光伏发电' },
+          { value: this.henanData.wind_generation, name: '风力发电' }]
         return obj
       } if (val == 3) {
         obj.series[0].data = [
-          { value: this.jiangxiData.jiangxi.fire_generation, name: '火力发电' },
-          { value: this.jiangxiData.jiangxi.water_generation, name: '水力发电' },
-          { value: this.jiangxiData.jiangxi.take_generation, name: '抽蓄发电' },
-          { value: this.jiangxiData.jiangxi.light_generation, name: '光伏发电' },
-          { value: this.jiangxiData.jiangxi.wind_generation, name: '风力发电' }]
+          { value: this.jiangxiData.fire_generation, name: '火力发电' },
+          { value: this.jiangxiData.water_generation, name: '水力发电' },
+          { value: this.jiangxiData.take_generation, name: '抽蓄发电' },
+          { value: this.jiangxiData.light_generation, name: '光伏发电' },
+          { value: this.jiangxiData.wind_generation, name: '风力发电' }]
         return obj
       } if (val == 4) {
         obj.series[0].data = [
-          { value: this.hunanData.hunan.fire_generation, name: '火力发电' },
-          { value: this.hunanData.hunan.water_generation, name: '水力发电' },
-          { value: this.hunanData.hunan.take_generation, name: '抽蓄发电' },
-          { value: this.hunanData.hunan.light_generation, name: '光伏发电' },
-          { value: this.hunanData.hunan.wind_generation, name: '风力发电' }]
+          { value: this.hunanData.fire_generation, name: '火力发电' },
+          { value: this.hunanData.water_generation, name: '水力发电' },
+          { value: this.hunanData.take_generation, name: '抽蓄发电' },
+          { value: this.hunanData.light_generation, name: '光伏发电' },
+          { value: this.hunanData.wind_generation, name: '风力发电' }]
         return obj
       } if (val == 5) {
         obj.tooltip = {
