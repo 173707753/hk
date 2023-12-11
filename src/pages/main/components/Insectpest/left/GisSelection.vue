@@ -182,6 +182,7 @@ export default {
             .then(response => {
                 // 处理POST请求的响应
                 if (response && response.code === 200) {
+                    // console.log(response, 'response');
                     // 请求成功的处理逻辑
                     this.computerRightData(response);
                 } else {
@@ -218,6 +219,7 @@ export default {
         },
         // 接收右侧具体数据
         computerRightData(data) {
+
             this.$bus.$emit('rightData', data)
             // console.log('具体区域数据', data);
         },

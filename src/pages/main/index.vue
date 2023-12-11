@@ -68,7 +68,7 @@ export default {
       data1: {
         selectedProvince: '河南省',
         selectedArea: '洛北济源',
-        selectedTime: '2023-8-24'
+        selectedTime: '2023-08-24'
       },
       flag: 2,
     }
@@ -110,13 +110,14 @@ export default {
         flag: this.flag,
       };
       if (this.data1.selectedProvince) {
+        // console.log(postData, 'postData');
         // 右侧结果数据
         util.post('/api/get_result_data', postData)
           .then(response => {
             // 处理POST请求的响应
             if (response && response.code === 200) {
               // 请求成功的处理逻辑
-              this.$bus.$emit('rightData', response.data)
+              this.$bus.$emit('rightData', response)
             } else {
               // 请求失败的处理逻辑
               this.$message.error('服务器错误')
@@ -132,7 +133,7 @@ export default {
       }
       // 接收省份区域数据
       this.$bus.$on("allData2", (data) => {
-        // console.log('省份数据', data);
+        console.log('省份数据', data);
         this.data1 = data;
       })
       this.tabList.map(val => {

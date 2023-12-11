@@ -231,7 +231,7 @@ export default {
             this.titleName = data.selectedProvince + data.selectedArea
         })
         this.$bus.$on('rightData', (alldata) => {
-            // console.log('具体区域数据1lm', alldata);
+            console.log('具体区域数据123456', alldata);
             this.chartDate[0].data = []
             this.chartDate[1].data = []
             this.newData[0].data = []
@@ -261,7 +261,7 @@ export default {
             this.totalData[4].data = this.newData[1].data
             this.updateChart(this.totalData)
             this.loading = false
-            console.log("具体数据right", this.totalData);
+            console.log("具体数据right11", this.totalData);
         })
     }
 }
