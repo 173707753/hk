@@ -67,7 +67,8 @@ export default {
       // 省份数据
       data1: {
         selectedProvince: '河南省',
-        selectedArea: '洛北济源'
+        selectedArea: '洛北济源',
+        selectedTime: '2023-8-24'
       },
       flag: 2,
     }
@@ -101,6 +102,7 @@ export default {
       const postData = {
         region: this.data1.selectedProvince,
         district: this.data1.selectedArea,
+        datetimes: this.data1.selectedTime,
         flag: this.flag,
       };
       if (this.data1.selectedProvince) {
@@ -122,10 +124,11 @@ export default {
             console.error('POST请求错误', error);
           });
       } else {
-        this.$message.error('请选择单位和片区')
+        this.$message.error('请选择单位,片区及时间')
       }
       // 接收省份区域数据
       this.$bus.$on("allData2", (data) => {
+        // console.log('省份数据', data);
         this.data1 = data;
       })
       this.tabList.map(val => {
