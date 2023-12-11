@@ -227,6 +227,7 @@ export default {
     mounted() {
         this.initChart();
         this.$bus.$on('allData2', (data) => {
+            // console.log(data,'data');
             this.titleName = data.selectedProvince + data.selectedArea
         })
         this.$bus.$on('rightData', (alldata) => {
@@ -241,17 +242,17 @@ export default {
             this.totalData[3].data = []
             this.totalData[4].data = []
             this.conventionalData = []
-            alldata.forEach((item) => {
+            alldata.data.forEach((item) => {
                 // 火电
-                this.chartDate[0].data.push(item.fire_quantity)
+                this.chartDate[0].data.push(item.fire_power)
                 // 水电
-                this.chartDate[1].data.push(item.water_quantity)
+                this.chartDate[1].data.push(item.water_power)
                 // 风电
-                this.newData[0].data.push(item.wind_quantity)
+                this.newData[0].data.push(item.wind_power)
                 // 光伏
-                this.newData[1].data.push(item.light_quantity)
+                this.newData[1].data.push(item.light_power)
                 // 抽蓄
-                this.totalData[2].data.push(item.take_quantity)
+                this.totalData[2].data.push(item.take_power)
             })
             this.conventionalData = this.chartDate
             this.totalData[0].data = this.chartDate[0].data
@@ -260,7 +261,7 @@ export default {
             this.totalData[4].data = this.newData[1].data
             this.updateChart(this.totalData)
             this.loading = false
-            // console.log("具体数据right", this.totalData);
+            console.log("具体数据right", this.totalData);
         })
     }
 }
