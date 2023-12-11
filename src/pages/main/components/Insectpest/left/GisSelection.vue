@@ -274,9 +274,11 @@ export default {
                         console.error('POST请求错误', error);
                     });
                 // 
+                console.log(postData, 'postData');
                 // 右侧结果数据
                 util.post('/api/get_result_data', postData)
                     .then(response => {
+                        console.log(response, 'response');
                         // 处理POST请求的响应
                         if (response && response.code === 200) {
                             // 请求成功的处理逻辑

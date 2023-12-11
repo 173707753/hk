@@ -95,6 +95,10 @@ export default {
         this.flag = 2
       } else if (index === 1) {
         this.flag = 1
+      } else if (index === 2) {
+        this.flag = 4
+      } else if (index === 3) {
+        this.flag = 3
       }
       // 发送标识符
       this.$bus.$emit('flagData', this.flag)
