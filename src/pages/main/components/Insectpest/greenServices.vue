@@ -90,7 +90,7 @@ import chat from '../../../../components/EChart.vue'
 export default {
   data() {
     return {
-      loading:true,
+      loading: true,
       tabs: false,
       hunanData: {},
       hubeiData: {},
@@ -133,36 +133,16 @@ export default {
     chat
   },
   created() {
-    // 获取当前时间
+    // this.getnowTime()
+    // 定义定时器，每隔15分钟调用一次
+    setInterval(function () {
+      const adjustedTime = this.getnowTime();
+    }, 15 * 60 * 1000); 
+    // 初始调用一次
+    const adjustedTime =this.getnowTime();
+    // console.log(adjustedTime,'nowtime');
 
-const now = new Date();
-const year = now.getFullYear(); // 获取当前年份
-const month = now.getMonth() + 1; // 获取当前月份（注意：月份从 0 开始计数）
-const day = now.getDate(); // 获取当前日期
-const hour = now.getHours(); // 获取当前小时数
-const minute = now.getMinutes(); // 获取当前分钟数
-const second = now.getSeconds(); // 获取当前秒
-// 格式化时间字符串
-const formattedTimeStr = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')} ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
-
-console.log(formattedTimeStr,'now'); 
-const timeComponents = formattedTimeStr.split(' ')[1].split(':'); // 将时间字符串分割成时、分、秒三个部分
-let newhour = parseInt(timeComponents[0]);
-let newminute = parseInt(timeComponents[1]);
-
-// 计算最近的 15 分钟时间
-if (newminute % 15 !== 0) {
-  newminute = Math.floor(newminute / 15) * 15; // 向上取整到最近的 15 的倍数
-  if (newminute === 60) {
-    newhour = (newhour + 1) % 24; // 如果分钟数进位到 60，小时数也需要进位
-  }
-}
-// 格式化调整后的时间
-const adjustedTimeStr = `2023-08-24 ${newhour.toString().padStart(2, '0')}:${newminute.toString().padStart(2, '0')}:00`;
-
-// console.log(adjustedTimeStr,'ooo'); // 输出调整后的时间字符串
-
-    util.get('/api/get_overview_data?datetiming='+adjustedTimeStr)
+    util.get('/api/get_overview_data?datetiming=' + adjustedTime)
       .then(response => {
         // console.log(response,'res');
         if (response && response.code === 200) {
@@ -176,12 +156,12 @@ const adjustedTimeStr = `2023-08-24 ${newhour.toString().padStart(2, '0')}:${new
           this.power4 = response.data[6].real_time_generation //实时用电
           this.power2 = response.data[7].backup_generation_sum  //备用总和
           // console.log(this.power1,'111');
-          this.tabs=true
-          this.loading=false
+          this.tabs = true
+          this.loading = false
         } else {
           // 请求失败的处理逻辑
           this.$message.error('服务器错误')
-          this.tabs=false
+          this.tabs = false
         }
       })
       .catch(error => {
@@ -362,6 +342,35 @@ const adjustedTimeStr = `2023-08-24 ${newhour.toString().padStart(2, '0')}:${new
         }
       }, 150);
     },
+    getnowTime() {
+      // 获取当前时间
+      const now = new Date();
+      const year = now.getFullYear(); // 获取当前年份
+      const month = now.getMonth() + 1; // 获取当前月份（注意：月份从 0 开始计数）
+      const day = now.getDate(); // 获取当前日期
+      const hour = now.getHours(); // 获取当前小时数
+      const minute = now.getMinutes(); // 获取当前分钟数
+      const second = now.getSeconds(); // 获取当前秒
+      // 格式化时间字符串
+      const formattedTimeStr = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')} ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
+
+      console.log(formattedTimeStr, 'now');
+      const timeComponents = formattedTimeStr.split(' ')[1].split(':'); // 将时间字符串分割成时、分、秒三个部分
+      let newhour = parseInt(timeComponents[0]);
+      let newminute = parseInt(timeComponents[1]);
+
+      // 计算最近的 15 分钟时间
+      if (newminute % 15 !== 0) {
+        newminute = Math.floor(newminute / 15) * 15; // 向上取整到最近的 15 的倍数
+        if (newminute === 60) {
+          newhour = (newhour + 1) % 24; // 如果分钟数进位到 60，小时数也需要进位
+        }
+      }
+      // 格式化调整后的时间
+      const adjustedTimeStr = `2023-08-24 ${newhour.toString().padStart(2, '0')}:${newminute.toString().padStart(2, '0')}:00`;
+      // console.log(adjustedTimeStr, 'ppp');
+      return adjustedTimeStr
+    }
   },
 };
 </script>
