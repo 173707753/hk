@@ -85,7 +85,7 @@ export default {
 
   },
   mounted() {
-    this.chaneTab(0);
+    // this.chaneTab(0);
     // 发送标识符
     this.$bus.$emit('flagData', this.flag)
   },
@@ -109,7 +109,7 @@ export default {
         datetimes: this.data1.selectedTime,
         flag: this.flag,
       };
-      if (this.data1.selectedProvince) {
+      if (this.data1.selectedProvince && this.data1.selectedTime) {
         // console.log(postData, 'postData');
         // 右侧结果数据
         util.post('/api/get_result_data', postData)
