@@ -22,7 +22,7 @@
                 </select>
             </div>
 
-            <!-- <div class="select">
+            <div class="select">
                 <label>日期：</label>
                 <select v-model="selectedTime">
                     <option value="" disabled style="color: #fff;">
@@ -30,7 +30,7 @@
                     </option>
                     <option v-for="(time, index) in filteredTimes" :key="index" :value="time">{{ time }}</option>
                 </select>
-            </div> -->
+            </div>
         </div>
 
         <div class="button-container">
@@ -46,7 +46,7 @@ export default {
     data() {
         return {
             provinces: [],
-            times: ["2023/8/24",],
+            times: ["2023-08-24",],
             areas: {},
             // 地图调转数据
             left5Data: [
@@ -111,6 +111,7 @@ export default {
             postData: {
                 region: '河南省',
                 district: '洛北济源',
+                datetimes: '2023-08-24',
                 flag: 2,
             },
         };
@@ -128,6 +129,7 @@ export default {
     },
     created() {
         localStorage.setItem('area', JSON.stringify(this.postData))
+        // 省份 区域数据筛选
         util.get('/api/get_region')
             .then((response) => {
                 // console.log(response, '11111');
@@ -237,7 +239,7 @@ export default {
             // this.$bus.$emit('left5Data', filteredData);
 
             // 传递省份，区域给index.vue
-            this.$bus.$emit('allData2', { selectedProvince: this.selectedProvince, selectedArea: this.selectedArea })
+            this.$bus.$emit('allData2', { selectedProvince: this.selectedProvince, selectedArea: this.selectedArea, selectedTime: this.selectedTime })
 
             // 重置选择
             // this.selectedProvince = "";
@@ -248,10 +250,11 @@ export default {
             const postData = {
                 region: this.selectedProvince,
                 district: this.selectedArea,
+                datetimes: this.selectedTime,
                 flag: this.flag,
             };
             localStorage.setItem('area', JSON.stringify(postData))
-            if (this.selectedProvince) {
+            if (this.selectedProvince && this.selectedTime) {
                 // 发起POST请求
                 util.post('/api/get_elect_start', postData)
                     .then(response => {
@@ -304,6 +307,8 @@ export default {
                         this.$message.error('服务器错误', error)
                     });
 
+            } else {
+                this.$message.error('请选择单位,片区及时间')
             }
 
         },
@@ -313,7 +318,7 @@ export default {
             this.selectedArea = "";
             this.selectedTime = "";
             // 传递省份，区域给index.vue
-            this.$bus.$emit('allData2', { selectedProvince: this.selectedProvince, selectedArea: this.selectedArea })
+            this.$bus.$emit('allData2', { selectedProvince: this.selectedProvince, selectedArea: this.selectedArea, selectedTime: this.selectedTime })
         },
 
     },
@@ -341,11 +346,11 @@ export default {
     .button-container {
         display: flex;
         flex-direction: row;
-        margin-left: 0.29vw;
+        margin-left: 1%;
 
         .energy-button {
             padding: 0.1vh 0.2vh;
-            margin-top: 0.3vh;
+            margin-top: 0.1vh;
             margin-left: 0.2vh;
             border-radius: 0.4vh;
             font-size: 2vh;
@@ -385,7 +390,7 @@ export default {
     select {
         background-color: rgb(7, 39, 87);
         width: 86%;
-        height: 4vh;
+        height: 3.6vh;
         font-weight: bold;
         color: #fff;
     }
