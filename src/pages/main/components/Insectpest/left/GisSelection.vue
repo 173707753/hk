@@ -195,6 +195,7 @@ export default {
         // 默认选中河南省洛北济源
         this.selectedProvince = "河南省";
         this.selectedArea = "洛北济源";
+        this.selectedTime = '2023-08-24';
     },
     methods: {
         // 接收后端传递过来的省份，区域数据

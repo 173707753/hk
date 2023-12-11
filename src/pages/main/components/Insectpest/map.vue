@@ -887,8 +887,8 @@ export default {
     },
     exportbg() {
       let obj = JSON.parse(localStorage.getItem('area'))
-      // console.log(obj)
-      const url = `/api/get_send_pdf?region=${obj.region}&district=${obj.district}&datatime=${Date.now()}&flag=${obj.flag}`
+      // console.log(obj, 'obj')
+      const url = `/api/get_send_pdf?region=${obj.region}&district=${obj.district}&datetimes=${obj.datetimes}&flag=${obj.flag}`
       this.downloadFile(url, '报告.pdf')
     },
   },

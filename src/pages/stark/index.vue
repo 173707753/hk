@@ -543,7 +543,8 @@ export default {
       // road: "",
       // bad: "",
       postData: {
-        datatimes: '',
+        datetimes: '2023-08-24',
+        datetiming: '',
         flag: 1,
       },
       chaneTabIndex: 0
@@ -749,11 +750,11 @@ export default {
           type: "warning",
         })
           .then(() => {
-            this.postData.datatimes = this.time
-            // console.log(this.postData.datatimes, 'this.postData.datatimes');
+            this.postData.datetiming = this.time
+            // console.log(this.postData.datetimes, 'this.postData.datatimes');
             // console.log(this.postData.datatimes.split(' ')[1], 'this.postData.datatimes.split');
-            const dateTime = this.postData.datatimes.split(' ')[1]
-            let dateTime0 = this.postData.datatimes.split(' ')[0]
+            const dateTime = this.postData.datetiming.split(' ')[1]
+            let dateTime0 = this.postData.datetiming.split(' ')[0]
             if (this.isTimeAlreadyExists(dateTime)) {
               this.$message.warning(`该${this.time}已存在数据，请勿重复添加。`);
               this.time = ''
@@ -761,6 +762,7 @@ export default {
             }
             if ((this.chaneTabIndex == 0) && (!this.isTimeAlreadyExists(dateTime))) {
               // 发送时间改变接口
+              console.log(this.postData, 'this.postData');
               util.post('/api/get_electricity_target_timing', this.postData)
                 .then((response) => {
                   // console.log(response.data, 'get_electricity_target_timing');
@@ -890,7 +892,7 @@ export default {
             // this.$refs.charts.setchart();
 
             this.chatkey++;
-            this.postData.datatimes = ''
+            this.postData.datetiming = ''
             this.time = ''
           })
           .catch((error) => {
