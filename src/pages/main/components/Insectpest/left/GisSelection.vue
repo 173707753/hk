@@ -341,7 +341,7 @@ export default {
 .gis-selection {
     display: flex;
     flex-direction: column;
-    font-size: 2.2vh;
+    font-size: 2vh;
 
     .date-selection {
         display: flex;
@@ -367,7 +367,7 @@ export default {
             transition: background-color 0.3s;
 
             &.conventional {
-                margin-left: 4.3rem;
+                margin-left: 13.5%;
                 background-color: rgba(84, 122, 194, .5);
             }
 
@@ -395,7 +395,7 @@ export default {
     select {
         background-color: rgb(7, 39, 87);
         width: 86%;
-        height: 3.6vh;
+        height: 3.2vh;
         font-weight: bold;
         color: #fff;
     }

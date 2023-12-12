@@ -145,7 +145,7 @@ export default {
     // 格式化时间字符串
     const formattedTimeStr = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')} ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
 
-    // console.log(formattedTimeStr,'now'); 
+    console.log(formattedTimeStr, 'now');
     const timeComponents = formattedTimeStr.split(' ')[1].split(':'); // 将时间字符串分割成时、分、秒三个部分
     let newhour = parseInt(timeComponents[0]);
     let newminute = parseInt(timeComponents[1]);

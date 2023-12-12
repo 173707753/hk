@@ -110,13 +110,14 @@ export default {
         flag: this.flag,
       };
       if (this.data1.selectedProvince && this.data1.selectedTime) {
-        // console.log(postData, 'postData');
+        console.log(postData, 'postData');
         // 右侧结果数据
         util.post('/api/get_result_data', postData)
           .then(response => {
             // 处理POST请求的响应
             if (response && response.code === 200) {
               // 请求成功的处理逻辑
+              console.log(response.data, 'response');
               this.$bus.$emit('rightData', response)
             } else {
               // 请求失败的处理逻辑

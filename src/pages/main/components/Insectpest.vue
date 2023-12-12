@@ -227,7 +227,7 @@ export default {
 
     .title {
 
-      font-size: 3vh;
+      font-size: 2.8vh;
       color: red;
       font-weight: 600 ma
     }
