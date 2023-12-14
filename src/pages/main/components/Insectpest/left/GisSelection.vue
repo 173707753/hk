@@ -133,10 +133,17 @@ export default {
         util.get('/api/get_region')
             .then((response) => {
                 // console.log(response, '11111');
-                this.processRegionData(response.data);
+                if (response && response.code === 200) {
+                    // 请求成功的处理逻辑
+                    this.processRegionData(response.data);
+                } else {
+                    // 请求失败的处理逻辑
+                    // console.error('POST请求失败', response);
+                    this.$message.error('服务器错误')
+                }
             })
             .catch((error) => {
-                console.log(error);
+                console.error('POST请求错误', error);
             });
 
         util.post('/api/get_elect_start', this.postData)
@@ -276,11 +283,11 @@ export default {
                         console.error('POST请求错误', error);
                     });
                 // 
-                console.log(postData, 'postData');
+                // console.log(postData, 'postData');
                 // 右侧结果数据
                 util.post('/api/get_result_data', postData)
                     .then(response => {
-                        console.log(response, 'response');
+                        // console.log(response, 'response');
                         // 处理POST请求的响应
                         if (response && response.code === 200) {
                             // 请求成功的处理逻辑

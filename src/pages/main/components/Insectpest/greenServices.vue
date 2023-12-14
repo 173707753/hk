@@ -134,13 +134,13 @@ export default {
   },
   created() {
     // this.getnowTime()
+    // 初始调用一次
+    let adjustedTime = this.getnowTime();
+    // console.log(adjustedTime, 'nowtime');
     // 定义定时器，每隔15分钟调用一次
     setInterval(function () {
-      const adjustedTime = this.getnowTime();
-    }, 15 * 60 * 1000); 
-    // 初始调用一次
-    const adjustedTime =this.getnowTime();
-    // console.log(adjustedTime,'nowtime');
+      adjustedTime = this.getnowTime();
+    }, 15 * 60 * 1000);
 
     util.get('/api/get_overview_data?datetiming=' + adjustedTime)
       .then(response => {

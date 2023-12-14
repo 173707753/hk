@@ -6,10 +6,10 @@
         <div class="main_g" style="margin-top: -6px;">
           <img width="20%" height="20%" src="../../assets/img/home/g.png" alt="">
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 3vh;font-weight: bold;position: absolute;top: 30%;left: 6%;">
+        <div style="color: rgb(226, 236, 255);font-size: 1.5vw;font-weight: bold;position: absolute;top: 30%;left: 6%;">
           大电网调度数据管理
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 4.8vh;font-weight: bold;position: absolute;top: 50%;left: 35%;">
+        <div style="color: rgb(226, 236, 255);font-size: 2.3vw;font-weight: bold;position: absolute;top: 50%;left: 35%;">
           <!-- 电力碳中和智能化调度 -->
           新型电力系统智能化调度
         </div>
@@ -117,7 +117,7 @@ export default {
             // 处理POST请求的响应
             if (response && response.code === 200) {
               // 请求成功的处理逻辑
-              console.log(response.data, 'response');
+              // console.log(response.data, 'response');
               this.$bus.$emit('rightData', response)
             } else {
               // 请求失败的处理逻辑
@@ -134,7 +134,7 @@ export default {
       }
       // 接收省份区域数据
       this.$bus.$on("allData2", (data) => {
-        console.log('省份数据', data);
+        // console.log('省份数据', data);
         this.data1 = data;
       })
       this.tabList.map(val => {
@@ -164,7 +164,7 @@ export default {
 
     .left {
       position: relative;
-      padding: 15px 0 0 20px;
+      padding: 0.1875rem 0 0 0.25rem;
 
       .right {
         position: absolute;

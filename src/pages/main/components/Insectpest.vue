@@ -227,9 +227,13 @@ export default {
 
     .title {
 
-      font-size: 2.8vh;
+      font-size: 1.25vw;
       color: red;
-      font-weight: 600 ma
+      font-weight: 600 ma;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 20vw;
     }
 
     .nowTime {

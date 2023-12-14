@@ -4,7 +4,7 @@
       <img src="../../assets/img/home/top.png" width="100%" height="auto" alt="">
       <div class="home_title">
         <!-- <img src="../../assets/img/home/wz.png" width="20%" height="auto" alt=""> -->
-        <div style="color: rgb(226, 236, 255);font-size: 4.4vh;font-weight: bold;position: absolute;top: 53%;left: 38%;">
+        <div style="color: rgb(226, 236, 255);font-size:2.2vw;font-weight: bold;position: absolute;top: 53%;left: 38%;">
           <!-- 电力碳中和智能化调度 -->
           新型电力系统智能化调度
         </div>
