@@ -9,9 +9,9 @@
         <div style="color: rgb(226, 236, 255);font-size: 1.5vw;font-weight: bold;position: absolute;top: 30%;left: 6%;">
           大电网调度数据管理
         </div>
-        <div style="color: rgb(226, 236, 255);font-size: 2.3vw;font-weight: bold;position: absolute;top: 50%;left: 35%;">
+        <div style="color: rgb(226, 236, 255);font-size: 1.6vw;font-weight: bold;position: absolute;top: 50%;left: 35%;">
           <!-- 电力碳中和智能化调度 -->
-          新型电力系统智能化调度
+          新型电力系统电力保供优化调度系统研究
         </div>
         <div class="right">
           <div v-for="(item, index) in tabList" :key="index" class="tabs">

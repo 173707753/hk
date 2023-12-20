@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <div class="login_form">
-            <p>新型电力系统智能化调度</p>
+            <p>新型电力系统电力保供优化调度系统研究</p>
             <el-tabs v-model="activeName" @tab-click="handleClick">
                 <el-tab-pane label="登录" name="first">
                     <el-form :model="loginForm" :rules="rules" ref="loginForm" @submit.native.prevent>
