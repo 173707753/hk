@@ -63,7 +63,7 @@
           </div>
           <img class="bg" src="../../assets/img/home/right2.png" alt="">
         </div>
-        <div :key="itermStyleKeydj" @mouseenter="changeMask('itermStyleKeydj', 'itermStyledj', 'in')"
+        <div @click="evaluate1" :key="itermStyleKeydj" @mouseenter="changeMask('itermStyleKeydj', 'itermStyledj', 'in')"
           @mouseleave="changeMask('itermStyleKeydj', 'itermStyledj', 'out')" :class="itermStyledj" class="item">
           <div style="margin-left: 8%;">
             <!-- <img width="8%" height="auto" src="../../assets/img/home/数字党建.png" alt=""> -->
@@ -118,6 +118,9 @@ export default {
     },
     tozb() {
       this.$router.push('stark')
+    },
+    evaluate1() {
+      this.$router.push('evaluate')
     },
     changeMask(k, c, t) {
       // console.log(k,c,t)

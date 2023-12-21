@@ -26,6 +26,13 @@ export default [
 			import(/* webpackChunkName: "pages" */ '@/pages/stark/index.vue'),
 	},
 	{
+		path: '/evaluate',
+		name: '优化指标',
+		meta: { isTab: false },
+		component: () =>
+			import(/* webpackChunkName: "pages" */ '@/pages/evaluate/index.vue'),
+	},
+	{
 		path: '/login',
 		name: 'Login',
 		meta: { isTab: false },
