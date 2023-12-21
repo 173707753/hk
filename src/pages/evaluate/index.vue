@@ -104,23 +104,23 @@ export default {
           class: "animated fadeIn",
         },
         {
-          title: "清洁能源消纳",
+          title: "新能源消纳能力",
           show: false,
           type: "2",
           class: "animated fadeIn",
         },
         {
-          title: "综合调节能力",
+          title: "直流消纳",
           show: false,
           type: "3",
           class: "animated fadeIn",
         },
-        {
-          title: "备用均衡度",
-          show: false,
-          type: "4",
-          class: "animated fadeIn",
-        },
+        // {
+        //   title: "备用均衡度",
+        //   show: false,
+        //   type: "4",
+        //   class: "animated fadeIn",
+        // },
       ],
 
       tagitems: [
