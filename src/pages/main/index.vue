@@ -19,7 +19,6 @@
               {{ item.title }}
             </div>
             <!-- <div class="tabimg"> -->
-
             <img :class="item.title === '新能源消纳' ? 'newstyle' : 'tabimg'" width="150%" v-if="item.show" height="auto"
               src="../../assets/img/ch/tabg.png" alt="">
             <!-- </div> -->
